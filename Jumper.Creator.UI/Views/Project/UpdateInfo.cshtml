@@ -1,0 +1,196 @@
+﻿@using Jumper.Application.Features.ProjectDeclarations.Queries.GetById;
+@using Jumper.Creator.UI.Models.Enum;
+
+@{
+    ViewData["Title"] = "Proje Güncelle";
+}
+
+@model GetByIdProjectDeclarationResponse
+
+<div class="partial-wrapper">
+    <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("ProjectInfoPartial","Project",new{id = Model.Id,selected=ProjectInfoMenuSelection.Info})">
+        <div class="vh-align">
+            <h4> Proje Bilgileri Yükleniyor. </h4>
+            <a href="#/"> Lütfen Bekleyin. </a>
+        </div>
+    </div>
+</div>
+
+<!--begin::Row-->
+<div class="row gx-6 gx-xl-9">
+    <!--begin::Col-->
+    <div class="col-12">
+        <!--begin::Summary-->
+        <div class="card card-flush h-lg-100">
+            <!--begin::Card body-->
+            <div class="card-body p-9 pt-5">
+
+                <form asp-controller="Project" asp-action="UpdateInfo" method="post">
+                    @Html.HiddenFor(w=>w.Id)
+
+
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label">İsim</label>
+                            <input type="text" class="form-control disabled" disabled="disabled" value="@Model.Name" />
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="Description">Açıklama</label>
+                            @Html.TextAreaFor(w=>w.Description,new {@class="form-control",@id="Description"})
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label" for="UseDatabase">Api Oluşturulsun Mu ?</label>
+                            <select name="CreateApi" id="CreateApi" class="form-control">
+                                @if (Model.CreateApi)
+                                {
+
+                                    <option selected="selected" value="@true">Evet</option>
+                                    <option value="@false">Hayır</option>
+
+                                }
+                                else
+                                {
+
+                                    <option value="@true">Evet</option>
+                                    <option selected="selected" value="@false">Hayır</option>
+
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="UseDatabase">UI Oluşturulsun Mu ?</label>
+                            <select name="CreateUI" id="CreateUI" class="form-control">
+                                @if (Model.CreateUI)
+                                {
+
+                                    <option selected="selected" value="@true">Evet</option>
+                                    <option value="@false">Hayır</option>
+
+                                }
+                                else
+                                {
+
+                                    <option value="@true">Evet</option>
+                                    <option selected="selected" value="@false">Hayır</option>
+
+                                }
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            @if (Model.UseDatabase)
+                            {
+                                <a href='@Url.Action("UpdateDatabaseSettings", "Project",new { id=Model.Id})'> <label class="form-label" for="UseDatabase">Veritabanı Var Mı ?</label> <i class='fa fa-edit'></i> </a>
+                                <select name="UseDatabase" id="UseDatabase" class="form-control">
+                                    <option selected="selected" value="@true">Evet</option>
+                                    <option value="@false">Hayır</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <label class="form-label" for="UseDatabase">Veritabanı Var Mı ?</label>
+                                <select name="UseDatabase" id="UseDatabase" class="form-control">
+                                    <option value="@true">Evet</option>
+                                    <option selected="selected" value="@false">Hayır</option>
+                                </select>
+                            }
+
+
+                        </div>
+                        <div class="col-6">
+
+                            @if (Model.UseRabbitMq)
+                            {
+                                <a href='@Url.Action("UpdateRabbitMqSettings", "Project",new { id=Model.Id})'> <label class="form-label" for="UseRabbitMq">RabbitMq Var Mı ?</label> <i class='fa fa-edit'></i> </a>
+                                <select name="UseRabbitMq" id="UseRabbitMq" class="form-control">
+                                    <option selected="selected" value="@true">Evet</option>
+                                    <option value="@false">Hayır</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <label class="form-label" for="UseRabbitMq">RabbitMq Var Mı ?</label>
+                                <select name="UseRabbitMq" id="UseRabbitMq" class="form-control">
+                                    <option value="@true">Evet</option>
+                                    <option selected="selected" value="@false">Hayır</option>
+                                </select>
+                            }
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+
+                            @if (Model.UseSerilog)
+                            {
+                                <a href='@Url.Action("UpdateSerilogSettings", "Project",new { id=Model.Id})'> <label class="form-label" for="UseSerilog">SeriLog Var Mı ?</label> <i class='fa fa-edit'></i> </a>
+
+                                <select name="UseSerilog" id="UseSerilog" class="form-control">
+                                    <option selected="selected" value="@true">Evet</option>
+                                    <option value="@false">Hayır</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <label class="form-label" for="UseSerilog">SeriLog Var Mı ?</label>
+
+                                <select name="UseSerilog" id="UseSerilog" class="form-control">
+                                    <option value="@true">Evet</option>
+                                    <option selected="selected" value="@false">Hayır</option>
+                                </select>
+                            }
+
+                        </div>
+                        <div class="col-6">
+
+                            @if (Model.UseCache)
+                            {
+                                <a href='@Url.Action("UpdateCacheSettings", "Project",new { id=Model.Id})'> <label class="form-label" for="UseCache">Cache Var Mı ?</label> <i class='fa fa-edit'></i> </a>
+                                <select name="UseCache" id="UseCache" class="form-control">
+                                    <option selected="selected" value="@true">Evet</option>
+                                    <option value="@false">Hayır</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <label class="form-label" for="UseCache">Cache Var Mı ?</label>
+
+                                <select name="UseCache" id="UseCache" class="form-control">
+                                    <option value="@true">Evet</option>
+                                    <option selected="selected" value="@false">Hayır</option>
+                                </select>
+
+                            }
+
+
+                        </div>
+                    </div>
+
+                    <div class=" pt-5 text-end">
+                        <button class=" btn btn-primary" type="submit">
+                            Kaydet
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Summary-->
+    </div>
+    <!--end::Col-->
+
+</div>
+<!--end::Row-->

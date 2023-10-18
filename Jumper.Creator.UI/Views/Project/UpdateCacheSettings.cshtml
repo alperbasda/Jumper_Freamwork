@@ -1,0 +1,56 @@
+﻿@using Jumper.Application.Features.ProjectDeclarations.Queries.GetByIdForCacheSettings;
+@using Jumper.Creator.UI.Models.Enum;
+@using Jumper.Domain.MongoEntities;
+
+@model GetByIdForCacheSettingsProjectDeclarationResponse
+
+@{
+    ViewData["Title"] = "Cache Ayarları";
+}
+
+
+<div class="partial-wrapper">
+    <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("ProjectInfoPartial","Project",new{id = Model.Id,selected=ProjectInfoMenuSelection.Cache})">
+        <div class="vh-align">
+            <h4> Proje Bilgileri Yükleniyor. </h4>
+            <a href="#/"> Lütfen Bekleyin. </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+        <form asp-controller="Project" asp-action="UpdateCacheSettings" method="post">
+            @Html.HiddenFor(w=>w.Id)
+            <div class="form-floating mb-7 row">
+                <div class="col-6">
+                    <label class="form-label" for="Host">Host</label>
+                    @Html.TextBoxFor(w=>w.CacheConfiguration!.Host,new {@class="form-control" ,@id="Host"})
+                </div>
+                <div class="col-6">
+                    <label class="form-label" for="SlidingExpiration">Cache Süresi</label>
+                    @Html.TextBoxFor(w=>w.CacheConfiguration!.SlidingExpiration,new {@class="form-control" ,@id="SlidingExpiration",type="number"})
+                </div>
+            </div>
+
+            <div class="form-floating mb-7 row">
+                <div class="col-6">
+                    <label class="form-label" for="Port">Port</label>
+                    @Html.TextBoxFor(w=>w.CacheConfiguration!.Port,new {@class="form-control" ,@id="Port"})
+                </div>
+                <div class="col-6">
+                    <label class="form-label" for="Password">Şifre</label>
+                    @Html.TextBoxFor(w=>w.CacheConfiguration!.Password,new {@class="form-control" ,@id="Password"})
+                </div>
+            </div>
+
+            <div class=" pt-5 text-end">
+                <button class=" btn btn-primary" type="submit">
+                    Kaydet
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

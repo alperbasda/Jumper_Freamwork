@@ -1,0 +1,128 @@
+﻿@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
+@using Jumper.Application.Features.ProjectEntityActions.Commands.Create;
+@using Jumper.Application.Features.ProjectEntityProperties.Queries.GetListByProjectEntityId;
+@using Jumper.Application.Features.ProjectEntityActions.Commands;
+@using Jumper.Domain.Entities;
+@using Jumper.Domain.Enums;
+
+@model CreateProjectEntityActionCommand
+@{
+    var properties = (List<GetListByProjectEntityIdProjectEntityPropertyResponse>)ViewData["ProjectEntityProperties"]!;
+}
+
+
+<form method="post" action="@Url.Action("Create","ProjectEntityAction")">
+    <input type="hidden" name="projectId" />
+    <div class="card-header">
+        <div class="card-title">
+            <div class="col-auto" id="project_entity_select_wrapper">
+                <div data-qs-param="projectId" data-partial="@Url.Action("Dropdown","ProjectEntity")?Name=@(nameof(ProjectEntityAction.ProjectEntityId))&SelectedValue=@Model.ProjectEntityId">
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 align-items-center card-toolbar">
+            <div class="col-auto">
+                <div class="form-floating">
+                    @Html.TextBoxFor(w=>w.Name,new {@class="form-control form-control-sm"})
+                    <label class="form-label mr-4" for="Name"> Metot Adı </label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="EntityAction">
+                        <option value="@null">Seçim Yapın</option>
+                        @foreach (EntityAction action in (EntityAction[])Enum.GetValues(typeof(EntityAction)))
+                        {
+                            <option value="@action">@action.GetDescription()</option>
+                        }
+                    </select>
+                    <label class="form-label mr-4" for="EntityAction"> Tip  </label>
+                </div>
+            </div>
+            
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="LogEnabled">
+                        <option value="@false">İstekler Loglanmasın</option>
+                        <option value="@true">İstekler Loglansın</option>
+                    </select>
+
+                    <label class="form-label mr-4" for="LogEnabled"> Loglansın Mı ? </label>
+                </div>
+
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="CacheEnabled">
+                        <option value="@false">Cache Pasif &nbsp &nbsp</option>
+                        <option value="@true">Cache Aktif &nbsp &nbsp</option>
+                    </select>
+
+                    <label class="form-label mr-4" for="CacheEnabled"> Cache Aktif Mi ?  </label>
+                </div>
+
+
+
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select multiple class="select2 form-control form-control-sm" name="RequestProperties">
+                        @foreach (var item in properties)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+
+                    
+                </div>
+
+
+
+            </div>
+
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select multiple class="select2 form-control form-control-sm" name="ResponseProperties">
+                        @foreach (var item in properties)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+
+                    
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-sm btn-light-success">
+                    Metot Ekle
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>
+
+<script type="text/javascript">
+    var projectId = gridEvents.qsGetParams('projectId');
+    $(function () {
+        pageEvents.loadPartials();
+        $('[name="projectId"]').val(projectId);
+        
+        $('.select2').select2(
+            {
+                placeholder: "Özellik Seçin",
+                closeOnSelect: false,
+                width:150
+            });
+    });
+
+    $(document).on('change', 'select[name="ProjectEntityId"]', function () {
+
+        window.location.href = getUrlWithoutQs() + "?projectId=" + projectId + "&ProjectEntityId=" + $(this).val();
+    });
+
+</script>

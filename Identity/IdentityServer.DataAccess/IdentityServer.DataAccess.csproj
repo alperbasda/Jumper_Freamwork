@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EsterOfis.MsSqlAdapter" Version="3.0.0.9" />
+    <PackageReference Include="EsterOfis.SerilogAdapter" Version="3.0.0.6" />
+    <PackageReference Include="EsterOfis.Tools" Version="3.0.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityServer.Entities\IdentityServer.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

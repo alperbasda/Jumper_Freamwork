@@ -1,0 +1,79 @@
+﻿@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
+@using Jumper.Application.Features.ProjectDeclarations.Queries.GetByIdForRelationalDatabaseSettings;
+@using Jumper.Creator.UI.Models.Enum;
+@using Jumper.Domain.Enums;
+@using Jumper.Domain.MongoEntities;
+@using Jumper.Application.Features.ProjectDeclarations.Queries;
+
+@model GetByIdForRelationalDatabaseSettingsProjectDeclarationResponse
+
+@{
+    ViewData["Title"] = "İlişkisel Veritabanı Ayarları";
+}
+
+<div class="partial-wrapper">
+    <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("ProjectInfoPartial","Project",new{id = Model.Id,selected=ProjectInfoMenuSelection.RelationalDatabase})">
+        <div class="vh-align">
+            <h4> Proje Bilgileri Yükleniyor. </h4>
+            <a href="#/"> Lütfen Bekleyin. </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+        <form asp-controller="Project" asp-action="UpdateRelationalDatabaseSettings" method="post">
+            @Html.HiddenFor(w=>w.Id)
+            <div class="d-flex flex-column flex-md-row rounded border p-10">
+                <ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column me-5 mb-3 mb-md-0 fs-6 min-w-lg-200px">
+                    <li class="nav-item w-100 me-0 mb-md-2">
+                        <a class="nav-link w-100 active btn btn-flex btn-active-light-success" data-bs-toggle="tab" href="#kt_vtab_pane_1">
+                            <span class="svg-icon fs-2"><svg>...</svg></span>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-4 fw-bold">İlişkisel Veritabanı</span>
+                                <span class="fs-7">Ef Core Destekli</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content w-100" id="myTabContent">
+                    <div class="tab-pane fade show active" id="kt_vtab_pane_1" role="tabpanel">
+                        <div class="col-12 pb-2">
+                            <label class="form-label" for="DatabaseName">Veritabanı Tipi</label>
+                            <select class="form-control" name="NoSqlDatabaseConfiguration.RelationalDatabaseConfiguration">
+                                @foreach (RelationalDatabaseType type in (RelationalDatabaseType[])Enum.GetValues(typeof(RelationalDatabaseType)))
+                                {
+                                    if (Model.RelationalDatabaseConfiguration.RelationalDatabaseType == type)
+                                    {
+                                        <option selected value="@((int)type)"> @type.GetDescription() </option>
+
+                                        continue;
+                                    }
+
+                                    <option value="@((int)type)"> @type.GetDescription() </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="ConnectionString">Bağlantı Cümlesi</label>
+                            @Html.TextBoxFor(w=>w.RelationalDatabaseConfiguration.ConnectionString,new {@class="form-control" ,@id="ConnectionString"})
+                        </div>
+                    </div>
+                    <div class=" pt-5 text-end">
+                        <button class=" btn btn-primary" type="submit">
+                            Kaydet
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+        </form>
+    </div>
+</div>

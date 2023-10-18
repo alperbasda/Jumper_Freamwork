@@ -1,0 +1,331 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<div class="py-10">
+
+    <!--begin::Heading-->
+    <h1 class="anchor fw-bold mb-5" id="image-usage" data-kt-scroll-offset="50">
+        <a href="#image-usage"></a>
+
+        Tüm Projeyi Oluşturma
+    </h1>
+    <!--end::Heading-->
+    <!--begin::Block-->
+    <div class="py-5">
+        Tüm ayarlarınızı, nesnelerinizi ve aklınıza gelebilecek tüm proje özelliklerini json dosyası ile kayıt edebilirsiniz.
+    </div>
+    <!--end::Block-->
+
+    <!--begin::Code-->
+    <div class="py-5">
+        <!--begin::Highlight-->
+        <div class="highlight">
+            <button class="highlight-copy btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Kopyala">Kopyala</button>
+            <div class="highlight-code text-white">
+                <pre class="language-html" tabindex="0" style="height:300px">
+                <code class="language-html">
+                 {
+    "_id" : CSUUID("B9692602-8A15-4C5A-AC36-6A8FA5AAA088"),
+    "CreatedTime" : ISODate("2023-09-09T13:33:49.696+0000"),
+    "UpdatedTime" : ISODate("2023-09-09T14:26:01.499+0000"),
+    "DeletedTime" : null,
+    "UserId" : CSUUID("38DCEEB9-FBDC-4893-8419-2A4CCA0A4B78"),
+    "Name" : "ExampleProject",
+    "Description" : "ExampleProject Description",
+    "UseDatabase" : true,
+    "DatabaseConfiguration" : {
+        "EfConnectionString" : "MssqlConnectionString",
+        "MongoConnectionString" : "MongoDbConnectionString",
+        "DatabaseName" : "MondoDbName"
+    },
+    "UseCache" : true,
+    "CacheConfiguration" : {
+        "Host" : "RedisHost",
+        "Port" : "RedisPort",
+        "SlidingExpiration" : "2",
+        "Password" : "RedisPass"
+    },
+    "UseRabbitMq" : true,
+    "RabbitMqConfiguration" : {
+        "UserName" : "UserName",
+        "Password" : "Password",
+        "Port" : "RabbitPort",
+        "Host" : "RabbitHost"
+    },
+    "UseSerilog" : true,
+    "SeriLogConfigurations" : {
+        "ElasticLogConfiguration" : {
+            "AppName" : "Log Project Name",
+            "Uri" : "UriValue",
+            "UserName" : "UserName",
+            "Password" : "password"
+        },
+        "FileLogConfiguration" : {
+            "FolderPath" : null
+        },
+        "MsSqlLogConfiguration" : {
+            "ConnectionString" : null,
+            "TableName" : null,
+            "AutoCreateSqlTable" : false
+        }
+    },
+    "CreateApi" : true,
+    "CreateUI" : true,
+    "Entities" : [
+        {
+            "_id" : CSUUID("58DF9194-1E31-43D5-3E70-08DBB13DBB4E"),
+            "ProjectDeclarationId" : CSUUID("B9692602-8A15-4C5A-AC36-6A8FA5AAA088"),
+            "Name" : "Product",
+            "DatabaseType" : NumberInt(1),
+            "DependsOn" : [
+
+            ],
+            "Properties" : [
+                {
+                    "_id" : CSUUID("0F63BF97-DB40-4032-E7DE-08DBB13E35B1"),
+                    "PropertyTypeCode" : "string",
+                    "Name" : "Name",
+                    "HasIndex" : true,
+                    "IsUnique" : true
+                },
+                {
+                    "_id" : CSUUID("F3538FEB-1E04-40B3-E7DF-08DBB13E35B1"),
+                    "PropertyTypeCode" : "double?",
+                    "Name" : "Price",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("50149298-7270-4A2A-E7E0-08DBB13E35B1"),
+                    "PropertyTypeCode" : "string",
+                    "Name" : "Description",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("A51F1884-CC84-4380-8562-7E599B126AD8"),
+                    "PropertyTypeCode" : "DateTime?",
+                    "Name" : "UpdatedTime",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("E1AF3D9D-9C12-45D6-B0A3-C2FDC9593872"),
+                    "PropertyTypeCode" : "Guid",
+                    "Name" : "Id",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("30880BC3-4F09-43C2-B52F-CA615FA42849"),
+                    "PropertyTypeCode" : "DateTime?",
+                    "Name" : "DeletedTime",
+                    "HasIndex" : true,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("EC0ED1E8-C4F1-4DFE-98D1-FE9180B1E7B4"),
+                    "PropertyTypeCode" : "DateTime",
+                    "Name" : "CreatedTime",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                }
+            ],
+            "Queries" : [
+                {
+                    "_id" : CSUUID("F5A6EED3-8952-4DAF-B104-3AA1D7428B6E"),
+                    "Name" : "ExampleQuery",
+                    "CacheEnabled" : true,
+                    "LogEnabled" : true,
+                    "RequestProperties" : [
+                        CSUUID("E1AF3D9D-9C12-45D6-B0A3-C2FDC9593872")
+                    ],
+                    "ResponseProperties" : [
+                        CSUUID("0F63BF97-DB40-4032-E7DE-08DBB13E35B1"),
+                        CSUUID("F3538FEB-1E04-40B3-E7DF-08DBB13E35B1"),
+                        CSUUID("50149298-7270-4A2A-E7E0-08DBB13E35B1"),
+                        CSUUID("A51F1884-CC84-4380-8562-7E599B126AD8"),
+                        CSUUID("E1AF3D9D-9C12-45D6-B0A3-C2FDC9593872"),
+                        CSUUID("30880BC3-4F09-43C2-B52F-CA615FA42849"),
+                        CSUUID("EC0ED1E8-C4F1-4DFE-98D1-FE9180B1E7B4")
+                    ]
+                }
+            ],
+            "Commands" : [
+                {
+                    "_id" : CSUUID("42F4EF31-DFF1-4C68-9F31-F2BB4EB09605"),
+                    "Name" : "Example",
+                    "CacheEnabled" : false,
+                    "LogEnabled" : true,
+                    "RequestProperties" : [
+                        CSUUID("0F63BF97-DB40-4032-E7DE-08DBB13E35B1"),
+                        CSUUID("F3538FEB-1E04-40B3-E7DF-08DBB13E35B1"),
+                        CSUUID("50149298-7270-4A2A-E7E0-08DBB13E35B1")
+                    ],
+                    "ResponseProperties" : [
+                        CSUUID("0F63BF97-DB40-4032-E7DE-08DBB13E35B1"),
+                        CSUUID("F3538FEB-1E04-40B3-E7DF-08DBB13E35B1"),
+                        CSUUID("50149298-7270-4A2A-E7E0-08DBB13E35B1"),
+                        CSUUID("A51F1884-CC84-4380-8562-7E599B126AD8"),
+                        CSUUID("E1AF3D9D-9C12-45D6-B0A3-C2FDC9593872"),
+                        CSUUID("30880BC3-4F09-43C2-B52F-CA615FA42849"),
+                        CSUUID("EC0ED1E8-C4F1-4DFE-98D1-FE9180B1E7B4")
+                    ]
+                }
+            ]
+        },
+        {
+            "_id" : CSUUID("0382F4E5-20C8-4D7C-3E71-08DBB13DBB4E"),
+            "ProjectDeclarationId" : CSUUID("B9692602-8A15-4C5A-AC36-6A8FA5AAA088"),
+            "Name" : "User",
+            "DatabaseType" : NumberInt(0),
+            "DependsOn" : [
+
+            ],
+            "Properties" : [
+                {
+                    "_id" : CSUUID("629228EF-1802-4784-E7E1-08DBB13E35B1"),
+                    "PropertyTypeCode" : "string",
+                    "Name" : "Name",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("6AB11FF7-198D-4E89-E7E2-08DBB13E35B1"),
+                    "PropertyTypeCode" : "string",
+                    "Name" : "Surname",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("E3BE3471-08A1-49BA-BCEE-41F9C72E3D3F"),
+                    "PropertyTypeCode" : "DateTime?",
+                    "Name" : "DeletedTime",
+                    "HasIndex" : true,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("42D050CB-20EB-4FF9-BD71-76CCF7E15808"),
+                    "PropertyTypeCode" : "Guid",
+                    "Name" : "Id",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("2970509C-314F-402E-B58C-ABA36AD665E3"),
+                    "PropertyTypeCode" : "DateTime?",
+                    "Name" : "UpdatedTime",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("5CCBEB6C-B94B-4BD5-91DC-F9983FE1A03E"),
+                    "PropertyTypeCode" : "DateTime",
+                    "Name" : "CreatedTime",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                }
+            ],
+            "Queries" : [
+
+            ],
+            "Commands" : [
+
+            ]
+        },
+        {
+            "_id" : CSUUID("3A406FF7-1C2D-4DA3-9C39-58A290094FFE"),
+            "ProjectDeclarationId" : CSUUID("B9692602-8A15-4C5A-AC36-6A8FA5AAA088"),
+            "Name" : "UserPassword",
+            "DatabaseType" : NumberInt(0),
+            "DependsOn" : [
+                CSUUID("0382F4E5-20C8-4D7C-3E71-08DBB13DBB4E")
+            ],
+            "Properties" : [
+                {
+                    "_id" : CSUUID("42C9C67A-4700-4D9B-9796-D23AB32EE269"),
+                    "PropertyTypeCode" : "Guid",
+                    "Name" : "Id",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("D93FD527-2C7C-4685-8A55-92404192CD05"),
+                    "PropertyTypeCode" : "DateTime",
+                    "Name" : "CreatedTime",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("B9725C9A-4D52-40C8-950D-8520E5551B48"),
+                    "PropertyTypeCode" : "DateTime?",
+                    "Name" : "UpdatedTime",
+                    "HasIndex" : false,
+                    "IsUnique" : false
+                },
+                {
+                    "_id" : CSUUID("3D405466-11D3-48A8-9328-2FD552D2CBC6"),
+                    "PropertyTypeCode" : "DateTime?",
+                    "Name" : "DeletedTime",
+                    "HasIndex" : true,
+                    "IsUnique" : false
+                }
+            ],
+            "Queries" : [
+
+            ],
+            "Commands" : [
+
+            ]
+        }
+    ]
+}
+                    </code>
+                </pre>
+            </div>
+        </div><!--end::Highlight-->
+    </div>
+    <!--end::Code-->
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(function () {
+            $('code').each(function (index, item) {
+                var html = $(item).html().Trim();
+
+                $(item).html(JSON.stringify(syntaxHighlight(JSON.parse(html), null, '\t')));
+                
+            });
+        })
+        $('.highlight-copy').click(function () {
+            navigator.clipboard.writeText($(this).closest('.highlight').find('code').html());
+            notificationEvents.showInfo("Kopyalandı !!!");
+        });
+
+        function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                json = JSON.stringify(json, undefined, 2);
+            }
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+
+    </script>
+
+}

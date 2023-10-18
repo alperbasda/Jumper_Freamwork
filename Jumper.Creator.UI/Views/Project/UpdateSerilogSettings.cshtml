@@ -1,0 +1,150 @@
+﻿@using Jumper.Application.Features.ProjectDeclarations.Queries.GetByIdForLogSettings;
+@using Jumper.Creator.UI.Models.Enum;
+@using Jumper.Domain.MongoEntities;
+
+@model GetByIdForLogSettingsProjectDeclarationResponse
+@{
+
+    var selected = Model.SeriLogConfigurations!.ElasticLogConfiguration!.Uri != null ? "Elastic" : Model.SeriLogConfigurations!.MsSqlLogConfiguration!.ConnectionString != null ? "Database" : "File";
+}
+
+@{
+    ViewData["Title"] = "Proje Güncelle";
+}
+
+
+<div class="partial-wrapper">
+    <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("ProjectInfoPartial","Project",new{id = Model.Id,selected=ProjectInfoMenuSelection.Log})">
+        <div class="vh-align">
+            <h4> Proje Bilgileri Yükleniyor. </h4>
+            <a href="#/"> Lütfen Bekleyin. </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    
+    <div class="card-body">
+        <form id="serilog-form" asp-controller="Project" asp-action="UpdateSerilogSettings" method="post">
+            @Html.HiddenFor(w=>w.Id)
+
+            <div class="separator separator-content border-dark my-15"><span class="w-250px fw-bold">Log Tipi Seçin</span></div>
+
+            <ul class="nav nav-tabs mb-5 d-flex justify-content-around" style="border:0">
+                <li class="nav-item">
+                    <div class="form-check form-check-custom form-check-solid me-10">
+                        <input data-bs-toggle="tab" href="#kt_tab_pane_elastic" class="form-check-input h-40px w-40px" type="radio" name="type" id="Elastic" />
+                        <label class="form-check-label" for="Elastic">
+                            Elastic
+                        </label>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="form-check form-check-custom form-check-solid me-10">
+                        <input data-bs-toggle="tab" href="#kt_tab_pane_file" class="form-check-input h-40px w-40px" type="radio" name="type" id="File" />
+                        <label class="form-check-label" for="File">
+                            File
+                        </label>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="form-check form-check-custom form-check-solid me-10">
+                        <input data-bs-toggle="tab" href="#kt_tab_pane_database" class="form-check-input h-40px w-40px" type="radio" name="type" id="Database" />
+                        <label class="form-check-label" for="Database">
+                            Database
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <div class="separator my-10"></div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" id="kt_tab_pane_elastic" role="tabpanel">
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label" for="AppName">Uygulama Adı</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.ElasticLogConfiguration!.AppName,new {@class="form-control" ,@id="AppName",data_type="elastic"})
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="Uri">Uri</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.ElasticLogConfiguration!.Uri,new {@class="form-control" ,@id="Uri",data_type="elastic"})
+                        </div>
+                    </div>
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label" for="UserName">Kullanıcı Adı</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.ElasticLogConfiguration!.UserName,new {@class="form-control" ,@id="UserName",data_type="elastic"})
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="Password">Şifre</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.ElasticLogConfiguration!.Password,new {@class="form-control" ,@id="Password",data_type="elastic"})
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="kt_tab_pane_file" role="tabpanel">
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label" for="Path">Path</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.FileLogConfiguration!.FolderPath,new {@class="form-control" ,@id="Path",data_type="file"})
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="kt_tab_pane_database" role="tabpanel">
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label" for="ConnectionString">Bağlantı Bilgisi</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.MsSqlLogConfiguration!.ConnectionString,new {@class="form-control" ,@id="ConnectionString",data_type="database"})
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="AutoCreateSqlTable">VeriTabanını Oluştur</label>
+                            <select name="SeriLogConfigurations.MsSqlLogConfiguration.AutoCreateSqlTable" id="AutoCreateSqlTable" class="form-control" ,data-type="database">
+
+                                @if (Model.SeriLogConfigurations.MsSqlLogConfiguration!.AutoCreateSqlTable)
+                                {
+                                    <option selected value="@true"> Evet </option>
+                                    <option value="@false"> Hayır </option>
+                                }
+                                else
+                                {
+                                    <option value="@true"> Evet </option>
+                                    <option selected value="@false"> Hayır </option>
+                                }
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-floating mb-7 row">
+                        <div class="col-6">
+                            <label class="form-label" for="TableName">Tablo Adı</label>
+                            @Html.TextBoxFor(w=>w.SeriLogConfigurations!.MsSqlLogConfiguration!.TableName,new {@class="form-control" ,@id="TableName",data_type="database"})
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class=" pt-5 text-end">
+                <button class=" btn btn-primary" type="submit">
+                    Kaydet
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/assets/js/pages/serilog-events.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $('#@selected').click();
+
+            $('#serilog-form').on('submit', function (e) {
+                e.stopPropagation();
+                serilogEvents.deleteEmptyInputs();
+                return true;
+            });
+        });
+    </script>
+}

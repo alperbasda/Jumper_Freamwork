@@ -1,0 +1,26 @@
+﻿@using Core.Persistence.Models.Responses;
+@using Jumper.Application.Features.ProjectEntities.Queries.GetListByProjectId;
+@model List<GetListByProjectIdProjectEntityResponse>
+
+@{
+    SelectBoxModel selected = (SelectBoxModel)ViewData["SelectBoxModel"]!;
+}
+<div class="form-floating">
+    <select class="form-control form-control-sm" placeholder="Nesne Seçin" name="@selected.Name">
+        <option value="@null">Seçim Yapın</option>
+        @foreach (var item in Model)
+        {
+            if (selected.SelectedValue == item.Id.ToString())
+            {
+                <option selected value="@item.Id">@item.Name</option>
+            }
+            else
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+
+        }
+    </select>
+
+    <label class="form-label mr-4" for="EntitySelect"> Nesne </label>
+</div>

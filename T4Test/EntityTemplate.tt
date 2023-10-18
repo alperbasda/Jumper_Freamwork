@@ -1,0 +1,56 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(@"C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\bin\Debug\net7.0\BasicECommarce.json");
+    var datasource = JObject.Parse(settingsJson);
+
+#>
+
+<#
+
+var entities = datasource["Entities"];
+foreach (var item in entities!)
+{
+
+#>
+using Core.Persistence.Models;
+namespace <#= datasource["SolutionName"] #>.Domain.Entities;
+
+public class <#= item["Name"] #> : Entity<Guid>
+{
+<#    
+        foreach(var prop in item["Properties"])
+        {
+             WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
+        }
+#>
+}
+
+
+<#    
+SaveOutput($"{item["Name"]}.cs");
+}
+#>
+
+
+
+
+
+<#+
+private void SaveOutput(string outputFileName) {
+  string outputFilePath = Path.Combine(@"C:\\Users\\Admin\\source\\repos", outputFileName);
+  File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
+  this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}
+#>

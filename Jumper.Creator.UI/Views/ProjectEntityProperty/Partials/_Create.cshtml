@@ -1,0 +1,78 @@
+﻿@using Jumper.Application.Features.ProjectEntityProperties.Commands.Create;
+@using Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
+@using Jumper.Domain.Entities;
+
+@model CreateProjectEntityPropertyCommand
+
+<form method="post" action="@Url.Action("Create","ProjectEntityProperty")">
+    <input type="hidden" name="projectId" />
+    <div class="card-header">
+        <div class="card-title">
+            <div class="col-auto" id="project_entity_select_wrapper">
+                <div data-qs-param="projectId" data-partial="@Url.Action("Dropdown","ProjectEntity")?Name=@(nameof(ProjectEntityProperty.ProjectEntityId))&SelectedValue=@Model.ProjectEntityId">
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center card-toolbar">
+            <div class="col-auto">
+                <div data-partial="@Url.Action("Dropdown","PropertyTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyTypeCode))">
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="HasIndex">
+                        <option value="@false">Index Atılmasın</option>
+                        <option value="@true">Index Atılsın</option>
+                    </select>
+
+                    <label class="form-label mr-4" for="HasIndex"> Index Var Mı ? </label>
+                </div>
+
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="IsUnique">
+                        <option value="@false">Unique Alan Değil</option>
+                        <option value="@true">Unique Alan</option>
+                    </select>
+
+                    <label class="form-label mr-4" for="IsUnique"> Unique Alan Mı ? </label>
+                </div>
+
+
+
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    @Html.TextBoxFor(w=>w.Name,new {@class="form-control form-control-sm"})
+                    <label class="form-label mr-4" for="Name">Özellik Adı </label>
+                </div>
+
+
+
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-sm btn-light-success">
+                    Özellik Ekle
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>
+
+<script type="text/javascript">
+    var projectId = gridEvents.qsGetParams('projectId');
+    $(function () {
+        pageEvents.loadPartials();
+        $('[name="projectId"]').val(projectId);
+    });
+
+    $(document).on('change', 'select[name="ProjectEntityId"]', function () {
+        
+        window.location.href = getUrlWithoutQs() + "?projectId=" + projectId + "&ProjectEntityId=" + $(this).val();
+    });
+
+</script>

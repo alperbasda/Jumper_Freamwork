@@ -1,0 +1,319 @@
+﻿@using Core.Persistence.Dynamic;
+@using Core.Persistence.Models.Responses;
+@using Core.WebHelper.NameValueCollectionHelpers;
+@using Jumper.Application.Features.EntityPropertyDefinitions.Queries.GetListByEntityDefinitionId;
+@using Jumper.Application.Features.ProjectEntityProperties.Queries.GetListByProjectEntityId;
+@using Jumper.Domain.Entities;
+
+@{
+    ViewData["Title"] = "Proje Nesne Özellikleri";
+
+    var projectEntityId = ViewData["ProjectEntityId"];
+    var projectId = ViewData["ProjectId"];
+
+    var filters = new List<Filter>();
+    if (Model != null && Model.DynamicQuery != null && Model.DynamicQuery.Filter != null)
+    {
+        filters.AddRange(CollectionToDynamicQueryExtension.GetAllFilters(Model.DynamicQuery.Filter));
+    }
+
+}
+
+@model ListModel<GetListByProjectEntityIdProjectEntityPropertyResponse>
+
+
+<div class="container-fluid d-flex flex-stack">
+    <!--begin::Page title-->
+    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+        <!--begin::Title-->
+        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0" id="project_name">-</h1>
+        <!--end::Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index","Home")" class="text-hover-primary">Proje Listesi</a>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("UpdateInfo","Project",new {id = projectId})" class="text-hover-primary">Proje Detay</a>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index","ProjectEntity",new {projectId = projectId})" class="text-hover-primary">
+                    Nesne Ayarları
+                </a>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item text-muted">
+                Nesne Özellikleri
+            </li>
+            <!--end::Item-->
+        </ul>
+        <!--end::Breadcrumb-->
+    </div>
+    <!--end::Page title-->
+
+</div>
+
+<div class="d-flex flex-column flex-lg-row mt-6">
+
+
+
+    <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("UpdateInfoSticky","Project",new{id = projectId})">
+        <div class="vh-align">
+            <h4> Proje Bilgileri Yükleniyor. </h4>
+            <a href="#/"> Lütfen Bekleyin. </a>
+        </div>
+    </div>
+
+
+    <div class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
+        <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+            <li class="nav-item">
+                <b>
+                    <a class="nav-link" href="@Url.Action("Index","ProjectEntity",new{projectId=projectId})">Nesne Listesi</a>
+                </b>
+            </li>
+            <li class="nav-item">
+                <b>
+                    <a class="nav-link" href="@Url.Action("Index","ProjectEntityDependency",new{projectId = projectId})">Nesne İlişkileri</a>
+                </b>
+
+            </li>
+            <li class="nav-item">
+                <b>
+                    <a class="nav-link active" href="#/">Nesne Özellikleri</a>
+                </b>
+
+            </li>
+            <li class="nav-item">
+                <b>
+                    <a class="nav-link" href="@Url.Action("Index","ProjectEntityAction",new{projectId=projectId,ProjectEntityId=Guid.Empty})">Metotlar</a>
+                </b>
+
+            </li>
+        </ul>
+
+        <div class="card">
+            <div data-partial="@Url.Action("CreatePartial","ProjectEntityProperty")?ProjectEntityId=@projectEntityId">
+                <div class="vh-align">
+                    <h4> Header Yükleniyor. </h4>
+                    <a href="#/"> Lütfen Bekleyin. </a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="card-body p-0">
+                    <form method="get" action="@Url.Action("Index","ProjectEntityProperty")">
+                        <input type="hidden" name="ProjectEntityId" value="@projectEntityId" />
+                        <input type="hidden" name="projectId" value="@projectId" />
+
+                        <div class="d-flex flex-column flex-column-fluid">
+                            <div id="kt_app_content" class="app-content flex-column-fluid">
+                                <div id="kt_app_content_container" class="app-container container-xxxl">
+                                    <div class="table-responsive">
+                                        <table class="dynamic-table table table-hover table-row-bordered gy-5 gs-7">
+                                            <tr>
+                                                <th>
+                                                    <b>
+                                                        <a data-sort="@nameof(ProjectEntityProperty.Name)" href="#/">
+                                                            Ad &nbsp;
+                                                        </a>
+
+                                                    </b>
+                                                </th>
+                                                <th>
+                                                    <b>
+                                                        <a data-sort="@nameof(ProjectEntityProperty.PropertyTypeCode)" href="#/">
+                                                            Tip &nbsp;
+                                                        </a>
+                                                    </b>
+                                                </th>
+
+                                                <th>
+                                                    <b>
+                                                        Index Var Mı ? &nbsp;
+                                                    </b>
+                                                </th>
+                                                <th>
+                                                    <b>
+                                                        Unique Mi ? &nbsp;
+                                                    </b>
+                                                </th>
+
+
+                                                <th></th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <input type="text" class="form-control form-control-sm" name="Name" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.Name))?.Value" />
+                                                </th>
+                                                <th>
+                                                    <input type="text" class="form-control form-control-sm" name="PropertyTypeCode" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.PropertyTypeCode))?.Value" />
+                                                </th>
+                                                <th>
+                                                    <select name="HasIndex" class="form-control form-control-sm">
+                                                        @{
+                                                            var filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.HasIndex))?.Value;
+                                                            if (filter == null)
+                                                            {
+                                                                <option selected value=""> Tümü </option>
+                                                                <option value="true"> Evet </option>
+                                                                <option value="false"> Hayır </option>
+                                                            }
+                                                            else if (filter != null && Convert.ToBoolean(filter))
+                                                            {
+                                                                <option value=""> Tümü </option>
+                                                                <option selected value="true"> Evet </option>
+                                                                <option value="false"> Hayır </option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value=""> Tümü </option>
+                                                                <option value="true"> Evet </option>
+                                                                <option value="false" selected> Hayır </option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </th>
+                                                <th>
+                                                    <select name="IsUnique" class="form-control form-control-sm">
+                                                        @{
+                                                            filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.IsUnique))?.Value;
+                                                            if (filter == null)
+                                                            {
+                                                                <option selected value=""> Tümü </option>
+                                                                <option value="true"> Evet </option>
+                                                                <option value="false"> Hayır </option>
+                                                            }
+                                                            else if (filter != null && Convert.ToBoolean(filter))
+                                                            {
+                                                                <option value=""> Tümü </option>
+                                                                <option selected value="true"> Evet </option>
+                                                                <option value="false"> Hayır </option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value=""> Tümü </option>
+                                                                <option value="true"> Evet </option>
+                                                                <option value="false" selected> Hayır </option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </th>
+                                                <th class="text-center">
+                                                    <input type="submit" class="btn btn-primary btn-sm" value="Filtrele" />
+                                                </th>
+                                            </tr>
+                                            @foreach (var item in Model.Items)
+                                            {
+                                                <tr class="item_wrapper">
+                                                    <td>@item.Name</td>
+                                                    <td>@item.PropertyTypeCode</td>
+                                                    <td>@(item.HasIndex ? "Evet" : "Hayır")</td>
+                                                    <td>@(item.IsUnique ? "Evet" : "Hayır")</td>
+                                                    @if (!item.IsConstant)
+                                                    {
+                                                        <td>
+                                                            <div class="d-flex justify-content-around">
+                                                                <div></div>
+                                                                <a class="delete-link" href="@Url.Action("Delete","ProjectEntityProperty")?Id=@item.Id">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
+                                                                <div></div>
+                                                            </div>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </table>
+
+                                        @if (Model.Count == 0)
+                                        {
+                                            <div id="empty-property-table-message" class="text-center">
+                                                <h5>
+                                                    Kriterlere uygun veri bulunamadı.
+                                                </h5>
+
+                                            </div>
+                                        }
+
+                                    </div>
+
+
+                                    <ul class="pagination pagination-circle">
+
+
+                                        @if (Model.Pages > 1)
+                                        {
+                                            // "Başa git Git" butonu
+                                            if (Model.HasPrevious)
+                                            {
+                                                <li class="page-item first">
+                                                    <a data-page="1" class="page-link" href="#/">
+                                                        <i class="fa-solid fa-angles-left fa-beat fs-2"></i>
+                                                    </a>
+                                                </li>
+                                            }
+                                            for (int i = Math.Max(1, Model.Index - 3); i < Model.Index; i++)
+                                            {
+                                                <li class="page-item">
+                                                    <a data-page="@i" class="page-link" href="#/"> @i </a>
+                                                </li>
+                                            }
+                                                // Mevcut sayfa
+                                            <li class="page-item active">
+                                                <span class=" page-link">@Model.Index</span>
+                                            </li>
+                                            for (int i = Model.Index + 1; i <= Math.Min(Model.Pages, Model.Index + 3); i++)
+                                            {
+                                                <li class="page-item">
+                                                    <a data-page="@i" class="page-link" href="#/">@i</a>
+                                                </li>
+                                            }
+                                            // "Sona Git" butonu
+                                            if (Model.HasNext)
+                                            {
+                                                <li class="page-item last  ">
+                                                    <a data-page="@Model.Pages" class="page-link" href="#/">
+                                                        <i class="fa-solid fa-angles-right fa-beat fs-2"></i>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

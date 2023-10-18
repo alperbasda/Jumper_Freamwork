@@ -1,0 +1,62 @@
+﻿@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
+@using Jumper.Application.Features.ProjectEntityDependencies.Commands.Create;
+@using Jumper.Domain.Entities;
+@using Jumper.Domain.Enums;
+
+@model CreateProjectEntityDependencyCommand
+
+<form method="post" action="@Url.Action("Create","ProjectEntityDependency")">
+    <input type="hidden" name="ProjectDeclarationId" />
+    <div class="card-header">
+        <div class="card-title">
+            <div class="col-auto">
+                
+            </div>
+        </div>
+        <div class="row g-3 align-items-center card-toolbar">
+            <div class="col-auto">
+                <div data-qs-param="projectId" data-partial="@Url.Action("Dropdown","ProjectEntity")?Name=@(nameof(ProjectEntityDependency.DependedId))">
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="EntityDependencyType">
+                        <option value="@null"> Tip Seçin </option>
+
+                        @foreach (EntityDependencyType type in (EntityDependencyType[])Enum.GetValues(typeof(EntityDependencyType)))
+                        {
+                            <option value="@((int)type)"> @type.GetDescription() </option>
+                        }
+                    </select>
+
+                    <label class="form-label mr-4" for="HasIndex"> İlişki Tipi </label>
+                </div>
+
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <div data-qs-param="projectId" data-partial="@Url.Action("Dropdown","ProjectEntity")?Name=@(nameof(ProjectEntityDependency.DependsOnId))">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-sm btn-light-success">
+                    İlişki Ekle
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>
+
+<script type="text/javascript">
+    var projectId = gridEvents.qsGetParams('projectId');
+    $(function () {
+        pageEvents.loadPartials();
+        $('[name="ProjectDeclarationId"]').val(projectId);
+    });
+
+</script>

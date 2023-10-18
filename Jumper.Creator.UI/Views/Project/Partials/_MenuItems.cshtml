@@ -1,0 +1,28 @@
+﻿@using Core.Persistence.Models.Responses;
+@using Jumper.Application.Features.ProjectDeclarations.Queries.GetByLoggedUserId;
+
+@model ListModel<GetByLoggedUserIdProjectDeclarationResponse>
+<div class="menu-item p-3">
+    <input style="background: transparent;color:white" id="filter_menu_project_text" type="text" class="form-control form-control-sm bg-gray-300" placeholder="Proje adı ile filtrele" />
+</div>
+@foreach (var item in Model.Items)
+{
+    <div class="menu-item">
+        <a href="@Url.Action("UpdateInfo","Project")?id=@item.Id" data-menuproject-filter="@item.Name.ToLower()" class="menu-link border-3 border-start border-transparent">
+            <span class="menu-title">@item.Name</span>
+        </a>
+    </div>
+}
+
+<script type="text/javascript">
+    $('#filter_menu_project_text').on('keyup', function () {
+        var text = $(this).val().toLowerCase();
+        if (text == '') {
+            $('[data-menuproject-filter]').closest('.menu-item').removeClass('d-none');
+            return;
+        }
+
+        $('[data-menuproject-filter]').closest('.menu-item').addClass('d-none');
+        $('[data-menuproject-filter*=' + text + ']').closest('.menu-item').removeClass('d-none');
+    });
+</script>

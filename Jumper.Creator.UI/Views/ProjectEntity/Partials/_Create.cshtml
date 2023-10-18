@@ -1,0 +1,103 @@
+﻿@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
+@using Jumper.Application.Features.ProjectEntities.Commands.Create;
+@using Jumper.Domain.Enums;
+
+@model CreateProjectEntityCommand
+<div class="card-header">
+    <div class="card-title">
+    </div>
+    <form method="post" action="@Url.Action("Create","ProjectEntity")">
+        <div class="row g-3 align-items-center card-toolbar">
+
+
+            <input type="hidden" name="ProjectDeclarationId" value="@Model.ProjectDeclarationId" />
+            <div class="col-auto">
+                <div class="form-floating">
+                    @Html.TextBoxFor(w=>w.Name,new {@class="form-control form-control-sm"})
+                    <label class="form-label mr-4" for="Name"> Nesne Adı </label>
+                </div>
+
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <select class="form-control form-control-sm" name="DatabaseType">
+                        @foreach (DatabaseType type in (DatabaseType[])Enum.GetValues(typeof(DatabaseType)))
+                        {
+                            <option value="@((int)type)">@type.GetDescription()</option>
+                        }
+                    </select>
+                    <label class="form-label mr-4" for="Name"> Veritabanı </label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-sm btn-light-success">
+                    Nesne Ekle
+                </button>
+            </div>
+            <div class="col-auto">
+                <a href="#/" data-bs-toggle="modal" data-bs-target="#entity_pool_modal" id="from_pool" class="btn btn-sm fw-bold btn-light-warning nav-link">Havuzdan Hızlı Ekle</a>
+            </div>
+
+
+
+        </div>
+    </form>
+
+</div>
+
+<div class="modal fade" tabindex="-1" id="entity_pool_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Havuzdan Nesne Ekle </h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <form method="post" action="@Url.Action("CreateFromDefinition","ProjectEntity")">
+                <div class="modal-body">
+                    <div class="row ">
+                        @Html.HiddenFor(w=>w.ProjectDeclarationId)
+                        <div class="col-12 pb-3">
+                            <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("Dropdown","EntityDefinition")">
+                                <div class="vh-align">
+                                    <h4> Havuz Nesneleri Yükleniyor. </h4>
+                                    <a href="#/"> Lütfen Bekleyin. </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <select class="form-select form-select-sm" name="DatabaseType">
+                                @foreach (DatabaseType type in (DatabaseType[])Enum.GetValues(typeof(DatabaseType)))
+                                {
+                                    <option value="@((int)type)">@type.GetDescription()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-light-success">Kaydet</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    $(function () {
+        pageEvents.loadPartials();
+        
+    });
+
+</script>
+

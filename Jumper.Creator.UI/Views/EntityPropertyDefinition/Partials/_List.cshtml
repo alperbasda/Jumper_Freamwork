@@ -1,0 +1,267 @@
+﻿@using Core.Persistence.Dynamic;
+@using Core.Persistence.Models.Responses;
+@using Core.WebHelper.NameValueCollectionHelpers;
+@using Jumper.Application.Features.EntityPropertyDefinitions.Queries.GetListByEntityDefinitionId;
+@using Jumper.Domain.Entities;
+
+@{
+    var filters = new List<Filter>();
+    if (Model != null && Model.DynamicQuery != null && Model.DynamicQuery.Filter != null)
+    {
+        filters.AddRange(CollectionToDynamicQueryExtension.GetAllFilters(Model.DynamicQuery.Filter));
+    }
+    var definitionFilter = filters.First(w => w.Field == nameof(EntityPropertyDefinition.EntityDefinitionId));
+}
+
+@model ListModel<GetListByEntityDefinitionIdEntityPropertyDefinitionResponse>
+
+<div class="row mt-10">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Nesne Özellikleri</h3>
+            <div class="card-toolbar">
+
+                <div data-partial="@Url.Action("Create","EntityPropertyDefinition")?entityDefinitionId=@definitionFilter.Value">
+                </div>
+
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-body p-0">
+                <form data-async-form="EntityPropertyDefinitionList" method="get" action="@Url.Action("ListForEntityDefinition","EntityPropertyDefinition",new{entityDefinitionId = definitionFilter.Value})">
+                    <div class="d-flex flex-column flex-column-fluid">
+                        <div id="kt_app_content" class="app-content flex-column-fluid">
+                            <div id="kt_app_content_container" class="app-container container-xxxl">
+                                <div class="table-responsive">
+
+                                    <table id="entity-property-table" class="dynamic-table table table-hover table-row-bordered gy-5 gs-7">
+                                        <tr>
+                                            <th>
+                                                <b>
+                                                    Tip &nbsp;
+                                                </b>
+                                            </th>
+                                            <th>
+                                                <b>
+                                                    Ad &nbsp;
+                                                </b>
+                                            </th>
+                                            <th>
+                                                <b>
+                                                    Index Var Mı ? &nbsp;
+                                                </b>
+                                            </th>
+                                            <th>
+                                                <b>
+                                                    Unique Mi ? &nbsp;
+                                                </b>
+                                            </th>
+                                            <th>
+                                                <b>
+                                                    Oluşturulma T. &nbsp;
+                                                </b>
+                                            </th>
+                                            <th>
+                                                <b>
+                                                    Düzenlenme T. &nbsp;
+                                                </b>
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <input type="text" class="form-control form-control-sm" name="PropertyTypeCode" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(EntityPropertyDefinition.PropertyTypeCode))?.Value" />
+                                            </th>
+                                            <th>
+                                                <input type="text" class="form-control form-control-sm" name="Name" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(EntityPropertyDefinition.Name))?.Value" />
+                                            </th>
+                                            <th>
+                                                <select name="HasIndex" class="form-control form-control-sm">
+                                                    @{
+                                                        var filter = filters.FirstOrDefault(w => w.Field == nameof(EntityPropertyDefinition.HasIndex))?.Value;
+                                                        if (filter == null)
+                                                        {
+                                                            <option selected value=""> Tümü </option>
+                                                            <option value="true"> Evet </option>
+                                                            <option value="false"> Hayır </option>
+                                                        }
+                                                        else if (filter != null && Convert.ToBoolean(filter))
+                                                        {
+                                                            <option value=""> Tümü </option>
+                                                            <option selected value="true"> Evet </option>
+                                                            <option value="false"> Hayır </option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value=""> Tümü </option>
+                                                            <option value="true"> Evet </option>
+                                                            <option value="false" selected> Hayır </option>
+                                                        }
+                                                    }
+
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select name="IsUnique" class="form-control form-control-sm">
+                                                    @{
+                                                        filter = filters.FirstOrDefault(w => w.Field == nameof(EntityPropertyDefinition.IsUnique))?.Value;
+                                                        if (filter == null)
+                                                        {
+                                                            <option selected value=""> Tümü </option>
+                                                            <option value="true"> Evet </option>
+                                                            <option value="false"> Hayır </option>
+                                                        }
+                                                        else if (filter != null && Convert.ToBoolean(filter))
+                                                        {
+                                                            <option value=""> Tümü </option>
+                                                            <option selected value="true"> Evet </option>
+                                                            <option value="false"> Hayır </option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value=""> Tümü </option>
+                                                            <option value="true"> Evet </option>
+                                                            <option value="false" selected> Hayır </option>
+                                                        }
+                                                    }
+
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <input type="datetime" class="form-control form-control-sm" name="CreatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(EntityPropertyDefinition.CreatedTime))?.Value" />
+                                            </th>
+                                            <th>
+                                                <input type="datetime" class="form-control form-control-sm" name="UpdatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(EntityPropertyDefinition.UpdatedTime))?.Value" />
+                                            </th>
+                                            <th class="text-center">
+                                                <input type="submit" class="btn btn-primary btn-sm" value="Filtrele" data-loading="" />
+                                            </th>
+
+
+                                        </tr>
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            <tr class="item_wrapper">
+                                                <td>@item.PropertyTypeCode</td>
+                                                <td>@item.Name</td>
+                                                <td>@(item.HasIndex ? "Evet" : "Hayır")</td>
+                                                <td>@(item.IsUnique ? "Evet" : "Hayır")</td>
+                                                <td>@item.CreatedTime</td>
+                                                <td>@item.UpdatedTime</td>
+                                                <td>
+                                                    @if (!item.IsConstant)
+                                                    {
+
+                                                        <div class="d-flex justify-content-around">
+                                                            <div></div>
+
+                                                            <a class="delete-link" href="@Url.Action("Delete","EntityPropertyDefinition")?id=@item.Id">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a>
+                                                            <div></div>
+                                                        </div>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr style="display:none" id="clone-property" class="item_wrapper">
+                                            <td data-prop="PropertyTypeCode"></td>
+                                            <td data-prop="Name"></td>
+                                            <td data-prop="HasIndex"></td>
+                                            <td data-prop="IsUnique"></td>
+                                            <td data-prop="CreatedTime"></td>
+                                            <td data-prop="UpdatedTime"></td>
+                                            <td>
+
+                                                <div class="d-flex justify-content-around">
+                                                    <div></div>
+
+                                                    <a data-prop="Delete" class="delete-link" href="@Url.Action("Delete","EntityPropertyDefinition")">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                    <div></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    @if (Model.Count == 0)
+                                    {
+                                        <div id="empty-property-table-message" class="text-center">
+                                            <h5>
+                                                Kriterlere uygun veri bulunamadı.
+                                            </h5>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+
+
+                                <ul class="pagination pagination-circle">
+
+
+                                    @if (Model.Pages > 1)
+                                    {
+                                        // "Başa git Git" butonu
+                                        if (Model.HasPrevious)
+                                        {
+                                            <li class="page-item first">
+                                                <a data-page="1" class="page-link" href="#/">
+                                                    <i class="fa-solid fa-angles-left fa-beat fs-2"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        for (int i = Math.Max(1, Model.Index - 3); i < Model.Index; i++)
+                                        {
+                                            <li class="page-item">
+                                                <a data-page="@i" class="page-link" href="#/"> @i </a>
+                                            </li>
+                                        }
+                                            // Mevcut sayfa
+                                        <li class="page-item active">
+                                            <span class=" page-link">@Model.Index</span>
+                                        </li>
+                                        for (int i = Model.Index + 1; i <= Math.Min(Model.Pages, Model.Index + 3); i++)
+                                        {
+                                            <li class="page-item">
+                                                <a data-page="@i" class="page-link" href="#/">@i</a>
+                                            </li>
+                                        }
+                                        // "Sona Git" butonu
+                                        if (Model.HasNext)
+                                        {
+                                            <li class="page-item last  ">
+                                                <a data-page="@Model.Pages" class="page-link" href="#/">
+                                                    <i class="fa-solid fa-angles-right fa-beat fs-2"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        pageEvents.loadPartials();
+    });
+
+</script>
+

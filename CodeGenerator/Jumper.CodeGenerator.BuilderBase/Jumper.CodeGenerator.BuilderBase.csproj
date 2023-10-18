@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CodeDom" Version="7.0.0" />
+    <PackageReference Include="System.Management" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CQRS\Jumper.Application\Jumper.Application.csproj" />
+    <ProjectReference Include="..\Jumper.CodeGenerator.Helpers\Jumper.CodeGenerator.Helpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Starters\RefTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RefTemplate.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Core">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.11.0">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Modeling">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.Modeling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Sdk.Host">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.Sdk.Host.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.VSHost">
+      <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.VSHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Starters\RefTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RefTemplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
