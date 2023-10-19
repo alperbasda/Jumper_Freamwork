@@ -16,6 +16,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EntityTemplate.tt</DependentUpon>
     </None>
+    <None Include="DomainTemplates\NoSqlEntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NoSqlEntityTemplate.tt</DependentUpon>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,12 +43,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EntityTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="DomainTemplates\NoSqlEntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NoSqlEntityTemplate.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="DomainTemplates\EntityTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EntityTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="DomainTemplates\NoSqlEntityTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>NoSqlEntityTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

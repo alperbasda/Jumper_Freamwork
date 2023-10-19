@@ -11,6 +11,7 @@ namespace Jumper.CodeGenerator.BuilderBase.Starters;
 public class ProjectFileCreatorStarter
 {
     private const string M_TRANSFORM = "TransformText";
+
     FileHelper _fileHelper;
 
     public ProjectFileCreatorStarter(FileHelper fileHelper)
@@ -29,7 +30,7 @@ public class ProjectFileCreatorStarter
         {
             var obj = Activator.CreateInstance(template);
             var mi = template.GetMethod(M_TRANSFORM);
-            var res =mi.Invoke(obj, null);
+            var res = mi.Invoke(obj, null);
         }
 
         _fileHelper.DeleteIfExists(FileSettings.ReadProjectPath);

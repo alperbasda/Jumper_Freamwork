@@ -45,7 +45,11 @@ public class ProjectDeclarationRelationAggregation
 {
     public Guid? DependsOnId { get; set; }
 
+    public string? DependsOnName { get; set; }
+
     public Guid? DependedId { get; set; }
+
+    public string? DependedName { get; set; }
 
     public EntityDependencyType EntityDependencyType { get; set; }
 }
@@ -53,6 +57,8 @@ public class ProjectDeclarationRelationAggregation
 
 public class ProjectDeclarationEntityAggregation
 {
+    public Guid Id { get; set; }
+
     public string Name { get; set; }
 
     public DatabaseType DatabaseType { get; set; }
@@ -81,11 +87,15 @@ public class ProjectDeclarationEntityActionPropertyAggregation
 {
     public Guid? ProjectEntityPropertyId { get; set; }
 
+    public string? PropertyName { get; set; }
+
     public ActionPropertyType ActionPropertyType { get; set; }
 }
 
 public class ProjectDeclarationEntityPropertyAggregation
 {
+    public Guid Id { get; set; }
+
     public string PropertyTypeCode { get; set; }
 
     public string Name { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Jumper.CodeGenerator.BuilderBase.Helpers;
+namespace Jumper.CodeGenerator.Helpers.StringHelpers;
 
 public static class StringExtensions
 {

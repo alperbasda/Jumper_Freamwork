@@ -35,7 +35,7 @@ public class JsonProjectsController : ApiControllerBase
 
         var architecture = await _mediator.Send(new GetByIdFromCacheArchitectureDefinitionQuery { Id = request.ArchitectureId });
 
-        _architectureCreator.Create(project, architecture);
+        //_architectureCreator.Create(project, architecture);
         await _projectFileCreatorStarter.StartProcess(project, architecture);
 
         return Ok(CreateActionResult(Response<MessageResponse>.Success(new MessageResponse { Message = " " }, 200)));
