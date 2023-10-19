@@ -11,6 +11,86 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApplicationServiceRegistirationTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Base\BaseBusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseBusinessRulesTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Base\BaseDynamicQueryTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseDynamicQueryTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\BusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BusinessRulesTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\BulkCommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\CommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\CommandResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandResponseTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\CommandValidatorTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\BulkCommandRequestHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandRequestHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\CommandRequestHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandRequestHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\ListQueryRequestHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListQueryRequestHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\QueryRequestHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryRequestHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\MappingProfileTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MappingProfileTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Queries\QueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Queries\QueryResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryResponseTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\RepositoryInterfaceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RepositoryInterfaceTemplate.tt</DependentUpon>
+    </None>
     <None Include="DomainTemplates\EntityTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -106,6 +186,79 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApplicationServiceRegistirationTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BaseBusinessRulesTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BaseDynamicQueryTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\BusinessRulesTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BusinessRulesTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\BulkCommandRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BulkCommandRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\CommandRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\CommandResponseTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandResponseTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\CommandValidatorTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandValidatorTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\BulkCommandRequestHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BulkCommandRequestHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\CommandRequestHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandRequestHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\ListQueryRequestHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ListQueryRequestHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\QueryRequestHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>QueryRequestHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\MappingProfileTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>MappingProfileTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.tt">
+      <Generator>ListQueryRequestTemplate</Generator>
+      <LastGenOutput>ListQueryRequestTemplate.txt</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListQueryRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Update="ApplicationTemplates\Queries\QueryRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>QueryRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Queries\QueryResponseTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>QueryResponseTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\RepositoryInterfaceTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RepositoryInterfaceTemplate.cs</LastGenOutput>
+    </None>
     <None Update="DomainTemplates\EntityTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EntityTemplate.cs</LastGenOutput>

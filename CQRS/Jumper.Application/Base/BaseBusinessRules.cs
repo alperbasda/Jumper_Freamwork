@@ -1,9 +1,7 @@
 ﻿using Core.ApiHelpers.JwtHelper.Models;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Persistence.Dynamic;
-using Core.Persistence.Models;
 using Core.Persistence.Models.Responses;
-using Core.Persistence.Repositories;
 using Core.Persistence.Requests;
 using Jumper.Domain.Base;
 
