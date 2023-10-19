@@ -29,7 +29,7 @@ public class ProjectFileCreatorStarter
         {
             var obj = Activator.CreateInstance(template);
             var mi = template.GetMethod(M_TRANSFORM);
-            mi.Invoke(obj, null);
+            var res =mi.Invoke(obj, null);
         }
 
         _fileHelper.DeleteIfExists(FileSettings.ReadProjectPath);

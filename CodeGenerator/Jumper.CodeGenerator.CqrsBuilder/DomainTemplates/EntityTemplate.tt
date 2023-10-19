@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
 <#@ import namespace="System" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
@@ -6,10 +6,54 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
 <#@ import namespace="Newtonsoft.Json" #>
 <#@ import namespace="Newtonsoft.Json.Linq" #>
-<#@ assembly name="$(SolutionDir)_Dependencies\Jumper.CodeGenerator.Helpers.dll" #>
+<#@ assembly name="_Dependencies\Jumper.CodeGenerator.Helpers.dll" #>
 <#@ import namespace="Jumper.CodeGenerator.Helpers.Constants" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.DirectoryHelpers" #>
 <#@ output extension=".cs" #>
 
-<#=  FileSettings.ReadProjectPath #>
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Domain/Entities";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+
+<#
+
+var entities = datasource["Entities"];
+foreach (var item in entities!)
+{
+
+#>
+using Core.Persistence.Models;
+namespace <#= datasource["SolutionName"] #>.Domain.Entities;
+
+public class <#= item["Name"] #> : Entity<Guid>
+{
+<#    
+        foreach(var prop in item["Properties"])
+        {
+             WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
+        }
+#>
+}
+
+
+<#    
+SaveOutput(filePath,$"{item["Name"]}.cs");
+}
+#>
+
+
+<#+
+private void SaveOutput(string path,string outputFileName) {
+  string outputFilePath = Path.Combine(path, outputFileName);
+  File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
+  this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}
+#>

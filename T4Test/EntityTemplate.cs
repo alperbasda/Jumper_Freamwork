@@ -14,14 +14,16 @@ namespace T4Test
     using System.Text;
     using System.Collections.Generic;
     using System.IO;
+    using System.Runtime;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class EntityTemplate : EntityTemplateBase
     {
@@ -33,10 +35,10 @@ namespace T4Test
         {
             this.Write("\r\n");
             
-            #line 13 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+            #line 17 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
 
     
-    string settingsJson = File.ReadAllText(@"C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\bin\Debug\net7.0\BasicECommarce.json");
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
 
 
@@ -45,7 +47,7 @@ namespace T4Test
             #line hidden
             this.Write("\r\n");
             
-            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+            #line 24 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
 
 
 var entities = datasource["Entities"];
@@ -58,21 +60,21 @@ foreach (var item in entities!)
             #line hidden
             this.Write("using Core.Persistence.Models;\r\nnamespace ");
             
-            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.Entities;\r\n\r\npublic class ");
             
-            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write(" : Entity<Guid>\r\n{\r\n");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
     
         foreach(var prop in item["Properties"])
         {
@@ -84,7 +86,7 @@ foreach (var item in entities!)
             #line hidden
             this.Write("}\r\n\r\n\r\n");
             
-            #line 41 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
     
 SaveOutput($"{item["Name"]}.cs");
 }
@@ -92,14 +94,14 @@ SaveOutput($"{item["Name"]}.cs");
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n\r\n\r\n\r\n");
+            this.Write("\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 50 "C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\EntityTemplate.tt"
+        #line 51 "C:\Users\Admin\source\repos\Jumper_Freamwork\T4Test\EntityTemplate.tt"
 
 private void SaveOutput(string outputFileName) {
-  string outputFilePath = Path.Combine(@"C:\\Users\\Admin\\source\\repos", outputFileName);
+  string outputFilePath = Path.Combine($"{FileSettings.ProjectCreateDirectory}", outputFileName);
   File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
   this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
 }

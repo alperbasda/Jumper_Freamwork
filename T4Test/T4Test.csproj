@@ -48,6 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Jumper.CodeGenerator.Helpers">
+      <HintPath>..\_Dependencies\Jumper.CodeGenerator.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TextTemplating">
       <HintPath>..\CodeGenerator\bin\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
     </Reference>
@@ -76,10 +79,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="eEntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>eEntityTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="EntityTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EntityTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="EntityTemplate2.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityTemplate2.tt</DependentUpon>
     </Compile>
     <Compile Update="TestEntityTemplate.cs">
       <DesignTime>True</DesignTime>

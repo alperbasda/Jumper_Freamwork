@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "Jumper.CodeGenerator.CqrsBuilder/1.0.0": {
         "dependencies": {
-          "Jumper.CodeGenerator.BuilderBase": "1.0.0"
+          "Jumper.CodeGenerator.BuilderBase": "1.0.0",
+          "Jumper.CodeGenerator.Helpers": "1.0.0.0"
         },
         "runtime": {
           "Jumper.CodeGenerator.CqrsBuilder.dll": {}
@@ -1937,17 +1938,11 @@
       "Jumper.CodeGenerator.BuilderBase/1.0.0": {
         "dependencies": {
           "Jumper.Application": "1.0.0",
-          "Jumper.CodeGenerator.Helpers": "1.0.0",
           "System.CodeDom": "7.0.0",
           "System.Management": "7.0.2"
         },
         "runtime": {
           "Jumper.CodeGenerator.BuilderBase.dll": {}
-        }
-      },
-      "Jumper.CodeGenerator.Helpers/1.0.0": {
-        "runtime": {
-          "Jumper.CodeGenerator.Helpers.dll": {}
         }
       },
       "Jumper.Domain/1.0.0": {
@@ -1958,6 +1953,14 @@
         },
         "runtime": {
           "Jumper.Domain.dll": {}
+        }
+      },
+      "Jumper.CodeGenerator.Helpers/1.0.0.0": {
+        "runtime": {
+          "Jumper.CodeGenerator.Helpers.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -3357,13 +3360,13 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Jumper.CodeGenerator.Helpers/1.0.0": {
+    "Jumper.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Jumper.Domain/1.0.0": {
-      "type": "project",
+    "Jumper.CodeGenerator.Helpers/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

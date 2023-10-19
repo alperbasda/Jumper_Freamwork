@@ -23,6 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Jumper.CodeGenerator.Helpers">
+      <HintPath>..\..\_Dependencies\Jumper.CodeGenerator.Helpers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
@@ -36,7 +42,7 @@
 
   <ItemGroup>
     <None Update="DomainTemplates\EntityTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EntityTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>

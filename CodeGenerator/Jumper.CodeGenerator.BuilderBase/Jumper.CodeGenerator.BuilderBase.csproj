@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CQRS\Jumper.Application\Jumper.Application.csproj" />
-    <ProjectReference Include="..\Jumper.CodeGenerator.Helpers\Jumper.CodeGenerator.Helpers.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Jumper.CodeGenerator.Helpers">
+      <HintPath>..\..\_Dependencies\Jumper.CodeGenerator.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TextTemplating">
       <HintPath>..\bin\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
     </Reference>

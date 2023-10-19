@@ -27,4 +27,10 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Jumper.CodeGenerator.Helpers">
+      <HintPath>..\..\_Dependencies\Jumper.CodeGenerator.Helpers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

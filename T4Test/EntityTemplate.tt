@@ -6,13 +6,17 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
 <#@ import namespace="Newtonsoft.Json" #>
 <#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.CodeGenerator.Helpers.dll" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.Constants" #>
 <#@ output extension=".cs" #>
 
 <#
     
-    string settingsJson = File.ReadAllText(@"C:\Users\Admin\source\repos\Jumper_Freamwork\JumperFreamworkCreator\T4Test\bin\Debug\net7.0\BasicECommarce.json");
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
 
 #>
@@ -44,12 +48,9 @@ SaveOutput($"{item["Name"]}.cs");
 #>
 
 
-
-
-
 <#+
 private void SaveOutput(string outputFileName) {
-  string outputFilePath = Path.Combine(@"C:\\Users\\Admin\\source\\repos", outputFileName);
+  string outputFilePath = Path.Combine($"{FileSettings.ProjectCreateDirectory}", outputFileName);
   File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
   this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
 }

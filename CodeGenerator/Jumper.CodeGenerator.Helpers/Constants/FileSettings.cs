@@ -7,7 +7,7 @@ public class FileSettings
 {
     public static string ExternalDllDirectory = $"{Directory.GetParent(Environment.CurrentDirectory)!.Parent!.FullName}/_Dependencies/Architectures";
 
-    public static string ProjectCreateDirectory = $"{Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName}/";
+    public static string ProjectCreateDirectory = $"{Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName}/";
 
     public static string ReadProjectPath = $"{Environment.CurrentDirectory}/wwwroot/executingProject.json";
 }

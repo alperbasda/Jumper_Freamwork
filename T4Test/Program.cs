@@ -14,21 +14,13 @@ var builder = new ConfigurationBuilder()
 var configuration = builder.Build();
 
 
-var datas = Assembly.GetExecutingAssembly().GetTypes().Where(w => typeof(EntityTemplateBase).IsAssignableFrom(w) && w != typeof(EntityTemplateBase));
-
-
 var serviceCollection = new ServiceCollection()
     .AddCodeGeneratorServices(configuration)
     .AddApplicationServices(configuration)
     .AddPersistenceServices(configuration)
     .BuildServiceProvider();
 
-foreach (var item in datas)
-{
-    var obj = Activator.CreateInstance(item);
-    var mi = item.GetMethod("TransformText");
-    mi.Invoke(obj, null);
-}
+new EntityTemplate().TransformText();
 
 var mediator = serviceCollection.GetRequiredService<IMediator>();
 
