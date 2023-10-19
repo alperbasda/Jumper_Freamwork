@@ -21,27 +21,27 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>NoSqlEntityTemplate.tt</DependentUpon>
     </None>
-    <None Include="PersistenceLayers\DbContextTemplate.cs">
+    <None Include="PersistenceTemplates\DbContextTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DbContextTemplate.tt</DependentUpon>
     </None>
-    <None Include="PersistenceLayers\EfRepository.cs">
+    <None Include="PersistenceTemplates\EfRepository.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EfRepository.tt</DependentUpon>
     </None>
-    <None Include="PersistenceLayers\EntityConfigurationTemplate.cs">
+    <None Include="PersistenceTemplates\EntityConfigurationTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EntityConfigurationTemplate.tt</DependentUpon>
     </None>
-    <None Include="PersistenceLayers\NoSqlRepository.cs">
+    <None Include="PersistenceTemplates\NoSqlRepository.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>NoSqlRepository.tt</DependentUpon>
     </None>
-    <None Include="PersistenceLayers\PersistenceRegistrationServiceTemplate.cs">
+    <None Include="PersistenceTemplates\PersistenceRegistrationServiceTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
@@ -78,27 +78,27 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DbContextTeemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="PersistenceLayers\DbContextTemplate.cs">
+    <Compile Update="PersistenceTemplates\DbContextTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DbContextTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="PersistenceLayers\EfRepository.cs">
+    <Compile Update="PersistenceTemplates\EfRepository.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EfRepository.tt</DependentUpon>
     </Compile>
-    <Compile Update="PersistenceLayers\EntityConfigurationTemplate.cs">
+    <Compile Update="PersistenceTemplates\EntityConfigurationTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EntityConfigurationTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="PersistenceLayers\NoSqlRepository.cs">
+    <Compile Update="PersistenceTemplates\NoSqlRepository.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>NoSqlRepository.tt</DependentUpon>
     </Compile>
-    <Compile Update="PersistenceLayers\PersistenceRegistrationServiceTemplate.cs">
+    <Compile Update="PersistenceTemplates\PersistenceRegistrationServiceTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
@@ -114,23 +114,23 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>NoSqlEntityTemplate.cs</LastGenOutput>
     </None>
-    <None Update="PersistenceLayers\DbContextTemplate.tt">
+    <None Update="PersistenceTemplates\DbContextTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DbContextTemplate.cs</LastGenOutput>
     </None>
-    <None Update="PersistenceLayers\EfRepository.tt">
+    <None Update="PersistenceTemplates\EfRepository.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EfRepository.cs</LastGenOutput>
     </None>
-    <None Update="PersistenceLayers\EntityConfigurationTemplate.tt">
+    <None Update="PersistenceTemplates\EntityConfigurationTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EntityConfigurationTemplate.cs</LastGenOutput>
     </None>
-    <None Update="PersistenceLayers\NoSqlRepository.tt">
+    <None Update="PersistenceTemplates\NoSqlRepository.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>NoSqlRepository.cs</LastGenOutput>
     </None>
-    <None Update="PersistenceLayers\PersistenceRegistrationServiceTemplate.tt">
+    <None Update="PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PersistenceRegistrationServiceTemplate.cs</LastGenOutput>
     </None>
