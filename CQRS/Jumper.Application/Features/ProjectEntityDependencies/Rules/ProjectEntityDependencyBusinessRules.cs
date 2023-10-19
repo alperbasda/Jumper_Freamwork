@@ -96,7 +96,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     DeletedTime = null,
                     IsUnique = false,
                     PropertyTypeCode = "Guid",
-                    Name = $"{relatedEntities.Items.First().Name}Id"
+                    Name = $"{relatedEntities.Items.First().Name}Id",
                 },
                 new ProjectEntityProperty
                 {
@@ -106,11 +106,12 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     DeletedTime = null,
                     IsUnique = false,
                     PropertyTypeCode = "Guid",
-                    Name = $"{relatedEntities.Items.Last().Name}Id"
-                },
+                    Name = $"{relatedEntities.Items.Last().Name}Id",
+                }
             },
             IsConstant = true,
         };
+        
 
         _ = await _projectEntityDal.AddAsync(createEntity);
     }
@@ -125,7 +126,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         {
             throw new BusinessException("Relation Table Could Not Be Create.");
         }
-        string tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relations";
+        string tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relation";
         var data = await _projectEntityDal.GetAsync(w => w.Name == tableName && w.UserId == relatedEntities.Items.First().UserId);
 
         if (data == null)

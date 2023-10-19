@@ -47,6 +47,7 @@ foreach (var item in datasource["Entities"])
     {
         //Çoğul nesne yazar Yazar
     }
+    
 }
 
 

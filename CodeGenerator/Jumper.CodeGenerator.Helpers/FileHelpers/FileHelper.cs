@@ -1,4 +1,6 @@
-﻿namespace Jumper.CodeGenerator.Helpers.FileHelpers;
+﻿using System.Text;
+
+namespace Jumper.CodeGenerator.Helpers.FileHelpers;
 
 public class FileHelper
 {
@@ -14,10 +16,18 @@ public class FileHelper
         }
     }
 
-    public async Task<string> GetFileContent(string fullPath)
+    public static void CreateAndClearBuilder(string fullPath, StringBuilder builder)
     {
-        return await File.ReadAllTextAsync(fullPath);
+        if (File.Exists(fullPath))
+        {
+            File.Delete(fullPath);
+        }
+
+        File.WriteAllText(fullPath, builder.ToString());
+
+        builder.Remove(0, builder.Length);
     }
+
 
     public void DeleteIfExists(string filePath)
     {

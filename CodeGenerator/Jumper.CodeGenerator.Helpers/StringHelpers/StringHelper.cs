@@ -2,7 +2,7 @@
 
 namespace Jumper.CodeGenerator.Helpers.StringHelpers;
 
-public static class StringExtensions
+public static class StringHelper
 {
 
     static Dictionary<char, char> turkishToEnglishMap = new Dictionary<char, char>
@@ -85,5 +85,15 @@ public static class StringExtensions
         char firstChar = char.ToLower(text[0]);
         string restOfString = text.Substring(1);
         return firstChar + restOfString;
+    }
+
+    /// <summary>
+    /// Verilen Tablo İsimlerini Sıralayarak İlişkisel tablonun adını bulur.
+    /// </summary>
+    /// <param name="entityNames"></param>
+    /// <returns></returns>
+    public static string GetRelationTableName(params string[] entityNames)
+    {
+        return $"{string.Join("", entityNames.Select(w => w).OrderBy(w => w))}Relation";
     }
 }

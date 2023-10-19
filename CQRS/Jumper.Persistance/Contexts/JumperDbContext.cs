@@ -35,6 +35,7 @@ namespace Jumper.Persistance.Contexts
         //IEntityTypeConfiguration dan kalıtılan tüm konfigurasyonları işler.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ProjectEntityActionProperty>().HasOne(w => w.ProjectEntityAction).WithMany(w => w.Properties).HasForeignKey(w => w.ProjectEntityActionId).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 

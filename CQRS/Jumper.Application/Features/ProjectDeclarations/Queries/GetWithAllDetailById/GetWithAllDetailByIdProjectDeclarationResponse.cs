@@ -61,6 +61,8 @@ public class ProjectDeclarationEntityAggregation
 
     public string Name { get; set; }
 
+    public bool IsConstant { get; set; }
+
     public DatabaseType DatabaseType { get; set; }
 
     public List<ProjectDeclarationEntityPropertyAggregation> Properties { get; set; }
@@ -103,6 +105,8 @@ public class ProjectDeclarationEntityPropertyAggregation
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
+
+    public bool IsConstant { get; set; }
 }
 
 

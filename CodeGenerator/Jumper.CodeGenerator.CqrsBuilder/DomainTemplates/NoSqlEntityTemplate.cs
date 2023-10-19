@@ -20,6 +20,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
     using Jumper.CodeGenerator.Helpers.Constants;
     using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
     using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     
     /// <summary>
     /// Class to produce the template output
@@ -37,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
         {
             this.Write("\r\n");
             
-            #line 19 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -50,7 +51,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
             #line hidden
             this.Write("\r\n");
             
-            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
 
 
 var entities = datasource["Entities"].Where(w => w["DatabaseType"]!.ToString() == "4");
@@ -61,32 +62,40 @@ foreach (var item in entities!)
             #line default
             #line hidden
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing Core.Persistence.Models;\r\nnamespace ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.MongoEntities;\r\n\r\npublic class ");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write(" : MongoEntity<Guid>\r\n{\r\n");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
     
+        //Bu Bilgi n to n relation tablosu oldugunu gösterir ve virtual objelerini atmamız gerekir.
+        var isRelationTable =  bool.Parse(item["IsConstant"].ToString()) == true && item["Name"].ToString().EndsWith("Relation");
+
         foreach(var prop in item["Properties"])
         {
              WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
+             if(isRelationTable && prop["Name"].ToString().EndsWith("Id"))
+             {
+                 var entityName = prop["Name"].ToString().Substring(0,prop["Name"].ToString().Length-2);
+                 WriteLine($"\tpublic virtual {entityName} {entityName} {{ get; set; }}");
+             }
         }
 
         foreach (var dependency in datasource["Relations"].Where(w => w["DependedId"].ToString() == item["Id"].ToString()))
@@ -94,34 +103,27 @@ foreach (var item in entities!)
             WriteLine($"\tpublic List<{dependency["DependsOnName"]}> {dependency["DependsOnName"].ToString().ToPlural()} {{ get; set; }}");
         }
 
+        foreach (var dependency in datasource["Relations"].Where(w => w["DependsOnName"].ToString() == item["Id"].ToString() && w["EntityDependencyType"].ToString() == "2"))
+        {
+            
+            WriteLine($"\tpublic List<{dependency["DependedName"]}> {dependency["DependedName"].ToString().ToPlural()} {{ get; set; }}");
+        }
+
             
             #line default
             #line hidden
             this.Write("}\r\n\r\n\r\n");
             
-            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 68 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
     
-SaveOutput(filePath,$"{item["Name"]}.cs");
+FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.GenerationEnvironment);
 }
 
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
-        
-        #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
-
-private void SaveOutput(string path,string outputFileName) {
-  string outputFilePath = Path.Combine(path, outputFileName);
-  File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
-  this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
-}
-
-        
-        #line default
-        #line hidden
     }
     
     #line default

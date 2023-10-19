@@ -24,12 +24,8 @@ public class ProjectEntityActionPropertyConfiguration : IEntityTypeConfiguration
         builder.Property(w => w.ActionPropertyType).HasColumnName("ActionPropertyType").IsRequired();
 
 
-        builder.HasOne(w => w.ProjectEntityAction)
-            .WithMany(w=>w.Properties)
-            .HasForeignKey(w=>w.ProjectEntityActionId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(w => w.ProjectEntityAction).WithMany(w=>w.Properties).HasForeignKey(w=>w.ProjectEntityActionId).OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne(w => w.ProjectEntityProperty)
-            .WithMany(w => w.Metods)
-            .HasForeignKey(w => w.ProjectEntityPropertyId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(w => w.ProjectEntityProperty).WithMany(w => w.Metods).HasForeignKey(w => w.ProjectEntityPropertyId).OnDelete(DeleteBehavior.Restrict);
     }
 }

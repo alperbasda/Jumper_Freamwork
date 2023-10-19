@@ -34,18 +34,18 @@ public class GetWithAllDetailByIdProjectDeclarationQueryHandler : IRequestHandle
 
         returnProjectData.Architecture = await _mediator.Send(new GetByIdFromCacheArchitectureDefinitionQuery { Id = request.ArchitectureId });
 
-        var allIncludedData = await _projectEntityDal.GetListAsync(w => w.ProjectDeclarationId == returnProjectData.Id,size:int.MaxValue, cancellationToken: cancellationToken,
-            include: w => w.Include(q => q.Depended)
-                           .Include(q => q.Depended)
-                           .Include(q => q.Properties)
-                           .Include(q => q.ProjectEntityActions)
+        var allIncludedData = await _projectEntityDal.GetListAsync(w => w.ProjectDeclarationId == returnProjectData.Id, size: int.MaxValue, cancellationToken: cancellationToken,
+            include: w => w.Include(q => q.Depended.Where(w => w.DeletedTime == null))
+                           .Include(q => q.DependsOn.Where(w => w.DeletedTime == null))
+                           .Include(q => q.Properties.Where(w => w.DeletedTime == null))
+                           .Include(q => q.ProjectEntityActions.Where(w => w.DeletedTime == null))
                            .ThenInclude(q => q.Properties));
 
         returnProjectData.Entities = _mapper.Map<List<ProjectDeclarationEntityAggregation>>(allIncludedData.Items);
 
-        var relations = allIncludedData.Items.Where(w=>w.Depended != null).SelectMany(w => w.Depended).ToList();
-        relations.AddRange(allIncludedData.Items.Where(w => w.DependsOn != null).SelectMany(w => w.DependsOn).ToList());
-        relations= relations.Distinct().ToList();
+        var relations = allIncludedData.Items.Where(w => w.DeletedTime == null && w.Depended != null).SelectMany(w => w.Depended).ToList();
+        relations.AddRange(allIncludedData.Items.Where(w => w.DeletedTime == null && w.DependsOn != null).SelectMany(w => w.DependsOn).ToList());
+        relations = relations.Distinct().ToList();
         returnProjectData.Relations = _mapper.Map<List<ProjectDeclarationRelationAggregation>>(relations);
 
         _projectDeclarationBusinessRules.FillDependencyEntityNames(returnProjectData);

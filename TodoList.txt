@@ -1,6 +1,7 @@
 1-) Db Relationlarda mongo entity mssql e baðlanabiliyor. Bu hata düzeltilmeli. Basit bir javascript ile depended no sql se diðer de öyle olmalý olarak filtrelenebilir. BE de kontrol etmeyide unutma.
 //2-) EfEntityRelationFileCreator de çoka çok iliþkiler için yeni tablo oluþtur metodu yazýlacak.
-3-) Mongo Entitylerde iliþkiler aggrigation tarzý mý olmalý böyle mi kalmalý ?
+//3-) Mongo Entitylerde iliþkiler aggrigation tarzý mý olmalý böyle mi kalmalý ?
 //4-)Entity ve Propertyleri IsConstant alaný eklenecek.
-5-) Domain Templatein içerisine userownedentity namespace olmadan eklenecek
-5-) application registration service template üzerinde düzenlensin.
+//5-) Domain Templatein içerisine userownedentity namespace olmadan eklenecek
+6-) application registration service template üzerinde düzenlensin.
+//7-) relational table eklenirken virtual entityadý gibi bir ekleme yapmýstýk. Bu durum configurationa zarar verir. Bu Kacak yöntemden vazgeç template içinde çözüm bul.

@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
+namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceLayers
 {
     using System;
     using System.Linq;
@@ -26,9 +26,9 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class EntityTemplate : EntityTemplateBase
+    public partial class PersistenceRegistrationServiceTemplate : PersistenceRegistrationServiceTemplateBase
     {
 #line hidden
         /// <summary>
@@ -37,103 +37,98 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
         public virtual string TransformText()
         {
             this.Write("\r\n");
-            this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
 
-    
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Domain/Entities";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Persistence";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n");
             
-            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
-
-
-var entities = datasource["Entities"].Where(w => w["DatabaseType"]!.ToString() != "4");
-foreach (var item in entities!)
-{
-
-            
-            #line default
-            #line hidden
-            
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+            #line 26 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
-            this.Write("\r\nusing Core.Persistence.Models;\r\nnamespace ");
+            this.Write("\r\nusing Core.Persistence.Models;\r\nusing ");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(".Domain.Entities;\r\n\r\npublic class ");
+            this.Write(".Application.Services.Repositories;\r\nusing ");
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(" : Entity<Guid>\r\n{\r\n");
+            this.Write(".Persistence.Contexts;\r\nusing ");
             
-            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
-    
-        //Bu Bilgi n to n relation tablosu oldugunu gösterir ve virtual objelerini atmamız gerekir.
-        var isRelationTable =  bool.Parse(item["IsConstant"].ToString()) == true && item["Name"].ToString().EndsWith("Relation");
-        foreach(var prop in item["Properties"])
-        {
-             WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
-             if(isRelationTable && prop["Name"].ToString().EndsWith("Id"))
-             {
-                 var entityName = prop["Name"].ToString().Substring(0,prop["Name"].ToString().Length-2);
-                 WriteLine($"\tpublic virtual {entityName} {entityName} {{ get; set; }}");
-             }
-        }
+            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Persistence.Repositories;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft" +
+                    ".Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\n\r\nn" +
+                    "amespace ");
+            
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(@".Persistence;
 
-        foreach (var dependency in datasource["Relations"].Where(w => w["DependsOnId"].ToString() == item["Id"].ToString()))
-        {
-            if (dependency["EntityDependencyType"].ToString() == "2")
-            {
-                var relationTableName = StringHelper.GetRelationTableName(dependency["DependedName"].ToString(),dependency["DependsOnName"].ToString());
-                WriteLine($"\tpublic virtual ICollection<{relationTableName}> {dependency["DependedName"].ToString().ToPlural()} {{ get; set; }}");    
-                continue;
-            }
+public static class PersistenceServiceRegistration
+{
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration)
+    {
+        #region Db Options
 
-            if (!item["Properties"].Any(w => w["Name"].ToString() == $"{dependency["DependedName"]}Id"))
-            {
-                WriteLine($"\tpublic Guid {dependency["DependedName"]}Id {{ get; set; }}");
-            }
+        DatabaseOptions opts = new DatabaseOptions();
+
+        configuration.GetSection(""DatabaseOptions"").Bind(opts);
+        services.Configure<DatabaseOptions>(options =>
+        {
+            options = opts;
+        });
+        services.AddSingleton(sp =>
+        {
+            return opts;
+        });
+
+
+        #endregion
+
+        services.AddDbContext<JumperDbContext>(options => options.UseSqlServer(opts.EfConnectionString));
+        ");
+            
+            #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
+
+        WriteLine("");
+        foreach(var item in datasource["Entities"])
+        {
+        WriteLine("");
+        WriteLine($"\t\tservices.AddScoped<I{item["Name"]}Dal, {item["Name"]}Dal>();");
         
-            WriteLine($"\tpublic virtual {dependency["DependedName"]} {dependency["DependedName"]} {{ get; set; }}");
         }
-        foreach (var dependency in datasource["Relations"].Where(w => w["DependedId"].ToString() == item["Id"].ToString()))
-        {
-            if (dependency["EntityDependencyType"].ToString() == "2")
-            {
-                var relationTableName = StringHelper.GetRelationTableName(dependency["DependedName"].ToString(),dependency["DependsOnName"].ToString());
-                WriteLine($"\tpublic virtual ICollection<{relationTableName}> {dependency["DependsOnName"].ToString().ToPlural()} {{ get; set; }}");    
-                continue;
-            }
-            WriteLine($"\tpublic virtual ICollection<{dependency["DependsOnName"]}> {dependency["DependsOnName"].ToString().ToPlural()} {{ get; set; }}");
-        }
-
+        
             
             #line default
             #line hidden
-            this.Write("}\r\n\r\n\r\n");
+            this.Write("\r\n        return services;\r\n    }\r\n}\r\n");
             
-            #line 85 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceLayers\PersistenceRegistrationServiceTemplate.tt"
     
-FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.GenerationEnvironment);
-}
+FileHelper.CreateAndClearBuilder($"{filePath}/PersistenceRegistrationServiceTemplate.cs",this.GenerationEnvironment);
+
 
             
             #line default
@@ -149,7 +144,7 @@ FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.Generation
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class EntityTemplateBase
+    public class PersistenceRegistrationServiceTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;
