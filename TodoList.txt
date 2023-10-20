@@ -1,10 +1,11 @@
-1-) Db Relationlarda mongo entity mssql e bağlanabiliyor. Bu hata düzeltilmeli. Basit bir javascript ile depended no sql se diğer de öyle olmalı olarak filtrelenebilir. BE de kontrol etmeyide unutma.
-//2-) EfEntityRelationFileCreator de çoka çok ilişkiler için yeni tablo oluştur metodu yazılacak.
-//3-) Mongo Entitylerde ilişkiler aggrigation tarzı mı olmalı böyle mi kalmalı ?
-//4-)Entity ve Propertyleri IsConstant alanı eklenecek.
-//5-) Domain Templatein içerisine userownedentity namespace olmadan eklenecek
-//6-) application registration service template üzerinde düzenlensin.
-//7-) relational table eklenirken virtual entityadı gibi bir ekleme yapmıstık. Bu durum configurationa zarar verir. Bu Kacak yöntemden vazgeç template içinde çözüm bul.
-8-) UI da sadece cache enabled yetmiyor. Cache keyi ve cache group keyi alsak fena olmayacak. Birde read işlemleri için ICachable CUD işlemleri için IRemoveCache oldugunu sayfaya not düş.
-9-) DeleteCommandlar Liste silip Liste dönmeli.Templatelere bir ayar çekmek lazım
-10-) ProjectEntitye IsUserOwnedEntity alanı eklenecek. Bu alana sahip entityler IUserOwnedEntityden kalıtılacak. ve bunların commandları ve querylerine iş kuralı çagırılacak.
+ï»¿1-) Db Relationlarda mongo entity mssql e baÃ°lanabiliyor. Bu hata dÃ¼zeltilmeli. Basit bir javascript ile depended no sql se diÃ°er de Ã¶yle olmalÃ½ olarak filtrelenebilir. BE de kontrol etmeyide unutma.
+//2-) EfEntityRelationFileCreator de Ã§oka Ã§ok iliÃ¾kiler iÃ§in yeni tablo oluÃ¾tur metodu yazÃ½lacak.
+//3-) Mongo Entitylerde iliÃ¾kiler aggrigation tarzÃ½ mÃ½ olmalÃ½ bÃ¶yle mi kalmalÃ½ ?
+//4-)Entity ve Propertyleri IsConstant alanÃ½ eklenecek.
+//5-) Domain Templatein iÃ§erisine userownedentity namespace olmadan eklenecek
+//6-) application registration service template Ã¼zerinde dÃ¼zenlensin.
+//7-) relational table eklenirken virtual entityadÃ½ gibi bir ekleme yapmÃ½stÃ½k. Bu durum configurationa zarar verir. Bu Kacak yÃ¶ntemden vazgeÃ§ template iÃ§inde Ã§Ã¶zÃ¼m bul.
+8-)  UI da sadece cache enabled yetmiyor. Cache keyi ve cache group keyi alsak fena olmayacak. Birde read iÃ¾lemleri iÃ§in ICachable CUD iÃ¾lemleri iÃ§in IRemoveCache oldugunu sayfaya not dÃ¼Ã¾.
+9-)  DeleteCommandlar Liste silip Liste dÃ¶nmeli.Templatelere bir ayar Ã§ekmek lazÃ½m
+10-) ProjectEntitye IsUserOwnedEntity alanÃ½ eklenecek. Bu alana sahip entityler IUserOwnedEntityden kalÃ½tÃ½lacak. ve bunlarÃ½n commandlarÃ½ ve querylerine iÃ¾ kuralÃ½ Ã§agÃ½rÃ½lacak.
+11-) Nesne havuzu kalkacak , bunun yerine projelerin nesneleri listelenecek. Nesnelere kategorize etmek iÃ§in tagler atanacak. Bu tagleri nesneleri oluÅŸturan kullanÄ±cÄ±lar kendileri girecek.

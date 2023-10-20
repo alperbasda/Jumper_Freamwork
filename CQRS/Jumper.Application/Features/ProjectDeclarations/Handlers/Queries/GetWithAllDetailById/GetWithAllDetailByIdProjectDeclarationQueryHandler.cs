@@ -43,15 +43,15 @@ public class GetWithAllDetailByIdProjectDeclarationQueryHandler : IRequestHandle
 
         returnProjectData.Entities = _mapper.Map<List<ProjectDeclarationEntityAggregation>>(allIncludedData.Items);
 
-        var relations = allIncludedData.Items.Where(w => w.DeletedTime == null && w.Depended != null).SelectMany(w => w.Depended).ToList();
-        relations.AddRange(allIncludedData.Items.Where(w => w.DeletedTime == null && w.DependsOn != null).SelectMany(w => w.DependsOn).ToList());
+        var relations = allIncludedData.Items.Where(w => w.Depended != null).SelectMany(w => w.Depended).ToList();
+        relations.AddRange(allIncludedData.Items.Where(w => w.DependsOn != null).SelectMany(w => w.DependsOn).ToList());
         relations = relations.Distinct().ToList();
         returnProjectData.Relations = _mapper.Map<List<ProjectDeclarationRelationAggregation>>(relations);
 
         _projectDeclarationBusinessRules.FillDependencyEntityNames(returnProjectData);
         _projectDeclarationBusinessRules.AddDefaultActions(returnProjectData);
         _projectDeclarationBusinessRules.FillEntityActionProperties(returnProjectData);
-        
+
         return returnProjectData;
     }
 }
