@@ -114,130 +114,37 @@ foreach (var item in entities!)
             
             #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
 
+    WriteLine("");
     foreach(var prop in item["Properties"])
     {
 
     if(prop["PropertyTypeCode"].ToString().Contains("?"))
     {
+    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\");");
     
-            
-            #line default
-            #line hidden
-            this.Write("    builder.Property(w => w.");
-            
-            #line 56 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"]));
-            
-            #line default
-            #line hidden
-            this.Write(").HasColumnName(\"");
-            
-            #line 56 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"]));
-            
-            #line default
-            #line hidden
-            this.Write("\");\r\n    ");
-            
-            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-
     }
     else
     {
+    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\").IsRequired();");
     
-            
-            #line default
-            #line hidden
-            this.Write("    builder.Property(w => w.");
-            
-            #line 62 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"]));
-            
-            #line default
-            #line hidden
-            this.Write(").HasColumnName(\"");
-            
-            #line 62 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"]));
-            
-            #line default
-            #line hidden
-            this.Write("\").IsRequired();\r\n    ");
-            
-            #line 63 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-
     }
     if(prop["HasIndex"].ToString() == "true")
     {
+    WriteLine($"\t\tbuilder.HasIndex(w => w.{prop["Name"]}).IsUnique({prop["IsUnique"]});");
     
-            
-            #line default
-            #line hidden
-            this.Write("    builder.HasIndex(w => w.");
-            
-            #line 68 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"]));
-            
-            #line default
-            #line hidden
-            this.Write(").IsUnique(");
-            
-            #line 68 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop["IsUnique"]));
-            
-            #line default
-            #line hidden
-            this.Write(");\r\n    ");
-            
-            #line 69 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-
     }
     }
-    
-            
-            #line default
-            #line hidden
-            this.Write("\r\n    ");
-            
-            #line 74 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
 
     foreach(var relation in datasource["Relations"].Where(w => (w["DependedId"].ToString() == item["Id"].ToString() || w["DependsOnId"].ToString() == item["Id"].ToString()) && w["EntityDependencyType"].ToString() != "2"))
     {
     if(item["Id"].ToString() == relation["DependedId"].ToString())
     {
+    WriteLine($"\t\tbuilder.HasMany(w => w.{relation["DependsOnName"].ToString().ToPlural()});");
     
-            
-            #line default
-            #line hidden
-            this.Write("    builder.HasMany(w => w.");
-            
-            #line 80 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(relation["DependsOnName"].ToString().ToPlural()));
-            
-            #line default
-            #line hidden
-            this.Write(");\r\n    ");
-            
-            #line 81 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-
     }
     else
     {
-    
-            
-            #line default
-            #line hidden
-            this.Write("    builder.HasOne(w => w.");
-            
-            #line 86 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(relation["DependedName"]));
-            
-            #line default
-            #line hidden
-            this.Write(");\r\n    ");
-            
-            #line 87 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
-
+    WriteLine($"\t\tbuilder.HasOne(w => w.{relation["DependedName"]});");
     }
     }
     
@@ -246,7 +153,7 @@ foreach (var item in entities!)
             #line hidden
             this.Write("        \r\n        \r\n\r\n\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n");
             
-            #line 102 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
+            #line 95 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\EntityConfigurationTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}Configuration.cs",this.GenerationEnvironment);
 }

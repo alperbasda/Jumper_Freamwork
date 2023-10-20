@@ -9,10 +9,18 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
 {
+    using System;
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using System;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     
     /// <summary>
     /// Class to produce the template output
@@ -28,6 +36,46 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Base";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing Core.Persistence.Dynamic;\r\nusing Core.Persistence.Requests;\r\n\r\nnamespace " +
+                    "");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Base;\r\n\r\npublic class BaseDynamicQuery\r\n{\r\n    public PageRequest Pa" +
+                    "geRequest { get; set; } = new PageRequest()\r\n    {\r\n        PageSize = 10,\r\n    " +
+                    "    PageIndex = 0,\r\n    };\r\n\r\n    public DynamicQuery? DynamicQuery { get; set; " +
+                    "}\r\n}\r\n\r\n\r\n");
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/BaseDynamicQuery.cs",this.GenerationEnvironment);
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

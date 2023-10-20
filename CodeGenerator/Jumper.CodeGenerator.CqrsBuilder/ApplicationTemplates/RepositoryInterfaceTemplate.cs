@@ -9,10 +9,18 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
 {
+    using System;
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using System;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     
     /// <summary>
     /// Class to produce the template output
@@ -28,6 +36,85 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Services/Repositories";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+
+
+var entities = datasource["Entities"];
+foreach (var item in entities!)
+{
+
+            
+            #line default
+            #line hidden
+            
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing Core.Persistence.Repositories;\r\n");
+            
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+
+if(item["DatabaseType"].ToString() !="4")
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+
+            
+            #line default
+            #line hidden
+            this.Write("namespace ");
+            
+            #line 47 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Services.Repositories;\r\n\r\npublic interface I");
+            
+            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Dal : IAsyncRepository<");
+            
+            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write(", Guid>\r\n{\r\n}\r\n\r\n\r\n");
+            
+            #line 54 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\RepositoryInterfaceTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/I{item["Name"]}Dal.cs",this.GenerationEnvironment);
+}
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

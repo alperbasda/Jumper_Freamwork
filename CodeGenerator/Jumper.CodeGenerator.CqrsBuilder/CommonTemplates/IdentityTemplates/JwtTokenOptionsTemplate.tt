@@ -22,27 +22,25 @@
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Base";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Common/{datasource["SolutionName"]}.Common/IdentityConfigurations";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
-using Core.Persistence.Dynamic;
-using Core.Persistence.Requests;
+namespace <#= datasource["SolutionName"] #>.Common.IdentityConfigurations;
 
-namespace <#= datasource["SolutionName"] #>.Application.Base;
-
-public class BaseDynamicQuery
+public class JwtTokenOptions
 {
-    public PageRequest PageRequest { get; set; } = new PageRequest()
-    {
-        PageSize = 10,
-        PageIndex = 0,
-    };
+    public string Audience { get; set; }
 
-    public DynamicQuery? DynamicQuery { get; set; }
+    public string Issuer { get; set; }
+
+    public string SecurityKey { get; set; }
+
+    public string ClientId { get; set; }
+
+    public string ClientSecret { get; set; }
 }
 
-
 <#    
-FileHelper.CreateAndClearBuilder($"{filePath}/BaseDynamicQuery.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/JwtTokenOptions.cs",this.GenerationEnvironment);
 #>

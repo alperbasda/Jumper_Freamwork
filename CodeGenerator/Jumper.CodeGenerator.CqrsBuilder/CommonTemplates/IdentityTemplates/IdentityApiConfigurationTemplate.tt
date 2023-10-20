@@ -22,27 +22,23 @@
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Base";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Common/{datasource["SolutionName"]}.Common/IdentityConfigurations";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
-using Core.Persistence.Dynamic;
-using Core.Persistence.Requests;
+namespace <#= datasource["SolutionName"] #>.Common.IdentityConfigurations;
 
-namespace <#= datasource["SolutionName"] #>.Application.Base;
-
-public class BaseDynamicQuery
+public class IdentityApiConfiguration
 {
-    public PageRequest PageRequest { get; set; } = new PageRequest()
-    {
-        PageSize = 10,
-        PageIndex = 0,
-    };
+    public string BaseAddress { get; set; }
 
-    public DynamicQuery? DynamicQuery { get; set; }
+    public string GetTokenAddress { get; set; }
+
+    public string RefreshTokenAddress { get; set; }
+
+    public string RevokeTokenAddress { get; set; }
 }
 
-
 <#    
-FileHelper.CreateAndClearBuilder($"{filePath}/BaseDynamicQuery.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/IdentityApiConfiguration.cs",this.GenerationEnvironment);
 #>

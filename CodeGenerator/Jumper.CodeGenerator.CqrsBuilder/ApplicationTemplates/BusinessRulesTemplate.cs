@@ -9,9 +9,14 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
 {
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     using System;
     
     /// <summary>
@@ -28,6 +33,82 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+
+foreach (var entity in datasource["Entities"])
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Rules";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            
+            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing Core.ApiHelpers.JwtHelper.Models;\r\nusing ");
+            
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Base;\r\n\r\nnamespace ");
+            
+            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Rules;\r\n\r\npublic class ");
+            
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules : BaseBusinessRules\r\n{\r\n\r\n    public ");
+            
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules(TokenParameters tokenParameters) : base(tokenParameters)\r\n    {\r\n  " +
+                    "  }\r\n}\r\n\r\n\r\n\r\n");
+            
+            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\BusinessRulesTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"]}BusinessRules.cs",this.GenerationEnvironment);
+}
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

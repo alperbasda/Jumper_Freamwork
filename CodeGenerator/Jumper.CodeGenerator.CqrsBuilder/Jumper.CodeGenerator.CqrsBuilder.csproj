@@ -91,6 +91,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RepositoryInterfaceTemplate.tt</DependentUpon>
     </None>
+    <None Include="CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IdentityApiConfigurationTemplate.tt</DependentUpon>
+    </None>
+    <None Include="CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JwtTokenOptionsTemplate.tt</DependentUpon>
+    </None>
     <None Include="DomainTemplates\EntityTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -143,6 +153,41 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApplicationServiceRegistirationTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Base\BaseBusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseBusinessRulesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Base\BaseDynamicQueryTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseDynamicQueryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\BusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BusinessRulesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\RepositoryInterfaceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RepositoryInterfaceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IdentityApiConfigurationTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JwtTokenOptionsTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="DomainTemplates\EntityTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -258,6 +303,14 @@
     <None Update="ApplicationTemplates\RepositoryInterfaceTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>RepositoryInterfaceTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IdentityApiConfigurationTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>JwtTokenOptionsTemplate.cs</LastGenOutput>
     </None>
     <None Update="DomainTemplates\EntityTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

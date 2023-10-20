@@ -55,7 +55,7 @@ public static class PersistenceServiceRegistration
 
         #endregion
 
-        services.AddDbContext<JumperDbContext>(options => options.UseSqlServer(opts.EfConnectionString));
+        services.AddDbContext<<#= datasource["SolutionName"] #>DbContext>(options => options.UseSqlServer(opts.EfConnectionString));
         <#
         WriteLine("");
         foreach(var item in datasource["Entities"])
@@ -70,6 +70,6 @@ public static class PersistenceServiceRegistration
     }
 }
 <#    
-FileHelper.CreateAndClearBuilder($"{filePath}/PersistenceRegistrationServiceTemplate.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/PersistenceRegistrationService.cs",this.GenerationEnvironment);
 
 #>

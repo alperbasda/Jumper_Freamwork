@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
+namespace Jumper.CodeGenerator.CqrsBuilder.CommonTemplates.IdentityTemplates
 {
     using System;
     using System.Linq;
@@ -26,9 +26,9 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class PersistenceRegistrationServiceTemplate : PersistenceRegistrationServiceTemplateBase
+    public partial class IdentityApiConfigurationTemplate : IdentityApiConfigurationTemplateBase
     {
 #line hidden
         /// <summary>
@@ -37,104 +37,50 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
         public virtual string TransformText()
         {
             this.Write("\r\n");
+            this.Write("\r\n");
             
-            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt"
 
+    
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Persistence";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Common/{datasource["SolutionName"]}.Common/IdentityConfigurations";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 
             
             #line default
             #line hidden
             
-            #line 26 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
-            this.Write("\r\nusing Core.Persistence.Models;\r\nusing ");
+            this.Write("\r\nnamespace ");
             
-            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(".Application.Services.Repositories;\r\nusing ");
-            
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(".Persistence.Contexts;\r\nusing ");
-            
-            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(".Persistence.Repositories;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft" +
-                    ".Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\n\r\nn" +
-                    "amespace ");
-            
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(@".Persistence;
+            this.Write(@".Common.IdentityConfigurations;
 
-public static class PersistenceServiceRegistration
+public class IdentityApiConfiguration
 {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration)
-    {
-        #region Db Options
+    public string BaseAddress { get; set; }
 
-        DatabaseOptions opts = new DatabaseOptions();
+    public string GetTokenAddress { get; set; }
 
-        configuration.GetSection(""DatabaseOptions"").Bind(opts);
-        services.Configure<DatabaseOptions>(options =>
-        {
-            options = opts;
-        });
-        services.AddSingleton(sp =>
-        {
-            return opts;
-        });
+    public string RefreshTokenAddress { get; set; }
 
+    public string RevokeTokenAddress { get; set; }
+}
 
-        #endregion
-
-        services.AddDbContext<");
+");
             
-            #line 58 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write("DbContext>(options => options.UseSqlServer(opts.EfConnectionString));\r\n        ");
-            
-            #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
-
-        WriteLine("");
-        foreach(var item in datasource["Entities"])
-        {
-        WriteLine("");
-        WriteLine($"\t\tservices.AddScoped<I{item["Name"]}Dal, {item["Name"]}Dal>();");
-        
-        }
-        
-            
-            #line default
-            #line hidden
-            this.Write("\r\n        return services;\r\n    }\r\n}\r\n");
-            
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt"
     
-FileHelper.CreateAndClearBuilder($"{filePath}/PersistenceRegistrationService.cs",this.GenerationEnvironment);
-
+FileHelper.CreateAndClearBuilder($"{filePath}/IdentityApiConfiguration.cs",this.GenerationEnvironment);
 
             
             #line default
@@ -150,7 +96,7 @@ FileHelper.CreateAndClearBuilder($"{filePath}/PersistenceRegistrationService.cs"
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class PersistenceRegistrationServiceTemplateBase
+    public class IdentityApiConfigurationTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

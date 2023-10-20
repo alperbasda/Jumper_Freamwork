@@ -9,10 +9,18 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
 {
+    using System;
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using System;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     
     /// <summary>
     /// Class to produce the template output
@@ -28,6 +36,136 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n\r\nusing Core.Application.Pipelines.Caching;\r\nusing Core.Application.Pipelines" +
+                    ".Logging;\r\nusing Core.Application.Pipelines.Transaction;\r\nusing Core.Application" +
+                    ".Pipelines.Validation;\r\nusing FluentValidation;\r\nusing ");
+            
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Base;\r\nusing ");
+            
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.Auth.HttpClients;\r\nusing ");
+            
+            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Common.IdentityConfigurations;\r\nusing MediatR.NotificationPublishers;\r\nusing Mic" +
+                    "rosoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection" +
+                    ";\r\nusing System.Reflection;\r\n\r\nnamespace ");
+            
+            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(@".Application;
+
+public static class ApplicationServiceRegistiration
+{
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+        services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
+
+        services.AddIdentityOptions(configuration);
+
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+        services.AddMediatR(configuration =>
+        {
+            configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+
+            configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
+            configuration.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
+            ");
+            
+            #line 65 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+
+            WriteLine("");
+            if(bool.Parse(datasource["UseCache"].ToString()) == true)
+            {
+            WriteLine($"\t\t\tconfiguration.AddOpenBehavior(typeof(CachingBehavior<,>));");
+            WriteLine($"\t\t\tconfiguration.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));");
+            }
+            if(bool.Parse(datasource["UseSerilog"].ToString()) == true)
+            {
+            WriteLine($"\t\t\tconfiguration.AddOpenBehavior(typeof(LoggingBehavior<,>));");
+            }
+            
+            
+            
+            #line default
+            #line hidden
+            this.Write("            \r\n            ///Dikkat : Aşagıdaki kod bloğu notificationların asenk" +
+                    "ron çalışmasını sağlar.\r\n            //Ef core aynı anda 2 istekle database e ba" +
+                    "ğlanırsa hata alacağından dolayı dikkatli olunması gerekir.\r\n            //Datab" +
+                    "ase erişiminin ayni anda birden fazla yerde çağırılacagını düşünüyorsanız aşagıd" +
+                    "aki kod 3 satırını siliniz.\r\n            configuration.NotificationPublisher = n" +
+                    "ew TaskWhenAllPublisher();\r\n            configuration.NotificationPublisherType " +
+                    "= typeof(TaskWhenAllPublisher);\r\n            configuration.Lifetime = ServiceLif" +
+                    "etime.Scoped;\r\n        });\r\n\r\n        \r\n\r\n        return services;\r\n\r\n    }\r\n\r\n " +
+                    "   public static IServiceCollection AddIdentityOptions(this IServiceCollection s" +
+                    "ervices,IConfiguration configuration)\r\n    {\r\n        IdentityApiConfiguration i" +
+                    "dentityOpts = new IdentityApiConfiguration();\r\n\r\n        configuration.GetSectio" +
+                    "n(\"HttpClients:IdentityServer\").Bind(identityOpts);\r\n        services.Configure<" +
+                    "IdentityApiConfiguration>(options =>\r\n        {\r\n            options = identityO" +
+                    "pts;\r\n        });\r\n        services.AddSingleton<IdentityApiConfiguration>(sp =>" +
+                    "\r\n        {\r\n            return identityOpts;\r\n        });\r\n\r\n\r\n\r\n        JwtTok" +
+                    "enOptions tokenOpts = new JwtTokenOptions();\r\n\r\n        configuration.GetSection" +
+                    "(\"JwtTokenOptions\").Bind(tokenOpts);\r\n        services.Configure<JwtTokenOptions" +
+                    ">(options =>\r\n        {\r\n            options = tokenOpts;\r\n        });\r\n        " +
+                    "services.AddSingleton<JwtTokenOptions>(sp =>\r\n        {\r\n            return toke" +
+                    "nOpts;\r\n        });\r\n\r\n\r\n        services.AddHttpClient<IIdentityServerClientSer" +
+                    "vice, IdentityServerClientService>((client) =>\r\n        {\r\n            client.Ba" +
+                    "seAddress = new Uri(identityOpts.BaseAddress);\r\n        });\r\n\r\n        return se" +
+                    "rvices;\r\n    }\r\n\r\n\r\n\r\n    public static IServiceCollection AddSubClassesOfType(\r" +
+                    "\n      this IServiceCollection services,\r\n      Assembly assembly,\r\n      Type t" +
+                    "ype,\r\n      Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle" +
+                    " = null)\r\n    {\r\n        var types = assembly.GetTypes().Where(t => t.IsSubclass" +
+                    "Of(type) && type != t).ToList();\r\n        foreach (var item in types)\r\n         " +
+                    "   if (addWithLifeCycle == null)\r\n                services.AddScoped(item);\r\n   " +
+                    "         else\r\n                addWithLifeCycle(services, type);\r\n        return" +
+                    " services;\r\n    }\r\n\r\n}\r\n\r\n");
+            
+            #line 149 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/ApplicationServiceRegistiration.cs",this.GenerationEnvironment);
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

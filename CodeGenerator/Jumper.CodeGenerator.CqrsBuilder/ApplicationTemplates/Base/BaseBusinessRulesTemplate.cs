@@ -9,10 +9,18 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
 {
+    using System;
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using System;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     
     /// <summary>
     /// Class to produce the template output
@@ -28,6 +36,74 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Base";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing Core.ApiHelpers.JwtHelper.Models;\r\nusing Core.CrossCuttingConcerns.Except" +
+                    "ions.Types;\r\nusing Core.Persistence.Dynamic;\r\nusing Core.Persistence.Models.Resp" +
+                    "onses;\r\nusing Core.Persistence.Requests;\r\n\r\nnamespace ");
+            
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Base;\r\n\r\npublic class BaseBusinessRules\r\n{\r\n    protected readonly T" +
+                    "okenParameters TokenParameters;\r\n\r\n    public BaseBusinessRules(TokenParameters " +
+                    "tokenParameters)\r\n    {\r\n        TokenParameters = tokenParameters;\r\n    }\r\n\r\n  " +
+                    "  public virtual Task ThrowExceptionIfDataNull<TEntity>(TEntity? data)\r\n    {\r\n " +
+                    "       if (data == null)\r\n            throw new NotFoundException($\"{typeof(TEnt" +
+                    "ity).Name} not found\");\r\n\r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    publ" +
+                    "ic virtual Task ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntity>? data)\r\n " +
+                    "   {\r\n        if (data == null || !data.Any())\r\n            throw new NotFoundEx" +
+                    "ception($\"{typeof(TEntity).Name} not found\");\r\n\r\n        return Task.CompletedTa" +
+                    "sk;\r\n    }\r\n\r\n    public virtual void FillDynamicFilter<T>(ListModel<T> data, Dy" +
+                    "namicQuery? dq, PageRequest pr)\r\n    {\r\n        data.DynamicQuery = dq ?? new Dy" +
+                    "namicQuery();\r\n        data.PageRequest = pr;\r\n    }\r\n\r\n    public virtual void " +
+                    "SetUserId<T>(T data)\r\n        where T : IUserOwnedEntity\r\n    {\r\n        if (Tok" +
+                    "enParameters.IsSuperUser && data.UserId != Guid.Empty)\r\n            return;\r\n\r\n " +
+                    "       data.UserId = TokenParameters.UserId;\r\n    }\r\n\r\n    public virtual void T" +
+                    "hrowExceptionIfDataOwnerNotLoggedUser<T>(T data)\r\n        where T : IUserOwnedEn" +
+                    "tity\r\n    {\r\n        if (data.UserId == TokenParameters.UserId || TokenParameter" +
+                    "s.IsSuperUser)\r\n            return;\r\n\r\n        throw new BusinessException(\"Bu v" +
+                    "eri üzerinde sadece verinin sahibi işlem yapabilir.\");\r\n    }\r\n\r\n    public virt" +
+                    "ual void AddLoggedUserIdInDynamicQuery(DynamicQuery? query)\r\n    {\r\n        if (" +
+                    "TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        var attach = new Fi" +
+                    "lter { Field = \"UserId\", Logic = Logic.And, Operator = FilterOperator.Equals, Va" +
+                    "lue = TokenParameters.UserId.ToString() };\r\n        AddFilterInDynamicQuery(quer" +
+                    "y, attach);\r\n    }\r\n\r\n    public virtual void AddFilterInDynamicQuery(DynamicQue" +
+                    "ry? query, Filter attach)\r\n    {\r\n        if (query == null)\r\n        {\r\n       " +
+                    "     query = new DynamicQuery();\r\n\r\n        }\r\n        if (query.Filter == null)" +
+                    "\r\n        {\r\n            query.Filter = attach;\r\n        }\r\n        else if (que" +
+                    "ry.Filter.Filters == null)\r\n        {\r\n            query.Filter.Filters = new Li" +
+                    "st<Filter> { attach };\r\n        }\r\n        else\r\n        {\r\n            query.Fi" +
+                    "lter.Filters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
+            
+            #line 118 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/BaseBusinessRules.cs",this.GenerationEnvironment);
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
