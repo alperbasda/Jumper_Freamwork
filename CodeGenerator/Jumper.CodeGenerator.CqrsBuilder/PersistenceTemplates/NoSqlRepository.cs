@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class NoSqlRepository : NoSqlRepositoryBase
     {
@@ -38,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
         {
             this.Write("\r\n\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -51,7 +51,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 30 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
 
 
 var entities = datasource["Entities"].Where(w => w["DatabaseType"]!.ToString() == "4");
@@ -62,63 +62,63 @@ foreach (var item in entities!)
             #line default
             #line hidden
             
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 36 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing Core.Persistence.Models;\r\nusing ");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Services.Repositories;\r\nusing ");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.MongoEntities;\r\nusing MongoDbAdapter.Repository;\r\nnamespace ");
             
-            #line 41 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 41 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Persistence.Repositories;\r\n\r\npublic class ");
             
-            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 43 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write("Dal : MongoRepositoryBase<");
             
-            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 43 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write(", Guid>, I");
             
-            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 43 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write("Dal\r\n{\r\n    public ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write("Dal(DatabaseOptions settings) : base(settings)\r\n    {\r\n    }\r\n}\r\n\r\n\r\n");
             
-            #line 51 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
+            #line 51 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\NoSqlRepository.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}Dal.cs",this.GenerationEnvironment);
 }

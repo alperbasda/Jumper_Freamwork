@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class BaseBusinessRulesTemplate : BaseBusinessRulesTemplateBase
     {
@@ -39,7 +39,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -52,7 +52,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             #line hidden
             this.Write("\r\n");
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 29 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
@@ -62,7 +62,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
                     "onses;\r\nusing Core.Persistence.Requests;\r\nusing Core.Persistence.Models;\r\n\r\nname" +
                     "space ");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -100,7 +100,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
                     "lters = new List<Filter> { attach };\r\n        }\r\n        else\r\n        {\r\n      " +
                     "      query.Filter.Filters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
             
-            #line 127 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 127 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/BaseBusinessRules.cs",this.GenerationEnvironment);
 

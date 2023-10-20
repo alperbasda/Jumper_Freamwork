@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.CommonTemplates.IdentityTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class JwtTokenOptionsTemplate : JwtTokenOptionsTemplateBase
     {
@@ -39,7 +39,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.CommonTemplates.IdentityTemplates
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -51,14 +51,14 @@ namespace Jumper.CodeGenerator.CqrsBuilder.CommonTemplates.IdentityTemplates
             #line default
             #line hidden
             
-            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
+            #line 28 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nnamespace ");
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
+            #line 29 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -80,7 +80,7 @@ public class JwtTokenOptions
 
 ");
             
-            #line 44 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
+            #line 44 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/JwtTokenOptions.cs",this.GenerationEnvironment);
 

@@ -262,6 +262,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UpdateCommandHandlerTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="ApplicationTemplates\MappingProfileTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MappingProfileTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

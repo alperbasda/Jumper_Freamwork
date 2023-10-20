@@ -23,7 +23,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class BulkUpdateCommandHandlerTemplate : BulkUpdateCommandHandlerTemplateBase
     {
@@ -36,7 +36,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 15 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -47,7 +47,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
             #line hidden
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
 
 foreach (var entity in datasource["Entities"])
 {
@@ -60,246 +60,246 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line default
             #line hidden
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 29 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing AutoMapper;\r\nusing ");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 31 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 31 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Commands.");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 31 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             this.Write(";\r\nusing ");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Rules;\r\nusing ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 33 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Services.Repositories;\r\nusing ");
             
-            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 34 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.Entities;\r\nusing ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 35 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.MongoEntities;\r\nusing MediatR;\r\nnamespace ");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Handlers.Commands.");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\npublic class ");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("CommandHandler : IRequestHandler<");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("WrapperCommand, List<");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Response>>\r\n{\r\n    private readonly I");
             
-            #line 41 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 41 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("Dal _");
             
-            #line 41 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 41 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal;\r\n    private readonly ");
             
-            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 42 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("BusinessRules _");
             
-            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 42 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules;\r\n    private readonly IMapper _mapper;\r\n\r\n    public ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("CommandHandler(IMapper mapper, I");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("Dal ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal, ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("BusinessRules ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules)\r\n    {\r\n        _mapper = mapper;\r\n        _");
             
-            #line 48 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 48 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal = ");
             
-            #line 48 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 48 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal;\r\n        _");
             
-            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 49 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules = ");
             
-            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 49 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules;\r\n    }\r\n\r\n    public async Task<List<");
             
-            #line 52 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 52 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 52 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 52 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Response>> Handle(");
             
-            #line 52 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 52 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 52 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 52 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
@@ -307,7 +307,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             this.Write("WrapperCommand request, CancellationToken cancellationToken)\r\n    {\r\n        var " +
                     "ids = request.Items.Select(q => q.Id).ToList();\r\n        var datas = await _");
             
-            #line 55 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 55 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
@@ -315,7 +315,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             this.Write("Dal.GetListAsync(w => ids.Contains(w.Id), cancellationToken : cancellationToken);" +
                     "\r\n\r\n        _");
             
-            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 57 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
@@ -335,27 +335,27 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
         
         await _");
             
-            #line 70 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 70 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal.UpdateRangeAsync(datas.Items);\r\n\r\n        return _mapper.Map<List<");
             
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 72 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 72 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Response>>(datas.Items);\r\n    }\r\n}\r\n\r\n\r\n\r\n");
             
-            #line 78 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
+            #line 78 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}CommandHandler.cs",this.GenerationEnvironment);
 }

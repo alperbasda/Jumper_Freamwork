@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class ApplicationServiceRegistirationTemplate : ApplicationServiceRegistirationTemplateBase
     {
@@ -39,7 +39,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -52,7 +52,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
             #line hidden
             this.Write("\r\n");
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 29 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
@@ -61,21 +61,21 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
                     ".Logging;\r\nusing Core.Application.Pipelines.Transaction;\r\nusing Core.Application" +
                     ".Pipelines.Validation;\r\nusing FluentValidation;\r\nusing ");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Base;\r\nusing ");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.Auth.HttpClients;\r\nusing ");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -84,7 +84,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
                     "rosoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection" +
                     ";\r\nusing System.Reflection;\r\n\r\nnamespace ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -111,7 +111,7 @@ public static class ApplicationServiceRegistiration
             configuration.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
             ");
             
-            #line 65 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 65 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
 
             WriteLine("");
             if(bool.Parse(datasource["UseCache"].ToString()) == true)
@@ -159,7 +159,7 @@ public static class ApplicationServiceRegistiration
                     "         else\r\n                addWithLifeCycle(services, type);\r\n        return" +
                     " services;\r\n    }\r\n\r\n}\r\n\r\n");
             
-            #line 149 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 149 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/ApplicationServiceRegistiration.cs",this.GenerationEnvironment);
 

@@ -23,7 +23,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class DeleteCommandHandlerTemplate : DeleteCommandHandlerTemplateBase
     {
@@ -36,7 +36,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 15 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -48,7 +48,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
             #line hidden
             this.Write("\r\n");
             
-            #line 22 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 22 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
 
 foreach (var entity in datasource["Entities"])
 {
@@ -61,253 +61,253 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line default
             #line hidden
             
-            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 30 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing AutoMapper;\r\nusing ");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Commands.");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             this.Write(";\r\nusing ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 33 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 33 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Rules;\r\nusing ");
             
-            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 34 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Services.Repositories;\r\nusing ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 35 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.Entities;\r\nusing ");
             
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 36 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.MongoEntities;\r\nusing MediatR;\r\nnamespace ");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Handlers.Commands.");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\npublic class ");
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("CommandHandler : IRequestHandler<");
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Command, ");
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Response>\r\n{\r\n    private readonly I");
             
-            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 42 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("Dal _");
             
-            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 42 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal;\r\n    private readonly ");
             
-            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 43 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("BusinessRules _");
             
-            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 43 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules;\r\n    private readonly IMapper _mapper;\r\n\r\n    public ");
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("CommandHandler(IMapper mapper, I");
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("Dal ");
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal, ");
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("BusinessRules ");
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules)\r\n    {\r\n        _mapper = mapper;\r\n        _");
             
-            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 49 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal = ");
             
-            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 49 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal;\r\n        _");
             
-            #line 50 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 50 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules = ");
             
-            #line 50 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 50 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("BusinessRules;\r\n    }\r\n\r\n    public async Task<");
             
-            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 53 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 53 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Response> Handle(");
             
-            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 53 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 53 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Command request, CancellationToken cancellationToken)\r\n    {\r\n        ");
             
-            #line 55 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 55 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
 
         propExpression.Clear();
         foreach(var prop in action["Properties"].Where(q => q["ActionPropertyType"].ToString() == "0"))
@@ -322,21 +322,21 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line hidden
             this.Write("        var data = await _");
             
-            #line 64 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 64 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal.GetListAsync(w => ");
             
-            #line 64 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 64 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(" && ", propExpression)));
             
             #line default
             #line hidden
             this.Write(", size: int.MaxValue);\r\n            \r\n        _");
             
-            #line 66 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 66 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
@@ -344,27 +344,27 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             this.Write("BusinessRules.ThrowExceptionIfDataNull(data);\r\n\r\n        //İş Kurallarınızı Burad" +
                     "a Çağırabilirsiniz.\r\n\r\n        await _");
             
-            #line 70 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 70 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
             
             #line default
             #line hidden
             this.Write("Dal.DeleteRangeAsync(data!.Items);\r\n\r\n        return _mapper.Map<");
             
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 72 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 72 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
             this.Write("Response>(data);\r\n    }\r\n}\r\n\r\n\r\n\r\n");
             
-            #line 78 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
+            #line 78 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}CommandHandler.cs",this.GenerationEnvironment);
 }

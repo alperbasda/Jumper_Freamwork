@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class PersistenceRegistrationServiceTemplate : PersistenceRegistrationServiceTemplateBase
     {
@@ -38,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
         {
             this.Write("\r\n");
             
-            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 20 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
 
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
@@ -49,28 +49,28 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             #line default
             #line hidden
             
-            #line 26 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 26 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing Core.Persistence.Models;\r\nusing ");
             
-            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 28 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Services.Repositories;\r\nusing ");
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 29 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Persistence.Contexts;\r\nusing ");
             
-            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 30 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -79,7 +79,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
                     ".Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\n\r\nn" +
                     "amespace ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 35 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -109,14 +109,14 @@ public static class PersistenceServiceRegistration
 
         services.AddDbContext<");
             
-            #line 58 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 58 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write("DbContext>(options => options.UseSqlServer(opts.EfConnectionString));\r\n        ");
             
-            #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 59 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
 
         WriteLine("");
         foreach(var item in datasource["Entities"])
@@ -131,7 +131,7 @@ public static class PersistenceServiceRegistration
             #line hidden
             this.Write("\r\n        return services;\r\n    }\r\n}\r\n");
             
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
+            #line 72 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/PersistenceRegistrationService.cs",this.GenerationEnvironment);
 

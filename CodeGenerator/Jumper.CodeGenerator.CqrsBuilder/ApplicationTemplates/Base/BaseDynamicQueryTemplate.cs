@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class BaseDynamicQueryTemplate : BaseDynamicQueryTemplateBase
     {
@@ -39,7 +39,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -51,7 +51,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             #line default
             #line hidden
             
-            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+            #line 28 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
@@ -59,7 +59,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             this.Write("\r\nusing Core.Persistence.Dynamic;\r\nusing Core.Persistence.Requests;\r\n\r\nnamespace " +
                     "");
             
-            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -69,7 +69,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
                     "    PageIndex = 0,\r\n    };\r\n\r\n    public DynamicQuery? DynamicQuery { get; set; " +
                     "}\r\n}\r\n\r\n\r\n");
             
-            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
+            #line 46 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/BaseDynamicQuery.cs",this.GenerationEnvironment);
 

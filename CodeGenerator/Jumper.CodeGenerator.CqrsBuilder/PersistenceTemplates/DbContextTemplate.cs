@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class DbContextTemplate : DbContextTemplateBase
     {
@@ -38,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
         {
             this.Write("\r\n\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
 
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
@@ -49,14 +49,14 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             #line default
             #line hidden
             
-            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 27 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing ");
             
-            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 28 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -64,14 +64,14 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             this.Write(".Domain.Entities;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensio" +
                     "ns.Configuration;\r\nusing System.Reflection;\r\n\r\nnamespace ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 33 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Persistence.Contexts;\r\n\r\npublic class ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 35 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -79,7 +79,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             this.Write("DbContext : DbContext\r\n{\r\n    protected IConfiguration Configuration { get; set; " +
                     "}\r\n\r\n    public ");
             
-            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -88,7 +88,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
                     "(dbContextOptions)\r\n    {\r\n        Configuration = configuration;\r\n        Datab" +
                     "ase.EnsureCreated();\r\n    }\r\n\r\n    ");
             
-            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 45 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
 
 
     foreach(var item in datasource["Entities"].Where(w => w["DatabaseType"]!.ToString() != "4"))
@@ -105,7 +105,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             this.Write("\r\n    protected override void OnModelCreating(ModelBuilder modelBuilder)\r\n    {\r\n" +
                     "        //N-N İlişkiler burada ele alınmıştır.\r\n        ");
             
-            #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 59 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
 
         foreach (var dependency in datasource["Relations"].Where(w => w["EntityDependencyType"].ToString() == "2"))
         {
@@ -123,7 +123,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             this.Write("\r\n        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssem" +
                     "bly());\r\n    }\r\n\r\n\r\n}\r\n\r\n");
             
-            #line 77 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
+            #line 77 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\PersistenceTemplates\DbContextTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{datasource["SolutionName"]}DbContext.cs",this.GenerationEnvironment);
 
