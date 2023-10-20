@@ -85,6 +85,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MappingProfileTemplate.tt</DependentUpon>
     </None>
+    <None Include="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListQueryRequestTemplate.tt</DependentUpon>
+    </None>
     <None Include="ApplicationTemplates\Queries\QueryRequestTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -207,6 +212,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListQueryRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Queries\QueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Queries\QueryResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryResponseTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="ApplicationTemplates\RepositoryInterfaceTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -322,13 +342,8 @@
       <LastGenOutput>MappingProfileTemplate.cs</LastGenOutput>
     </None>
     <None Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.tt">
-      <Generator>ListQueryRequestTemplate</Generator>
-      <LastGenOutput>ListQueryRequestTemplate.txt</LastGenOutput>
-    </None>
-    <None Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ListQueryRequestTemplate.tt</DependentUpon>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ListQueryRequestTemplate.cs</LastGenOutput>
     </None>
     <None Update="ApplicationTemplates\Queries\QueryRequestTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

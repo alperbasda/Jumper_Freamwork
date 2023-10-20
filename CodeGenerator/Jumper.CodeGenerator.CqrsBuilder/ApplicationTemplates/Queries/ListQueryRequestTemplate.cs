@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
+namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Queries
 {
     using System.IO;
     using System.Runtime;
@@ -23,9 +23,9 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class CommandValidatorTemplate : CommandValidatorTemplateBase
+    public partial class ListQueryRequestTemplate : ListQueryRequestTemplateBase
     {
 #line hidden
         /// <summary>
@@ -34,9 +34,8 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
         public virtual string TransformText()
         {
             this.Write("\r\n");
-            this.Write("\r\n");
             
-            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 14 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -47,106 +46,122 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
             #line hidden
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
 
 foreach (var entity in datasource["Entities"])
 {
-foreach(var action in entity["Actions"].Where(w => ProjectSettings.CudActionTypes.Contains(w["EntityAction"].ToString())))
+foreach(var action in entity["Actions"].Where(w => w["EntityAction"].ToString() == "6"))
 {
-var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Commands/{action["Name"]}";
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Queries/{action["Name"]}";
 DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 
             
             #line default
             #line hidden
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
-            this.Write("\r\nusing FluentValidation;\r\nnamespace ");
+            this.Write("\r\nusing MediatR;\r\nusing ");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Base;\r\nnamespace ");
+            
+            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
-            this.Write(".Commands.");
+            this.Write(".Queries.");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\npublic class ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
-            this.Write("CommandValidator : AbstractValidator<");
+            this.Write("Query : BaseDynamicQuery, IRequest<");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
-            this.Write("Command>\r\n{\r\n    public ");
+            this.Write("Response> ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
-            
-            #line default
-            #line hidden
-            
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : ""));
             
             #line default
             #line hidden
-            this.Write("CommandValidator()\r\n    {\r\n         ");
+            this.Write(" ");
             
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(bool.Parse(action["CacheEnabled"].ToString()) ? ",ICachableRequest" : ""));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    ");
+            
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
 
-         WriteLine("");
-         foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
-         {
-         if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()) || prop["PropertyTypeCode"].ToString().Contains("?") || prop["PropertyName"].ToString() == "Id")
-         {
-         continue;
-         }
-         WriteLine($"\t\tRuleFor(w => w.{prop["PropertyName"].ToString()}).NotEmpty().NotNull().WithMessage(\"Lütfen {prop["PropertyName"].ToString()} Alanını Doldurun veya Seçin.\");");
-         }
-         
+    WriteLine("");
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
+    {
+    if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()))
+    {
+    continue;
+    }
+    if(prop["PropertyTypeCode"].ToString() != "string?")
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }}");
+    }
+    else
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }} = null!;");
+    }
+    
+    }
+    
             
             #line default
             #line hidden
-            this.Write("\r\n        \r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n");
+            this.Write("    \r\n}\r\n\r\n\r\n\r\n\r\n");
             
-            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
+            #line 60 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
     
-FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}CommandValidator.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Query.cs",this.GenerationEnvironment);
 }
 }
 
@@ -164,7 +179,7 @@ FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Co
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class CommandValidatorTemplateBase
+    public class ListQueryRequestTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

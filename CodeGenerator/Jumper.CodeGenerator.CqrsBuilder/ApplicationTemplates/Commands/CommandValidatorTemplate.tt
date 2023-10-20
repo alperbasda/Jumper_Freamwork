@@ -42,7 +42,7 @@ public class <#= action["Name"] #><#= entity["Name"] #>CommandValidator : Abstra
          {
          continue;
          }
-         WriteLine($"\tRuleFor(w => w.{prop["PropertyName"].ToString()}).NotEmpty().NotNull().WithMessage(\"Lütfen {prop["PropertyName"].ToString()} Alanını Doldurun veya Seçin.\");");
+         WriteLine($"\t\tRuleFor(w => w.{prop["PropertyName"].ToString()}).NotEmpty().NotNull().WithMessage(\"Lütfen {prop["PropertyName"].ToString()} Alanını Doldurun veya Seçin.\");");
          }
          #>
 

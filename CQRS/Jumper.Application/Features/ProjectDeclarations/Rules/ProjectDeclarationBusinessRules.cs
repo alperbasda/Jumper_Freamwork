@@ -128,7 +128,7 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
                 IsConstant = true,
                 EntityAction = EntityAction.GetList,
                 Name = "ListDynamic",
-                Properties = new List<ProjectDeclarationEntityActionPropertyAggregation>(),
+                Properties = allActionProperties.Where(w => w.ActionPropertyType == ActionPropertyType.Response).ToList(),
             });
 
             item.Actions.Add(new ProjectDeclarationEntityActionAggregation

@@ -8,8 +8,6 @@ public static class ProjectSettings
 {
     public static string[] RequestExculededProperties = new[] { "DeletedTime", "UpdatedTime", "CreatedTime" };
 
-
-
     public static string[] CudActionTypes = new[] { "0", "1", "2", "3", "4" };
 
     public static string[] BulkCudActionTypes = new[] { "1",  "3" };
