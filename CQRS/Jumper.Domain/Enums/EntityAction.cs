@@ -5,19 +5,17 @@ namespace Jumper.Domain.Enums;
 public enum EntityAction
 {
     [Description("Ekle")]
-    Create,
+    Create = 0,
     [Description("Toplu Ekle")]
-    BulkCreate,
+    BulkCreate = 1,
     [Description("Güncelle")]
-    Update,
+    Update = 2,
     [Description("Toplu Güncelle")]
-    BulkUpdate,
+    BulkUpdate = 3,
     [Description("Sil")]
-    Delete,
-    [Description("Toplu Sil")]
-    BulkDelete,
+    Delete = 4,
     [Description("Getir")]
-    Get,
+    Get = 5,
     [Description("Listele")]
-    GetList
+    GetList = 6
 }

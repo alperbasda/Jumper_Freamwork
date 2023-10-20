@@ -44,7 +44,14 @@ public class BaseBusinessRules
         TokenParameters = tokenParameters;
     }
 
-    public virtual Task ThrowExceptionIfDataNull<TEntity>(TEntity? data)
+    public void SetId<TEntity>(TEntity data)
+    {
+        data.Id = Guid.NewGuid();
+        
+        return Task.CompletedTask;
+    }
+
+    public void ThrowExceptionIfDataNull<TEntity>(TEntity? data)
     {
         if (data == null)
             throw new NotFoundException($"{typeof(TEntity).Name} not found");
@@ -52,7 +59,7 @@ public class BaseBusinessRules
         return Task.CompletedTask;
     }
 
-    public virtual Task ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntity>? data)
+    public void ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntity>? data)
     {
         if (data == null || !data.Any())
             throw new NotFoundException($"{typeof(TEntity).Name} not found");
@@ -60,13 +67,13 @@ public class BaseBusinessRules
         return Task.CompletedTask;
     }
 
-    public virtual void FillDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)
+    public void FillDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)
     {
         data.DynamicQuery = dq ?? new DynamicQuery();
         data.PageRequest = pr;
     }
 
-    public virtual void SetUserId<T>(T data)
+    public void SetUserId<T>(T data)
         where T : IUserOwnedEntity
     {
         if (TokenParameters.IsSuperUser && data.UserId != Guid.Empty)
@@ -75,7 +82,7 @@ public class BaseBusinessRules
         data.UserId = TokenParameters.UserId;
     }
 
-    public virtual void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)
+    public void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)
         where T : IUserOwnedEntity
     {
         if (data.UserId == TokenParameters.UserId || TokenParameters.IsSuperUser)
@@ -84,7 +91,7 @@ public class BaseBusinessRules
         throw new BusinessException("Bu veri üzerinde sadece verinin sahibi işlem yapabilir.");
     }
 
-    public virtual void AddLoggedUserIdInDynamicQuery(DynamicQuery? query)
+    public void AddLoggedUserIdInDynamicQuery(DynamicQuery? query)
     {
         if (TokenParameters.IsSuperUser)
             return;
@@ -93,7 +100,7 @@ public class BaseBusinessRules
         AddFilterInDynamicQuery(query, attach);
     }
 
-    public virtual void AddFilterInDynamicQuery(DynamicQuery? query, Filter attach)
+    public void AddFilterInDynamicQuery(DynamicQuery? query, Filter attach)
     {
         if (query == null)
         {

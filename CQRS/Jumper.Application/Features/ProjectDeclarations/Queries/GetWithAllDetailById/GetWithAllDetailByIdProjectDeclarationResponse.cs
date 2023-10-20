@@ -89,7 +89,9 @@ public class ProjectDeclarationEntityActionPropertyAggregation
 {
     public Guid? ProjectEntityPropertyId { get; set; }
 
-    public string? PropertyName { get; set; }
+    public string PropertyName { get; set; }
+
+    public string PropertyTypeCode { get; set; }
 
     public ActionPropertyType ActionPropertyType { get; set; }
 }

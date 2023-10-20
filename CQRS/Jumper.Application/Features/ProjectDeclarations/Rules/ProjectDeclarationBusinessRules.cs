@@ -3,6 +3,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 using Jumper.Application.Base;
 using Jumper.Application.Features.ProjectDeclarations.Queries.GetWithAllDetailById;
 using Jumper.Application.Services.Repositories;
+using Jumper.Domain.Enums;
 using System.Linq.Expressions;
 
 namespace Jumper.Application.Features.ProjectDeclaration.Rules;
@@ -33,11 +34,114 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
         }
     }
 
-    public void FillEntityActionPropertyNames(GetWithAllDetailByIdProjectDeclarationResponse data)
+    public void FillEntityActionProperties(GetWithAllDetailByIdProjectDeclarationResponse data)
     {
-        foreach (var item in data.Entities.SelectMany(w=>w.Actions.SelectMany(w=>w.Properties)))
+        foreach (var item in data.Entities.SelectMany(w => w.Actions.SelectMany(w => w.Properties)))
         {
-            item.PropertyName = data.Entities.FirstOrDefault(w=>w.Properties.Any(q=>q.Id == item.ProjectEntityPropertyId))?.Properties.First(w => w.Id == item.ProjectEntityPropertyId)?.Name ?? "";
+            var prop = data.Entities.FirstOrDefault(w => w.Properties.Any(q => q.Id == item.ProjectEntityPropertyId))?.Properties.First(w => w.Id == item.ProjectEntityPropertyId);
+            item.PropertyName = prop?.Name ?? "";
+            item.PropertyTypeCode = prop?.PropertyTypeCode ?? "";
+        }
+    }
+
+    public void AddDefaultActions(GetWithAllDetailByIdProjectDeclarationResponse data)
+    {
+        foreach (var item in data.Entities)
+        {
+            if (item.Actions == null)
+            {
+                item.Actions = new List<ProjectDeclarationEntityActionAggregation>();
+            }
+            var allActionProperties = item.Properties.SelectMany(p => new[]
+                {
+                    new ProjectDeclarationEntityActionPropertyAggregation
+                    {
+                        ActionPropertyType = ActionPropertyType.Request,
+                        ProjectEntityPropertyId = p.Id,
+                        PropertyName = p.Name,
+                        PropertyTypeCode = p.PropertyTypeCode,
+                    },
+                    new ProjectDeclarationEntityActionPropertyAggregation
+                    {
+                        ActionPropertyType = ActionPropertyType.Response,
+                        ProjectEntityPropertyId = p.Id,
+                        PropertyName = p.Name,
+                        PropertyTypeCode = p.PropertyTypeCode,
+                    }
+                }).ToList();
+
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.BulkCreate,
+                Name = "BulkCreate",
+                Properties = allActionProperties,
+            });
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.Create,
+                Name = "Create",
+                Properties = allActionProperties,
+            });
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.Update,
+                Name = "Update",
+                Properties = allActionProperties,
+            });
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.BulkUpdate,
+                Name = "BulkUpdate",
+                Properties = allActionProperties,
+            });
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.Delete,
+                Name = "DeleteById",
+                Properties = allActionProperties.Where(w => w.PropertyName == "Id").ToList(),
+            });
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.GetList,
+                Name = "ListDynamic",
+                Properties = new List<ProjectDeclarationEntityActionPropertyAggregation>(),
+            });
+
+            item.Actions.Add(new ProjectDeclarationEntityActionAggregation
+            {
+                CacheEnabled = false,
+                LogEnabled = false,
+                IsConstant = true,
+                EntityAction = EntityAction.Get,
+                Name = "GetById",
+                Properties = allActionProperties.Where(w => w.ActionPropertyType == ActionPropertyType.Response || w.PropertyName == "Id").ToList(),
+            });
+
+
         }
     }
 

@@ -49,8 +49,9 @@ public class GetWithAllDetailByIdProjectDeclarationQueryHandler : IRequestHandle
         returnProjectData.Relations = _mapper.Map<List<ProjectDeclarationRelationAggregation>>(relations);
 
         _projectDeclarationBusinessRules.FillDependencyEntityNames(returnProjectData);
-        _projectDeclarationBusinessRules.FillEntityActionPropertyNames(returnProjectData);
-
+        _projectDeclarationBusinessRules.AddDefaultActions(returnProjectData);
+        _projectDeclarationBusinessRules.FillEntityActionProperties(returnProjectData);
+        
         return returnProjectData;
     }
 }

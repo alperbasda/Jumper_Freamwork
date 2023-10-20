@@ -9,9 +9,14 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
 {
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     using System;
     
     /// <summary>
@@ -28,6 +33,135 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => ProjectSettings.SingleCudActionTypes.Contains(w["EntityAction"].ToString())))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Commands/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing MediatR;\r\n\r\nnamespace ");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Commands.");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n\r\npublic class ");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Command : IRequest<");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Response> ");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : ""));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(bool.Parse(action["CacheEnabled"].ToString()) ? ",ICacheRemoverRequest" : ""));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    ");
+            
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+
+    WriteLine("");
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
+    {
+    if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()))
+    {
+    continue;
+    }
+    if(prop["PropertyTypeCode"].ToString() != "string?")
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }}");
+    }
+    else
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }} = null!;");
+    }
+    
+    }
+    
+            
+            #line default
+            #line hidden
+            this.Write("    \r\n}\r\n\r\n\r\n\r\n\r\n");
+            
+            #line 61 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandRequestTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Command.cs",this.GenerationEnvironment);
+}
+}
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

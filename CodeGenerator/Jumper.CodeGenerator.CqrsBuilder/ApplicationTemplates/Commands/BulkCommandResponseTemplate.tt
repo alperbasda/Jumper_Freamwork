@@ -27,26 +27,14 @@ var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"
 DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
-using MediatR;
-
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.<#= action["Name"] #>;
 
-
-public class <#= action["Name"] #><#= entity["Name"] #>WrapperCommand : IRequest<List<<#= action["Name"] #><#= entity["Name"] #>Response>> <#= bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : "" #> <#= bool.Parse(action["CacheEnabled"].ToString()) ? ",ICacheRemoverRequest" : "" #>
-{
-    public List<<#= action["Name"] #><#= entity["Name"] #>Command> <#= action["Name"] #><#= entity["Name"].ToString().ToPlural() #> { get; set; }
-}
-
-public class <#= action["Name"] #><#= entity["Name"] #>Command
+public class <#= action["Name"] #><#= entity["Name"] #>Response
 {
     <#
     WriteLine("");
-    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "1"))
     {
-    if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()))
-    {
-    continue;
-    }
     if(prop["PropertyTypeCode"].ToString() != "string?")
     {
     WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }}");
@@ -65,7 +53,7 @@ public class <#= action["Name"] #><#= entity["Name"] #>Command
 
 
 <#    
-FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Command.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Response.cs",this.GenerationEnvironment);
 }
 }
 #>

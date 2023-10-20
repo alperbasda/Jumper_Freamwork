@@ -5,3 +5,4 @@
 //5-) Domain Templatein içerisine userownedentity namespace olmadan eklenecek
 //6-) application registration service template üzerinde düzenlensin.
 //7-) relational table eklenirken virtual entityadý gibi bir ekleme yapmýstýk. Bu durum configurationa zarar verir. Bu Kacak yöntemden vazgeç template içinde çözüm bul.
+8-) UI da sadece cache enabled yetmiyor. Cache keyi ve cache group keyi alsak fena olmayacak. Birde read iþlemleri için ICachable CUD iþlemleri için IRemoveCache oldugunu sayfaya not düþ.

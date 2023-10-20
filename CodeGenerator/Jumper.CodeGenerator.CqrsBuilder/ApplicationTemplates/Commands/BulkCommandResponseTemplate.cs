@@ -7,12 +7,8 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
+namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Commands
 {
-    using System;
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
     using System.IO;
     using System.Runtime;
     using Newtonsoft.Json;
@@ -21,14 +17,15 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
     using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
     using Jumper.CodeGenerator.Helpers.StringHelpers;
     using Jumper.CodeGenerator.Helpers.FileHelpers;
+    using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class BaseBusinessRulesTemplate : BaseBusinessRulesTemplateBase
+    public partial class BulkCommandResponseTemplate : BulkCommandResponseTemplateBase
     {
 #line hidden
         /// <summary>
@@ -39,68 +36,97 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Base";
-    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => ProjectSettings.BulkCudActionTypes.Contains(w["EntityAction"].ToString())))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Commands/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
-            this.Write("\r\nusing Core.ApiHelpers.JwtHelper.Models;\r\nusing Core.CrossCuttingConcerns.Except" +
-                    "ions.Types;\r\nusing Core.Persistence.Dynamic;\r\nusing Core.Persistence.Models.Resp" +
-                    "onses;\r\nusing Core.Persistence.Requests;\r\n\r\nnamespace ");
+            this.Write("\r\nnamespace ");
             
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(".Application.Base;\r\n\r\npublic class BaseBusinessRules\r\n{\r\n    protected readonly T" +
-                    "okenParameters TokenParameters;\r\n\r\n    public BaseBusinessRules(TokenParameters " +
-                    "tokenParameters)\r\n    {\r\n        TokenParameters = tokenParameters;\r\n    }\r\n\r\n  " +
-                    "  public void SetId<TEntity>(TEntity data)\r\n    {\r\n        data.Id = Guid.NewGui" +
-                    "d();\r\n        \r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    public void Thr" +
-                    "owExceptionIfDataNull<TEntity>(TEntity? data)\r\n    {\r\n        if (data == null)\r" +
-                    "\n            throw new NotFoundException($\"{typeof(TEntity).Name} not found\");\r\n" +
-                    "\r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    public void ThrowExceptionIfD" +
-                    "ataNullOrEmpty<TEntity>(List<TEntity>? data)\r\n    {\r\n        if (data == null ||" +
-                    " !data.Any())\r\n            throw new NotFoundException($\"{typeof(TEntity).Name} " +
-                    "not found\");\r\n\r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    public void Fil" +
-                    "lDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)\r\n    {\r\n " +
-                    "       data.DynamicQuery = dq ?? new DynamicQuery();\r\n        data.PageRequest =" +
-                    " pr;\r\n    }\r\n\r\n    public void SetUserId<T>(T data)\r\n        where T : IUserOwne" +
-                    "dEntity\r\n    {\r\n        if (TokenParameters.IsSuperUser && data.UserId != Guid.E" +
-                    "mpty)\r\n            return;\r\n\r\n        data.UserId = TokenParameters.UserId;\r\n   " +
-                    " }\r\n\r\n    public void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)\r\n       " +
-                    " where T : IUserOwnedEntity\r\n    {\r\n        if (data.UserId == TokenParameters.U" +
-                    "serId || TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        throw new " +
-                    "BusinessException(\"Bu veri üzerinde sadece verinin sahibi işlem yapabilir.\");\r\n " +
-                    "   }\r\n\r\n    public void AddLoggedUserIdInDynamicQuery(DynamicQuery? query)\r\n    " +
-                    "{\r\n        if (TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        var " +
-                    "attach = new Filter { Field = \"UserId\", Logic = Logic.And, Operator = FilterOper" +
-                    "ator.Equals, Value = TokenParameters.UserId.ToString() };\r\n        AddFilterInDy" +
-                    "namicQuery(query, attach);\r\n    }\r\n\r\n    public void AddFilterInDynamicQuery(Dyn" +
-                    "amicQuery? query, Filter attach)\r\n    {\r\n        if (query == null)\r\n        {\r\n" +
-                    "            query = new DynamicQuery();\r\n\r\n        }\r\n        if (query.Filter =" +
-                    "= null)\r\n        {\r\n            query.Filter = attach;\r\n        }\r\n        else " +
-                    "if (query.Filter.Filters == null)\r\n        {\r\n            query.Filter.Filters =" +
-                    " new List<Filter> { attach };\r\n        }\r\n        else\r\n        {\r\n            q" +
-                    "uery.Filter.Filters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
+            this.Write(".Application.Features.");
             
-            #line 125 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Commands.");
+            
+            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n\r\npublic class ");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Response\r\n{\r\n    ");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+
+    WriteLine("");
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "1"))
+    {
+    if(prop["PropertyTypeCode"].ToString() != "string?")
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }}");
+    }
+    else
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }} = null!;");
+    }
     
-FileHelper.CreateAndClearBuilder($"{filePath}/BaseBusinessRules.cs",this.GenerationEnvironment);
+    }
+    
+            
+            #line default
+            #line hidden
+            this.Write("    \r\n}\r\n\r\n\r\n\r\n\r\n");
+            
+            #line 55 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Response.cs",this.GenerationEnvironment);
+}
+}
 
             
             #line default
@@ -116,7 +142,7 @@ FileHelper.CreateAndClearBuilder($"{filePath}/BaseBusinessRules.cs",this.Generat
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class BaseBusinessRulesTemplateBase
+    public class BulkCommandResponseTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

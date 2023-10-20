@@ -1,6 +1,65 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ output extension=".txt" #>
+﻿<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.CodeGenerator.Helpers.dll" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.Constants" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.DirectoryHelpers" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.StringHelpers" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.FileHelpers" #>
+
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+#>
+
+<#
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => ProjectSettings.SingleCudActionTypes.Contains(w["EntityAction"].ToString())))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Commands/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using MediatR;
+
+namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.<#= action["Name"] #>;
+
+public class <#= action["Name"] #><#= entity["Name"] #>Command : IRequest<<#= action["Name"] #><#= entity["Name"] #>Response> <#= bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : "" #> <#= bool.Parse(action["CacheEnabled"].ToString()) ? ",ICacheRemoverRequest" : "" #>
+{
+    <#
+    WriteLine("");
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
+    {
+    if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()))
+    {
+    continue;
+    }
+    if(prop["PropertyTypeCode"].ToString() != "string?")
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }}");
+    }
+    else
+    {
+    WriteLine($"\tpublic {prop["PropertyTypeCode"].ToString()} {prop["PropertyName"].ToString()} {{ get; set; }} = null!;");
+    }
+    
+    }
+    #>
+    
+}
+
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Command.cs",this.GenerationEnvironment);
+}
+}
+#>

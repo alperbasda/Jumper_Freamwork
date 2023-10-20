@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ApplicationTemplates\Commands\CommandResponseTemplate - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -40,6 +44,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CommandRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\BulkCommandResponseTemplate.cs">
+      <DependentUpon>BulkCommandResponseTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </None>
     <None Include="ApplicationTemplates\Commands\CommandResponseTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -173,6 +182,31 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>BusinessRulesTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="ApplicationTemplates\Commands\BulkCommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\BulkCommandResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandResponseTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\CommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\CommandResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandResponseTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\CommandValidatorTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="ApplicationTemplates\RepositoryInterfaceTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -254,6 +288,10 @@
     <None Update="ApplicationTemplates\Commands\CommandRequestTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>CommandRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt">
+      <LastGenOutput>BulkCommandResponseTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="ApplicationTemplates\Commands\CommandResponseTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

@@ -40,7 +40,8 @@ namespace <#= datasource["SolutionName"] #>.Domain.Entities;
 public class <#= item["Name"] #> : Entity<Guid>
 {
 <#    
-        //Bu Bilgi n to n relation tablosu oldugunu gösterir ve virtual objelerini atmamız gerekir.
+    
+        //Bu Bilgi n to n relation tablosu oldugunu gösterir ve virtual objelerini işlememiz gerekir.
         var isRelationTable =  bool.Parse(item["IsConstant"].ToString()) == true && item["Name"].ToString().EndsWith("Relation");
         foreach(var prop in item["Properties"])
         {
