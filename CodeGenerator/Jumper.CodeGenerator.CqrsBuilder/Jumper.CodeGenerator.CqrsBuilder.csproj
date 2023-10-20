@@ -60,25 +60,40 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
     </None>
-    <None Include="ApplicationTemplates\Handlers\BulkCommandRequestHandlerTemplate.cs">
+    <None Include="ApplicationTemplates\Handlers\BulkCreateCommandHandlerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>BulkCommandRequestHandlerTemplate.tt</DependentUpon>
+      <DependentUpon>BulkCreateCommandHandlerTemplate.tt</DependentUpon>
     </None>
-    <None Include="ApplicationTemplates\Handlers\CommandRequestHandlerTemplate.cs">
+    <None Include="ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>CommandRequestHandlerTemplate.tt</DependentUpon>
+      <DependentUpon>BulkUpdateCommandHandlerTemplate.tt</DependentUpon>
     </None>
-    <None Include="ApplicationTemplates\Handlers\ListQueryRequestHandlerTemplate.cs">
+    <None Include="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ListQueryRequestHandlerTemplate.tt</DependentUpon>
+      <DependentUpon>CreateCommandHandlerTemplate.tt</DependentUpon>
     </None>
-    <None Include="ApplicationTemplates\Handlers\QueryRequestHandlerTemplate.cs">
+    <None Include="ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>QueryRequestHandlerTemplate.tt</DependentUpon>
+      <DependentUpon>DeleteCommandHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\GetListQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetListQueryHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\GetQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetQueryHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\UpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateCommandHandlerTemplate.tt</DependentUpon>
     </None>
     <None Include="ApplicationTemplates\MappingProfileTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -212,6 +227,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeleteCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -321,21 +346,33 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>CommandValidatorTemplate.cs</LastGenOutput>
     </None>
-    <None Update="ApplicationTemplates\Handlers\BulkCommandRequestHandlerTemplate.tt">
+    <None Update="ApplicationTemplates\Handlers\BulkCreateCommandHandlerTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>BulkCommandRequestHandlerTemplate.cs</LastGenOutput>
+      <LastGenOutput>BulkCreateCommandHandlerTemplate.cs</LastGenOutput>
     </None>
-    <None Update="ApplicationTemplates\Handlers\CommandRequestHandlerTemplate.tt">
+    <None Update="ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>CommandRequestHandlerTemplate.cs</LastGenOutput>
+      <LastGenOutput>BulkUpdateCommandHandlerTemplate.cs</LastGenOutput>
     </None>
-    <None Update="ApplicationTemplates\Handlers\ListQueryRequestHandlerTemplate.tt">
+    <None Update="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ListQueryRequestHandlerTemplate.cs</LastGenOutput>
+      <LastGenOutput>CreateCommandHandlerTemplate.cs</LastGenOutput>
     </None>
-    <None Update="ApplicationTemplates\Handlers\QueryRequestHandlerTemplate.tt">
+    <None Update="ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>QueryRequestHandlerTemplate.cs</LastGenOutput>
+      <LastGenOutput>DeleteCommandHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\GetListQueryHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>GetListQueryHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>GetQueryHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\UpdateCommandHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>UpdateCommandHandlerTemplate.cs</LastGenOutput>
     </None>
     <None Update="ApplicationTemplates\MappingProfileTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
