@@ -28,9 +28,10 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
 using MediatR;
 using <#= datasource["SolutionName"] #>.Application.Base;
+using Core.Persistence.Models.Responses;
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.<#= action["Name"] #>;
 
-public class <#= action["Name"] #><#= entity["Name"] #>Query : BaseDynamicQuery, IRequest<<#= action["Name"] #><#= entity["Name"] #>Response> <#= bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : "" #> <#= bool.Parse(action["CacheEnabled"].ToString()) ? ",ICachableRequest" : "" #>
+public class <#= action["Name"] #><#= entity["Name"] #>Query : BaseDynamicQuery, IRequest<ListModel<<#= action["Name"] #><#= entity["Name"] #>Response>> <#= bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : "" #> <#= bool.Parse(action["CacheEnabled"].ToString()) ? ",ICachableRequest" : "" #>
 {
     <#
     WriteLine("");

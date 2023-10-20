@@ -33,6 +33,7 @@ using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
 using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
 using <#= datasource["SolutionName"] #>.Domain.Entities;
+using <#= datasource["SolutionName"] #>.Domain.MongoEntities;
 using MediatR;
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Commands.<#= action["Name"] #>;
 

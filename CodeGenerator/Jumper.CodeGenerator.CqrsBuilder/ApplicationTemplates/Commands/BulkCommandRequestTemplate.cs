@@ -139,20 +139,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             
             #line default
             #line hidden
-            this.Write("Command> ");
-            
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandRequestTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
-            
-            #line default
-            #line hidden
-            
-            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandRequestTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; set; }\r\n}\r\n\r\npublic class ");
+            this.Write("Command> Items { get; set; }\r\n}\r\n\r\npublic class ");
             
             #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\BulkCommandRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));

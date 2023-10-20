@@ -59,9 +59,10 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             #line hidden
             this.Write("\r\nusing Core.ApiHelpers.JwtHelper.Models;\r\nusing Core.CrossCuttingConcerns.Except" +
                     "ions.Types;\r\nusing Core.Persistence.Dynamic;\r\nusing Core.Persistence.Models.Resp" +
-                    "onses;\r\nusing Core.Persistence.Requests;\r\n\r\nnamespace ");
+                    "onses;\r\nusing Core.Persistence.Requests;\r\nusing Core.Persistence.Models;\r\n\r\nname" +
+                    "space ");
             
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -69,36 +70,37 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             this.Write(".Application.Base;\r\n\r\npublic class BaseBusinessRules\r\n{\r\n    protected readonly T" +
                     "okenParameters TokenParameters;\r\n\r\n    public BaseBusinessRules(TokenParameters " +
                     "tokenParameters)\r\n    {\r\n        TokenParameters = tokenParameters;\r\n    }\r\n\r\n  " +
-                    "  public void SetId<TEntity>(TEntity data)\r\n    {\r\n        data.Id = Guid.NewGui" +
-                    "d();\r\n        \r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    public void Thr" +
-                    "owExceptionIfDataNull<TEntity>(TEntity? data)\r\n    {\r\n        if (data == null)\r" +
-                    "\n            throw new NotFoundException($\"{typeof(TEntity).Name} not found\");\r\n" +
-                    "\r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    public void ThrowExceptionIfD" +
-                    "ataNullOrEmpty<TEntity>(List<TEntity>? data)\r\n    {\r\n        if (data == null ||" +
-                    " !data.Any())\r\n            throw new NotFoundException($\"{typeof(TEntity).Name} " +
-                    "not found\");\r\n\r\n        return Task.CompletedTask;\r\n    }\r\n\r\n    public void Fil" +
-                    "lDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)\r\n    {\r\n " +
-                    "       data.DynamicQuery = dq ?? new DynamicQuery();\r\n        data.PageRequest =" +
-                    " pr;\r\n    }\r\n\r\n    public void SetUserId<T>(T data)\r\n        where T : IUserOwne" +
-                    "dEntity\r\n    {\r\n        if (TokenParameters.IsSuperUser && data.UserId != Guid.E" +
-                    "mpty)\r\n            return;\r\n\r\n        data.UserId = TokenParameters.UserId;\r\n   " +
-                    " }\r\n\r\n    public void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)\r\n       " +
-                    " where T : IUserOwnedEntity\r\n    {\r\n        if (data.UserId == TokenParameters.U" +
-                    "serId || TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        throw new " +
-                    "BusinessException(\"Bu veri üzerinde sadece verinin sahibi işlem yapabilir.\");\r\n " +
-                    "   }\r\n\r\n    public void AddLoggedUserIdInDynamicQuery(DynamicQuery? query)\r\n    " +
-                    "{\r\n        if (TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        var " +
-                    "attach = new Filter { Field = \"UserId\", Logic = Logic.And, Operator = FilterOper" +
-                    "ator.Equals, Value = TokenParameters.UserId.ToString() };\r\n        AddFilterInDy" +
-                    "namicQuery(query, attach);\r\n    }\r\n\r\n    public void AddFilterInDynamicQuery(Dyn" +
-                    "amicQuery? query, Filter attach)\r\n    {\r\n        if (query == null)\r\n        {\r\n" +
-                    "            query = new DynamicQuery();\r\n\r\n        }\r\n        if (query.Filter =" +
-                    "= null)\r\n        {\r\n            query.Filter = attach;\r\n        }\r\n        else " +
-                    "if (query.Filter.Filters == null)\r\n        {\r\n            query.Filter.Filters =" +
-                    " new List<Filter> { attach };\r\n        }\r\n        else\r\n        {\r\n            q" +
-                    "uery.Filter.Filters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
+                    "  public void SetId<TEntity>(TEntity data)\r\n        where TEntity : IEntity<Guid" +
+                    ">\r\n    {\r\n        data.Id = Guid.NewGuid();\r\n    }\r\n\r\n    public void SetId<TEnt" +
+                    "ity>(List<TEntity> datas)\r\n        where TEntity : IEntity<Guid>\r\n    {\r\n       " +
+                    " datas.ForEach(data => data.Id = Guid.NewGuid());    \r\n    }\r\n\r\n    public void " +
+                    "ThrowExceptionIfDataNull<TEntity>(TEntity? data)\r\n    {\r\n        if (data == nul" +
+                    "l)\r\n            throw new NotFoundException($\"{typeof(TEntity).Name} not found\")" +
+                    ";\r\n    }\r\n\r\n    public void ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntit" +
+                    "y>? data)\r\n    {\r\n        if (data == null || !data.Any())\r\n            throw ne" +
+                    "w NotFoundException($\"{typeof(TEntity).Name} not found\");\r\n    }\r\n\r\n    public v" +
+                    "oid FillDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)\r\n " +
+                    "   {\r\n        data.DynamicQuery = dq ?? new DynamicQuery();\r\n        data.PageRe" +
+                    "quest = pr;\r\n    }\r\n\r\n    public void SetUserId<T>(T data)\r\n        where T : IU" +
+                    "serOwnedEntity\r\n    {\r\n        if (TokenParameters.IsSuperUser && data.UserId !=" +
+                    " Guid.Empty)\r\n            return;\r\n\r\n        data.UserId = TokenParameters.UserI" +
+                    "d;\r\n    }\r\n\r\n    public void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)\r\n" +
+                    "        where T : IUserOwnedEntity\r\n    {\r\n        if (data.UserId == TokenParam" +
+                    "eters.UserId || TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        thr" +
+                    "ow new BusinessException(\"Bu veri üzerinde sadece verinin sahibi işlem yapabilir" +
+                    ".\");\r\n    }\r\n\r\n    public void AddLoggedUserIdInDynamicQuery(DynamicQuery? query" +
+                    ")\r\n    {\r\n        if (TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n     " +
+                    "   var attach = new Filter { Field = \"UserId\", Logic = Logic.And, Operator = Fil" +
+                    "terOperator.Equals, Value = TokenParameters.UserId.ToString() };\r\n        AddFil" +
+                    "terInDynamicQuery(query, attach);\r\n    }\r\n\r\n    public void AddFilterInDynamicQu" +
+                    "ery(DynamicQuery? query, Filter attach)\r\n    {\r\n        if (query == null)\r\n    " +
+                    "    {\r\n            query = new DynamicQuery();\r\n\r\n        }\r\n        if (query.F" +
+                    "ilter == null)\r\n        {\r\n            query.Filter = attach;\r\n        }\r\n      " +
+                    "  else if (query.Filter.Filters == null)\r\n        {\r\n            query.Filter.Fi" +
+                    "lters = new List<Filter> { attach };\r\n        }\r\n        else\r\n        {\r\n      " +
+                    "      query.Filter.Filters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
             
-            #line 125 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 127 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/BaseBusinessRules.cs",this.GenerationEnvironment);
 

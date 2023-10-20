@@ -95,6 +95,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     UpdatedTime = DateTime.Now,
                     DeletedTime = null,
                     IsUnique = false,
+                    IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.Items.First().Name}Id",
                 },
@@ -105,8 +106,54 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     UpdatedTime = DateTime.Now,
                     DeletedTime = null,
                     IsUnique = false,
+                    IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.Items.Last().Name}Id",
+                },
+                new ProjectEntityProperty
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    DeletedTime = null,
+                    IsUnique = false,
+                    IsConstant = true,
+                    PropertyTypeCode = "DateTime",
+                    Name = "CreatedTime",
+                },
+                new ProjectEntityProperty
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    DeletedTime = null,
+                    IsUnique = false,
+                    IsConstant = true,
+                    PropertyTypeCode = "DateTime?",
+                    Name = "UpdatedTime",
+                },
+                new ProjectEntityProperty
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    DeletedTime = null,
+                    IsUnique = false,
+                    IsConstant = true,
+                    PropertyTypeCode = "DateTime?",
+                    Name = "DeletedTime",
+                },
+                new ProjectEntityProperty
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    DeletedTime = null,
+                    IsUnique = false,
+                    IsConstant = true,
+                    PropertyTypeCode = "Guid",
+                    Name = "Id",
+                    
                 }
             },
             IsConstant = true,

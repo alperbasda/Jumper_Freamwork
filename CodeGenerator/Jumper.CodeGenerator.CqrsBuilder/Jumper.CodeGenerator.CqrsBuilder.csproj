@@ -227,6 +227,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\BulkCreateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCreateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkUpdateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -236,6 +246,21 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DeleteCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\GetListQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetListQueryHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\GetQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetQueryHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\UpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateCommandHandlerTemplate.tt</DependentUpon>
     </Compile>
     <Compile Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
       <DesignTime>True</DesignTime>

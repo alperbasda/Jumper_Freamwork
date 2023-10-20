@@ -34,7 +34,7 @@ namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Nam
 
 public class <#= action["Name"] #><#= entity["Name"] #>WrapperCommand : IRequest<List<<#= action["Name"] #><#= entity["Name"] #>Response>> <#= bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : "" #> <#= bool.Parse(action["CacheEnabled"].ToString()) ? ",ICacheRemoverRequest" : "" #>
 {
-    public List<<#= action["Name"] #><#= entity["Name"] #>Command> <#= action["Name"] #><#= entity["Name"].ToString().ToPlural() #> { get; set; }
+    public List<<#= action["Name"] #><#= entity["Name"] #>Command> Items { get; set; }
 }
 
 public class <#= action["Name"] #><#= entity["Name"] #>Command

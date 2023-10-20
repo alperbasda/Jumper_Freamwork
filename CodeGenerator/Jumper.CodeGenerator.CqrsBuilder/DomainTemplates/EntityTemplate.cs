@@ -86,11 +86,14 @@ foreach (var item in entities!)
             
             #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
     
-    
         //Bu Bilgi n to n relation tablosu oldugunu gösterir ve virtual objelerini işlememiz gerekir.
         var isRelationTable =  bool.Parse(item["IsConstant"].ToString()) == true && item["Name"].ToString().EndsWith("Relation");
         foreach(var prop in item["Properties"])
         {
+             if (ProjectSettings.EntityExculededProperties.Contains(prop["Name"].ToString()))
+             {
+                continue;
+             }
              WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
              if(isRelationTable && prop["Name"].ToString().EndsWith("Id"))
              {
@@ -131,7 +134,7 @@ foreach (var item in entities!)
             #line hidden
             this.Write("}\r\n\r\n\r\n");
             
-            #line 86 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+            #line 89 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.GenerationEnvironment);
 }

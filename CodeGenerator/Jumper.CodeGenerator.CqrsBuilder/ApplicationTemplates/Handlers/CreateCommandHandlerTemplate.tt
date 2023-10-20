@@ -32,6 +32,7 @@ using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
 using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
 using <#= datasource["SolutionName"] #>.Domain.Entities;
+using <#= datasource["SolutionName"] #>.Domain.MongoEntities;
 using MediatR;
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Commands.<#= action["Name"] #>;
 
@@ -52,6 +53,7 @@ public class <#= action["Name"] #><#= entity["Name"] #>CommandHandler : IRequest
     {
         var data = _mapper.Map<<#= entity["Name"] #>>(request);
 
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules.SetId(data);
         //İş Kurallarınızı Burada Çağırabilirsiniz.
 
         await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.AddAsync(data);

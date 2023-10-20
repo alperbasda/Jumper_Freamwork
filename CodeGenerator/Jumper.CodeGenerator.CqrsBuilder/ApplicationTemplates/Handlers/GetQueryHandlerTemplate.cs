@@ -9,9 +9,14 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
 {
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     using System;
     
     /// <summary>
@@ -28,6 +33,339 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Handlers
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    List<string> propExpression = new List<string>();
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 22 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => w["EntityAction"].ToString() == "5"))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Handlers/Queries/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            
+            #line 30 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing AutoMapper;\r\nusing ");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Queries.");
+            
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\nusing ");
+            
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Rules;\r\nusing ");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Services.Repositories;\r\nusing ");
+            
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Domain.Entities;\r\nusing ");
+            
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Domain.MongoEntities;\r\nusing MediatR;\r\nnamespace ");
+            
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Handlers.Queries.");
+            
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n\r\npublic class ");
+            
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("QueryHandler : IRequestHandler<");
+            
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Query, ");
+            
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Response>\r\n{\r\n    private readonly I");
+            
+            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal _");
+            
+            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal;\r\n    private readonly ");
+            
+            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules _");
+            
+            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules;\r\n    private readonly IMapper _mapper;\r\n\r\n    public ");
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("QueryHandler(IMapper mapper, I");
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal ");
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal, ");
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules ");
+            
+            #line 46 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules)\r\n    {\r\n        _mapper = mapper;\r\n        _");
+            
+            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal = ");
+            
+            #line 49 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal;\r\n        _");
+            
+            #line 50 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules = ");
+            
+            #line 50 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules;\r\n    }\r\n\r\n    public async Task<");
+            
+            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Response> Handle(");
+            
+            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Query request, CancellationToken cancellationToken)\r\n    {\r\n        ");
+            
+            #line 55 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+
+        propExpression.Clear();
+        foreach(var prop in action["Properties"].Where(q => q["ActionPropertyType"].ToString() == "0"))
+        {
+            propExpression.Add($"w.{prop["PropertyName"]} == request.{prop["PropertyName"]}");
+        }
+        WriteLine("");
+        
+        
+            
+            #line default
+            #line hidden
+            this.Write("        var data = await _");
+            
+            #line 64 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("Dal.GetAsync(w => ");
+            
+            #line 64 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(" && ", propExpression)));
+            
+            #line default
+            #line hidden
+            this.Write(", cancellationToken : cancellationToken);\r\n            \r\n        _");
+            
+            #line 66 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToCamelCase()));
+            
+            #line default
+            #line hidden
+            this.Write("BusinessRules.ThrowExceptionIfDataNull(data);\r\n\r\n        //İş Kurallarınızı Burad" +
+                    "a Çağırabilirsiniz.\r\n\r\n        return _mapper.Map<");
+            
+            #line 70 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
+            
+            #line default
+            #line hidden
+            
+            #line 70 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Response>(data);\r\n    }\r\n}\r\n\r\n\r\n\r\n");
+            
+            #line 76 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}QueryHandler.cs",this.GenerationEnvironment);
+}
+}
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -71,70 +71,70 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             
             #line default
             #line hidden
-            this.Write(".Application.Base;\r\nnamespace ");
+            this.Write(".Application.Base;\r\nusing Core.Persistence.Models.Responses;\r\nnamespace ");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Queries.");
             
-            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\npublic class ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
-            this.Write("Query : BaseDynamicQuery, IRequest<");
+            this.Write("Query : BaseDynamicQuery, IRequest<ListModel<");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(action["Name"]));
             
             #line default
             #line hidden
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
             #line hidden
-            this.Write("Response> ");
+            this.Write("Response>> ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(bool.Parse(action["LogEnabled"].ToString()) ? ",ILoggableRequest" : ""));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(bool.Parse(action["CacheEnabled"].ToString()) ? ",ICachableRequest" : ""));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n    ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
 
     WriteLine("");
     foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
@@ -159,7 +159,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line hidden
             this.Write("    \r\n}\r\n\r\n\r\n\r\n\r\n");
             
-            #line 60 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
+            #line 61 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}Query.cs",this.GenerationEnvironment);
 }

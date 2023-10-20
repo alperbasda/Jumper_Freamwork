@@ -43,6 +43,11 @@ public class <#= item["Name"] #> : MongoEntity<Guid>
 
         foreach(var prop in item["Properties"])
         {
+             if (ProjectSettings.EntityExculededProperties.Contains(prop["Name"].ToString()))
+             {
+                continue;
+             }
+
              WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
              if(isRelationTable && prop["Name"].ToString().EndsWith("Id"))
              {

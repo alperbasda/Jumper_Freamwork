@@ -1,6 +1,80 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ output extension=".txt" #>
+﻿<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.CodeGenerator.Helpers.dll" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.Constants" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.DirectoryHelpers" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.StringHelpers" #>
+<#@ import namespace="Jumper.CodeGenerator.Helpers.FileHelpers" #>
+
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    List<string> propExpression = new List<string>();
+#>
+
+<#
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => w["EntityAction"].ToString() == "5"))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Handlers/Queries/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using AutoMapper;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.<#= action["Name"] #>;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
+using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
+using <#= datasource["SolutionName"] #>.Domain.Entities;
+using <#= datasource["SolutionName"] #>.Domain.MongoEntities;
+using MediatR;
+namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Queries.<#= action["Name"] #>;
+
+public class <#= action["Name"] #><#= entity["Name"] #>QueryHandler : IRequestHandler<<#= action["Name"] #><#= entity["Name"] #>Query, <#= action["Name"] #><#= entity["Name"] #>Response>
+{
+    private readonly I<#= entity["Name"].ToString() #>Dal _<#= entity["Name"].ToString().ToCamelCase() #>Dal;
+    private readonly <#= entity["Name"].ToString() #>BusinessRules _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules;
+    private readonly IMapper _mapper;
+
+    public <#= action["Name"] #><#= entity["Name"] #>QueryHandler(IMapper mapper, I<#= entity["Name"].ToString() #>Dal <#= entity["Name"].ToString().ToCamelCase() #>Dal, <#= entity["Name"].ToString() #>BusinessRules <#= entity["Name"].ToString().ToCamelCase() #>BusinessRules)
+    {
+        _mapper = mapper;
+        _<#= entity["Name"].ToString().ToCamelCase() #>Dal = <#= entity["Name"].ToString().ToCamelCase() #>Dal;
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules = <#= entity["Name"].ToString().ToCamelCase() #>BusinessRules;
+    }
+
+    public async Task<<#= action["Name"] #><#= entity["Name"] #>Response> Handle(<#= action["Name"] #><#= entity["Name"] #>Query request, CancellationToken cancellationToken)
+    {
+        <#
+        propExpression.Clear();
+        foreach(var prop in action["Properties"].Where(q => q["ActionPropertyType"].ToString() == "0"))
+        {
+            propExpression.Add($"w.{prop["PropertyName"]} == request.{prop["PropertyName"]}");
+        }
+        WriteLine("");
+        
+        #>
+        var data = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetAsync(w => <#= string.Join(" && ", propExpression) #>, cancellationToken : cancellationToken);
+            
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules.ThrowExceptionIfDataNull(data);
+
+        //İş Kurallarınızı Burada Çağırabilirsiniz.
+
+        return _mapper.Map<<#= action["Name"] #><#= entity["Name"] #>Response>(data);
+    }
+}
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}QueryHandler.cs",this.GenerationEnvironment);
+}
+}
+#>

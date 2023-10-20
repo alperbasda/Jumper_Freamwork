@@ -32,6 +32,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Persistence.Dynamic;
 using Core.Persistence.Models.Responses;
 using Core.Persistence.Requests;
+using Core.Persistence.Models;
 
 namespace <#= datasource["SolutionName"] #>.Application.Base;
 
@@ -45,26 +46,27 @@ public class BaseBusinessRules
     }
 
     public void SetId<TEntity>(TEntity data)
+        where TEntity : IEntity<Guid>
     {
         data.Id = Guid.NewGuid();
-        
-        return Task.CompletedTask;
+    }
+
+    public void SetId<TEntity>(List<TEntity> datas)
+        where TEntity : IEntity<Guid>
+    {
+        datas.ForEach(data => data.Id = Guid.NewGuid());    
     }
 
     public void ThrowExceptionIfDataNull<TEntity>(TEntity? data)
     {
         if (data == null)
             throw new NotFoundException($"{typeof(TEntity).Name} not found");
-
-        return Task.CompletedTask;
     }
 
     public void ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntity>? data)
     {
         if (data == null || !data.Any())
             throw new NotFoundException($"{typeof(TEntity).Name} not found");
-
-        return Task.CompletedTask;
     }
 
     public void FillDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)

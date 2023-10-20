@@ -90,6 +90,11 @@ foreach (var item in entities!)
 
         foreach(var prop in item["Properties"])
         {
+             if (ProjectSettings.EntityExculededProperties.Contains(prop["Name"].ToString()))
+             {
+                continue;
+             }
+
              WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
              if(isRelationTable && prop["Name"].ToString().EndsWith("Id"))
              {
@@ -114,7 +119,7 @@ foreach (var item in entities!)
             #line hidden
             this.Write("}\r\n\r\n\r\n");
             
-            #line 68 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 73 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.GenerationEnvironment);
 }
