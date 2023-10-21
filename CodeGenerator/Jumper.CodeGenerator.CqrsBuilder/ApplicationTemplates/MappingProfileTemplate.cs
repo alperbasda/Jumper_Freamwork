@@ -9,16 +9,21 @@
 // ------------------------------------------------------------------------------
 namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
 {
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+    using Jumper.CodeGenerator.Helpers.StringHelpers;
+    using Jumper.CodeGenerator.Helpers.FileHelpers;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class MappingProfileTemplate : MappingProfileTemplateBase
     {
@@ -28,6 +33,124 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n");
+            this.Write("\r\n");
+            
+            #line 15 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+
+foreach (var entity in datasource["Entities"])
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Profiles";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+
+            
+            #line default
+            #line hidden
+            
+            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing AutoMapper;\r\nusing Core.Persistence.Models.Responses;\r\nusing Core.Persist" +
+                    "ence.Paging;\r\n");
+            
+            #line 31 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+
+foreach(var action in entity["Actions"])
+{
+if(ProjectSettings.ReadActionTypes.Contains(action["EntityAction"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"].ToString()}.Application.Features.{entity["Name"].ToString().ToPlural()}.Queries.{action["Name"].ToString()};");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"].ToString()}.Application.Features.{entity["Name"].ToString().ToPlural()}.Commands.{action["Name"].ToString()};");
+}
+
+}
+
+            
+            #line default
+            #line hidden
+            
+            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+ 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\nnamespace ");
+            
+            #line 56 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 56 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Profiles;\r\n\r\npublic class MappingProfile : Profile\r\n{\r\n    public MappingProfile" +
+                    "()\r\n    {\r\n        ");
+            
+            #line 62 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+
+        WriteLine("");
+        foreach(var action in entity["Actions"])
+        {
+
+        switch(action["EntityAction"].ToString())
+        {
+                case "5":
+                break;
+                case "6":
+                WriteLine($"\t\tCreateMap<Paginate<{entity["Name"].ToString()}>, ListModel<{action["Name"].ToString()}{entity["Name"].ToString()}Response>>();");
+                break;
+                default:
+                WriteLine($"\t\tCreateMap<{action["Name"].ToString()}{entity["Name"].ToString()}Command,{entity["Name"].ToString()}>();");
+                break;
+        }
+                WriteLine($"\t\tCreateMap<{entity["Name"].ToString()}, {action["Name"].ToString()}{entity["Name"].ToString()}Response>();");
+        
+        }
+        
+            
+            #line default
+            #line hidden
+            this.Write("    }\r\n}\r\n\r\n\r\n\r\n\r\n");
+            
+            #line 88 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\MappingProfileTemplate.tt"
+    
+FileHelper.CreateAndClearBuilder($"{filePath}/MappingProfile.cs",this.GenerationEnvironment);
+}
+
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -8,7 +8,6 @@ using Jumper.Application.Features.EntityDefinitions.Queries.GetById;
 using Jumper.Application.Features.EntityDefinitions.Queries.GetByLoggedUserId;
 using Jumper.Application.Features.EntityDefinitions.Queries.GetListDynamic;
 using Jumper.Domain.Entities;
-using Jumper.Domain.MongoEntities;
 
 namespace Jumper.Application.Features.EntityDefinitions.Profiles;
 
