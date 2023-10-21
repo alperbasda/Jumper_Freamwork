@@ -32,8 +32,16 @@ using AutoMapper;
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.<#= action["Name"] #>;
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
 using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
-using <#= datasource["SolutionName"] #>.Domain.Entities;
-using <#= datasource["SolutionName"] #>.Domain.MongoEntities;
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
 using MediatR;
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Commands.<#= action["Name"] #>;
 
@@ -61,13 +69,13 @@ public class <#= action["Name"] #><#= entity["Name"] #>CommandHandler : IRequest
         WriteLine("");
         
         #>
-        var data = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetListAsync(w => <#= string.Join(" && ", propExpression) #>, size: int.MaxValue);
+        var data = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetAsync(w => <#= string.Join(" && ", propExpression) #>);
             
         _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules.ThrowExceptionIfDataNull(data);
 
         //İş Kurallarınızı Burada Çağırabilirsiniz.
 
-        await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.DeleteRangeAsync(data!.Items);
+        await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.DeleteAsync(data!);
 
         return _mapper.Map<<#= action["Name"] #><#= entity["Name"] #>Response>(data);
     }

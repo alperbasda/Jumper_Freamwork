@@ -31,8 +31,16 @@ using AutoMapper;
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.<#= action["Name"] #>;
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
 using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
-using <#= datasource["SolutionName"] #>.Domain.Entities;
-using <#= datasource["SolutionName"] #>.Domain.MongoEntities;
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
 using Core.Persistence.Models.Responses;
 using MediatR;
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Queries.<#= action["Name"] #>;

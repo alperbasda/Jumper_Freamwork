@@ -17,4 +17,8 @@ public static class ProjectSettings
     public static string[] SingleCudActionTypes = new[] { "0", "2", "4" };
 
     public static string[] ReadActionTypes = new[] { "5", "6" };
+
+    public static string[] NoSqlDatabaseTypes = new[] { "4" };
+
+    public static string[] RelationalDatabaseTypes = new[] { "0", "1", "2", "3" };
 }
