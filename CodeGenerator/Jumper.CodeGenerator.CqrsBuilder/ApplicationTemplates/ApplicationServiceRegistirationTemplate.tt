@@ -15,7 +15,6 @@
 <#@ import namespace="Jumper.CodeGenerator.Helpers.DirectoryHelpers" #>
 <#@ import namespace="Jumper.CodeGenerator.Helpers.StringHelpers" #>
 <#@ import namespace="Jumper.CodeGenerator.Helpers.FileHelpers" #>
-
 <#@ output extension=".cs" #>
 
 <#
@@ -25,10 +24,7 @@
     var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
-
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
-
-
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Transaction;

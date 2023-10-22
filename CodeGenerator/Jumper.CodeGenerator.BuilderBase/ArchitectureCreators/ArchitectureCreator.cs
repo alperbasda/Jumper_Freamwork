@@ -56,7 +56,7 @@ public class ArchitectureCreator : IArchitectureCreator
             .SetArguments($"new {projectItem.DotnetType} -o {projectCreatePath} --name {_project.SolutionName} --solutionname  {_project.SolutionName} --force")
             .SetWorkingDirectory(projectCreatePath)
             .Execute();
-
+            
             _processBuilder
             .SetArguments($"sln add  {projectCreatePath}/{_project.SolutionName}.{projectItem.Name}.csproj")
             .SetWorkingDirectory($"{FileSettings.ProjectCreateDirectory}/{_project.SolutionName}")

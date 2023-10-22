@@ -1,18 +1,17 @@
-﻿using Core.WebHelper.ControllerExtensions;
-using Core.WebHelper.NameValueCollectionHelpers;
+﻿using Core.WebHelper.NameValueCollectionHelpers;
 using Jumper.Application.Features.EntityDefinitions.Commands.Create;
 using Jumper.Application.Features.EntityDefinitions.Commands.DeleteById;
 using Jumper.Application.Features.EntityDefinitions.Commands.Update;
 using Jumper.Application.Features.EntityDefinitions.Queries.GetById;
-using Jumper.Application.Features.EntityDefinitions.Queries.GetByLoggedUserId;
 using Jumper.Application.Features.EntityDefinitions.Queries.GetListDynamic;
 using Jumper.Creator.UI.ActionFilters;
 using Jumper.Creator.UI.Controllers.Base;
-using Jumper.Domain.Entities;
-using Jumper.Domain.MongoEntities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
 using System.Web;
+using Jumper.Application.Features.ProjectEntityActions.Queries.GetListByProjectEntityId;
+using Jumper.Domain.Entities;
+using Jumper.Domain.MongoEntities;
 
 namespace Jumper.Creator.UI.Controllers
 {
@@ -27,45 +26,50 @@ namespace Jumper.Creator.UI.Controllers
             return View(data);
         }
 
-        [HttpGet("create")]
-        public async Task<IActionResult> Create()
-        {
-            return View();
-        }
-
-        [HttpPost("create")]
-        public async Task<IActionResult> Create(CreateEntityDefinitionCommand request)
-        {
-            var createResponse = await base.Mediator.Send(request);
-            return RedirectToAction("Update", "EntityDefinition", new { id = createResponse.Id }).Success($"{createResponse.Name} nesnesi kayıt edildi.");
-        }
-
-        [HttpGet("update")]
-        public async Task<IActionResult> Update(Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var response = await base.Mediator.Send(new GetByIdEntityDefinitionQuery { Id = id });
-            return View(response);
+            return Ok(response);
         }
 
-        [HttpPost("update")]
-        public async Task<IActionResult> Update(UpdateEntityDefinitionCommand request)
+        [HttpGet("getlist")]
+        public async Task<IActionResult> ListAsync(NameValueCollection collection)
         {
-            var updateResponse = await base.Mediator.Send(request);
-            return RedirectToAction("Update", "EntityDefinition", new { id = updateResponse.Id }).Success($"{updateResponse.Name} nesnesi güncellendi.");
+            var query = new GetListByProjectEntityIdProjectEntityActionQuery
+            {
+                DynamicQuery = collection.ToDynamicFilter<EntityDefinition>(),
+                PageRequest = collection.ToPageRequest()
+            };
+            var response = await base.Mediator.Send(query);
+
+            return Ok(response);
         }
 
-        [HttpGet("delete")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpPost("list")]
+        public async Task<IActionResult> ListAsync(GetListByProjectEntityIdProjectEntityActionQuery query)
         {
-            _ = await base.Mediator.Send(new DeleteByIdEntityDefinitionCommand { Id = id });
-            return Json("Nesne Silindi.");
+            var response = await base.Mediator.Send(query);
+            return Ok(response);
         }
 
-        [HttpGet("loggeduserdropdown")]
-        public async Task<IActionResult> Dropdown()
+        [HttpPost]
+        public async Task<IActionResult> CreateAsync(CreateEntityDefinitionCommand request)
         {
-            var data  = await base.Mediator.Send(new GetByLoggedUserIdEntityDefinitionQuery());
-            return PartialView("Partials/_Dropdown", data);
+            return Ok(await base.Mediator.Send(request));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync(UpdateEntityDefinitionCommand request)
+        {
+            return Ok(await base.Mediator.Send(request));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteByIdAsync(Guid id)
+        {
+            return Ok(await base.Mediator.Send(new DeleteByIdEntityDefinitionCommand { Id = id }));
+        }
+
     }
 }

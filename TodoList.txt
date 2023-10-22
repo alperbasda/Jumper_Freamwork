@@ -9,3 +9,4 @@
 9-)  DeleteCommandlar Liste silip Liste dönmeli.Templatelere bir ayar çekmek lazým
 10-) ProjectEntitye IsUserOwnedEntity alaný eklenecek. Bu alana sahip entityler IUserOwnedEntityden kalýtýlacak. ve bunlarýn commandlarý ve querylerine iþ kuralý çagýrýlacak.
 11-) Nesne havuzu kalkacak , bunun yerine projelerin nesneleri listelenecek. Nesnelere kategorize etmek için tagler atanacak. Bu tagleri nesneleri oluşturan kullanıcılar kendileri girecek.
+12-) Database loggeri suanda desteklemiyoruz desteği ekleyip ApiRegistrationService e gerekli kodları eklememiz gerekiyor.

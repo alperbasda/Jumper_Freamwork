@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
+namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
 {
     using System;
     using System.Linq;
@@ -26,9 +26,9 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ApplicationServiceRegistirationTemplate : ApplicationServiceRegistirationTemplateBase
+    public partial class ApiControllerTemplate : ApiControllerTemplateBase
     {
 #line hidden
         /// <summary>
@@ -38,128 +38,242 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates
         {
             this.Write("\r\n");
             
-            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Api/Controllers";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 
             
             #line default
             #line hidden
             
-            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
-            this.Write("\r\nusing Core.Application.Pipelines.Caching;\r\nusing Core.Application.Pipelines.Log" +
-                    "ging;\r\nusing Core.Application.Pipelines.Transaction;\r\nusing Core.Application.Pip" +
-                    "elines.Validation;\r\nusing FluentValidation;\r\nusing ");
+            this.Write("\r\n");
             
-            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(".Application.Base;\r\nusing ");
-            
-            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(".Application.Features.Auth.HttpClients;\r\nusing ");
-            
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(".Common.IdentityConfigurations;\r\nusing MediatR.NotificationPublishers;\r\nusing Mic" +
-                    "rosoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection" +
-                    ";\r\nusing System.Reflection;\r\n\r\nnamespace ");
-            
-            #line 41 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
-            
-            #line default
-            #line hidden
-            this.Write(@".Application;
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
 
-public static class ApplicationServiceRegistiration
+foreach (var entity in datasource["Entities"])
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-        services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
-
-        services.AddIdentityOptions(configuration);
-
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
-        services.AddMediatR(configuration =>
-        {
-            configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
-
-            configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
-            configuration.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
-            ");
-            
-            #line 61 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
-
-            WriteLine("");
-            if(bool.Parse(datasource["UseCache"].ToString()) == true)
-            {
-            WriteLine($"\t\t\tconfiguration.AddOpenBehavior(typeof(CachingBehavior<,>));");
-            WriteLine($"\t\t\tconfiguration.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));");
-            }
-            if(bool.Parse(datasource["UseSerilog"].ToString()) == true)
-            {
-            WriteLine($"\t\t\tconfiguration.AddOpenBehavior(typeof(LoggingBehavior<,>));");
-            }
-            
-            
             
             #line default
             #line hidden
-            this.Write("            \r\n            ///Dikkat : Aşagıdaki kod bloğu notificationların asenk" +
-                    "ron çalışmasını sağlar.\r\n            //Ef core aynı anda 2 istekle database e ba" +
-                    "ğlanırsa hata alacağından dolayı dikkatli olunması gerekir.\r\n            //Datab" +
-                    "ase erişiminin ayni anda birden fazla yerde çağırılacagını düşünüyorsanız aşagıd" +
-                    "aki kod 3 satırını siliniz.\r\n            configuration.NotificationPublisher = n" +
-                    "ew TaskWhenAllPublisher();\r\n            configuration.NotificationPublisherType " +
-                    "= typeof(TaskWhenAllPublisher);\r\n            configuration.Lifetime = ServiceLif" +
-                    "etime.Scoped;\r\n        });\r\n\r\n        \r\n\r\n        return services;\r\n\r\n    }\r\n\r\n " +
-                    "   public static IServiceCollection AddIdentityOptions(this IServiceCollection s" +
-                    "ervices,IConfiguration configuration)\r\n    {\r\n        IdentityApiConfiguration i" +
-                    "dentityOpts = new IdentityApiConfiguration();\r\n\r\n        configuration.GetSectio" +
-                    "n(\"HttpClients:IdentityServer\").Bind(identityOpts);\r\n        services.Configure<" +
-                    "IdentityApiConfiguration>(options =>\r\n        {\r\n            options = identityO" +
-                    "pts;\r\n        });\r\n        services.AddSingleton<IdentityApiConfiguration>(sp =>" +
-                    "\r\n        {\r\n            return identityOpts;\r\n        });\r\n\r\n\r\n\r\n        JwtTok" +
-                    "enOptions tokenOpts = new JwtTokenOptions();\r\n\r\n        configuration.GetSection" +
-                    "(\"JwtTokenOptions\").Bind(tokenOpts);\r\n        services.Configure<JwtTokenOptions" +
-                    ">(options =>\r\n        {\r\n            options = tokenOpts;\r\n        });\r\n        " +
-                    "services.AddSingleton<JwtTokenOptions>(sp =>\r\n        {\r\n            return toke" +
-                    "nOpts;\r\n        });\r\n\r\n\r\n        services.AddHttpClient<IIdentityServerClientSer" +
-                    "vice, IdentityServerClientService>((client) =>\r\n        {\r\n            client.Ba" +
-                    "seAddress = new Uri(identityOpts.BaseAddress);\r\n        });\r\n\r\n        return se" +
-                    "rvices;\r\n    }\r\n\r\n\r\n\r\n    public static IServiceCollection AddSubClassesOfType(\r" +
-                    "\n      this IServiceCollection services,\r\n      Assembly assembly,\r\n      Type t" +
-                    "ype,\r\n      Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle" +
-                    " = null)\r\n    {\r\n        var types = assembly.GetTypes().Where(t => t.IsSubclass" +
-                    "Of(type) && type != t).ToList();\r\n        foreach (var item in types)\r\n         " +
-                    "   if (addWithLifeCycle == null)\r\n                services.AddScoped(item);\r\n   " +
-                    "         else\r\n                addWithLifeCycle(services, type);\r\n        return" +
-                    " services;\r\n    }\r\n\r\n}\r\n\r\n");
             
-            #line 145 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt"
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nusing ");
+            
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Commands.Create;\r\nusing ");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Commands.DeleteById;\r\nusing ");
+            
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Commands.Update;\r\nusing ");
+            
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Queries.GetById;\r\nusing ");
+            
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".Application.Features.");
+            
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write(".Queries.ListDynamic;\r\nusing ");
+            
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".UI.Api.ActionFilters;\r\nusing ");
+            
+            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".UI.Api.Controllers.Base;\r\nusing Microsoft.AspNetCore.Mvc;\r\nusing System.Collecti" +
+                    "ons.Specialized;\r\nusing System.Web;\r\nusing Core.WebHelper.NameValueCollectionHel" +
+                    "pers;\r\n");
+            
+            #line 44 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+ 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+
+            
+            #line default
+            #line hidden
+            this.Write("\r\nnamespace ");
+            
+            #line 55 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write(".UI.Api.Controllers\r\n{\r\n    [Route(\"");
+            
+            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write("\")]\r\n    public class ");
+            
+            #line 58 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
+            
+            #line default
+            #line hidden
+            this.Write("Controller : MediatrController\r\n    {\r\n        [HttpGet(\"{id}\")]\r\n        public " +
+                    "async Task<IActionResult> GetByIdAsync(Guid id)\r\n        {\r\n            var resp" +
+                    "onse = await base.Mediator.Send(new GetById");
+            
+            #line 63 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Query { Id = id });\r\n            return Ok(response);\r\n        }\r\n\r\n        [Http" +
+                    "Get(\"getlist\")]\r\n        public async Task<IActionResult> ListAsync(NameValueCol" +
+                    "lection collection)\r\n        {\r\n            var query = new ListDynamic");
+            
+            #line 70 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Query\r\n            {\r\n                DynamicQuery = collection.ToDynamicFilter<");
+            
+            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write(@">(),
+                PageRequest = collection.ToPageRequest()
+            };
+            var response = await base.Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpPost(""list"")]
+        public async Task<IActionResult> ListAsync(ListDynamic");
+            
+            #line 81 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Query query)\r\n        {\r\n            var response = await base.Mediator.Send(quer" +
+                    "y);\r\n            return Ok(response);\r\n        }\r\n\r\n        [HttpPost]\r\n        " +
+                    "public async Task<IActionResult> CreateAsync(Create");
+            
+            #line 88 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Command request)\r\n        {\r\n            return Ok(await base.Mediator.Send(reque" +
+                    "st));\r\n        }\r\n\r\n        [HttpPut]\r\n        public async Task<IActionResult> " +
+                    "UpdateAsync(Update");
+            
+            #line 94 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write(@"Command request)
+        {
+            return Ok(await base.Mediator.Send(request));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteByIdAsync(Guid id)
+        {
+            return Ok(await base.Mediator.Send(new DeleteById");
+            
+            #line 102 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Command { Id = id }));\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n");
+            
+            #line 109 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
     
-FileHelper.CreateAndClearBuilder($"{filePath}/ApplicationServiceRegistiration.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString().ToPlural()}Controller.cs",this.GenerationEnvironment);
+}
 
             
             #line default
@@ -175,7 +289,7 @@ FileHelper.CreateAndClearBuilder($"{filePath}/ApplicationServiceRegistiration.cs
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ApplicationServiceRegistirationTemplateBase
+    public class ApiControllerTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

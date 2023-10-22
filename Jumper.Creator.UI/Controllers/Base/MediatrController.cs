@@ -1,7 +1,5 @@
-﻿using Jumper.Common.Constants;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Jumper.Creator.UI.Controllers.Base
 {
