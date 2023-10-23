@@ -12,6 +12,7 @@ using System.Web;
 using Jumper.Application.Features.ProjectEntityActions.Queries.GetListByProjectEntityId;
 using Jumper.Domain.Entities;
 using Jumper.Domain.MongoEntities;
+using Jumper.Application.Features.EntityDefinitions.Queries.GetByLoggedUserId;
 
 namespace Jumper.Creator.UI.Controllers
 {
@@ -69,6 +70,13 @@ namespace Jumper.Creator.UI.Controllers
         public async Task<IActionResult> DeleteByIdAsync(Guid id)
         {
             return Ok(await base.Mediator.Send(new DeleteByIdEntityDefinitionCommand { Id = id }));
+        }
+
+        [HttpGet("loggeduserdropdown")]
+        public async Task<IActionResult> Dropdown()
+        {
+            var data = await base.Mediator.Send(new GetByLoggedUserIdEntityDefinitionQuery());
+            return PartialView("Partials/_Dropdown", data);
         }
 
     }
