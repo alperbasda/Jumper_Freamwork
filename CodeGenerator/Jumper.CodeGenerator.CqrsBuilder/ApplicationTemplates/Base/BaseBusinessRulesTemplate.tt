@@ -48,7 +48,8 @@ public class BaseBusinessRules
     public void SetId<TEntity>(TEntity data)
         where TEntity : IEntity<Guid>
     {
-        data.Id = Guid.NewGuid();
+        if (data.Id == null || data.Id == Guid.Empty)
+            data.Id = Guid.NewGuid();
     }
 
     public void SetId<TEntity>(List<TEntity> datas)

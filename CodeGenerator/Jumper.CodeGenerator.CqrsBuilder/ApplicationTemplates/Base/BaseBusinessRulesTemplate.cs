@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class BaseBusinessRulesTemplate : BaseBusinessRulesTemplateBase
     {
@@ -39,7 +39,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 21 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 21 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -52,7 +52,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
             #line hidden
             this.Write("\r\n");
             
-            #line 29 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 29 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
@@ -62,7 +62,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
                     "onses;\r\nusing Core.Persistence.Requests;\r\nusing Core.Persistence.Models;\r\n\r\nname" +
                     "space ");
             
-            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -71,36 +71,37 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApplicationTemplates.Base
                     "okenParameters TokenParameters;\r\n\r\n    public BaseBusinessRules(TokenParameters " +
                     "tokenParameters)\r\n    {\r\n        TokenParameters = tokenParameters;\r\n    }\r\n\r\n  " +
                     "  public void SetId<TEntity>(TEntity data)\r\n        where TEntity : IEntity<Guid" +
-                    ">\r\n    {\r\n        data.Id = Guid.NewGuid();\r\n    }\r\n\r\n    public void SetId<TEnt" +
-                    "ity>(List<TEntity> datas)\r\n        where TEntity : IEntity<Guid>\r\n    {\r\n       " +
-                    " datas.ForEach(data => data.Id = Guid.NewGuid());    \r\n    }\r\n\r\n    public void " +
-                    "ThrowExceptionIfDataNull<TEntity>(TEntity? data)\r\n    {\r\n        if (data == nul" +
-                    "l)\r\n            throw new NotFoundException($\"{typeof(TEntity).Name} not found\")" +
-                    ";\r\n    }\r\n\r\n    public void ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntit" +
-                    "y>? data)\r\n    {\r\n        if (data == null || !data.Any())\r\n            throw ne" +
-                    "w NotFoundException($\"{typeof(TEntity).Name} not found\");\r\n    }\r\n\r\n    public v" +
-                    "oid FillDynamicFilter<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)\r\n " +
-                    "   {\r\n        data.DynamicQuery = dq ?? new DynamicQuery();\r\n        data.PageRe" +
-                    "quest = pr;\r\n    }\r\n\r\n    public void SetUserId<T>(T data)\r\n        where T : IU" +
-                    "serOwnedEntity\r\n    {\r\n        if (TokenParameters.IsSuperUser && data.UserId !=" +
-                    " Guid.Empty)\r\n            return;\r\n\r\n        data.UserId = TokenParameters.UserI" +
-                    "d;\r\n    }\r\n\r\n    public void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)\r\n" +
-                    "        where T : IUserOwnedEntity\r\n    {\r\n        if (data.UserId == TokenParam" +
-                    "eters.UserId || TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        thr" +
-                    "ow new BusinessException(\"Bu veri üzerinde sadece verinin sahibi işlem yapabilir" +
-                    ".\");\r\n    }\r\n\r\n    public void AddLoggedUserIdInDynamicQuery(DynamicQuery? query" +
-                    ")\r\n    {\r\n        if (TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n     " +
-                    "   var attach = new Filter { Field = \"UserId\", Logic = Logic.And, Operator = Fil" +
-                    "terOperator.Equals, Value = TokenParameters.UserId.ToString() };\r\n        AddFil" +
-                    "terInDynamicQuery(query, attach);\r\n    }\r\n\r\n    public void AddFilterInDynamicQu" +
-                    "ery(DynamicQuery? query, Filter attach)\r\n    {\r\n        if (query == null)\r\n    " +
-                    "    {\r\n            query = new DynamicQuery();\r\n\r\n        }\r\n        if (query.F" +
-                    "ilter == null)\r\n        {\r\n            query.Filter = attach;\r\n        }\r\n      " +
-                    "  else if (query.Filter.Filters == null)\r\n        {\r\n            query.Filter.Fi" +
-                    "lters = new List<Filter> { attach };\r\n        }\r\n        else\r\n        {\r\n      " +
-                    "      query.Filter.Filters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
+                    ">\r\n    {\r\n        if (data.Id == null || data.Id == Guid.Empty)\r\n            dat" +
+                    "a.Id = Guid.NewGuid();\r\n    }\r\n\r\n    public void SetId<TEntity>(List<TEntity> da" +
+                    "tas)\r\n        where TEntity : IEntity<Guid>\r\n    {\r\n        datas.ForEach(data =" +
+                    "> data.Id = Guid.NewGuid());    \r\n    }\r\n\r\n    public void ThrowExceptionIfDataN" +
+                    "ull<TEntity>(TEntity? data)\r\n    {\r\n        if (data == null)\r\n            throw" +
+                    " new NotFoundException($\"{typeof(TEntity).Name} not found\");\r\n    }\r\n\r\n    publi" +
+                    "c void ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntity>? data)\r\n    {\r\n   " +
+                    "     if (data == null || !data.Any())\r\n            throw new NotFoundException($" +
+                    "\"{typeof(TEntity).Name} not found\");\r\n    }\r\n\r\n    public void FillDynamicFilter" +
+                    "<T>(ListModel<T> data, DynamicQuery? dq, PageRequest pr)\r\n    {\r\n        data.Dy" +
+                    "namicQuery = dq ?? new DynamicQuery();\r\n        data.PageRequest = pr;\r\n    }\r\n\r" +
+                    "\n    public void SetUserId<T>(T data)\r\n        where T : IUserOwnedEntity\r\n    {" +
+                    "\r\n        if (TokenParameters.IsSuperUser && data.UserId != Guid.Empty)\r\n       " +
+                    "     return;\r\n\r\n        data.UserId = TokenParameters.UserId;\r\n    }\r\n\r\n    publ" +
+                    "ic void ThrowExceptionIfDataOwnerNotLoggedUser<T>(T data)\r\n        where T : IUs" +
+                    "erOwnedEntity\r\n    {\r\n        if (data.UserId == TokenParameters.UserId || Token" +
+                    "Parameters.IsSuperUser)\r\n            return;\r\n\r\n        throw new BusinessExcept" +
+                    "ion(\"Bu veri üzerinde sadece verinin sahibi işlem yapabilir.\");\r\n    }\r\n\r\n    pu" +
+                    "blic void AddLoggedUserIdInDynamicQuery(DynamicQuery? query)\r\n    {\r\n        if " +
+                    "(TokenParameters.IsSuperUser)\r\n            return;\r\n\r\n        var attach = new F" +
+                    "ilter { Field = \"UserId\", Logic = Logic.And, Operator = FilterOperator.Equals, V" +
+                    "alue = TokenParameters.UserId.ToString() };\r\n        AddFilterInDynamicQuery(que" +
+                    "ry, attach);\r\n    }\r\n\r\n    public void AddFilterInDynamicQuery(DynamicQuery? que" +
+                    "ry, Filter attach)\r\n    {\r\n        if (query == null)\r\n        {\r\n            qu" +
+                    "ery = new DynamicQuery();\r\n\r\n        }\r\n        if (query.Filter == null)\r\n     " +
+                    "   {\r\n            query.Filter = attach;\r\n        }\r\n        else if (query.Filt" +
+                    "er.Filters == null)\r\n        {\r\n            query.Filter.Filters = new List<Filt" +
+                    "er> { attach };\r\n        }\r\n        else\r\n        {\r\n            query.Filter.Fi" +
+                    "lters.Add(attach);\r\n        }\r\n    }\r\n\r\n}\r\n");
             
-            #line 127 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
+            #line 128 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/BaseBusinessRules.cs",this.GenerationEnvironment);
 
