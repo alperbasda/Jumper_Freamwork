@@ -15,19 +15,11 @@ using System.Reflection;
 using Tools.DIHelper;
 using UIHelpers.ActionFilters;
 using UIHelpers.Middlewares;
-using Serilog;
-using SeriLogAdapter.Middlewares;
-using SeriLogAdapter;
 using IdentityServer.Business.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Host.ConfigureLogging(config => config.ClearProviders()).UseSerilog();
-//ElasticOptions elk = new ElasticOptions();
 
-//builder.Configuration.GetSection("ElasticConfiguration").Bind(elk);
-
-//builder.Services.AddSerilog(elk);
 builder.Host.ConfigureAppConfiguration(configuration =>
 {
     configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);

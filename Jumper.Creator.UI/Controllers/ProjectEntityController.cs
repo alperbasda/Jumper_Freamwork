@@ -74,7 +74,9 @@ public class ProjectEntityController : MediatrController
     public async Task<IActionResult> Dropdown(SelectBoxModel model, Guid projectId)
     {
         ViewData["SelectBoxModel"] = model;
-        var dropdownItems = await base.Mediator.Send(new GetListByProjectIdProjectEntityQuery { ProjectDeclarationId = projectId });
+        var request =  new GetListByProjectIdProjectEntityQuery { ProjectDeclarationId = projectId };
+        request.PageRequest = new Core.Persistence.Requests.PageRequest { PageIndex = 0, PageSize = int.MaxValue };
+        var dropdownItems = await base.Mediator.Send(request);
         return PartialView("Partials/_Dropdown", dropdownItems.Items);
     }
 
