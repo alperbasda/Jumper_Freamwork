@@ -98,12 +98,19 @@
 
             </li>
         </ul>
-
+        <div data-partial="@Url.Action("CreatePartial","ProjectEntity")?ProjectDeclarationId=@projectId">
+            <div class="vh-align">
+                <h4> Header Yükleniyor. </h4>
+                <a href="#/"> Lütfen Bekleyin. </a>
+            </div>
+        </div>
+        <br/>
         <div class="card">
-            <div data-partial="@Url.Action("CreatePartial","ProjectEntity")?ProjectDeclarationId=@projectId">
-                <div class="vh-align">
-                    <h4> Header Yükleniyor. </h4>
-                    <a href="#/"> Lütfen Bekleyin. </a>
+            <div class="card-header">
+                <div class="card-title">
+                    <h5>
+                        Nesne Listesi
+                    </h5>
                 </div>
             </div>
             <div class="card-body p-0 pb-5">

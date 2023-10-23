@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class ApiRegistrationServiceTemplate : ApiRegistrationServiceTemplateBase
     {
@@ -38,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
         {
             this.Write("\r\n");
             
-            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 20 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
 
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
@@ -49,7 +49,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
             #line default
             #line hidden
             
-            #line 26 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 26 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
@@ -66,7 +66,7 @@ using System.Threading.Tasks;
 
 namespace ");
             
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 36 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
@@ -76,7 +76,7 @@ namespace ");
                     "IConfiguration configuration)\r\n    {\r\n        services.AddScoped<TokenParameters" +
                     ">();\r\n        ");
             
-            #line 43 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 43 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
 
         WriteLine("");
         if(datasource["SeriLogConfigurations"]["ElasticLogConfiguration"] != null && string.IsNullOrEmpty(datasource["SeriLogConfigurations"]["ElasticLogConfiguration"]["Uri"].Value<string?>()))
@@ -98,7 +98,7 @@ namespace ");
             this.Write("        services.AddTransient<LoggerServiceBase, FileLogger>();\r\n        return s" +
                     "ervices;\r\n    }\r\n\r\n}\r\n\r\n");
             
-            #line 64 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 64 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/ApiRegistrationService.cs",this.GenerationEnvironment);
 
