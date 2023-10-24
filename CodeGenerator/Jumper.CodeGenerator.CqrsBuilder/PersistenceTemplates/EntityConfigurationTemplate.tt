@@ -50,7 +50,10 @@ public class <#= item["Name"] #>Configuration : IEntityTypeConfiguration<<#= ite
     WriteLine("");
     foreach(var prop in item["Properties"])
     {
-
+    if(!datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(prop["PropertyTypeCode"].ToString()))
+    {
+    continue;
+    }
     if(prop["PropertyTypeCode"].ToString().Contains("?"))
     {
     WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\");");
