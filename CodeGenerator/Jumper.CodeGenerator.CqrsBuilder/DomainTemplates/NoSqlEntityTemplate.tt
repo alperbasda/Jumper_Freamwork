@@ -44,7 +44,14 @@ public class <#= item["Name"] #> : MongoEntity<Guid>
              {
                 continue;
              }
+             if(prop["PropertyTypeCode"].ToString() != "string?")
+             {
              WriteLine($"\tpublic {prop["Prefix"]} {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
+             }
+             else
+             {
+             WriteLine($"\tpublic {prop["Prefix"]} {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }} = null!;");
+             }
         }
 
 #>

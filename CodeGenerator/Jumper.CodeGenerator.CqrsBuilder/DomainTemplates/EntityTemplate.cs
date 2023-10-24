@@ -92,7 +92,15 @@ foreach (var item in entities!)
              {
                 continue;
              }
+             if(prop["PropertyTypeCode"].ToString() != "string?")
+             {
              WriteLine($"\tpublic {prop["Prefix"]} {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
+             }
+             else
+             {
+             WriteLine($"\tpublic {prop["Prefix"]} {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }} = null!;");
+             }
+             
         }
 
             
@@ -100,7 +108,7 @@ foreach (var item in entities!)
             #line hidden
             this.Write("}\r\n\r\n\r\n");
             
-            #line 55 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
+            #line 63 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\EntityTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.GenerationEnvironment);
 }
