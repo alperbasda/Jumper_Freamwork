@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Jumper.Domain.Enums;
+using MediatR;
 
 namespace Jumper.Application.Features.EntityPropertyDefinitions.Commands.Update;
 
@@ -15,4 +16,6 @@ public class UpdateEntityPropertyDefinitionCommand : IRequest<UpdateEntityProper
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

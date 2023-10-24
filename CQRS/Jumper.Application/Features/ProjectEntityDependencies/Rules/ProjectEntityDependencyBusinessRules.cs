@@ -95,8 +95,36 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     DeletedTime = null,
                     IsUnique = false,
                     IsConstant = true,
+                    PropertyTypeCode = relatedEntities.First().Name,
+                    Name = relatedEntities.First().Name,
+                    Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual",
+                    PropertyPocoType = PropertyPocoType.Hidden
+                },
+                new ProjectEntityProperty
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    DeletedTime = null,
+                    IsUnique = false,
+                    IsConstant = true,
+                    PropertyTypeCode = relatedEntities.Last().Name,
+                    Name = relatedEntities.Last().Name,
+                    Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual",
+                    PropertyPocoType = PropertyPocoType.Hidden
+                },
+
+                new ProjectEntityProperty
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedTime = DateTime.Now,
+                    UpdatedTime = DateTime.Now,
+                    DeletedTime = null,
+                    IsUnique = false,
+                    IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.First().Name}Id",
+                    PropertyPocoType = PropertyPocoType.DropDown
                 },
                 new ProjectEntityProperty
                 {
@@ -108,6 +136,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.Last().Name}Id",
+                    PropertyPocoType = PropertyPocoType.DropDown
                 },
                 new ProjectEntityProperty
                 {
@@ -167,10 +196,11 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         var createList = new List<ProjectEntityProperty>();
         if (type == EntityDependencyType.ManyToMany)
         {
-            var mockProjectEntity = new ProjectEntity { Name = StringHelper.GetRelationTableName(relatedEntities.Select(w => w.Name).ToArray()) };
+            var mockProjectEntity = new ProjectEntity { Name = StringHelper.GetRelationTableName(relatedEntities.Select(w => w.Name).ToArray()), DatabaseType = relatedEntities.First().DatabaseType };
             foreach (var item in relatedEntities)
             {
                 createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(mockProjectEntity, item, false));
+                createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfRelationalDb(mockProjectEntity, item, false));
             }
         }
         else if (type == EntityDependencyType.OneToMany)

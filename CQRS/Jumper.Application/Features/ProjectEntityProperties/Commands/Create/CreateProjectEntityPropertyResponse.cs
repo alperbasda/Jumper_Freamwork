@@ -1,4 +1,6 @@
 ﻿
+using Jumper.Domain.Enums;
+
 namespace Jumper.Application.Features.ProjectEntityProperties.Commands.Create;
 
 public class CreateProjectEntityPropertyResponse
@@ -16,4 +18,6 @@ public class CreateProjectEntityPropertyResponse
     public bool IsUnique { get; set; }
 
     public string Prefix { get; set; } = "";
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

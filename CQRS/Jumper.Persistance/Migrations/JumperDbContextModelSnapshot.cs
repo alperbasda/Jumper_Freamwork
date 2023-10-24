@@ -92,6 +92,10 @@ namespace Jumper.Persistance.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
+                    b.Property<int>("PropertyPocoType")
+                        .HasColumnType("int")
+                        .HasColumnName("PropertyPocoType");
+
                     b.Property<string>("PropertyTypeCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -346,6 +350,10 @@ namespace Jumper.Persistance.Migrations
                     b.Property<Guid>("ProjectEntityId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ProjectEntityId");
+
+                    b.Property<int>("PropertyPocoType")
+                        .HasColumnType("int")
+                        .HasColumnName("PropertyPocoType");
 
                     b.Property<string>("PropertyTypeCode")
                         .IsRequired()

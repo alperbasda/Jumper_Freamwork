@@ -1,4 +1,5 @@
 ﻿
+using Jumper.Domain.Enums;
 using MediatR;
 
 namespace Jumper.Application.Features.EntityPropertyDefinitions.Commands.Create;
@@ -16,4 +17,6 @@ public class CreateEntityPropertyDefinitionCommand : IRequest<CreateEntityProper
     public bool IsUnique { get; set; }
 
     public bool IsConstants { get; set; } = false;
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

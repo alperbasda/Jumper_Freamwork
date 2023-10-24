@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class NoSqlEntityTemplate : NoSqlEntityTemplateBase
     {
@@ -38,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
         {
             this.Write("\r\n");
             
-            #line 20 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -51,7 +51,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.DomainTemplates
             #line hidden
             this.Write("\r\n");
             
-            #line 28 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
 
 
 var entities = datasource["Entities"].Where(w => w["DatabaseType"]!.ToString() == "4");
@@ -62,64 +62,45 @@ foreach (var item in entities!)
             #line default
             #line hidden
             
-            #line 34 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing Core.Persistence.Models;\r\nnamespace ");
             
-            #line 36 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Domain.MongoEntities;\r\n\r\npublic class ");
             
-            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item["Name"]));
             
             #line default
             #line hidden
             this.Write(" : MongoEntity<Guid>\r\n{\r\n");
             
-            #line 40 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
     
-        //Bu Bilgi n to n relation tablosu oldugunu gösterir ve virtual objelerini atmamız gerekir.
-        var isRelationTable =  bool.Parse(item["IsConstant"].ToString()) == true && item["Name"].ToString().EndsWith("Relation");
-
         foreach(var prop in item["Properties"])
         {
              if (ProjectSettings.EntityExculededProperties.Contains(prop["Name"].ToString()))
              {
                 continue;
              }
-
-             WriteLine($"\tpublic {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
-             if(isRelationTable && prop["Name"].ToString().EndsWith("Id"))
-             {
-                 var entityName = prop["Name"].ToString().Substring(0,prop["Name"].ToString().Length-2);
-                 WriteLine($"\tpublic virtual {entityName} {entityName} {{ get; set; }}");
-             }
+             WriteLine($"\tpublic {prop["Prefix"]} {prop["PropertyTypeCode"]} {prop["Name"]} {{ get; set; }}");
         }
 
-        foreach (var dependency in datasource["Relations"].Where(w => w["DependedId"].ToString() == item["Id"].ToString()))
-        {
-            WriteLine($"\tpublic List<{dependency["DependsOnName"]}> {dependency["DependsOnName"].ToString().ToPlural()} {{ get; set; }}");
-        }
-
-        foreach (var dependency in datasource["Relations"].Where(w => w["DependsOnName"].ToString() == item["Id"].ToString() && w["EntityDependencyType"].ToString() == "2"))
-        {
-            
-            WriteLine($"\tpublic List<{dependency["DependedName"]}> {dependency["DependedName"].ToString().ToPlural()} {{ get; set; }}");
-        }
 
             
             #line default
             #line hidden
             this.Write("}\r\n\r\n\r\n");
             
-            #line 73 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
+            #line 54 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\DomainTemplates\NoSqlEntityTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}.cs",this.GenerationEnvironment);
 }

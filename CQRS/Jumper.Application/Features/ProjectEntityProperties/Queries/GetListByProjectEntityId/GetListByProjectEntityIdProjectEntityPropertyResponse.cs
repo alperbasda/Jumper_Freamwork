@@ -1,4 +1,6 @@
-﻿namespace Jumper.Application.Features.ProjectEntityProperties.Queries.GetListByProjectEntityId;
+﻿using Jumper.Domain.Enums;
+
+namespace Jumper.Application.Features.ProjectEntityProperties.Queries.GetListByProjectEntityId;
 
 public class GetListByProjectEntityIdProjectEntityPropertyResponse
 {
@@ -16,5 +18,7 @@ public class GetListByProjectEntityIdProjectEntityPropertyResponse
 
     public bool IsConstant { get; set; }
 
-    public string Prefix { get; set; }
+    public string Prefix { get; set; } = "";
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

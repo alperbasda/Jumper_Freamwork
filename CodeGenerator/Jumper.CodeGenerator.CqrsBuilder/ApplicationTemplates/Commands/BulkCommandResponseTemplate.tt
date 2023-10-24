@@ -33,7 +33,7 @@ public class <#= action["Name"] #><#= entity["Name"] #>Response
 {
     <#
     WriteLine("");
-    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "1"))
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "1" && w["PropertyPocoType"].ToString() != "0"))
     {
     if(prop["PropertyTypeCode"].ToString() != "string?")
     {

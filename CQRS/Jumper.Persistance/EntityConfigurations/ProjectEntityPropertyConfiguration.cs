@@ -24,6 +24,7 @@ public class ProjectEntityPropertyConfiguration : IEntityTypeConfiguration<Proje
         builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
         builder.Property(w => w.HasIndex).HasColumnName("HasIndex").IsRequired();
         builder.Property(w => w.IsUnique).HasColumnName("IsUnique").IsRequired();
+        builder.Property(w => w.PropertyPocoType).HasColumnName("PropertyPocoType").IsRequired();
 
         builder.HasOne(w => w.ProjectEntity);
     }

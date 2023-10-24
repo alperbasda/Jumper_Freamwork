@@ -1,4 +1,5 @@
 ﻿
+using Jumper.Domain.Enums;
 using MediatR;
 
 namespace Jumper.Application.Features.ProjectEntityProperties.Commands.Create;
@@ -21,4 +22,6 @@ public class CreateProjectEntityPropertyCommand : IRequest<CreateProjectEntityPr
     public bool IsConstant { get; set; } = false;
 
     public string Prefix { get; set; } = "";
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

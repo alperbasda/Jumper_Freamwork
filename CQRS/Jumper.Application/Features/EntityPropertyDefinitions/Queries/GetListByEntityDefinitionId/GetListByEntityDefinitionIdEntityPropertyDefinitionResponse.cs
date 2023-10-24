@@ -1,4 +1,6 @@
-﻿namespace Jumper.Application.Features.EntityPropertyDefinitions.Queries.GetListByEntityDefinitionId;
+﻿using Jumper.Domain.Enums;
+
+namespace Jumper.Application.Features.EntityPropertyDefinitions.Queries.GetListByEntityDefinitionId;
 
 public class GetListByEntityDefinitionIdEntityPropertyDefinitionResponse
 {
@@ -19,5 +21,7 @@ public class GetListByEntityDefinitionIdEntityPropertyDefinitionResponse
     public DateTime CreatedTime { get; set; }
 
     public DateTime? UpdatedTime { get; set; }
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 
 }

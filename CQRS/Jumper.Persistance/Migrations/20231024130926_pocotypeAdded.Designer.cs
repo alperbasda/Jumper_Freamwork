@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jumper.Persistance.Migrations
 {
     [DbContext(typeof(JumperDbContext))]
-    [Migration("20231024111955_propertyPrefixAdded")]
-    partial class propertyPrefixAdded
+    [Migration("20231024130926_pocotypeAdded")]
+    partial class pocotypeAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,6 +94,10 @@ namespace Jumper.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
+
+                    b.Property<int>("PropertyPocoType")
+                        .HasColumnType("int")
+                        .HasColumnName("PropertyPocoType");
 
                     b.Property<string>("PropertyTypeCode")
                         .IsRequired()
@@ -349,6 +353,10 @@ namespace Jumper.Persistance.Migrations
                     b.Property<Guid>("ProjectEntityId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ProjectEntityId");
+
+                    b.Property<int>("PropertyPocoType")
+                        .HasColumnType("int")
+                        .HasColumnName("PropertyPocoType");
 
                     b.Property<string>("PropertyTypeCode")
                         .IsRequired()

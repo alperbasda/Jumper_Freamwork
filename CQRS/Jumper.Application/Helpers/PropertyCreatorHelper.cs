@@ -25,7 +25,8 @@ public static class PropertyCreatorHelper
                 PropertyTypeCode = "Guid",
                 Name = $"{entity.Name}Id",
                 Prefix = "",
-                HasIndex = false
+                HasIndex = false,
+                PropertyPocoType = PropertyPocoType.DropDown
             });
             returnList.Add(new ProjectEntityProperty
             {
@@ -39,7 +40,8 @@ public static class PropertyCreatorHelper
                 PropertyTypeCode = entity.Name,
                 Name = entity.Name,
                 Prefix = "virtual",
-                HasIndex = false
+                HasIndex = false,
+                PropertyPocoType = PropertyPocoType.Hidden
             });
         }
         else
@@ -56,7 +58,8 @@ public static class PropertyCreatorHelper
                 PropertyTypeCode = $"ICollection<{entity.Name}>",
                 Name = entity.Name.ToPlural(),
                 Prefix = "virtual",
-                HasIndex = false
+                HasIndex = false,
+                PropertyPocoType = PropertyPocoType.Hidden
             });
         }
         return returnList;
@@ -80,7 +83,8 @@ public static class PropertyCreatorHelper
             PropertyTypeCode = $"List<{entity.Name.ToPlural()}>",
             Name = entity.Name,
             Prefix = "",
-            HasIndex = false
+            HasIndex = false,
+            PropertyPocoType = PropertyPocoType.Hidden
         });
 
         return returnList;

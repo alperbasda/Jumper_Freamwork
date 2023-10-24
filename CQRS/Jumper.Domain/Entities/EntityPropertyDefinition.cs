@@ -1,5 +1,6 @@
 ﻿using Core.Persistence.Models;
 using Jumper.Domain.Base;
+using Jumper.Domain.Enums;
 
 namespace Jumper.Domain.Entities;
 
@@ -18,5 +19,7 @@ public class EntityPropertyDefinition : Entity<Guid>, IConstantEntity
     public bool IsUnique { get; set; }
 
     public bool IsConstant { get; set; } = false;
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 
 }

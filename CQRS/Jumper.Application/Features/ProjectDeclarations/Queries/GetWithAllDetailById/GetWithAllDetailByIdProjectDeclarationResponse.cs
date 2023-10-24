@@ -109,6 +109,10 @@ public class ProjectDeclarationEntityPropertyAggregation
     public bool IsUnique { get; set; }
 
     public bool IsConstant { get; set; }
+
+    public string Prefix { get; set; } = "";
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }
 
 

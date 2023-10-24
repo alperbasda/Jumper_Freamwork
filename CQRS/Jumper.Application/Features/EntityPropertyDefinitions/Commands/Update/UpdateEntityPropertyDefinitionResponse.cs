@@ -1,4 +1,6 @@
-﻿namespace Jumper.Application.Features.EntityPropertyDefinitions.Commands.Update;
+﻿using Jumper.Domain.Enums;
+
+namespace Jumper.Application.Features.EntityPropertyDefinitions.Commands.Update;
 
 public class UpdateEntityPropertyDefinitionResponse
 {
@@ -15,4 +17,6 @@ public class UpdateEntityPropertyDefinitionResponse
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
+
+    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

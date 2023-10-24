@@ -35,7 +35,7 @@ public class <#= action["Name"] #><#= entity["Name"] #>Query : BaseDynamicQuery,
 {
     <#
     WriteLine("");
-    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0"))
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0" && w["PropertyPocoType"].ToString() != "0"))
     {
     if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()))
     {
