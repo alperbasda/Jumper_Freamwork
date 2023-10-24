@@ -4,8 +4,6 @@ using Core.Application.Pipelines.Transaction;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using Jumper.Application.Base;
-using Jumper.Application.Features.Auth.HttpClients;
-using Jumper.Domain.Configurations;
 using MediatR.NotificationPublishers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +19,7 @@ public static class ApplicationServiceRegistiration
 
         services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
 
-        services.AddIdentityOptions(configuration);
-
+        
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddMediatR(configuration =>
@@ -47,43 +44,7 @@ public static class ApplicationServiceRegistiration
 
     }
 
-    public static IServiceCollection AddIdentityOptions(this IServiceCollection services,IConfiguration configuration)
-    {
-        IdentityApiConfiguration identityOpts = new IdentityApiConfiguration();
-
-        configuration.GetSection("HttpClients:IdentityServer").Bind(identityOpts);
-        services.Configure<IdentityApiConfiguration>(options =>
-        {
-            options = identityOpts;
-        });
-        services.AddSingleton<IdentityApiConfiguration>(sp =>
-        {
-            return identityOpts;
-        });
-
-
-
-        JwtTokenOptions tokenOpts = new JwtTokenOptions();
-
-        configuration.GetSection("JwtTokenOptions").Bind(tokenOpts);
-        services.Configure<JwtTokenOptions>(options =>
-        {
-            options = tokenOpts;
-        });
-        services.AddSingleton<JwtTokenOptions>(sp =>
-        {
-            return tokenOpts;
-        });
-
-
-        services.AddHttpClient<IIdentityServerClientService, IdentityServerClientService>((client) =>
-        {
-            client.BaseAddress = new Uri(identityOpts.BaseAddress);
-        });
-
-        return services;
-    }
-
+  
 
 
     public static IServiceCollection AddSubClassesOfType(

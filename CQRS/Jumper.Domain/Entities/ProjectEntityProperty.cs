@@ -1,6 +1,5 @@
 ﻿using Core.Persistence.Models;
 using Jumper.Domain.Base;
-using Jumper.Domain.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Jumper.Domain.Entities;
