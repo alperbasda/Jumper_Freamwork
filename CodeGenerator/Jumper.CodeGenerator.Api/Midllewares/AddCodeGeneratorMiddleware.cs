@@ -1,10 +1,13 @@
 ﻿using Core.ApiHelpers.JwtHelper.Models;
 using Core.Application.Pipelines.Caching;
+using Jumper.Application.Features.Auth.HttpClients;
 using Jumper.CodeGenerator.BuilderBase.ArchitectureCreators;
 using Jumper.CodeGenerator.BuilderBase.Helpers;
 using Jumper.CodeGenerator.BuilderBase.Starters;
-using Jumper.CodeGenerator.Helpers.FileHelpers;
+using Jumper.Common.FileHelpers;
+using Jumper.Domain.Configurations;
 using MediatR.NotificationPublishers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using StackExchange.Redis;
 using System.Reflection;
 
@@ -14,6 +17,7 @@ public static class AddCodeGeneratorMiddleware
 {
     public static IServiceCollection AddCodeGeneratorServices(this IServiceCollection services, IConfiguration configuration)
     {
+        
         services.AddMediatR(configuration =>
         {
             configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
@@ -26,7 +30,7 @@ public static class AddCodeGeneratorMiddleware
         });
 
 
-        services.AddScoped<TokenParameters>();
+        services.AddIdentityOptions(configuration);
         services.AddScoped<FileHelper>();
         services.AddScoped<ProjectFileCreatorStarter>();
         
@@ -88,7 +92,6 @@ public static class AddCodeGeneratorMiddleware
             if (addWithLifeCycle == null)
             {
                 services.AddScoped(item);
-                services.AddScoped(c => c.GetService(item));
             }
 
 
@@ -97,6 +100,56 @@ public static class AddCodeGeneratorMiddleware
                 addWithLifeCycle(services, type);
         return services;
     }
+
+    public static IServiceCollection AddIdentityOptions(this IServiceCollection services, IConfiguration configuration)
+    {
+        IdentityApiConfiguration identityOpts = new IdentityApiConfiguration();
+
+        configuration.GetSection("HttpClients:IdentityServer").Bind(identityOpts);
+        services.Configure<IdentityApiConfiguration>(options =>
+        {
+            options = identityOpts;
+        });
+        services.AddSingleton<IdentityApiConfiguration>(sp =>
+        {
+            return identityOpts;
+        });
+
+
+
+        JwtTokenOptions tokenOpts = new JwtTokenOptions();
+
+        configuration.GetSection("JwtTokenOptions").Bind(tokenOpts);
+        services.Configure<JwtTokenOptions>(options =>
+        {
+            options = tokenOpts;
+        });
+        services.AddSingleton<JwtTokenOptions>(sp =>
+        {
+            return tokenOpts;
+        });
+
+
+        services.AddHttpClient<IIdentityServerClientService, IdentityServerClientService>((client) =>
+        {
+            client.BaseAddress = new Uri(identityOpts.BaseAddress);
+        });
+
+
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                    options.SlidingExpiration = true;
+                    options.AccessDeniedPath = "/auth/login/";
+                });
+
+        services.AddScoped<TokenParameters>();
+
+
+        return services;
+    }
+
 
     public static void AddAmqpServices(this IServiceCollection services, IConfiguration configuration)
     {

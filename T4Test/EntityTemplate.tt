@@ -10,8 +10,8 @@
 <#@ import namespace="System.Runtime" #>
 <#@ import namespace="Newtonsoft.Json" #>
 <#@ import namespace="Newtonsoft.Json.Linq" #>
-<#@ assembly name="_Dependencies\Jumper.CodeGenerator.Helpers.dll" #>
-<#@ import namespace="Jumper.CodeGenerator.Helpers.Constants" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
 <#@ output extension=".cs" #>
 
 <#

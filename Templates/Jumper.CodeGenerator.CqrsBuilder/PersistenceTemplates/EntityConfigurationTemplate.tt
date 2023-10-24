@@ -1,0 +1,101 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ output extension=".cs" #>
+
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Persistence/EntityConfigurations";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+
+
+<#
+var entities = datasource["Entities"].Where(w => w["DatabaseType"]!.ToString() != "4");
+foreach (var item in entities!)
+{
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using <#= datasource["SolutionName"] #>.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+namespace <#= datasource["SolutionName"] #>.Persistence.EntityConfigurations;
+
+
+public class <#= item["Name"] #>Configuration : IEntityTypeConfiguration<<#= item["Name"] #>>
+{
+    public void Configure(EntityTypeBuilder<<#= item["Name"] #>> builder)
+    {
+        builder.ToTable("<#= item["Name"].ToString().ToPlural() #>").HasKey(t => t.Id);
+        builder.HasQueryFilter(w => !w.DeletedTime.HasValue);
+
+    <#
+    WriteLine("");
+    foreach(var prop in item["Properties"])
+    {
+    if(!datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(prop["PropertyTypeCode"].ToString()))
+    {
+    continue;
+    }
+    if(prop["PropertyTypeCode"].ToString().Contains("?"))
+    {
+    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\");");
+    
+    }
+    else
+    {
+    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\").IsRequired();");
+    
+    }
+    if(prop["HasIndex"].ToString() == "true")
+    {
+    WriteLine($"\t\tbuilder.HasIndex(w => w.{prop["Name"]}).IsUnique({prop["IsUnique"]});");
+    
+    }
+    }
+
+    foreach(var relation in datasource["Relations"].Where(w => (w["DependedId"].ToString() == item["Id"].ToString() || w["DependsOnId"].ToString() == item["Id"].ToString()) && w["EntityDependencyType"].ToString() != "2"))
+    {
+    if(item["Id"].ToString() == relation["DependedId"].ToString())
+    {
+    WriteLine($"\t\tbuilder.HasMany(w => w.{relation["DependsOnName"].ToString().ToPlural()});");
+    
+    }
+    else
+    {
+    WriteLine($"\t\tbuilder.HasOne(w => w.{relation["DependedName"]});");
+    }
+    }
+    #>
+        
+        
+
+
+    }
+}
+
+
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/{item["Name"]}Configuration.cs",this.GenerationEnvironment);
+}
+#>

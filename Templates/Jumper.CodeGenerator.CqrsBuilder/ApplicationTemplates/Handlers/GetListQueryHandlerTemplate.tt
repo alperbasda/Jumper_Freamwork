@@ -1,0 +1,80 @@
+﻿<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+#>
+
+<#
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => w["EntityAction"].ToString() == "6"))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Handlers/Queries/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using AutoMapper;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.<#= action["Name"] #>;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
+using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
+using Core.Persistence.Models.Responses;
+using MediatR;
+namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Queries.<#= action["Name"] #>;
+
+public class <#= action["Name"] #><#= entity["Name"] #>QueryHandler : IRequestHandler<<#= action["Name"] #><#= entity["Name"] #>Query, ListModel<<#= action["Name"] #><#= entity["Name"] #>Response>>
+{
+    private readonly I<#= entity["Name"].ToString() #>Dal _<#= entity["Name"].ToString().ToCamelCase() #>Dal;
+    private readonly <#= entity["Name"].ToString() #>BusinessRules _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules;
+    private readonly IMapper _mapper;
+
+    public <#= action["Name"] #><#= entity["Name"] #>QueryHandler(IMapper mapper, I<#= entity["Name"].ToString() #>Dal <#= entity["Name"].ToString().ToCamelCase() #>Dal, <#= entity["Name"].ToString() #>BusinessRules <#= entity["Name"].ToString().ToCamelCase() #>BusinessRules)
+    {
+        _mapper = mapper;
+        _<#= entity["Name"].ToString().ToCamelCase() #>Dal = <#= entity["Name"].ToString().ToCamelCase() #>Dal;
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules = <#= entity["Name"].ToString().ToCamelCase() #>BusinessRules;
+    }
+
+    public async Task<ListModel<<#= action["Name"] #><#= entity["Name"] #>Response>> Handle(<#= action["Name"] #><#= entity["Name"] #>Query request, CancellationToken cancellationToken)
+    {
+        var datas = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetListByDynamicAsync(request.DynamicQuery, size: request.PageRequest.PageSize, index: request.PageRequest.PageIndex, cancellationToken : cancellationToken);
+
+        //İş Kurallarınızı Burada Çağırabilirsiniz.
+
+        var returnData = _mapper.Map<ListModel<<#= action["Name"] #><#= entity["Name"] #>Response>>(datas);
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules.FillDynamicFilter(returnData, request.DynamicQuery, request.PageRequest);
+        return returnData;
+
+    }
+}
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}QueryHandler.cs",this.GenerationEnvironment);
+}
+}
+#>

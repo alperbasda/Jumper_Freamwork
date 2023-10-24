@@ -1,0 +1,92 @@
+﻿<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+#>
+
+<#
+foreach (var entity in datasource["Entities"])
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Profiles";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using AutoMapper;
+using Core.Persistence.Models.Responses;
+using Core.Persistence.Paging;
+<#
+foreach(var action in entity["Actions"])
+{
+if(ProjectSettings.ReadActionTypes.Contains(action["EntityAction"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"].ToString()}.Application.Features.{entity["Name"].ToString().ToPlural()}.Queries.{action["Name"].ToString()};");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"].ToString()}.Application.Features.{entity["Name"].ToString().ToPlural()}.Commands.{action["Name"].ToString()};");
+}
+
+}
+#>
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
+
+namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Profiles;
+
+public class MappingProfile : Profile
+{
+    public MappingProfile()
+    {
+        <#
+        WriteLine("");
+        foreach(var action in entity["Actions"])
+        {
+
+        switch(action["EntityAction"].ToString())
+        {
+                case "5":
+                break;
+                case "6":
+                WriteLine($"\t\tCreateMap<Paginate<{entity["Name"].ToString()}>, ListModel<{action["Name"].ToString()}{entity["Name"].ToString()}Response>>();");
+                break;
+                default:
+                WriteLine($"\t\tCreateMap<{action["Name"].ToString()}{entity["Name"].ToString()}Command,{entity["Name"].ToString()}>();");
+                break;
+        }
+                WriteLine($"\t\tCreateMap<{entity["Name"].ToString()}, {action["Name"].ToString()}{entity["Name"].ToString()}Response>();");
+        
+        }
+        #>
+    }
+}
+
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/MappingProfile.cs",this.GenerationEnvironment);
+}
+
+#>

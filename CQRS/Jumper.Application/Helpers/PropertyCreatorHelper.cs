@@ -1,6 +1,6 @@
-﻿using Jumper.CodeGenerator.Helpers.StringHelpers;
-using Jumper.Domain.Entities;
+﻿using Jumper.Domain.Entities;
 using Jumper.Domain.Enums;
+using Jumper.Common.StringHelpers;
 
 namespace Jumper.Application.Helpers;
 

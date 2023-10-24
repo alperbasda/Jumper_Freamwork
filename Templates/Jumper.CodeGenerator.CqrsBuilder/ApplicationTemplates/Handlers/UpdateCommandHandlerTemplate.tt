@@ -1,0 +1,81 @@
+﻿<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+#>
+
+<#
+foreach (var entity in datasource["Entities"])
+{
+foreach(var action in entity["Actions"].Where(w => w["EntityAction"].ToString() == "2"))
+{
+var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Cqrs/{datasource["SolutionName"]}.Application/Features/{entity["Name"].ToString().ToPlural()}/Handlers/Commands/{action["Name"]}";
+DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using AutoMapper;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.<#= action["Name"] #>;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Rules;
+using <#= datasource["SolutionName"] #>.Application.Services.Repositories;
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
+using MediatR;
+namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Handlers.Commands.<#= action["Name"] #>;
+
+public class <#= action["Name"] #><#= entity["Name"] #>CommandHandler : IRequestHandler<<#= action["Name"] #><#= entity["Name"] #>Command, <#= action["Name"] #><#= entity["Name"] #>Response>
+{
+    private readonly I<#= entity["Name"].ToString() #>Dal _<#= entity["Name"].ToString().ToCamelCase() #>Dal;
+    private readonly <#= entity["Name"].ToString() #>BusinessRules _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules;
+    private readonly IMapper _mapper;
+
+    public <#= action["Name"] #><#= entity["Name"] #>CommandHandler(IMapper mapper, I<#= entity["Name"].ToString() #>Dal <#= entity["Name"].ToString().ToCamelCase() #>Dal, <#= entity["Name"].ToString() #>BusinessRules <#= entity["Name"].ToString().ToCamelCase() #>BusinessRules)
+    {
+        _mapper = mapper;
+        _<#= entity["Name"].ToString().ToCamelCase() #>Dal = <#= entity["Name"].ToString().ToCamelCase() #>Dal;
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules = <#= entity["Name"].ToString().ToCamelCase() #>BusinessRules;
+    }
+
+    public async Task<<#= action["Name"] #><#= entity["Name"] #>Response> Handle(<#= action["Name"] #><#= entity["Name"] #>Command request, CancellationToken cancellationToken)
+    {
+        var data = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetAsync(w => w.Id == request.Id);
+
+        _<#= entity["Name"].ToString().ToCamelCase() #>BusinessRules.ThrowExceptionIfDataNull(data);
+        
+        //İş Kurallarınızı Burada Çağırabilirsiniz.
+
+        _mapper.Map(request, data);
+        await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.UpdateAsync(data);
+
+        return _mapper.Map<<#= action["Name"] #><#= entity["Name"] #>Response>(data);
+    }
+}
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/{action["Name"]}{entity["Name"]}CommandHandler.cs",this.GenerationEnvironment);
+}
+}
+#>

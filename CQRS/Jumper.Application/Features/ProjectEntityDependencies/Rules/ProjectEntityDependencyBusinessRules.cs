@@ -4,7 +4,7 @@ using Jumper.Application.Base;
 using Jumper.Application.Features.ProjectEntityDependencies.Commands.Create;
 using Jumper.Application.Helpers;
 using Jumper.Application.Services.Repositories;
-using Jumper.CodeGenerator.Helpers.StringHelpers;
+using Jumper.Common.StringHelpers;
 using Jumper.Domain.Entities;
 using Jumper.Domain.Enums;
 

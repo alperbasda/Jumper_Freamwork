@@ -30,13 +30,12 @@ public class JsonProjectsController : ApiControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateProject(GetWithAllDetailByIdProjectDeclarationQuery request)
     {
-        
         var project = await _mediator.Send(request);
 
         var architecture = await _mediator.Send(new GetByIdFromCacheArchitectureDefinitionQuery { Id = request.ArchitectureId });
 
         _architectureCreator.Create(project, architecture);
-        await _projectFileCreatorStarter.StartProcess(project, architecture);
+        await _projectFileCreatorStarter.StartProcess(project, architecture.DllName);
 
         return Ok(CreateActionResult(Response<MessageResponse>.Success(new MessageResponse { Message = " " }, 200)));
     }

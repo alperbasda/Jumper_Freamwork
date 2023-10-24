@@ -17,7 +17,7 @@ namespace T4Test
     using System.Runtime;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using Jumper.CodeGenerator.Helpers.Constants;
+    using Jumper.Common.Constants;
     
     /// <summary>
     /// Class to produce the template output

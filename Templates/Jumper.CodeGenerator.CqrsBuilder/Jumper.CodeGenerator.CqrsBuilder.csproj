@@ -1,0 +1,491 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputPath>..\..\_Dependencies\Architectures</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  
+
+  <ItemGroup>
+    <None Include="ApiTemplates\ApiControllerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiControllerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApiTemplates\ApiRegistrationServiceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiRegistrationServiceTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApplicationServiceRegistirationTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Base\BaseBusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseBusinessRulesTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Base\BaseDynamicQueryTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseDynamicQueryTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\BusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BusinessRulesTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\BulkCommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\CommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\BulkCommandResponseTemplate.cs">
+      <DependentUpon>BulkCommandResponseTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Include="ApplicationTemplates\Commands\CommandResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandResponseTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Commands\CommandValidatorTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\BulkCreateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCreateCommandHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkUpdateCommandHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateCommandHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeleteCommandHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\GetListQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetListQueryHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\GetQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetQueryHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Handlers\UpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateCommandHandlerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\MappingProfileTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MappingProfileTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListQueryRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Queries\QueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryRequestTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\Queries\QueryResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryResponseTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApplicationTemplates\RepositoryInterfaceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RepositoryInterfaceTemplate.tt</DependentUpon>
+    </None>
+    <None Include="CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IdentityApiConfigurationTemplate.tt</DependentUpon>
+    </None>
+    <None Include="CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JwtTokenOptionsTemplate.tt</DependentUpon>
+    </None>
+    <None Include="DomainTemplates\EntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityTemplate.tt</DependentUpon>
+    </None>
+    <None Include="DomainTemplates\NoSqlEntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NoSqlEntityTemplate.tt</DependentUpon>
+    </None>
+    <None Include="PersistenceTemplates\DbContextTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DbContextTemplate.tt</DependentUpon>
+    </None>
+    <None Include="PersistenceTemplates\EfRepository.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EfRepository.tt</DependentUpon>
+    </None>
+    <None Include="PersistenceTemplates\EntityConfigurationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityConfigurationTemplate.tt</DependentUpon>
+    </None>
+    <None Include="PersistenceTemplates\NoSqlRepository.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NoSqlRepository.tt</DependentUpon>
+    </None>
+    <None Include="PersistenceTemplates\PersistenceRegistrationServiceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CodeGenerator\Jumper.CodeGenerator.BuilderBase\Jumper.CodeGenerator.BuilderBase.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Jumper.Common">
+      <HintPath>..\..\_Dependencies\Jumper.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ApiTemplates\ApiControllerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiControllerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApiTemplates\ApiRegistrationServiceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiRegistrationServiceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApplicationServiceRegistirationTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Base\BaseBusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseBusinessRulesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Base\BaseDynamicQueryTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BaseDynamicQueryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\BusinessRulesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BusinessRulesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\BulkCommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\BulkCommandResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCommandResponseTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\CommandRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\CommandResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandResponseTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Commands\CommandValidatorTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandValidatorTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\BulkCreateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkCreateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BulkUpdateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeleteCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\GetListQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetListQueryHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\GetQueryHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetQueryHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Handlers\UpdateCommandHandlerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateCommandHandlerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\MappingProfileTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MappingProfileTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListQueryRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Queries\QueryRequestTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryRequestTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\Queries\QueryResponseTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryResponseTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicationTemplates\RepositoryInterfaceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RepositoryInterfaceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IdentityApiConfigurationTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JwtTokenOptionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="DomainTemplates\EntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="DomainTemplates\NoSqlEntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NoSqlEntityTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PersistenceLayers\DbContextTeemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DbContextTeemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PersistenceTemplates\DbContextTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DbContextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PersistenceTemplates\EfRepository.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EfRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PersistenceTemplates\EntityConfigurationTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityConfigurationTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PersistenceTemplates\NoSqlRepository.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NoSqlRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PersistenceTemplates\PersistenceRegistrationServiceTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ApiTemplates\ApiControllerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApiControllerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApiTemplates\ApiRegistrationServiceTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApiRegistrationServiceTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApplicationServiceRegistirationTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Base\BaseBusinessRulesTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BaseBusinessRulesTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Base\BaseDynamicQueryTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BaseDynamicQueryTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\BusinessRulesTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BusinessRulesTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\BulkCommandRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BulkCommandRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\CommandRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\BulkCommandResponseTemplate.tt">
+      <LastGenOutput>BulkCommandResponseTemplate.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="ApplicationTemplates\Commands\CommandResponseTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandResponseTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Commands\CommandValidatorTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandValidatorTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\BulkCreateCommandHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BulkCreateCommandHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\BulkUpdateCommandHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BulkUpdateCommandHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\CreateCommandHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CreateCommandHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\DeleteCommandHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DeleteCommandHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\GetListQueryHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>GetListQueryHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\GetQueryHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>GetQueryHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Handlers\UpdateCommandHandlerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>UpdateCommandHandlerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\MappingProfileTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>MappingProfileTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Queries\ListQueryRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ListQueryRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Queries\QueryRequestTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>QueryRequestTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\Queries\QueryResponseTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>QueryResponseTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApplicationTemplates\RepositoryInterfaceTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RepositoryInterfaceTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="CommonTemplates\IdentityTemplates\IdentityApiConfigurationTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IdentityApiConfigurationTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="CommonTemplates\IdentityTemplates\JwtTokenOptionsTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>JwtTokenOptionsTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="DomainTemplates\EntityTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EntityTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="DomainTemplates\NoSqlEntityTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>NoSqlEntityTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="PersistenceTemplates\DbContextTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbContextTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="PersistenceTemplates\EfRepository.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EfRepository.cs</LastGenOutput>
+    </None>
+    <None Update="PersistenceTemplates\EntityConfigurationTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EntityConfigurationTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="PersistenceTemplates\NoSqlRepository.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>NoSqlRepository.cs</LastGenOutput>
+    </None>
+    <None Update="PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>PersistenceRegistrationServiceTemplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

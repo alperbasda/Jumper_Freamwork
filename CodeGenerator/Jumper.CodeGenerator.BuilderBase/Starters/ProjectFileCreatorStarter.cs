@@ -1,7 +1,6 @@
 ﻿using Jumper.Application.Features.ProjectDeclarations.Queries.GetWithAllDetailById;
-using Jumper.CodeGenerator.Helpers.Constants;
-using Jumper.CodeGenerator.Helpers.FileHelpers;
-using Jumper.Domain.MongoEntities;
+using Jumper.Common.Constants;
+using Jumper.Common.FileHelpers;
 using Newtonsoft.Json;
 using System.CodeDom.Compiler;
 using System.Reflection;
@@ -19,12 +18,11 @@ public class ProjectFileCreatorStarter
         _fileHelper = fileHelper;
     }
 
-
-    public async Task StartProcess(GetWithAllDetailByIdProjectDeclarationResponse project, ArchitectureDefinition architectureDefinition)
+    public async Task StartProcess(GetWithAllDetailByIdProjectDeclarationResponse project, string dllName)
     {
         _fileHelper.Create(FileSettings.ReadProjectPath, JsonConvert.SerializeObject(project));
 
-        var templates = Assembly.LoadFile($"{FileSettings.ExternalDllDirectory}\\{architectureDefinition.DllName}").GetTypes().Where(w => w.GetCustomAttribute(typeof(GeneratedCodeAttribute)) != null && !w.Name.EndsWith("Base")).ToList();
+        var templates = Assembly.LoadFile($"{FileSettings.ExternalDllDirectory}\\{dllName}").GetTypes().Where(w => w.GetCustomAttribute(typeof(GeneratedCodeAttribute)) != null && !w.Name.EndsWith("Base")).ToList();
 
         foreach (var template in templates)
         {

@@ -9,7 +9,7 @@
       "Jumper.CodeGenerator.CqrsBuilder/1.0.0": {
         "dependencies": {
           "Jumper.CodeGenerator.BuilderBase": "1.0.0",
-          "Jumper.CodeGenerator.Helpers.Reference": "1.0.0.0"
+          "Jumper.Common.Reference": "1.0.0.0"
         },
         "runtime": {
           "Jumper.CodeGenerator.CqrsBuilder.dll": {}
@@ -1920,7 +1920,6 @@
           "CQRS.Application": "1.0.3.1",
           "CQRS.Security": "1.0.3.1",
           "FluentValidation.DependencyInjectionExtensions": "11.7.1",
-          "Jumper.CodeGenerator.Helpers": "1.0.0",
           "Jumper.Domain": "1.0.0",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.RabbitMQ": "8.1.0",
@@ -1950,15 +1949,16 @@
         "dependencies": {
           "CQRS.CrossCuttingConcerns": "1.0.3.2",
           "CQRS.Persistence": "1.0.3.1",
+          "Jumper.Common": "1.0.0",
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "Jumper.Domain.dll": {}
         }
       },
-      "Jumper.CodeGenerator.Helpers.Reference/1.0.0.0": {
+      "Jumper.Common.Reference/1.0.0.0": {
         "runtime": {
-          "Jumper.CodeGenerator.Helpers.dll": {
+          "Jumper.Common.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -3366,7 +3366,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Jumper.CodeGenerator.Helpers.Reference/1.0.0.0": {
+    "Jumper.Common.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

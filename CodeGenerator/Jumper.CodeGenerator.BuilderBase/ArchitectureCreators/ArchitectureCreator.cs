@@ -1,7 +1,7 @@
 ﻿using Jumper.Application.Features.ProjectDeclarations.Queries.GetWithAllDetailById;
 using Jumper.CodeGenerator.BuilderBase.Builders.Processes;
-using Jumper.CodeGenerator.Helpers.Constants;
-using Jumper.CodeGenerator.Helpers.DirectoryHelpers;
+using Jumper.Common.Constants;
+using Jumper.Common.DirectoryHelpers;
 using Jumper.Domain.MongoEntities;
 
 namespace Jumper.CodeGenerator.BuilderBase.ArchitectureCreators;
@@ -51,7 +51,7 @@ public class ArchitectureCreator : IArchitectureCreator
             var projectCreatePath = $"{FileSettings.ProjectCreateDirectory}/{_project.SolutionName}/{projectItem.Folder}/{_project.SolutionName}.{projectItem.Name}";
             
             DirectoryHelper.CreateDirectoryIfNotExists(projectCreatePath);
-
+            
             _processBuilder
             .SetArguments($"new {projectItem.DotnetType} -o {projectCreatePath} --name {_project.SolutionName} --solutionname  {_project.SolutionName} --force")
             .SetWorkingDirectory(projectCreatePath)
