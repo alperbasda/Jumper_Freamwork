@@ -18,6 +18,4 @@ public class CreateEntityPropertyDefinitionResponse
     public bool IsUnique { get; set; }
 
     public DateTime CreatedTime { get; set; }
-
-    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

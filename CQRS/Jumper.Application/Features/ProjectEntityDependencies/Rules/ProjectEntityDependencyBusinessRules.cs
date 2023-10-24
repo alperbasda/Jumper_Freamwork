@@ -74,7 +74,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         if (type != EntityDependencyType.ManyToMany)
             return;
 
-        var tableName = $"{string.Join("", relatedEntities.Select(w => w.Name).OrderBy(w => w))}Relation";
+        var tableName = $"{string.Join("", relatedEntities.Select(w => w.Name).OrderBy(w => w))}Relations";
         var createEntity = new ProjectEntity
         {
             Id = Guid.NewGuid(),
@@ -97,8 +97,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = relatedEntities.First().Name,
                     Name = relatedEntities.First().Name,
-                    Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual",
-                    PropertyPocoType = PropertyPocoType.Hidden
+                    Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual"
                 },
                 new ProjectEntityProperty
                 {
@@ -110,8 +109,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = relatedEntities.Last().Name,
                     Name = relatedEntities.Last().Name,
-                    Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual",
-                    PropertyPocoType = PropertyPocoType.Hidden
+                    Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual"
                 },
 
                 new ProjectEntityProperty
@@ -124,7 +122,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.First().Name}Id",
-                    PropertyPocoType = PropertyPocoType.DropDown
+                    Prefix = string.Empty,
                 },
                 new ProjectEntityProperty
                 {
@@ -136,7 +134,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.Last().Name}Id",
-                    PropertyPocoType = PropertyPocoType.DropDown
+                    Prefix = string.Empty,
                 },
                 new ProjectEntityProperty
                 {
@@ -148,6 +146,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "DateTime",
                     Name = "CreatedTime",
+                    Prefix = string.Empty,
                 },
                 new ProjectEntityProperty
                 {
@@ -159,6 +158,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "DateTime?",
                     Name = "UpdatedTime",
+                    Prefix = string.Empty,
                 },
                 new ProjectEntityProperty
                 {
@@ -170,6 +170,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "DateTime?",
                     Name = "DeletedTime",
+                    Prefix = string.Empty,
                 },
                 new ProjectEntityProperty
                 {
@@ -181,7 +182,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = "Id",
-
+                    Prefix = string.Empty,
                 }
             },
             IsConstant = true,
@@ -239,12 +240,12 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         {
             throw new BusinessException("Relation Table Could Not Be Create.");
         }
-        string tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relation";
+        string tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relations";
         var data = await _projectEntityDal.GetAsync(w => w.Name == tableName && w.UserId == relatedEntities.Items.First().UserId);
 
         if (data == null)
         {
-            throw new NotFoundException("Relation Table Could Not Be Delete.");
+            throw new NotFoundException("Relation Table Could Not Be Found.");
         }
         _ = await _projectEntityDal.DeleteAsync(data);
     }

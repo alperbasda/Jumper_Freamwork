@@ -18,6 +18,4 @@ public class CreateProjectEntityPropertyResponse
     public bool IsUnique { get; set; }
 
     public string Prefix { get; set; } = "";
-
-    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

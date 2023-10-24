@@ -26,11 +26,6 @@ public class ProjectEntityProperty : Entity<Guid> , IConstantEntity
     /// </summary>
     public string Prefix { get; set; }
 
-    /// <summary>
-    /// Metod parametrelerin bulunup bulunmayacagını belirler. Bulunacak ise UI da hangi tipte gösterileceğini belirtir.
-    /// </summary>
-    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
-
     [InverseProperty("ProjectEntityProperty")]
     public virtual ICollection<ProjectEntityActionProperty> Metods { get; set; }
 }

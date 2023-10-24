@@ -17,6 +17,4 @@ public class UpdateEntityPropertyDefinitionResponse
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
-
-    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
 }

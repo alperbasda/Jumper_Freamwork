@@ -1,9 +1,12 @@
-﻿using Core.ApiHelpers.JwtHelper.Models;
+﻿using AutoMapper;
+using Core.ApiHelpers.JwtHelper.Models;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Jumper.Application.Base;
 using Jumper.Application.Features.ProjectDeclarations.Queries.GetWithAllDetailById;
+using Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
 using Jumper.Application.Services.Repositories;
 using Jumper.Domain.Enums;
+using MediatR;
 using System.Linq.Expressions;
 
 namespace Jumper.Application.Features.ProjectDeclaration.Rules;
@@ -11,10 +14,13 @@ namespace Jumper.Application.Features.ProjectDeclaration.Rules;
 public class ProjectDeclarationBusinessRules : BaseBusinessRules
 {
     IProjectDeclarationDal _projectDeclarationDal;
-
-    public ProjectDeclarationBusinessRules(IProjectDeclarationDal projectDeclarationDal, TokenParameters tokenParameters) : base(tokenParameters)
+    IMediator _mediator;
+    IMapper _mapper;
+    public ProjectDeclarationBusinessRules(IProjectDeclarationDal projectDeclarationDal, TokenParameters tokenParameters, IMediator mediator, IMapper mapper) : base(tokenParameters)
     {
         _projectDeclarationDal = projectDeclarationDal;
+        _mediator = mediator;
+        _mapper = mapper;
     }
 
     public async Task ThrowExceptionIfSamaNameProjectExists(string name)
@@ -32,6 +38,12 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
             item.DependedName = data.Entities.FirstOrDefault(w => w.Id == item.DependedId)?.Name ?? "";
             item.DependsOnName = data.Entities.FirstOrDefault(w => w.Id == item.DependsOnId)?.Name ?? "";
         }
+    }
+
+    public async Task FillPropertyTypes(GetWithAllDetailByIdProjectDeclarationResponse data)
+    {
+        var propertyTypes = await _mediator.Send(new GetAllFromCachePropertyTypeDeclarationQuery());
+        data.PropertyTypes = _mapper.Map<List<PropertyTypeAggregation>>(propertyTypes);
     }
 
     public void FillEntityActionProperties(GetWithAllDetailByIdProjectDeclarationResponse data)

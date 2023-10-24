@@ -137,7 +137,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Queries\ListQueryRequestTemplate.tt"
 
     WriteLine("");
-    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0" && w["PropertyPocoType"].ToString() != "0"))
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0" && datasource["PropertyTypeNames"].Contains(w["PropertyTypeCode"].ToString())))
     {
     if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()))
     {

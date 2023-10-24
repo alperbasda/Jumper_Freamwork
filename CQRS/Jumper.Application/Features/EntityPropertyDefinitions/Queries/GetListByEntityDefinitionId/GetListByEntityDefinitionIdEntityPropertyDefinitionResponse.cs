@@ -22,6 +22,4 @@ public class GetListByEntityDefinitionIdEntityPropertyDefinitionResponse
 
     public DateTime? UpdatedTime { get; set; }
 
-    public PropertyPocoType PropertyPocoType { get; set; } = PropertyPocoType.Input;
-
 }

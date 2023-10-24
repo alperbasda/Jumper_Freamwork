@@ -22,7 +22,6 @@ namespace Jumper.Persistance.EntityConfigurations
             builder.Property(w => w.PropertyTypeCode).HasColumnName("PropertyTypeCode").IsRequired();
             builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
             builder.Property(w => w.EntityDefinitionId).HasColumnName("EntityDefinitionId").IsRequired();
-            builder.Property(w => w.PropertyPocoType).HasColumnName("PropertyPocoType").IsRequired();
 
             builder.HasOne(w => w.EntityDefinition);
 
