@@ -19,4 +19,6 @@ public class CreateProjectEntityPropertyCommand : IRequest<CreateProjectEntityPr
     public bool IsUnique { get; set; }
 
     public bool IsConstant { get; set; } = false;
+
+    public string Prefix { get; set; } = "";
 }

@@ -14,4 +14,6 @@ public class CreateProjectEntityPropertyResponse
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
+
+    public string Prefix { get; set; } = "";
 }

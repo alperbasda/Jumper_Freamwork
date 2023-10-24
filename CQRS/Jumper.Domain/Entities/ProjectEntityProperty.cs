@@ -20,6 +20,11 @@ public class ProjectEntityProperty : Entity<Guid> , IConstantEntity
 
     public bool IsConstant { get; set; }
 
+    /// <summary>
+    /// Virtual abstract vb.
+    /// </summary>
+    public string Prefix { get; set; }
+
     [InverseProperty("ProjectEntityProperty")]
     public virtual ICollection<ProjectEntityActionProperty> Metods { get; set; }
 }

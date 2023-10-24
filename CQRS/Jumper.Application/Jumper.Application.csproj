@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CodeGenerator\Jumper.CodeGenerator.Helpers\Jumper.CodeGenerator.Helpers.csproj" />
     <ProjectReference Include="..\Jumper.Domain\Jumper.Domain.csproj" />
   </ItemGroup>
 

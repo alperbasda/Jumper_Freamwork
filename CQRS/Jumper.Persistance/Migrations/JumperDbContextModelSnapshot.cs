@@ -339,6 +339,10 @@ namespace Jumper.Persistance.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
+                    b.Property<string>("Prefix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("ProjectEntityId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ProjectEntityId");

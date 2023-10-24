@@ -24,8 +24,11 @@ public class GetByIdProjectEntityDependencyQueryHandler : IRequestHandler<GetByI
     public async Task<GetByIdProjectEntityDependencyResponse> Handle(GetByIdProjectEntityDependencyQuery request, CancellationToken cancellationToken)
     {
         var data = await _projectEntityDependencyDal.GetAsync(w => w.Id == request.Id, include: w => w.Include(x => x.DependedEntity).Include(x => x.DependsOnEntity)!);
+        
+        await _projectEntityDependencyBusinessRules.ThrowExceptionIfDataNull(data);
 
-        await _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(data!.DependedId!.Value, data!.DependsOnId!.Value);
+        var relatedEntities = await _projectEntityDependencyBusinessRules.GetRelatedEntities(data!.DependedId!.Value, data.DependsOnId!.Value);
+        _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(relatedEntities);
 
         return _mapper.Map<GetByIdProjectEntityDependencyResponse>(data);
 

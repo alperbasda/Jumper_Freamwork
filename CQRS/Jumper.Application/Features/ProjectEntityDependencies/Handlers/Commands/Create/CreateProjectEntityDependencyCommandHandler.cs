@@ -22,16 +22,16 @@ public class CreateProjectEntityDependencyCommandHandler : IRequestHandler<Creat
 
     public async Task<CreateProjectEntityDependencyResponse> Handle(CreateProjectEntityDependencyCommand request, CancellationToken cancellationToken)
     {
-        await _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(request.DependedId,request.DependsOnId);
+        var relatedEntities = await _projectEntityDependencyBusinessRules.GetRelatedEntities(request.DependedId, request.DependsOnId);
+        _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(relatedEntities);
         await _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityDependencyAddedBefore(request);
-        _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityDependencyCircular(request);
-        
 
         var data = _mapper.Map<ProjectEntityDependency>(request);
 
         await _projectEntityDependencyDal.AddAsync(data);
 
-        await _projectEntityDependencyBusinessRules.CreateRelationTableIfRelationIsNToN(request);
+        await _projectEntityDependencyBusinessRules.CreateRelationTableIfRelationIsNToN(relatedEntities, request.EntityDependencyType);
+        await _projectEntityDependencyBusinessRules.CreateRelationProperties(relatedEntities, request.EntityDependencyType, request.DependedId);
 
         return _mapper.Map<CreateProjectEntityDependencyResponse>(data);
     }

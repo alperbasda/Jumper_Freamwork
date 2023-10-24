@@ -1,4 +1,4 @@
-﻿1-) Db Relationlarda mongo entity mssql e baðlanabiliyor. Bu hata düzeltilmeli. Basit bir javascript ile depended no sql se diðer de öyle olmalý olarak filtrelenebilir. BE de kontrol etmeyide unutma.
+﻿//1-) Db Relationlarda mongo entity mssql e baðlanabiliyor. Bu hata düzeltilmeli. Basit bir javascript ile depended no sql se diðer de öyle olmalý olarak filtrelenebilir. BE de kontrol etmeyide unutma.
 //2-) EfEntityRelationFileCreator de çoka çok iliþkiler için yeni tablo oluþtur metodu yazýlacak.
 //3-) Mongo Entitylerde iliþkiler aggrigation tarzý mý olmalý böyle mi kalmalý ?
 //4-)Entity ve Propertyleri IsConstant alaný eklenecek.

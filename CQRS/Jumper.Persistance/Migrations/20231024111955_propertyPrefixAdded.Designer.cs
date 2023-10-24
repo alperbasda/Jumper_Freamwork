@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jumper.Persistance.Migrations
 {
     [DbContext(typeof(JumperDbContext))]
-    [Migration("20231006063005_first")]
-    partial class first
+    [Migration("20231024111955_propertyPrefixAdded")]
+    partial class propertyPrefixAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -341,6 +341,10 @@ namespace Jumper.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
+
+                    b.Property<string>("Prefix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ProjectEntityId")
                         .HasColumnType("uniqueidentifier")

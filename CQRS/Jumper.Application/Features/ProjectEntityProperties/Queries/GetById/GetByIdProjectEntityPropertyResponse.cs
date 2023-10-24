@@ -16,4 +16,6 @@ public class GetByIdProjectEntityPropertyResponse
     public bool IsUnique { get; set; }
 
     public bool IsConstant { get; set; }
+
+    public string Prefix { get; set; }
 }

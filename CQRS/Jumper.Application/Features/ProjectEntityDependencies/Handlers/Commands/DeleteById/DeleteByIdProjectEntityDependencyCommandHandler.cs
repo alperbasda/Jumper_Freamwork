@@ -23,11 +23,17 @@ public class DeleteByIdProjectEntityDependencyCommandHandler : IRequestHandler<D
     {
         var data = await _projectEntityDependencyDal.GetAsync(w => w.Id == request.Id);
 
-        await _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(data!.DependedId!.Value, data!.DependsOnId!.Value);
+
+        await _projectEntityDependencyBusinessRules.ThrowExceptionIfDataNull(data);
+        var relatedEntities = await _projectEntityDependencyBusinessRules.GetRelatedEntities(data!.DependedId!.Value, data.DependsOnId!.Value);
+        _projectEntityDependencyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(relatedEntities);
+
 
         await _projectEntityDependencyDal.DeleteAsync(data);
 
         await _projectEntityDependencyBusinessRules.DeleteRelationTableIfRelationIsNToN(data);
+        await _projectEntityDependencyBusinessRules.DeleteRelationProperties(relatedEntities, data.EntityDependencyType, data.DependedId!.Value);
+
 
         return _mapper.Map<DeleteByIdProjectEntityDependencyResponse>(data);
     }

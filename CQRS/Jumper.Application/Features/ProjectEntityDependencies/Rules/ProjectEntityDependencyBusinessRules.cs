@@ -2,7 +2,9 @@
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Jumper.Application.Base;
 using Jumper.Application.Features.ProjectEntityDependencies.Commands.Create;
+using Jumper.Application.Helpers;
 using Jumper.Application.Services.Repositories;
+using Jumper.CodeGenerator.Helpers.StringHelpers;
 using Jumper.Domain.Entities;
 using Jumper.Domain.Enums;
 
@@ -11,15 +13,16 @@ namespace Jumper.Application.Features.ProjectEntityDependencies.Rules;
 public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
 {
     private readonly IProjectEntityDal _projectEntityDal;
+    private readonly IProjectEntityPropertyDal _projectEntityPropertyDal;
     private readonly IProjectDeclarationDal _projectDeclarationDal;
     private readonly IProjectEntityDependencyDal _projectEntityDependencyDal;
 
-    public ProjectEntityDependencyBusinessRules(TokenParameters tokenParameters, IProjectEntityDal projectEntityDal, IProjectEntityDependencyDal projectEntityDependencyDal, IProjectDeclarationDal projectDeclarationDal) : base(tokenParameters)
+    public ProjectEntityDependencyBusinessRules(TokenParameters tokenParameters, IProjectEntityDal projectEntityDal, IProjectEntityDependencyDal projectEntityDependencyDal, IProjectDeclarationDal projectDeclarationDal, IProjectEntityPropertyDal projectEntityPropertyDal) : base(tokenParameters)
     {
         _projectEntityDal = projectEntityDal;
         _projectEntityDependencyDal = projectEntityDependencyDal;
         _projectDeclarationDal = projectDeclarationDal;
-
+        _projectEntityPropertyDal = projectEntityPropertyDal;
     }
 
     public async Task ThrowExceptionIfProjectDeclarationUserNotLoggedUser(Guid projectDeclarationId)
@@ -32,17 +35,12 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         throw new BusinessException("Sadece yetkili olduğunuz projeler için işlem yapabilirsiniz.");
     }
 
-    public async Task ThrowExceptionIfProjectEntityUserNotLoggedUser(Guid leftProjectEntityId, Guid rightProjectEntityId)
+    public void ThrowExceptionIfProjectEntityUserNotLoggedUser(List<ProjectEntity> entities)
     {
-        var leftResult = await _projectEntityDal.AnyAsync(e => e.Id == leftProjectEntityId && e.UserId == TokenParameters.UserId);
-        var rightResult = await _projectEntityDal.AnyAsync(e => e.Id == rightProjectEntityId && e.UserId == TokenParameters.UserId);
-
-        if (TokenParameters.IsSuperUser || (rightResult && leftResult))
+        if (!TokenParameters.IsSuperUser && entities.Any(w => w.UserId != TokenParameters.UserId))
         {
-            return;
+            throw new BusinessException("Sadece yetkili olduğunuz projeler için işlem yapabilirsiniz.");
         }
-
-        throw new BusinessException("Sadece yetkili olduğunuz projeler için işlem yapabilirsiniz.");
     }
     public async Task ThrowExceptionIfProjectEntityDependencyAddedBefore(CreateProjectEntityDependencyCommand request)
     {
@@ -56,36 +54,37 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         }
     }
 
-    public void ThrowExceptionIfProjectEntityDependencyCircular(CreateProjectEntityDependencyCommand request)
-    {
-        if (request.DependsOnId == request.DependedId)
-        {
-            throw new BusinessException("Şimdilik Döngüsel İlişki Türünü Destekleyemiyoruz.");
-        }
-    }
 
-    public async Task CreateRelationTableIfRelationIsNToN(CreateProjectEntityDependencyCommand command)
+    public async Task<List<ProjectEntity>> GetRelatedEntities(Guid dependedId, Guid dependsOnId)
     {
-        if (command.EntityDependencyType != EntityDependencyType.ManyToMany)
-            return;
-
-        var relatedEntities = await _projectEntityDal.GetListAsync(w => w.Id == command.DependedId || w.Id == command.DependsOnId);
+        var relatedEntities = (await _projectEntityDal.GetListAsync(w => w.Id == dependsOnId || w.Id == dependedId)).Items;
         if (relatedEntities.Count != 2)
         {
-            throw new BusinessException("Relation Table Could Not Be Create.");
+            throw new BusinessException("2 ayrı entity üzerinde ilişki kurabilirisiniz.");
         }
+        if (relatedEntities.Select(w => w.DatabaseType).Distinct().Count() != 1)
+        {
+            throw new BusinessException("Farklı tip veritabanları arasında ilişki kuramazsınız.");
+        }
+        return relatedEntities.ToList();
+    }
 
-        var tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relation";
+    public async Task CreateRelationTableIfRelationIsNToN(List<ProjectEntity> relatedEntities, EntityDependencyType type)
+    {
+        if (type != EntityDependencyType.ManyToMany)
+            return;
+
+        var tableName = $"{string.Join("", relatedEntities.Select(w => w.Name).OrderBy(w => w))}Relation";
         var createEntity = new ProjectEntity
         {
             Id = Guid.NewGuid(),
             CreatedTime = DateTime.Now,
             UpdatedTime = DateTime.Now,
             DeletedTime = null,
-            DatabaseType = relatedEntities.Items.First().DatabaseType,
+            DatabaseType = relatedEntities.First().DatabaseType,
             Name = tableName,
-            ProjectDeclarationId = command.ProjectDeclarationId,
-            UserId = relatedEntities.Items.First().UserId,
+            ProjectDeclarationId = relatedEntities.First().ProjectDeclarationId,
+            UserId = relatedEntities.First().UserId,
             Properties = new List<ProjectEntityProperty>
             {
                 new ProjectEntityProperty
@@ -97,7 +96,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsUnique = false,
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
-                    Name = $"{relatedEntities.Items.First().Name}Id",
+                    Name = $"{relatedEntities.First().Name}Id",
                 },
                 new ProjectEntityProperty
                 {
@@ -108,7 +107,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsUnique = false,
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
-                    Name = $"{relatedEntities.Items.Last().Name}Id",
+                    Name = $"{relatedEntities.Last().Name}Id",
                 },
                 new ProjectEntityProperty
                 {
@@ -153,14 +152,51 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     IsConstant = true,
                     PropertyTypeCode = "Guid",
                     Name = "Id",
-                    
+
                 }
             },
             IsConstant = true,
         };
-        
+
 
         _ = await _projectEntityDal.AddAsync(createEntity);
+    }
+
+    public async Task CreateRelationProperties(List<ProjectEntity> relatedEntities, EntityDependencyType type, Guid dependedId)
+    {
+        var createList = new List<ProjectEntityProperty>();
+        if (type == EntityDependencyType.ManyToMany)
+        {
+            var mockProjectEntity = new ProjectEntity { Name = StringHelper.GetRelationTableName(relatedEntities.Select(w => w.Name).ToArray()) };
+            foreach (var item in relatedEntities)
+            {
+                createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(mockProjectEntity, item, false));
+            }
+        }
+        else if (type == EntityDependencyType.OneToMany)
+        {
+            foreach (var item in relatedEntities)
+            {
+                var oppositeEntity = relatedEntities.First(w => w.Id != item.Id);
+                createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(item, oppositeEntity, item.Id == dependedId));
+                createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfRelationalDb(item, oppositeEntity, item.Id == dependedId));
+            }
+
+        }
+        else if (type == EntityDependencyType.OneToOne)
+        {
+            foreach (var item in relatedEntities)
+            {
+                var oppositeEntity = relatedEntities.First(w => w.Id != item.Id);
+                createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(item, oppositeEntity, true));
+                createList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfRelationalDb(item, oppositeEntity, true));
+            }
+        }
+
+        if (createList.Any())
+        {
+            await _projectEntityPropertyDal.AddRangeAsync(createList);
+        }
     }
 
     public async Task DeleteRelationTableIfRelationIsNToN(ProjectEntityDependency command)
@@ -181,7 +217,51 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
             throw new NotFoundException("Relation Table Could Not Be Delete.");
         }
         _ = await _projectEntityDal.DeleteAsync(data);
+    }
 
+    public async Task DeleteRelationProperties(List<ProjectEntity> relatedEntities, EntityDependencyType type, Guid dependedId)
+    {
+        var deleteList = new List<ProjectEntityProperty>();
+        if (type == EntityDependencyType.ManyToMany)
+        {
+            var mockProjectEntity = new ProjectEntity { Name = StringHelper.GetRelationTableName(relatedEntities.Select(w => w.Name).ToArray()) };
+            foreach (var item in relatedEntities)
+            {
+                deleteList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(mockProjectEntity, item, false));
+            }
+        }
+        else if (type == EntityDependencyType.OneToMany)
+        {
+            foreach (var item in relatedEntities)
+            {
+                var oppositeEntity = relatedEntities.First(w => w.Id != item.Id);
+                deleteList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(item, oppositeEntity, item.Id == dependedId));
+                deleteList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfRelationalDb(item, oppositeEntity, item.Id == dependedId));
+            }
+
+        }
+        else if (type == EntityDependencyType.OneToOne)
+        {
+            foreach (var item in relatedEntities)
+            {
+                var oppositeEntity = relatedEntities.First(w => w.Id != item.Id);
+                deleteList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfNoSqlDb(item, oppositeEntity, true));
+                deleteList.AddRange(PropertyCreatorHelper.GetNewPropertiesIfRelationalDb(item, oppositeEntity, true));
+            }
+        }
+
+        if (deleteList.Any())
+        {
+            var dataNames = deleteList.Select(w => w.Name).ToList();
+            var entityIds = relatedEntities.Select(w => w.Id).ToList();
+
+            var deleteDatas = await _projectEntityPropertyDal.GetListAsync(w => dataNames.Contains(w.Name) && entityIds.Contains(w.ProjectEntityId));
+            if (deleteDatas.Items.Any())
+            {
+                await _projectEntityPropertyDal.DeleteRangeAsync(deleteDatas.Items);
+            }
+
+        }
     }
 
 }
