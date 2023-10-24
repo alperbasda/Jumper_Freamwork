@@ -74,7 +74,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         if (type != EntityDependencyType.ManyToMany)
             return;
 
-        var tableName = $"{string.Join("", relatedEntities.Select(w => w.Name).OrderBy(w => w))}Relations";
+        var tableName = $"{string.Join("", relatedEntities.Select(w => w.Name).OrderBy(w => w))}Relation";
         var createEntity = new ProjectEntity
         {
             Id = Guid.NewGuid(),
@@ -240,7 +240,7 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
         {
             throw new BusinessException("Relation Table Could Not Be Create.");
         }
-        string tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relations";
+        string tableName = $"{string.Join("", relatedEntities.Items.Select(w => w.Name).OrderBy(w => w))}Relation";
         var data = await _projectEntityDal.GetAsync(w => w.Name == tableName && w.UserId == relatedEntities.Items.First().UserId);
 
         if (data == null)

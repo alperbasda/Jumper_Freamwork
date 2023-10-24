@@ -15,12 +15,10 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
 {
     IProjectDeclarationDal _projectDeclarationDal;
     IMediator _mediator;
-    IMapper _mapper;
-    public ProjectDeclarationBusinessRules(IProjectDeclarationDal projectDeclarationDal, TokenParameters tokenParameters, IMediator mediator, IMapper mapper) : base(tokenParameters)
+    public ProjectDeclarationBusinessRules(IProjectDeclarationDal projectDeclarationDal, TokenParameters tokenParameters, IMediator mediator) : base(tokenParameters)
     {
         _projectDeclarationDal = projectDeclarationDal;
         _mediator = mediator;
-        _mapper = mapper;
     }
 
     public async Task ThrowExceptionIfSamaNameProjectExists(string name)
@@ -43,7 +41,7 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
     public async Task FillPropertyTypes(GetWithAllDetailByIdProjectDeclarationResponse data)
     {
         var propertyTypes = await _mediator.Send(new GetAllFromCachePropertyTypeDeclarationQuery());
-        data.PropertyTypes = _mapper.Map<List<PropertyTypeAggregation>>(propertyTypes);
+        data.PropertyTypeNames = propertyTypes.Select(w => w.Code).ToList();
     }
 
     public void FillEntityActionProperties(GetWithAllDetailByIdProjectDeclarationResponse data)

@@ -77,7 +77,7 @@ public static class PropertyCreatorHelper
             DeletedTime = null,
             IsUnique = false,
             IsConstant = true,
-            PropertyTypeCode = $"List<{entity.Name.ToPlural()}>",
+            PropertyTypeCode = $"List<{entity.Name}>",
             Name = entity.Name,
             Prefix = string.Empty,
             HasIndex = false

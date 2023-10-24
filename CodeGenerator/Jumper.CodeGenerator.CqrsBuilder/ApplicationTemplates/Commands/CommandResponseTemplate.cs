@@ -104,7 +104,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandResponseTemplate.tt"
 
     WriteLine("");
-    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "1" && datasource["PropertyTypeNames"].Contains(w["PropertyTypeCode"].ToString())))
+    foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "1" && datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
     {
     if(prop["PropertyTypeCode"].ToString() != "string?")
     {

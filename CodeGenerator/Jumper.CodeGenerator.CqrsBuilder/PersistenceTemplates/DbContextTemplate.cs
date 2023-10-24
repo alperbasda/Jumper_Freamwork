@@ -112,8 +112,8 @@ namespace Jumper.CodeGenerator.CqrsBuilder.PersistenceTemplates
             var relationTableName = StringHelper.GetRelationTableName(dependency["DependedName"].ToString(),dependency["DependsOnName"].ToString());
             
             WriteLine("");
-            WriteLine($"\t\tmodelBuilder.Entity<{relationTableName}>().HasOne(w => w.{dependency["DependedName"]}).WithMany(w => w.{dependency["DependsOnName"].ToString().ToPlural()}).HasForeignKey(w => w.{dependency["DependedName"]}Id).OnDelete(DeleteBehavior.Restrict);");
-            WriteLine($"\t\tmodelBuilder.Entity<{relationTableName}>().HasOne(w => w.{dependency["DependsOnName"]}).WithMany(w => w.{dependency["DependedName"].ToString().ToPlural()}).HasForeignKey(w => w.{dependency["DependsOnName"]}Id).OnDelete(DeleteBehavior.Restrict);");
+            WriteLine($"\t\tmodelBuilder.Entity<{relationTableName}>().HasOne(w => w.{dependency["DependedName"]}).WithMany(w => w.{relationTableName.ToString().ToPlural()}).HasForeignKey(w => w.{dependency["DependedName"]}Id).OnDelete(DeleteBehavior.Restrict);");
+            WriteLine($"\t\tmodelBuilder.Entity<{relationTableName}>().HasOne(w => w.{dependency["DependsOnName"]}).WithMany(w => w.{relationTableName.ToString().ToPlural()}).HasForeignKey(w => w.{dependency["DependsOnName"]}Id).OnDelete(DeleteBehavior.Restrict);");
         }
 
         

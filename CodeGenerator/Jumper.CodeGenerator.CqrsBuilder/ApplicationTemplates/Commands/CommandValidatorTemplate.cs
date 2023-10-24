@@ -130,7 +130,7 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
             #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApplicationTemplates\Commands\CommandValidatorTemplate.tt"
 
          WriteLine("");
-         foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0" && datasource["PropertyTypeNames"].Contains(w["PropertyTypeCode"].ToString())))
+         foreach(var prop in action["Properties"].Where(w=>w["ActionPropertyType"].ToString() == "0" && datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
          {
          if(ProjectSettings.RequestExculededProperties.Contains(prop["PropertyName"].ToString()) || prop["PropertyTypeCode"].ToString().Contains("?") || prop["PropertyName"].ToString() == "Id")
          {

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Jumper.Application.Features.ProjectDeclarations.Queries.GetWithAllDetailById;
 using Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
 using Jumper.Domain.Entities;
 
@@ -11,9 +10,6 @@ namespace Jumper.Application.Features.PropertyTypeDeclarations.Profiles
         {
             CreateMap<PropertyTypeDeclaration, GetAllFromCachePropertyTypeDeclarationResponse>();
 
-            CreateMap<GetAllFromCachePropertyTypeDeclarationResponse, PropertyTypeAggregation>();
-
-            
         }
     }
 }

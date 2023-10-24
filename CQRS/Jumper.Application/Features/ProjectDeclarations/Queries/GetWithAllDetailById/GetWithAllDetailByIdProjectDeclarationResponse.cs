@@ -39,36 +39,11 @@ public class GetWithAllDetailByIdProjectDeclarationResponse
 
     public List<ProjectDeclarationRelationAggregation> Relations { get; set; }
 
-    public List<PropertyTypeAggregation> PropertyTypes { get; set; }
 
-
-    private List<string> propertyTypeNames = null;
-    public List<string> PropertyTypeNames
-    {
-        get
-        {
-            if (propertyTypeNames == null)
-            {
-                propertyTypeNames = PropertyTypes.Select(x => x.Name).ToList();
-            }
-            return propertyTypeNames;
-        }
-
-
-    }
+    public List<string> PropertyTypeNames { get; set; }
 
 }
 
-public class PropertyTypeAggregation
-{
-    public Guid Id { get; set; }
-
-    public string Name { get; set; }
-
-    public string Code { get; set; }
-
-    public string Description { get; set; }
-}
 
 public class ProjectDeclarationRelationAggregation
 {
