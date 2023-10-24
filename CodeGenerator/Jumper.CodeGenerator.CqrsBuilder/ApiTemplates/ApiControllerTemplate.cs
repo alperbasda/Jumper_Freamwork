@@ -26,7 +26,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class ApiControllerTemplate : ApiControllerTemplateBase
     {
@@ -38,7 +38,7 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
         {
             this.Write("\r\n");
             
-            #line 20 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
 
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
@@ -50,14 +50,14 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
             #line default
             #line hidden
             
-            #line 27 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 27 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 28 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 28 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
 
 foreach (var entity in datasource["Entities"])
 {
@@ -66,100 +66,100 @@ foreach (var entity in datasource["Entities"])
             #line default
             #line hidden
             
-            #line 32 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 32 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
             #line hidden
             this.Write("\r\nusing ");
             
-            #line 33 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 33 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 33 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Commands.Create;\r\nusing ");
             
-            #line 34 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 34 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Commands.DeleteById;\r\nusing ");
             
-            #line 35 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 35 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Commands.Update;\r\nusing ");
             
-            #line 36 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 36 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Queries.GetById;\r\nusing ");
             
-            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.");
             
-            #line 37 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write(".Queries.ListDynamic;\r\nusing ");
             
-            #line 38 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".UI.Api.ActionFilters;\r\nusing ");
             
-            #line 39 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(".UI.Api.Controllers.Base;\r\nusing Microsoft.AspNetCore.Mvc;\r\nusing System.Collecti" +
-                    "ons.Specialized;\r\nusing System.Web;\r\nusing Core.WebHelper.NameValueCollectionHel" +
-                    "pers;\r\n");
+            this.Write(".UI.Api.Controllers.Base;\r\nusing Core.Persistence.Models.Responses;\r\nusing Micros" +
+                    "oft.AspNetCore.Mvc;\r\nusing System.Collections.Specialized;\r\nusing System.Web;\r\nu" +
+                    "sing Core.WebHelper.NameValueCollectionHelpers;\r\n");
             
-            #line 44 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 45 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
  
 if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
 {
@@ -175,21 +175,21 @@ WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
             #line hidden
             this.Write("\r\nnamespace ");
             
-            #line 55 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 56 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".UI.Api.Controllers\r\n{\r\n    [Route(\"");
             
-            #line 57 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 58 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
             #line hidden
             this.Write("\")]\r\n    public class ");
             
-            #line 58 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString().ToPlural()));
             
             #line default
@@ -198,79 +198,108 @@ WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
                     "async Task<IActionResult> GetByIdAsync(Guid id)\r\n        {\r\n            var resp" +
                     "onse = await base.Mediator.Send(new GetById");
             
-            #line 63 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 64 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write("Query { Id = id });\r\n            return Ok(response);\r\n        }\r\n\r\n        [Http" +
-                    "Get(\"getlist\")]\r\n        public async Task<IActionResult> ListAsync(NameValueCol" +
-                    "lection collection)\r\n        {\r\n            var query = new ListDynamic");
+            this.Write("Query { Id = id });\r\n            return Ok(Response<GetById");
             
-            #line 70 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 65 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Response>.Success(response,200));\r\n        }\r\n\r\n        [HttpGet(\"getlist\")]\r\n   " +
+                    "     public async Task<IActionResult> ListAsync(NameValueCollection collection)\r" +
+                    "\n        {\r\n            var query = new ListDynamic");
+            
+            #line 71 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("Query\r\n            {\r\n                DynamicQuery = collection.ToDynamicFilter<");
             
-            #line 72 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 73 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write(@">(),
-                PageRequest = collection.ToPageRequest()
-            };
-            var response = await base.Mediator.Send(query);
-
-            return Ok(response);
-        }
-
-        [HttpPost(""list"")]
-        public async Task<IActionResult> ListAsync(ListDynamic");
+            this.Write(">(),\r\n                PageRequest = collection.ToPageRequest()\r\n            };\r\n " +
+                    "           var response = await base.Mediator.Send(query);\r\n\r\n            return" +
+                    " Ok(Response<ListModel<ListDynamic");
             
-            #line 81 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 78 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Response>>.Success(response,200));\r\n        }\r\n\r\n        [HttpPost(\"list\")]\r\n    " +
+                    "    public async Task<IActionResult> ListAsync(ListDynamic");
+            
+            #line 82 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("Query query)\r\n        {\r\n            var response = await base.Mediator.Send(quer" +
-                    "y);\r\n            return Ok(response);\r\n        }\r\n\r\n        [HttpPost]\r\n        " +
-                    "public async Task<IActionResult> CreateAsync(Create");
+                    "y);\r\n            return Ok(Response<ListModel<ListDynamic");
             
-            #line 88 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 85 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write("Command request)\r\n        {\r\n            return Ok(await base.Mediator.Send(reque" +
-                    "st));\r\n        }\r\n\r\n        [HttpPut]\r\n        public async Task<IActionResult> " +
-                    "UpdateAsync(Update");
+            this.Write("Response>>.Success(response,200));\r\n        }\r\n\r\n        [HttpPost]\r\n        publ" +
+                    "ic async Task<IActionResult> CreateAsync(Create");
             
-            #line 94 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 89 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write(@"Command request)
-        {
-            return Ok(await base.Mediator.Send(request));
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> DeleteByIdAsync(Guid id)
-        {
-            return Ok(await base.Mediator.Send(new DeleteById");
+            this.Write("Command request)\r\n        {\r\n            return Ok(Response<Create");
             
-            #line 102 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 91 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write("Command { Id = id }));\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n");
+            this.Write("Response>.Success(await base.Mediator.Send(request), 200));\r\n        }\r\n\r\n       " +
+                    " [HttpPut]\r\n        public async Task<IActionResult> UpdateAsync(Update");
             
-            #line 109 "C:\Projects\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            #line 95 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Command request)\r\n        {\r\n            return Ok(Response<Update");
+            
+            #line 97 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Response>.Success(await base.Mediator.Send(request), 200));\r\n        }\r\n\r\n       " +
+                    " [HttpDelete]\r\n        public async Task<IActionResult> DeleteByIdAsync(Guid id)" +
+                    "\r\n        {\r\n            return Ok(Response<DeleteById");
+            
+            #line 103 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Response>.Success(await base.Mediator.Send(new DeleteById");
+            
+            #line 103 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
+            
+            #line default
+            #line hidden
+            this.Write("Command { Id = id }), 200));\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n");
+            
+            #line 110 "C:\Users\Admin\source\repos\Jumper_Freamwork\CodeGenerator\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiControllerTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString().ToPlural()}Controller.cs",this.GenerationEnvironment);
 }

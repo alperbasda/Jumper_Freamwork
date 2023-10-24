@@ -37,6 +37,7 @@ using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].
 using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.ListDynamic;
 using <#= datasource["SolutionName"] #>.UI.Api.ActionFilters;
 using <#= datasource["SolutionName"] #>.UI.Api.Controllers.Base;
+using Core.Persistence.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
 using System.Web;
@@ -61,7 +62,7 @@ namespace <#= datasource["SolutionName"] #>.UI.Api.Controllers
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var response = await base.Mediator.Send(new GetById<#= entity["Name"].ToString() #>Query { Id = id });
-            return Ok(response);
+            return Ok(Response<GetById<#= entity["Name"].ToString() #>Response>.Success(response,200));
         }
 
         [HttpGet("getlist")]
@@ -74,32 +75,32 @@ namespace <#= datasource["SolutionName"] #>.UI.Api.Controllers
             };
             var response = await base.Mediator.Send(query);
 
-            return Ok(response);
+            return Ok(Response<ListModel<ListDynamic<#= entity["Name"].ToString() #>Response>>.Success(response,200));
         }
 
         [HttpPost("list")]
         public async Task<IActionResult> ListAsync(ListDynamic<#= entity["Name"].ToString() #>Query query)
         {
             var response = await base.Mediator.Send(query);
-            return Ok(response);
+            return Ok(Response<ListModel<ListDynamic<#= entity["Name"].ToString() #>Response>>.Success(response,200));
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync(Create<#= entity["Name"].ToString() #>Command request)
         {
-            return Ok(await base.Mediator.Send(request));
+            return Ok(Response<Create<#= entity["Name"].ToString() #>Response>.Success(await base.Mediator.Send(request), 200));
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(Update<#= entity["Name"].ToString() #>Command request)
         {
-            return Ok(await base.Mediator.Send(request));
+            return Ok(Response<Update<#= entity["Name"].ToString() #>Response>.Success(await base.Mediator.Send(request), 200));
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteByIdAsync(Guid id)
         {
-            return Ok(await base.Mediator.Send(new DeleteById<#= entity["Name"].ToString() #>Command { Id = id }));
+            return Ok(Response<DeleteById<#= entity["Name"].ToString() #>Response>.Success(await base.Mediator.Send(new DeleteById<#= entity["Name"].ToString() #>Command { Id = id }), 200));
         }
 
     }
