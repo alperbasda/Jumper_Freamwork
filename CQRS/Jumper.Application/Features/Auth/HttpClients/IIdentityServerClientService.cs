@@ -8,7 +8,7 @@ public interface IIdentityServerClientService
 {
     Task<Response<LoginResponse>> CreateToken(LoginCommand request);
 
-    Task<Response<RefreshTokenResponse>> RefreshToken(string refreshToken);
+    Task<Response<RefreshTokenResponse>> RefreshToken(RefreshTokenCommand command);
 
     Task<Response<NoContent>> RevokeRefreshToken(string refreshToken);
 }

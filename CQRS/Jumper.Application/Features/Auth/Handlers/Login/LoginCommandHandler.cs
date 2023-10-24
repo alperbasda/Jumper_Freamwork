@@ -22,8 +22,6 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
 
     public async Task<LoginResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        request.ClientSecret = _jwtTokenOptions.ClientSecret;
-        request.ClientId = _jwtTokenOptions.ClientId;
         var res = await _identityServerClientService.CreateToken(request);
         _authBusinessRules.ThrowExceptionIfLoginFailed(res);
 

@@ -19,7 +19,7 @@ public class BaseBusinessRules
     public virtual Task ThrowExceptionIfDataNull<TEntity>(TEntity? data)
     {
         if (data == null)
-            throw new NotFoundException($"{typeof(TEntity).Name} not found");
+            throw new NotFoundException($"{typeof(TEntity).Name} bulunamadı.");
 
         return Task.CompletedTask;
     }
@@ -27,7 +27,7 @@ public class BaseBusinessRules
     public virtual Task ThrowExceptionIfDataNullOrEmpty<TEntity>(List<TEntity>? data)
     {
         if (data == null || !data.Any())
-            throw new NotFoundException($"{typeof(TEntity).Name} not found");
+            throw new NotFoundException($"{typeof(TEntity).Name} bulunamadı.");
 
         return Task.CompletedTask;
     }

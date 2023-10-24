@@ -18,7 +18,7 @@ namespace Jumper.Application.Features.Auth.Handlers.RefreshToken
 
         public async Task<RefreshTokenResponse> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            var refreshTokenResponse = await _identityServerClientService.RefreshToken(request.RefreshToken);
+            var refreshTokenResponse = await _identityServerClientService.RefreshToken(request);
             
             _authBusinessRules.ThrowExceptionIfLoginFailed(refreshTokenResponse);
             

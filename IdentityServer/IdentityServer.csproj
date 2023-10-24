@@ -29,10 +29,6 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Identity\IdentityServer.Business\IdentityServer.Business.csproj" />
-  </ItemGroup>
   
   <ItemGroup>
     <Content Update="appsettings.Development.json">

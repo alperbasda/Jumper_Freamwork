@@ -27,13 +27,15 @@ namespace Jumper.Application.Features.Auth.HttpClients
 
             var apiResponse = await res.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Response<LoginResponse>>(apiResponse);
-            
+
             return result;
         }
 
-        public async Task<Response<RefreshTokenResponse>> RefreshToken(string refreshToken)
+        public async Task<Response<RefreshTokenResponse>> RefreshToken(RefreshTokenCommand command)
         {
-            var res = await _httpClient.GetAsync($"{_identityApiConfig.RefreshTokenAddress}?refreshToken={refreshToken}");
+            var data = new StringContent(JsonConvert.SerializeObject(command), Encoding.UTF8, "application/json");
+
+            var res = await _httpClient.PostAsync($"{_identityApiConfig.RefreshTokenAddress}", data);
 
             var apiResponse = await res.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Response<RefreshTokenResponse>>(apiResponse);
@@ -43,7 +45,7 @@ namespace Jumper.Application.Features.Auth.HttpClients
 
         public async Task<Response<NoContent>> RevokeRefreshToken(string refreshToken)
         {
-            
+
             var res = await _httpClient.GetAsync($"{_identityApiConfig.RevokeTokenAddress}/{refreshToken}");
 
             var apiResponse = await res.Content.ReadAsStringAsync();
