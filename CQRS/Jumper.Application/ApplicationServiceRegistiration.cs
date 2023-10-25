@@ -44,7 +44,7 @@ public static class ApplicationServiceRegistiration
 
     }
 
-  
+
 
 
     public static IServiceCollection AddSubClassesOfType(

@@ -45,6 +45,11 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
             item.Properties = item.Properties.OrderBy(w => w.Order).ToList();
             foreach (var action in item.Actions)
             {
+                foreach (var actionProp in action.Properties)
+                {
+                    actionProp.PropertyInputTypeCode = item.Properties.Single(w => w.Id == actionProp.ProjectEntityPropertyId).PropertyInputTypeCode;
+                }
+
                 action.Properties = action.Properties.OrderBy(s => item.Properties.Single(x => x.Id == s.ProjectEntityPropertyId).Order).ToList();
             }
         }

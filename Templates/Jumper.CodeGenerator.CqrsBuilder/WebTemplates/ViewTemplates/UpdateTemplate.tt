@@ -15,6 +15,8 @@
 <#@ import namespace="Jumper.Common.DirectoryHelpers" #>
 <#@ import namespace="Jumper.Common.StringHelpers" #>
 <#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ import namespace="Jumper.Application.Helpers" #>
+
 <#@ output extension=".cshtml" #>
 
 <#
@@ -35,7 +37,7 @@ foreach (var entity in datasource["Entities"])
 @{
     ViewData["Title"] = "<#= entity["Name"].ToString() #> Güncelle";
 }
-@model Create<#= entity["Name"].ToString() #>Command
+@model Update<#= entity["Name"].ToString() #>Command
 
 
 
@@ -66,6 +68,25 @@ foreach (var entity in datasource["Entities"])
         <div class="d-flex flex-column flex-column-fluid">
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <form asp-controller="<#= entity["Name"].ToString() #>" asp-action="Update" method="post">
+
+                    <#
+                    var action =  entity["Actions"].First(w=>w["Name"].ToString() == "Update");
+                    foreach(var prop in action["Properties"].Where(w => w["ActionPropertyType"].ToString() == "0"))
+                    {
+                    var str = PropertyCreatorHelper.ToHtmlTag(prop,prop["PropertyName"].ToString().Substring(0, prop["PropertyName"].ToString().Length - 2));
+                    if(!string.IsNullOrEmpty(str))
+                    {
+                    #>
+                    <div class="col-auto pb-5">
+                        <div class="form-floating">
+                            <#= str #>
+                            <label class="form-label mr-4" for="<#= prop["PropertyName"].ToString() #>"> <#= prop["PropertyName"].ToString() #> </label>
+                        </div>
+                    </div>
+                    <#
+                    }
+                    }
+                    #>
                     <div class=" pt-5 text-end">
                         <button class=" btn btn-primary" type="submit">
                             Güncelle

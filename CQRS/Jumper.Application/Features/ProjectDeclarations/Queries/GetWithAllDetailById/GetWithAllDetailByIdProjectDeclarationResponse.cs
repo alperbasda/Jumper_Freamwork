@@ -101,6 +101,8 @@ public class ProjectDeclarationEntityActionPropertyAggregation
 
     public string PropertyTypeCode { get; set; }
 
+    public string PropertyInputTypeCode { get; set; }
+
     public ActionPropertyType ActionPropertyType { get; set; }
 }
 

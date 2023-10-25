@@ -1,6 +1,7 @@
 ﻿using Core.ApiHelpers.JwtHelper.Models;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Jumper.Application.Base;
+using Jumper.Application.Helpers;
 using Jumper.Application.Services.Repositories;
 using Jumper.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -97,13 +98,13 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
             projectEntity.Properties = new List<ProjectEntityProperty>();
 
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "Id", PropertyTypeCode = "Guid", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 0 });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "Id", PropertyTypeCode = "Guid", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 0, PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "CreatedTime", PropertyTypeCode = "DateTime", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10001 });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "CreatedTime", PropertyTypeCode = "DateTime", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10001, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "UpdatedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10002 });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "UpdatedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10002, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "DeletedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = true, IsConstant = true, IsShowOnRelation = false, Order = 10003 });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "DeletedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = true, IsConstant = true, IsShowOnRelation = false, Order = 10003, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE });
     }
 
 

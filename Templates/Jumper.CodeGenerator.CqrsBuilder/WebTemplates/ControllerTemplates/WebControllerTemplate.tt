@@ -24,7 +24,6 @@
     var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Controllers";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
-<#= FileSettings.AUTO_GENERATED_MESSAGE #>
 <#
 foreach (var entity in datasource["Entities"])
 {
