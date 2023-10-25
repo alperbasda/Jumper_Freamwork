@@ -1,9 +1,10 @@
-﻿using Jumper.Domain.Enums;
+﻿using Core.Application.Pipelines.Transaction;
+using Jumper.Domain.Enums;
 using MediatR;
 
 namespace Jumper.Application.Features.ProjectEntityDependencies.Commands.Create;
 
-public class CreateProjectEntityDependencyCommand : IRequest<CreateProjectEntityDependencyResponse>
+public class CreateProjectEntityDependencyCommand : IRequest<CreateProjectEntityDependencyResponse>, ITransactionalRequest
 {
     private Guid _id = Guid.NewGuid();
 

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
 
-public class GetAllFromCachePropertyTypeDeclarationQuery : IRequest<List<GetAllFromCachePropertyTypeDeclarationResponse>>
+public class GetAllFromCachePropertyTypeDeclarationQuery : IRequest<List<GetAllFromCachePropertyTypeDeclarationResponse>>, ICachableRequest
 {
     public string CacheKey => "PropertyTypeDeclarations";
 
