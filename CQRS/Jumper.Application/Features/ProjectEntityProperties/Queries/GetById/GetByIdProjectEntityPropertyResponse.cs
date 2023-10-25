@@ -22,4 +22,8 @@ public class GetByIdProjectEntityPropertyResponse
     public string Prefix { get; set; } = "";
 
     public string PropertyInputTypeCode { get; set; }
+
+    public bool IsShowOnRelation { get; set; }
+
+    public int Order { get; set; }
 }

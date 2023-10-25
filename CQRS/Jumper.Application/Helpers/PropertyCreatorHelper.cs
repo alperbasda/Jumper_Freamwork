@@ -9,6 +9,7 @@ public static class PropertyCreatorHelper
     public const string RELATIONAL_INPUT_TYPE = "relational_dropdown";
     public const string DROPDOWN_INPUT_TYPE = "dropdown";
     public const string TEXT_INPUT_TYPE = "text";
+    public const string FILE_INPUT_TYPE = "file";
     public const string TEXTAREA_INPUT_TYPE = "textarea";
     public const string DATE_INPUT_TYPE = "date";
     public const string DATETIME_INPUT_TYPE = "datetime";
@@ -35,7 +36,9 @@ public static class PropertyCreatorHelper
                 Name = $"{entity.Name}Id",
                 Prefix = "",
                 HasIndex = false,
-                PropertyInputTypeCode = RELATIONAL_INPUT_TYPE
+                PropertyInputTypeCode = RELATIONAL_INPUT_TYPE,
+                IsShowOnRelation = false,
+                Order = 1001,
             });
             returnList.Add(new ProjectEntityProperty
             {
@@ -50,7 +53,9 @@ public static class PropertyCreatorHelper
                 Name = entity.Name,
                 Prefix = "virtual",
                 HasIndex = false,
-                PropertyInputTypeCode = RELATIONAL_INPUT_TYPE
+                PropertyInputTypeCode = RELATIONAL_INPUT_TYPE,
+                IsShowOnRelation = false,
+                Order = 10001,
             });
         }
         else
@@ -68,7 +73,9 @@ public static class PropertyCreatorHelper
                 Name = entity.Name.ToPlural(),
                 Prefix = "virtual",
                 HasIndex = false,
-                PropertyInputTypeCode = HIDDEN_INPUT_TYPE
+                PropertyInputTypeCode = HIDDEN_INPUT_TYPE,
+                IsShowOnRelation = false,
+                Order = 10001,
             });
         }
         return returnList;
@@ -93,7 +100,9 @@ public static class PropertyCreatorHelper
             Name = entity.Name,
             Prefix = string.Empty,
             HasIndex = false,
-            PropertyInputTypeCode = HIDDEN_INPUT_TYPE
+            PropertyInputTypeCode = HIDDEN_INPUT_TYPE,
+            IsShowOnRelation = false,
+            Order = 10001,
         });
 
         return returnList;

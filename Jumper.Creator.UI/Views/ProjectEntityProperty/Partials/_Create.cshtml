@@ -5,76 +5,146 @@
 @model CreateProjectEntityPropertyCommand
 
 <form method="post" action="@Url.Action("Create","ProjectEntityProperty")">
-    <input type="hidden" name="projectId" />
     <div class="card-header">
         <div class="card-title">
-            <div class="col-auto" id="project_entity_select_wrapper">
-                <div data-qs-param="projectId" data-partial="@Url.Action("Dropdown","ProjectEntity")?Name=@(nameof(ProjectEntityProperty.ProjectEntityId))&SelectedValue=@Model.ProjectEntityId">
-                </div>
-            </div>
-        </div>
-        <div class="row g-3 align-items-center card-toolbar">
             <div class="col-auto">
-                <div data-partial="@Url.Action("Dropdown","PropertyTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyTypeCode))">
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-floating">
-                    <select class="form-control form-control-sm" name="HasIndex">
-                        <option value="@false">Index Atılmasın</option>
-                        <option value="@true">Index Atılsın</option>
-                    </select>
-
-                    <label class="form-label mr-4" for="HasIndex"> Index Var Mı ? </label>
-                </div>
-
-            </div>
-            <div class="col-auto">
-                <div class="form-floating">
-                    <select class="form-control form-control-sm" name="IsUnique">
-                        <option value="@false">Unique Alan Değil</option>
-                        <option value="@true">Unique Alan</option>
-                    </select>
-
-                    <label class="form-label mr-4" for="IsUnique"> Unique Alan Mı ? </label>
-                </div>
-
-            </div>
-            <div class="col-auto">
-                <div class="form-floating">
-                    <div data-partial="@Url.Action("Dropdown","PropertyInputTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyInputTypeCode))">
+                <div class="col-auto" id="project_entity_select_wrapper">
+                    <div data-qs-param="projectId" data-partial="@Url.Action("Dropdown","ProjectEntity")?Name=@(nameof(ProjectEntityProperty.ProjectEntityId))&SelectedValue=@Model.ProjectEntityId">
                     </div>
                 </div>
             </div>
-            <div class="col-auto">
-                <div class="form-floating">
-                    @Html.TextBoxFor(w=>w.Name,new {@class="form-control form-control-sm"})
-                    <label class="form-label mr-4" for="Name">Özellik Adı </label>
-                </div>
-            </div>
-
-            
-            <div class="col-auto">
-                <button type="submit" class="btn btn-sm btn-light-success">
-                    Özellik Ekle
-                </button>
-            </div>
-
+        </div>
+        <div class="card-toolbar">
+            <a id="kt_drawer_example_basic_button" class="btn btn-sm fw-bold btn-light-success"><i class="fa fa-plus"></i> Yeni Nesne Ekle</a>
         </div>
     </div>
 
 
+
+    <div id="kt_drawer_example_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_example_basic_button" data-kt-drawer-close="#kt_drawer_example_basic_close" data-kt-drawer-width="500px" style="width: 500px !important;">
+
+        <!--begin::Card-->
+        <div class="card w-100 rounded-0">
+
+            <!--begin::Card header-->
+            <div class="card-header pe-5">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 lh-1">Yeni Özellik Ekleyin</a>
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_example_basic_close">
+                        <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body hover-scroll-overlay-y">
+
+
+
+                <input type="hidden" name="projectId" />
+
+
+
+                <div class="col-auto pb-5">
+                    <div data-partial="@Url.Action("Dropdown","PropertyTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyTypeCode))">
+                    </div>
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
+                        <select class="form-control form-control-sm" name="HasIndex">
+                            <option value="@false">Index Atılmasın</option>
+                            <option value="@true">Index Atılsın</option>
+                        </select>
+
+                        <label class="form-label mr-4" for="HasIndex"> Index Var Mı ? </label>
+                    </div>
+
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
+                        <select class="form-control form-control-sm" name="IsUnique">
+                            <option value="@false">Unique Alan Değil</option>
+                            <option value="@true">Unique Alan</option>
+                        </select>
+
+                        <label class="form-label mr-4" for="IsUnique"> Unique Alan Mı ? </label>
+                    </div>
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
+                        <select class="form-control form-control-sm" name="IsShowOnRelation">
+                            <option value="@false">Göster</option>
+                            <option value="@true">Gösterme</option>
+                        </select>
+
+                        <label class="form-label mr-4" for="IsShowOnRelation"> İlişkide Göster <i class="fa fa-question"></i> </label>
+                    </div>
+                    <small> İlişkisel verilerde kullanılır. (Örn:Dropdown text,liste gösterimi) </small>
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
+                        <div data-partial="@Url.Action("Dropdown","PropertyInputTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyInputTypeCode))">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
+                        @Html.TextBoxFor(w=>w.Name,new {@class="form-control form-control-sm"})
+                        <label class="form-label mr-4" for="Name">Özellik Adı </label>
+                    </div>
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
+                        @Html.TextBoxFor(w=>w.Order,new {@class="form-control form-control-sm",type="number"})
+                        <label class="form-label mr-4" for="Order">Gösterim Sırası</label>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!--end::Card body-->
+            <div class="card-footer text-end">
+                <!--begin::Dismiss button-->
+                <button type="reset" class="btn btn-light-danger" data-kt-drawer-dismiss="true">Kapat</button>
+                <!--end::Dismiss button-->
+                <button type="submit" class="btn btn-light-success">Kaydet</button>
+            </div>
+
+        </div>
+
+        <!--end::Card-->
+
+    </div>
 </form>
+
 
 <script type="text/javascript">
     var projectId = gridEvents.qsGetParams('projectId');
     $(function () {
         pageEvents.loadPartials();
         $('[name="projectId"]').val(projectId);
+        debugger;
+        KTDrawer.createInstances();
+
     });
 
     $(document).on('change', 'select[name="ProjectEntityId"]', function () {
-        
+
         window.location.href = getUrlWithoutQs() + "?projectId=" + projectId + "&ProjectEntityId=" + $(this).val();
     });
 

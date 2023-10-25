@@ -18,4 +18,8 @@ public class CreateProjectEntityPropertyResponse
     public bool IsUnique { get; set; }
 
     public string Prefix { get; set; } = "";
+
+    public bool IsShowOnRelation { get; set; }
+
+    public int Order { get; set; }
 }

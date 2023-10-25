@@ -113,12 +113,11 @@
         </ul>
 
         <div class="card">
+
             <div data-partial="@Url.Action("CreatePartial","ProjectEntityProperty")?ProjectEntityId=@projectEntityId">
-                <div class="vh-align">
-                    <h4> Header Yükleniyor. </h4>
-                    <a href="#/"> Lütfen Bekleyin. </a>
-                </div>
             </div>
+            
+           
 
             <div class="card-body">
                 <div class="card-body p-0">
@@ -154,6 +153,20 @@
                                                         </a>
                                                     </b>
                                                 </th>
+                                                <th>
+                                                    <b>
+                                                        <a data-sort="@nameof(ProjectEntityProperty.Order)" href="#/">
+                                                            Sıra &nbsp;
+                                                        </a>
+                                                    </b>
+                                                </th>
+                                                <th>
+                                                    <b>
+                                                        <a data-sort="@nameof(ProjectEntityProperty.IsShowOnRelation)" href="#/">
+                                                            İlişkide Göster &nbsp;
+                                                        </a>
+                                                    </b>
+                                                </th>
 
                                                 <th>
                                                     <b>
@@ -180,9 +193,37 @@
                                                     <input type="text" class="form-control form-control-sm" name="PropertyInputTypeCode" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.PropertyInputTypeCode))?.Value" />
                                                 </th>
                                                 <th>
+                                                    <input type="number" class="form-control form-control-sm" name="Order" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.Order))?.Value" />
+                                                </th>
+                                                <th>
+                                                    <select name="IsShowOnRelation" class="form-control form-control-sm">
+                                                        @{
+                                                            var filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.IsShowOnRelation))?.Value;
+                                                            if (filter == null)
+                                                            {
+                                                                <option selected value=""> Tümü </option>
+                                                                <option value="true"> Evet </option>
+                                                                <option value="false"> Hayır </option>
+                                                            }
+                                                            else if (filter != null && Convert.ToBoolean(filter))
+                                                            {
+                                                                <option value=""> Tümü </option>
+                                                                <option selected value="true"> Evet </option>
+                                                                <option value="false"> Hayır </option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value=""> Tümü </option>
+                                                                <option value="true"> Evet </option>
+                                                                <option value="false" selected> Hayır </option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </th>
+                                                <th>
                                                     <select name="HasIndex" class="form-control form-control-sm">
                                                         @{
-                                                            var filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.HasIndex))?.Value;
+                                                            filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.HasIndex))?.Value;
                                                             if (filter == null)
                                                             {
                                                                 <option selected value=""> Tümü </option>
@@ -239,6 +280,8 @@
                                                     <td>@item.Name</td>
                                                     <td>@item.PropertyTypeCode</td>
                                                     <td>@item.PropertyInputTypeCode</td>
+                                                    <td>@item.Order</td>
+                                                    <td>@(item.IsShowOnRelation ? "Evet" : "Hayır")</td>
                                                     <td>@(item.HasIndex ? "Evet" : "Hayır")</td>
                                                     <td>@(item.IsUnique ? "Evet" : "Hayır")</td>
                                                     @if (!item.IsConstant)

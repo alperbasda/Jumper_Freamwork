@@ -12,5 +12,6 @@ public class CreateProjectEntityPropertyCommandValidator : AbstractValidator<Cre
         RuleFor(w => w.HasIndex).NotNull().WithMessage("Lütfen Index Durumu Seçin.");
         RuleFor(w => w.IsUnique).NotNull().WithMessage("Lütfen Benzersizlik Durumu Seçin.");
         RuleFor(w => w.PropertyInputTypeCode).NotEmpty().NotNull().WithMessage("Lütfen Girdi Tipi Doldurun.");
+        RuleFor(w => w.Order).NotEmpty().NotNull().WithMessage("Lütfen Sıra Girin.");
     }
 }

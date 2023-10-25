@@ -8,5 +8,5 @@ public class PropertyInputTypeDeclaration : Entity<Guid>
 
     public string Code { get; set; } = null!;
 
-    public string Description { get; set; } = null!;
+    public string Template { get; set; } = null!;
 }

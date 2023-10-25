@@ -27,6 +27,13 @@ public class ProjectEntityProperty : Entity<Guid>, IConstantEntity
     /// </summary>
     public string Prefix { get; set; }
 
+    /// <summary>
+    /// İlişkili bir tablo için gösterilecek değerin bu kolon oldugunu belirtir.
+    /// </summary>
+    public bool IsShowOnRelation { get; set; }
+
+    public int Order { get; set; }
+
     [InverseProperty("ProjectEntityProperty")]
     public virtual ICollection<ProjectEntityActionProperty> Metods { get; set; }
 

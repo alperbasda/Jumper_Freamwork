@@ -80,6 +80,8 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
                 Prefix = item.Prefix,
                 HasIndex = item.HasIndex,
                 IsConstant = item.IsConstant,
+                IsShowOnRelation = item.IsShowOnRelation,
+                Order = item.Order,
                 UpdatedTime = null,
                 DeletedTime = null
             });
@@ -95,13 +97,13 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
             projectEntity.Properties = new List<ProjectEntityProperty>();
 
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "Id", PropertyTypeCode = "Guid", IsUnique = false, HasIndex = false, IsConstant = true });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "Id", PropertyTypeCode = "Guid", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 0 });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "CreatedTime", PropertyTypeCode = "DateTime", IsUnique = false, HasIndex = false, IsConstant = true });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "CreatedTime", PropertyTypeCode = "DateTime", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10001 });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "UpdatedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = false, IsConstant = true });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "UpdatedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10002 });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "DeletedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = true, IsConstant = true });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "DeletedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = true, IsConstant = true, IsShowOnRelation = false, Order = 10003 });
     }
 
 

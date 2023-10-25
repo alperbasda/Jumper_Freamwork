@@ -11,3 +11,5 @@
 //11-) Nesne havuzu kalkacak , bunun yerine projelerin nesneleri listelenecek. Nesnelere kategorize etmek için tagler atanacak. Bu tagleri nesneleri oluşturan kullanıcılar kendileri girecek.
 12-) Database loggeri suanda desteklemiyoruz desteği ekleyip ApiRegistrationService e gerekli kodları eklememiz gerekiyor.
 13-) ProjectEntityAction a AuthorizeActive alanı eklenmeli. Aktif ise claim bilgileri girilmeli veya seçilmeli. seçilenlerde IdentityServer a bildirilmeli.
+14-) EntityPropertylere order alanı eklenmeli. sacma sapan sırada geliyor can sıkar. 
+14-) EntityPropertylere IsShowOnRelation. (global js de işlem yaparken aklına geldi yarım bıraktın unutma Id Text şeklinde çıktı search adında girdi lazım.)

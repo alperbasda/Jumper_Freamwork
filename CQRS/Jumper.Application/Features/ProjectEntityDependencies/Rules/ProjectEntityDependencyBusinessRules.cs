@@ -98,7 +98,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = relatedEntities.First().Name,
                     Name = relatedEntities.First().Name,
                     Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual",
-                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 1001,
                 },
                 new ProjectEntityProperty
                 {
@@ -111,7 +113,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = relatedEntities.Last().Name,
                     Name = relatedEntities.Last().Name,
                     Prefix = relatedEntities.First().DatabaseType == DatabaseType.Mongo ? "" : "virtual",
-                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 1002,
                 },
 
                 new ProjectEntityProperty
@@ -125,7 +129,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.First().Name}Id",
                     Prefix = string.Empty,
-                    PropertyInputTypeCode = PropertyCreatorHelper.RELATIONAL_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.RELATIONAL_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 1001,
                 },
                 new ProjectEntityProperty
                 {
@@ -138,7 +144,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = "Guid",
                     Name = $"{relatedEntities.Last().Name}Id",
                     Prefix = string.Empty,
-                    PropertyInputTypeCode = PropertyCreatorHelper.RELATIONAL_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.RELATIONAL_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 1002,
                 },
                 new ProjectEntityProperty
                 {
@@ -151,7 +159,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = "DateTime",
                     Name = "CreatedTime",
                     Prefix = string.Empty,
-                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 10001,
                 },
                 new ProjectEntityProperty
                 {
@@ -164,7 +174,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = "DateTime?",
                     Name = "UpdatedTime",
                     Prefix = string.Empty,
-                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 10002,
                 },
                 new ProjectEntityProperty
                 {
@@ -177,7 +189,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = "DateTime?",
                     Name = "DeletedTime",
                     Prefix = string.Empty,
-                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 10003,
                 },
                 new ProjectEntityProperty
                 {
@@ -190,7 +204,9 @@ public class ProjectEntityDependencyBusinessRules : BaseBusinessRules
                     PropertyTypeCode = "Guid",
                     Name = "Id",
                     Prefix = string.Empty,
-                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE
+                    PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE,
+                    IsShowOnRelation = false,
+                    Order = 0,
                 }
             },
             IsConstant = true,

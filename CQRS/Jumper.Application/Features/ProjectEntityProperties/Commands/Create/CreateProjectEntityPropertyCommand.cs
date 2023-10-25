@@ -24,4 +24,8 @@ public class CreateProjectEntityPropertyCommand : IRequest<CreateProjectEntityPr
     public bool IsConstant { get; set; } = false;
 
     public string Prefix { get; set; } = "";
+
+    public bool IsShowOnRelation { get; set; }
+
+    public int Order { get; set; }
 }

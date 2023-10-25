@@ -20,6 +20,6 @@ public class PropertyInputTypeDeclarationConfiguration : IEntityTypeConfiguratio
 
         builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
         builder.Property(w => w.Code).HasColumnName("Code").IsRequired();
-        builder.Property(w => w.Description).HasColumnName("Description").IsRequired();
+        builder.Property(w => w.Template).HasColumnName("Template").IsRequired();
     }
 }
