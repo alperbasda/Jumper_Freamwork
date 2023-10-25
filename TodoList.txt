@@ -8,5 +8,5 @@
 8-)  UI da sadece cache enabled yetmiyor. Cache keyi ve cache group keyi alsak fena olmayacak. Birde read iþlemleri için ICachable CUD iþlemleri için IRemoveCache oldugunu sayfaya not düþ.
 9-)  DeleteCommandlar Liste silip Liste dönmeli.Templatelere bir ayar çekmek lazým
 10-) ProjectEntitye IsUserOwnedEntity alaný eklenecek. Bu alana sahip entityler IUserOwnedEntityden kalýtýlacak. ve bunlarýn commandlarý ve querylerine iþ kuralý çagýrýlacak.
-11-) Nesne havuzu kalkacak , bunun yerine projelerin nesneleri listelenecek. Nesnelere kategorize etmek için tagler atanacak. Bu tagleri nesneleri oluşturan kullanıcılar kendileri girecek.
+//11-) Nesne havuzu kalkacak , bunun yerine projelerin nesneleri listelenecek. Nesnelere kategorize etmek için tagler atanacak. Bu tagleri nesneleri oluşturan kullanıcılar kendileri girecek.
 12-) Database loggeri suanda desteklemiyoruz desteği ekleyip ApiRegistrationService e gerekli kodları eklememiz gerekiyor.
