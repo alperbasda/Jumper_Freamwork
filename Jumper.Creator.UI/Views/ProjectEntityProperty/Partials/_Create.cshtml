@@ -39,18 +39,21 @@
                     <label class="form-label mr-4" for="IsUnique"> Unique Alan Mı ? </label>
                 </div>
 
-
-
+            </div>
+            <div class="col-auto">
+                <div class="form-floating">
+                    <div data-partial="@Url.Action("Dropdown","PropertyInputTypeDeclaration")?Name=@(nameof(EntityPropertyDefinition.PropertyInputTypeCode))">
+                    </div>
+                </div>
             </div>
             <div class="col-auto">
                 <div class="form-floating">
                     @Html.TextBoxFor(w=>w.Name,new {@class="form-control form-control-sm"})
                     <label class="form-label mr-4" for="Name">Özellik Adı </label>
                 </div>
-
-
-
             </div>
+
+            
             <div class="col-auto">
                 <button type="submit" class="btn btn-sm btn-light-success">
                     Özellik Ekle

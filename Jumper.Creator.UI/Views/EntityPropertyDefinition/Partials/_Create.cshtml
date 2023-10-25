@@ -38,6 +38,12 @@
             <label class="form-label mr-4" for="Name">Özellik Adı </label>
         </div>
     </div>
+    <div class="col-auto">
+        <div class="form-floating">
+            <div data-partial="@Url.Action("Dropdown","PropertyInputTypeDeclaration")?Name=@(nameof(EntityPropertyDefinition.PropertyInputTypeCode))">
+            </div>
+        </div>
+    </div>
 
     <button type="submit" class="btn btn-sm btn-light-success">
         Özellik Ekle

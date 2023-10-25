@@ -35,6 +35,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IEntityDefinitionDal, EntityDefinitionDal>();
         services.AddScoped<IEntityPropertyDefinitionDal, EntityPropertyDefinitionDal>();
         services.AddScoped<IPropertyTypeDeclarationDal, PropertyTypeDeclarationDal>();
+        services.AddScoped<IPropertyInputTypeDeclarationDal, PropertyInputTypeDeclarationDal>();
         services.AddScoped<IProjectEntityDal, ProjectEntityDal>();
         services.AddScoped<IProjectEntityActionDal, ProjectEntityActionDal>();
         services.AddScoped<IProjectEntityActionPropertyDal, ProjectEntityActionPropertyDal>();

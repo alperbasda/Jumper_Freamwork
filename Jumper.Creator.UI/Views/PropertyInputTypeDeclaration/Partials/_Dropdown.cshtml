@@ -1,13 +1,13 @@
 ﻿@using Core.Persistence.Models.Responses;
-@using Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
+@using Jumper.Application.Features.PropertyInputTypeDeclarations.Queries.GetAllFromCache;
 @using Jumper.Application.Features.PropertyInputTypeDeclarations.Queries;
-@model List<GetAllFromCachePropertyTypeDeclarationResponse>
+@model List<GetAllFromCachePropertyInputTypeDeclarationResponse>
 
 @{
     SelectBoxModel selected = (SelectBoxModel)ViewData["SelectBoxModel"]!;
 }
 <div class="form-floating">
-    <select class="form-control form-control-sm" placeholder="Nesne Tipi Seçin" name="@selected.Name" style="width:100%">
+    <select class="form-control form-control-sm" placeholder="Input Tipi Seçin" name="@selected.Name" style="width:100%">
         <option value="@null">Seçim Yapın</option>
         @foreach (var item in Model)
         {
@@ -23,5 +23,5 @@
         }
     </select>
 
-    <label class="form-label mr-4" for="@selected.Name"> Tip </label>
+    <label class="form-label mr-4" for="@selected.Name"> Input Tipi </label>
 </div>

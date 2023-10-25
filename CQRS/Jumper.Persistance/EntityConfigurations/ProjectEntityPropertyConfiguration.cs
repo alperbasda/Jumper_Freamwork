@@ -21,6 +21,7 @@ public class ProjectEntityPropertyConfiguration : IEntityTypeConfiguration<Proje
 
         builder.Property(w => w.ProjectEntityId).HasColumnName("ProjectEntityId").IsRequired();
         builder.Property(w => w.PropertyTypeCode).HasColumnName("PropertyTypeCode").IsRequired();
+        builder.Property(w => w.PropertyInputTypeCode).HasColumnName("PropertyInputTypeCode").IsRequired();
         builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
         builder.Property(w => w.HasIndex).HasColumnName("HasIndex").IsRequired();
         builder.Property(w => w.IsUnique).HasColumnName("IsUnique").IsRequired();

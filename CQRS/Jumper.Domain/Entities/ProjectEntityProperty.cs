@@ -12,6 +12,8 @@ public class ProjectEntityProperty : Entity<Guid> , IConstantEntity
 
     public string PropertyTypeCode { get; set; }
 
+    public string PropertyInputTypeCode { get; set; }
+
     public string Name { get; set; }
 
     public bool HasIndex { get; set; }

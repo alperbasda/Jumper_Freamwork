@@ -16,4 +16,6 @@ public class UpdateEntityPropertyDefinitionCommand : IRequest<UpdateEntityProper
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
+
+    public string PropertyInputTypeCode { get; set; }
 }

@@ -17,4 +17,6 @@ public class CreateEntityPropertyDefinitionCommand : IRequest<CreateEntityProper
     public bool IsUnique { get; set; }
 
     public bool IsConstants { get; set; } = false;
+
+    public string PropertyInputTypeCode { get; set; }
 }

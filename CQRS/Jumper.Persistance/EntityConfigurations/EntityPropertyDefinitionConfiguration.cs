@@ -20,6 +20,8 @@ namespace Jumper.Persistance.EntityConfigurations
             builder.HasQueryFilter(w => !w.DeletedTime.HasValue);
 
             builder.Property(w => w.PropertyTypeCode).HasColumnName("PropertyTypeCode").IsRequired();
+            builder.Property(w => w.PropertyInputTypeCode).HasColumnName("PropertyInputTypeCode").IsRequired();
+            
             builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
             builder.Property(w => w.EntityDefinitionId).HasColumnName("EntityDefinitionId").IsRequired();
 

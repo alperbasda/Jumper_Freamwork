@@ -4,7 +4,6 @@ using Jumper.Application.Features.ProjectEntityProperties.Commands.Delete;
 using Jumper.Application.Features.ProjectEntityProperties.Queries.GetListByProjectEntityId;
 using Jumper.Creator.UI.ActionFilters;
 using Jumper.Creator.UI.Controllers.Base;
-using Jumper.Creator.UI.Models;
 using Jumper.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;

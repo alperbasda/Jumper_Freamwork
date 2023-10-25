@@ -17,5 +17,7 @@ public class CreateEntityPropertyDefinitionResponse
 
     public bool IsUnique { get; set; }
 
+    public string PropertyInputTypeCode { get; set; }
+
     public DateTime CreatedTime { get; set; }
 }

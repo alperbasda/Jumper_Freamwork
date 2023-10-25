@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Jumper.Application.Features.PropertyInputTypeDeclarations.Queries.GetAllFromCache;
 using Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
 using Jumper.Domain.Entities;
 

@@ -148,6 +148,13 @@
                                                         </a>
                                                     </b>
                                                 </th>
+                                                <th>
+                                                    <b>
+                                                        <a data-sort="@nameof(ProjectEntityProperty.PropertyInputTypeCode)" href="#/">
+                                                            Gösterim Tipi &nbsp;
+                                                        </a>
+                                                    </b>
+                                                </th>
 
                                                 <th>
                                                     <b>
@@ -169,6 +176,9 @@
                                                 </th>
                                                 <th>
                                                     <input type="text" class="form-control form-control-sm" name="PropertyTypeCode" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.PropertyTypeCode))?.Value" />
+                                                </th>
+                                                <th>
+                                                    <input type="text" class="form-control form-control-sm" name="PropertyInputTypeCode" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.PropertyInputTypeCode))?.Value" />
                                                 </th>
                                                 <th>
                                                     <select name="HasIndex" class="form-control form-control-sm">
@@ -229,6 +239,7 @@
                                                 <tr class="item_wrapper">
                                                     <td>@item.Name</td>
                                                     <td>@item.PropertyTypeCode</td>
+                                                    <td>@item.PropertyInputTypeCode</td>
                                                     <td>@(item.HasIndex ? "Evet" : "Hayır")</td>
                                                     <td>@(item.IsUnique ? "Evet" : "Hayır")</td>
                                                     @if (!item.IsConstant)

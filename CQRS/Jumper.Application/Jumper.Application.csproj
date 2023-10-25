@@ -30,6 +30,9 @@
   <ItemGroup>
     <Folder Include="Features\Auth\Profiles\" />
     <Folder Include="Features\Auth\Queries\" />
+    <Folder Include="Features\PropertyInputTypeDeclarations\Commands\" />
+    <Folder Include="Features\PropertyInputTypeDeclarations\Handlers\Commands\" />
+    <Folder Include="Features\PropertyInputTypeDeclarations\Rules\" />
     <Folder Include="Features\PropertyTypeDeclarations\Commands\" />
     <Folder Include="Features\PropertyTypeDeclarations\Handlers\Commands\" />
     <Folder Include="Features\PropertyTypeDeclarations\Rules\" />

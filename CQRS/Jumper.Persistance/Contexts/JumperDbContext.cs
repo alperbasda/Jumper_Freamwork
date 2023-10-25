@@ -32,6 +32,8 @@ namespace Jumper.Persistance.Contexts
 
         public virtual DbSet<ProjectEntityActionProperty> ProjectEntityActionProperties { get; set; }
 
+        public virtual DbSet<PropertyInputTypeDeclaration> PropertyInputTypeDeclarations { get; set; }
+
         //IEntityTypeConfiguration dan kalıtılan tüm konfigurasyonları işler.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

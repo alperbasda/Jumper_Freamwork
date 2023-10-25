@@ -1,6 +1,5 @@
 ﻿using Core.Persistence.Models;
 using Jumper.Domain.Base;
-using Jumper.Domain.Enums;
 
 namespace Jumper.Domain.Entities;
 
@@ -11,6 +10,8 @@ public class EntityPropertyDefinition : Entity<Guid>, IConstantEntity
     public virtual EntityDefinition EntityDefinition { get; set; }
 
     public string PropertyTypeCode { get; set; }
+
+    public string PropertyInputTypeCode { get; set; }
 
     public string Name { get; set; }
 

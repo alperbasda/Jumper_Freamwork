@@ -22,4 +22,6 @@ public class GetListByEntityDefinitionIdEntityPropertyDefinitionResponse
 
     public DateTime? UpdatedTime { get; set; }
 
+    public string PropertyInputTypeCode { get; set; }
+
 }

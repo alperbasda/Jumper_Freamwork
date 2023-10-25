@@ -17,4 +17,6 @@ public class UpdateEntityPropertyDefinitionResponse
     public bool HasIndex { get; set; }
 
     public bool IsUnique { get; set; }
+
+    public string PropertyInputTypeCode { get; set; }
 }

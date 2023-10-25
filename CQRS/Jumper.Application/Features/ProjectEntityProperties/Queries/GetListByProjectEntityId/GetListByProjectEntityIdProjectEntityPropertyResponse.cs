@@ -19,4 +19,6 @@ public class GetListByProjectEntityIdProjectEntityPropertyResponse
     public bool IsConstant { get; set; }
 
     public string Prefix { get; set; } = "";
+
+    public string PropertyInputTypeCode { get; set; }
 }
