@@ -31,7 +31,7 @@ public class AuthHelper
     public void LogOut()
     {
         _httpContextAccessor.HttpContext!.Response.Cookies.Delete("Authorization");
-        //_httpContextAccessor.HttpContext!.Response.Cookies.Delete("AuthenticationToken");
+        _httpContextAccessor.HttpContext!.Response.Cookies.Delete("AuthenticationToken");
     }
 
     public string GetAccessToken()
