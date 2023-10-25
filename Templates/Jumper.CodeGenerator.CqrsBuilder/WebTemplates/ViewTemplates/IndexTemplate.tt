@@ -92,6 +92,10 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                 <#
                                 foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
                                 {
+                                if(prop["Name"].ToString() == "Id")
+                                {
+                                continue;
+                                }
                                 #>
                                 <th>
                                     <b>
@@ -112,6 +116,10 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                 <#
                                 foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
                                 {
+                                if(prop["Name"].ToString() == "Id")
+                                {
+                                continue;
+                                }
                                 #>
                                 <th>
                                     <input type="text" class="form-control form-control-sm" name="<#= prop["Name"].ToString() #>" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(<#= entity["Name"].ToString() #>.<#= prop["Name"].ToString() #>))?.Value" />
@@ -129,6 +137,10 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                          <#
                                          foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
                                          {
+                                         if(prop["Name"].ToString() == "Id")
+                                         {
+                                         continue;
+                                         }
                                          #>
                                          <td>@item.<#= prop["Name"].ToString() #></td>
                                          <#

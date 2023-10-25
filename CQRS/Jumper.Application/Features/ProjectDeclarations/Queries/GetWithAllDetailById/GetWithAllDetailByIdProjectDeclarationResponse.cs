@@ -76,6 +76,8 @@ public class ProjectDeclarationEntityAggregation
 
 public class ProjectDeclarationEntityActionAggregation
 {
+    public Guid Id { get; set; }
+
     public string Name { get; set; }
 
     public bool CacheEnabled { get; set; }
@@ -91,6 +93,8 @@ public class ProjectDeclarationEntityActionAggregation
 
 public class ProjectDeclarationEntityActionPropertyAggregation
 {
+    public Guid Id { get; set; }
+
     public Guid? ProjectEntityPropertyId { get; set; }
 
     public string PropertyName { get; set; }

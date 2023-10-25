@@ -52,6 +52,7 @@ public class GetWithAllDetailByIdProjectDeclarationQueryHandler : IRequestHandle
         _projectDeclarationBusinessRules.AddDefaultActions(returnProjectData);
         _projectDeclarationBusinessRules.FillEntityActionProperties(returnProjectData);
         await _projectDeclarationBusinessRules.FillPropertyTypes(returnProjectData);
+        _projectDeclarationBusinessRules.OrderEntityAllProperties(returnProjectData);
 
         return returnProjectData;
     }

@@ -38,6 +38,18 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
         }
     }
 
+    public void OrderEntityAllProperties(GetWithAllDetailByIdProjectDeclarationResponse data)
+    {
+        foreach (var item in data.Entities)
+        {
+            item.Properties = item.Properties.OrderBy(w => w.Order).ToList();
+            foreach (var action in item.Actions)
+            {
+                action.Properties = action.Properties.OrderBy(s => item.Properties.Single(x => x.Id == s.ProjectEntityPropertyId).Order).ToList();
+            }
+        }
+    }
+
     public async Task FillPropertyTypes(GetWithAllDetailByIdProjectDeclarationResponse data)
     {
         var propertyTypes = await _mediator.Send(new GetAllFromCachePropertyTypeDeclarationQuery());
