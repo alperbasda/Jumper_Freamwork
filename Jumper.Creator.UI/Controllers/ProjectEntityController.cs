@@ -3,11 +3,11 @@ using Jumper.Application.Features.ProjectEntities.Commands.Create;
 using Jumper.Application.Features.ProjectEntities.Commands.CreateFromDefinition;
 using Jumper.Application.Features.ProjectEntities.Commands.Delete;
 using Jumper.Application.Features.ProjectEntities.Commands.Update;
+using Jumper.Application.Features.ProjectEntities.Queries.GetListByName;
 using Jumper.Application.Features.ProjectEntities.Queries.GetListByProjectId;
 using Jumper.Creator.UI.ActionFilters;
 using Jumper.Creator.UI.Controllers.Base;
 using Jumper.Creator.UI.Models;
-using Jumper.Creator.UI.Models.Enum;
 using Jumper.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
@@ -61,15 +61,6 @@ public class ProjectEntityController : MediatrController
         return Json("Nesne Silindi.");
     }
 
-
-    [HttpGet("propertycreationdropdown")]
-    public async Task<IActionResult> DropdownForProperyCreation(GetListByProjectIdProjectEntityQuery command)
-    {
-        ViewData["selected"] = command;
-        var data = await base.Mediator.Send(command);
-        return PartialView("Partials/_DropdownForProperyCreation", data);
-    }
-
     [HttpGet("projectsdropdownpartial")]
     public async Task<IActionResult> Dropdown(SelectBoxModel model, Guid projectId)
     {
@@ -78,6 +69,12 @@ public class ProjectEntityController : MediatrController
         request.PageRequest = new Core.Persistence.Requests.PageRequest { PageIndex = 0, PageSize = int.MaxValue };
         var dropdownItems = await base.Mediator.Send(request);
         return PartialView("Partials/_Dropdown", dropdownItems.Items);
+    }
+
+    [HttpGet("pooldropdowndata")]
+    public async Task<IActionResult> PoolDropdownData(string search)
+    {
+        return Json(await base.Mediator.Send(new GetListByNameProjectEntityQuery { SearchTerm = search }));
     }
 
 }

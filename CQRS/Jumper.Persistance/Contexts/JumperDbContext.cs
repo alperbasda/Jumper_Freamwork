@@ -18,10 +18,6 @@ namespace Jumper.Persistance.Contexts
 
         public virtual DbSet<PropertyTypeDeclaration> PropertyTypeDeclarations { get; set; }
 
-        public virtual DbSet<EntityPropertyDefinition> EntityPropertyDefinitions { get; set; }
-
-        public virtual DbSet<EntityDefinition> EntityDefinitions { get; set; }
-
         public virtual DbSet<ProjectEntity> ProjectEntities { get; set; }
 
         public virtual DbSet<ProjectEntityProperty> ProjectEntityProperties { get; set; }

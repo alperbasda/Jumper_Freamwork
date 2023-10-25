@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Jumper.Domain.Entities;
 
-public class ProjectEntityProperty : Entity<Guid> , IConstantEntity
+public class ProjectEntityProperty : Entity<Guid>, IConstantEntity
 {
     public Guid ProjectEntityId { get; set; }
 
@@ -29,4 +29,5 @@ public class ProjectEntityProperty : Entity<Guid> , IConstantEntity
 
     [InverseProperty("ProjectEntityProperty")]
     public virtual ICollection<ProjectEntityActionProperty> Metods { get; set; }
+
 }

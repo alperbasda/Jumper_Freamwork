@@ -7,6 +7,7 @@ using Jumper.Application.Features.ProjectEntities.Commands.CreateFromDefinition;
 using Jumper.Application.Features.ProjectEntities.Commands.Delete;
 using Jumper.Application.Features.ProjectEntities.Commands.Update;
 using Jumper.Application.Features.ProjectEntities.Queries.GetById;
+using Jumper.Application.Features.ProjectEntities.Queries.GetListByName;
 using Jumper.Application.Features.ProjectEntities.Queries.GetListByProjectId;
 using Jumper.Domain.Entities;
 
@@ -41,5 +42,8 @@ public class MappingProfile : Profile
         CreateMap<ProjectEntity, ProjectDeclarationEntityAggregation>()
             .ForMember(w => w.Properties, q => q.MapFrom(c => c.Properties))
             .ForMember(w => w.Actions, q => q.MapFrom(c => c.ProjectEntityActions));
+
+        CreateMap<ProjectEntity, GetListByNameProjectEntityResponse>();
+        
     }
 }

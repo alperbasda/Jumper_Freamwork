@@ -70,11 +70,11 @@
                     <div class="row ">
                         @Html.HiddenFor(w=>w.ProjectDeclarationId)
                         <div class="col-12 pb-3">
-                            <div class="text-center w-100" style="border: 1px dashed grey;" data-partial="@Url.Action("Dropdown","EntityDefinition")">
-                                <div class="vh-align">
-                                    <h4> Havuz Nesneleri Yükleniyor. </h4>
-                                    <a href="#/"> Lütfen Bekleyin. </a>
-                                </div>
+                            <div class="form-floating">
+                                <select class="form-control form-control-sm search_box" placeholder="Nesne Seçin" name="EntityDefinitionId">
+                                  
+                                </select>
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -103,8 +103,41 @@
     
     $(function () {
         pageEvents.loadPartials();
-        
+
+        $(".search_box").select2({
+            placeholder: "Nesne Seçin",
+            dropdownParent: $('#entity_pool_modal .modal-body'),
+            ajax: {
+                url: '/projectentity/pooldropdowndata',
+                dataType: 'json',
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                    }
+                    // Query parameters will be ?search=[term]
+                    return query;
+                },
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+                processResults: function (data) {
+                    // Transforms the top-level key of the response object from 'items' to 'results'
+                    return {
+                        results: data.map(function (value, label) {
+                            return {
+                                "id": value.id,
+                                "text": value.name
+                            };
+                        })
+                    };
+                },
+            },
+            delay: 250,
+            minimumInputLength: 2,
+            selectOnClose: true
+        });
+       
+
     });
+
 
 </script>
 

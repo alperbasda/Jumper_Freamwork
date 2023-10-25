@@ -32,8 +32,6 @@ public static class PersistenceServiceRegistration
         services.AddDbContext<JumperDbContext>(options => options.UseSqlServer(opts.EfConnectionString));
 
         services.AddScoped<IProjectDeclarationDal, ProjectDeclarationDal>();
-        services.AddScoped<IEntityDefinitionDal, EntityDefinitionDal>();
-        services.AddScoped<IEntityPropertyDefinitionDal, EntityPropertyDefinitionDal>();
         services.AddScoped<IPropertyTypeDeclarationDal, PropertyTypeDeclarationDal>();
         services.AddScoped<IPropertyInputTypeDeclarationDal, PropertyInputTypeDeclarationDal>();
         services.AddScoped<IProjectEntityDal, ProjectEntityDal>();

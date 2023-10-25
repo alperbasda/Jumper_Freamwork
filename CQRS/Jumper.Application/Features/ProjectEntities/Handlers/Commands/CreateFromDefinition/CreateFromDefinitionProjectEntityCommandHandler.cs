@@ -24,11 +24,9 @@ public class CreateFromDefinitionProjectEntityCommandHandler : IRequestHandler<C
     {
         await _projectEntityBusinessRules.ThrowExceptionIfProjectDeclarationUserNotLoggedUser(request.ProjectDeclarationId);
 
-        var entityDefinition = await _projectEntityBusinessRules.GetDefinitionWithProperties(request.EntityDefinitionId);
+        var projectEntity = await _projectEntityBusinessRules.CloneObject(request.EntityDefinitionId);
 
-        await _projectEntityBusinessRules.ThrowExceptionIfSamaNameProjectEntityExists(request.ProjectDeclarationId, entityDefinition.Name);
-
-        var projectEntity = _mapper.Map<ProjectEntity>(entityDefinition);
+        await _projectEntityBusinessRules.ThrowExceptionIfSamaNameProjectEntityExists(request.ProjectDeclarationId, projectEntity.Name);
 
         _mapper.Map(request, projectEntity);
 

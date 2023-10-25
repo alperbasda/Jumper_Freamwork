@@ -9,13 +9,11 @@ namespace Jumper.Application.Features.ProjectEntities.Rules;
 
 public class ProjectEntityBusinessRules : BaseBusinessRules
 {
-    private readonly IEntityDefinitionDal _entityDefinitionDal;
     private readonly IProjectDeclarationDal _projectDeclarationDal;
     private readonly IProjectEntityDal _projectEntityDal;
 
-    public ProjectEntityBusinessRules(TokenParameters tokenParameters, IEntityDefinitionDal entityDefinitionDal, IProjectDeclarationDal projectDeclarationDal, IProjectEntityDal projectEntityDal) : base(tokenParameters)
+    public ProjectEntityBusinessRules(TokenParameters tokenParameters, IProjectDeclarationDal projectDeclarationDal, IProjectEntityDal projectEntityDal) : base(tokenParameters)
     {
-        _entityDefinitionDal = entityDefinitionDal;
         _projectDeclarationDal = projectDeclarationDal;
         _projectEntityDal = projectEntityDal;
     }
@@ -46,14 +44,50 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
         }
     }
 
-    public async Task<EntityDefinition> GetDefinitionWithProperties(Guid entityDefinitionId)
+    public async Task<ProjectEntity> CloneObject(Guid entityDefinitionId)
     {
-        var data = await _entityDefinitionDal.GetAsync(w => w.Id == entityDefinitionId, include: w => w.Include(q => q.EntityPropertyDefinitions));
-
+        var data = await _projectEntityDal.GetAsync(w => w.Id == entityDefinitionId, include: w => w.Include(q => q.Properties));
         await this.ThrowExceptionIfDataNull(data);
+        var returnData = new ProjectEntity
+        {
+            Id = Guid.NewGuid(),
+            CreatedTime = DateTime.UtcNow,
+            UpdatedTime = null,
+            DeletedTime = null,
+            ProjectDeclarationId = data!.ProjectDeclarationId,
+            DatabaseType = data.DatabaseType,
+            IsConstant = false,
+            Name = data.Name,
+            Properties = new List<ProjectEntityProperty>()
+        };
 
-        return data!;
+        if (!data.Properties.Any())
+        {
+            return returnData;
+        }
+
+        foreach (var item in data!.Properties)
+        {
+            returnData.Properties.Add(new ProjectEntityProperty
+            {
+                Id = Guid.NewGuid(),
+                CreatedTime = DateTime.Now,
+                ProjectEntityId = item.ProjectEntityId,
+                IsUnique = item.IsUnique,
+                PropertyTypeCode = item.PropertyTypeCode,
+                PropertyInputTypeCode = item.PropertyInputTypeCode,
+                Name = item.Name,
+                Prefix = item.Prefix,
+                HasIndex = item.HasIndex,
+                IsConstant = item.IsConstant,
+                UpdatedTime = null,
+                DeletedTime = null
+            });
+        }
+
+        return returnData;
     }
+
 
     public void AddDefaultProperties(ProjectEntity projectEntity)
     {
