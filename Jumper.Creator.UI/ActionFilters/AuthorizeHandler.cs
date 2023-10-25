@@ -21,6 +21,7 @@ public class AuthorizeHandlerAttribute : Attribute, IAuthorizationFilter
 {
 
     public void OnAuthorization(AuthorizationFilterContext context)
+    
     {
         var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
         if (allowAnonymous)

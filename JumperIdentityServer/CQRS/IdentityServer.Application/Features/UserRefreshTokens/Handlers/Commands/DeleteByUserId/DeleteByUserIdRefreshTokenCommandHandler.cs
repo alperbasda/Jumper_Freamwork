@@ -23,12 +23,13 @@ public class DeleteByUserIdRefreshTokenCommandHandler : IRequestHandler<DeleteBy
     {
 
         var data = await _userRefreshTokenDal.GetAsync(w => w.UserId == request.UserId);
-
-        _userRefreshTokenBusinessRules.ThrowExceptionIfDataNull(data);
-
+        if (data == null)
+        {
+            return new DeleteByUserIdRefreshTokenResponse { UserId = request.UserId };
+        }
         //İş Kurallarınızı Burada Çağırabilirsiniz.
 
-        await _userRefreshTokenDal.DeleteAsync(data!,permanent:true);
+        await _userRefreshTokenDal.DeleteAsync(data!, permanent: true);
 
         return _mapper.Map<DeleteByUserIdRefreshTokenResponse>(data);
     }

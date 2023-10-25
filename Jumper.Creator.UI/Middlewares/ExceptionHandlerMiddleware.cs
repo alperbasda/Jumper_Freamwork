@@ -34,7 +34,7 @@ public class ExceptionHandlerMiddleware
         }
         catch (ValidationException error)
         {
-            var errors = string.Join("<br/>", error.Errors.SelectMany(w => w.Errors?? new List<string>()));
+            var errors = string.Join("<br/>", error.Errors.SelectMany(w => w.Errors ?? new List<string>()));
             if (AjaxRequestExtension.IsAjaxRequest(context.Request))
             {
                 await context.Response.WriteAsJsonAsync(Response<MessageResponse>.Fail(errors, 400));
@@ -97,6 +97,33 @@ public class ExceptionHandlerMiddleware
             context.Response.Redirect("/Auth/Login");
 
         }
+        catch (AggregateException error)
+        {
+            if (AjaxRequestExtension.IsAjaxRequest(context.Request))
+            {
+                await context.Response.WriteAsJsonAsync(Response<MessageResponse>.Fail(error.Message, 400));
+                return;
+            }
+            var dict = new Dictionary<string, object>
+            {
+                { "Error", error.Message }
+            };
+            
+            string refer = context.Request.Headers["Referer"]!;
+            var authException = error.InnerExceptions.FirstOrDefault(w => w.GetType() == typeof(AuthorizationException));
+            if (authException != null)
+            {
+                refer = "Auth/Login";
+                dict = new Dictionary<string, object>
+                {
+                    { "Error", "Lütfen Giriş Yapın" }
+                };
+            }
+
+            tempDataProvider.SaveTempData(context, dict);
+            context.Response.Redirect(string.IsNullOrEmpty(refer) ? context.Request.Path : refer);
+
+        }
         catch (Exception error)
         {
             if (AjaxRequestExtension.IsAjaxRequest(context.Request))
@@ -114,6 +141,7 @@ public class ExceptionHandlerMiddleware
             context.Response.Redirect(string.IsNullOrEmpty(refer) ? context.Request.Path : refer);
 
         }
+
 
     }
 
