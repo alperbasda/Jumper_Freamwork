@@ -119,10 +119,6 @@ public class TokenHelper
             userList.AddRange(user.UserScopes.Select(x => new Claim("scope", x.Scope!)));
         }
 
-        foreach (var item in clients.SelectMany(w => w.ApiResources).Where(w => w != null))
-        {
-
-        }
         userList.AddRange(clients.SelectMany(w => w.ApiResources).Where(w => w != null).Select(x => new Claim(JwtRegisteredClaimNames.Aud, x.ApiResource?.Name ?? " ")));
 
         return userList;

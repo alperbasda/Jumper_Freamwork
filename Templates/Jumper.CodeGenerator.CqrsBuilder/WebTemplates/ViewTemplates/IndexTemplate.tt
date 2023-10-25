@@ -1,0 +1,231 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ output extension=".cshtml" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Views";
+#>
+<#
+foreach (var entity in datasource["Entities"])
+{
+#>
+<!--
+   <#= FileSettings.AUTO_GENERATED_MESSAGE #> 
+-->
+@using Core.Persistence.Dynamic;
+@using Core.Persistence.Models.Responses;
+@using Core.WebHelper.NameValueCollectionHelpers;
+@using <#= datasource["SolutionName"].ToString() #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.ListDynamic;
+@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"@using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
+
+@{
+    ViewData["Title"] = "<#= entity["Name"].ToString() #> Listesi";
+    var filters = new List<Filter>();
+    if (Model != null && Model.DynamicQuery != null && Model.DynamicQuery.Filter != null)
+    {
+        filters.AddRange(CollectionToDynamicQueryExtension.GetAllFilters(Model.DynamicQuery.Filter));
+    }
+}
+@model ListModel<ListDynamic<#= entity["Name"].ToString() #>Response>
+
+
+
+<div class="card">
+    <!--begin:Card Header-->
+    <div class="card-header">
+        <!--begin:Card Title-->
+        <div class="card-title">
+            
+        </div>
+        <!--end:Card Title-->
+        <!--begin::Toolbar container-->
+        <div class="card-toolbar">
+            <div class="card-toolbar">
+                <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Create","<#= entity["Name"].ToString() #>")" class="btn btn-sm fw-bold btn-secondary"><#= entity["Name"].ToString() #> Ekle</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--end::Toolbar container-->
+
+    </div>
+    <!--end:Card Header-->
+    <!--begin::Card Body container-->
+    <div class="card-body p-0">
+        <form method="get" action="@Url.Action("Index","<#= entity["Name"].ToString() #>")">
+            <div class="d-flex flex-column flex-column-fluid">
+                <div id="kt_app_content" class="app-content flex-column-fluid">
+                    <div id="kt_app_content_container" class="app-container container-xxxl">
+                        <div class="table-responsive">
+                            <table class="dynamic-table table table-hover table-row-bordered gy-5 gs-7">
+                                <tr>
+                                <#
+                                foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
+                                {
+                                #>
+                                <th>
+                                    <b>
+                                        <a data-sort="@nameof(<#= entity["Name"].ToString() #>.<#= prop["Name"].ToString() #>)" href="#/">
+                                            <#= prop["Name"].ToString() #> &nbsp;
+                                        </a>
+                                    </b>
+                                </th>
+                                <#
+                                }
+                                #>
+                                <th></th>
+                                <th></th>
+                                </tr>
+
+
+                                <tr>
+                                <#
+                                foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
+                                {
+                                #>
+                                <th>
+                                    <input type="text" class="form-control form-control-sm" name="<#= prop["Name"].ToString() #>" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(<#= entity["Name"].ToString() #>.<#= prop["Name"].ToString() #>))?.Value" />
+                                </th>
+                                <#
+                                }
+                                #>
+                                <th> <input type="submit" class="btn btn-primary btn-sm" value="Filtrele" /> </th>
+                                <th></th>
+                                </tr>
+
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                         <#
+                                         foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
+                                         {
+                                         #>
+                                         <td>@item.<#= prop["Name"].ToString() #></td>
+                                         <#
+                                         }
+                                         #>
+
+                                        <td>
+                                            <div class="d-flex justify-content-around">
+                                                <a href="@Url.Action("Update","<#= entity["Name"].ToString() #>")/@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Düzenle">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="delete-link" href="@Url.Action("DeleteAsync","<#= entity["Name"].ToString() #>")/@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Sil">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+
+    </div>
+    <!--end::Card Body container-->
+    <div class="card-footer">
+        <ul class="pagination pagination-circle">
+            @if (Model.Pages > 1)
+            {
+                // "Başa git Git" butonu
+                if (Model.HasPrevious)
+                {
+                    <li class="page-item first">
+                        <a data-page="1" class="page-link" href="#/">
+                            <i class="fa-solid fa-angles-left fs-2"></i>
+                        </a>
+                    </li>
+                }
+                for (int i = Math.Max(1, Model.Index - 3); i < Model.Index; i++)
+                {
+                    <li class="page-item">
+                        <a data-page="@i" class="page-link" href="#/"> @i </a>
+                    </li>
+                }
+                // Mevcut sayfa
+                <li class="page-item active">
+                    <span class=" page-link">@Model.Index</span>
+                </li>
+                for (int i = Model.Index + 1; i <= Math.Min(Model.Pages, Model.Index + 3); i++)
+                {
+                    <li class="page-item">
+                        <a data-page="@i" class="page-link" href="#/">@i</a>
+                    </li>
+                }
+                // "Sona Git" butonu
+                if (Model.HasNext)
+                {
+                    <li class="page-item last  ">
+                        <a data-page="@Model.Pages" class="page-link" href="#/">
+                            <i class="fa-solid fa-angles-right fs-2"></i>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    
+        @if (Model.Count == 0)
+        {
+            <div class="text-center">
+                <h5>
+                    Kriterlere uygun veri bulunamadı.
+                </h5>
+
+            </div>
+        }
+    
+    </div>
+    
+    
+    </div>
+    
+    <div class="pt-2">
+        <p>
+            Sisteme Kayıtlı @Model.Items.Count servis bulunmaktadır.
+        </p>
+    </div>
+</div>
+
+
+<#    
+DirectoryHelper.CreateDirectoryIfNotExists($"{filePath}/{entity["Name"].ToString()}");
+FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}/Index.cshtml",this.GenerationEnvironment);
+}
+#>

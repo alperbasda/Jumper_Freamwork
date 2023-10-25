@@ -173,6 +173,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
     </None>
+    <None Include="WebTemplates\ControllerTemplates\WebControllerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WebControllerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="WebTemplates\ViewTemplates\CreateTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateTemplate.tt</DependentUpon>
+    </None>
+    <None Include="WebTemplates\ViewTemplates\IndexTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IndexTemplate.tt</DependentUpon>
+    </None>
+    <None Include="WebTemplates\ViewTemplates\UpdateTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateTemplate.tt</DependentUpon>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -355,6 +375,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="WebTemplates\ControllerTemplates\WebControllerTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WebControllerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="WebTemplates\ViewTemplates\CreateTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="WebTemplates\ViewTemplates\IndexTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IndexTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="WebTemplates\ViewTemplates\UpdateTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateTemplate.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -485,6 +525,22 @@
     <None Update="PersistenceTemplates\PersistenceRegistrationServiceTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PersistenceRegistrationServiceTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\ControllerTemplates\WebControllerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebControllerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\ViewTemplates\CreateTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CreateTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\ViewTemplates\IndexTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IndexTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\ViewTemplates\UpdateTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>UpdateTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

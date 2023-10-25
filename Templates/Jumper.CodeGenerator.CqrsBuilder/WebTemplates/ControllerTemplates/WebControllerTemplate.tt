@@ -1,0 +1,122 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ output extension=".cs" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Controllers";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+<#
+foreach (var entity in datasource["Entities"])
+{
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.Create;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.DeleteById;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.Update;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.GetById;
+using <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.ListDynamic;
+using <#= datasource["SolutionName"] #>.UI.Web.ActionFilters;
+using <#= datasource["SolutionName"] #>.UI.Web.Controllers.Base;
+using Core.Persistence.Models.Responses;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Specialized;
+using System.Web;
+using Core.WebHelper.NameValueCollectionHelpers;
+using Core.WebHelper.ControllerExtensions;
+<# 
+if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.MongoEntities;");
+}
+else
+{
+WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
+}
+#>
+
+namespace <#= datasource["SolutionName"] #>.UI.Web.Controllers
+{
+    [Route("<#= entity["Name"].ToString() #>")]
+    [AuthorizeHandler]
+    public class <#= entity["Name"].ToString() #>Controller : MediatrController
+    {
+        private const string SUCCESS_MESSAGE = "İşlem Başarılı";
+
+        [HttpGet("index")]
+        public async Task<IActionResult> Index()
+        {
+            NameValueCollection collection = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.Value ?? "");
+            var pageRequest = collection.ToPageRequest();
+            var dynamicQuery = collection.ToDynamicFilter<<#= entity["Name"].ToString() #>>();
+            var response = await Mediator.Send(new ListDynamic<#= entity["Name"].ToString() #>Query { DynamicQuery = dynamicQuery, PageRequest = pageRequest });
+            return View(response);
+        }
+
+        [HttpGet("create")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(Create<#= entity["Name"].ToString() #>Command command)
+        {
+            var response = await Mediator.Send(command);
+            return RedirectToAction("Index", "<#= entity["Name"].ToString() #>").Success(SUCCESS_MESSAGE);
+        }
+
+        [HttpGet("update/{id}")]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var response = await base.Mediator.Send(new GetById<#= entity["Name"].ToString() #>Query { Id = id });
+            return View(response);
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> Update(Update<#= entity["Name"].ToString() #>Command command)
+        {
+            var response = await Mediator.Send(command);
+            return RedirectToAction("Index", "<#= entity["Name"].ToString() #>").Success(SUCCESS_MESSAGE);
+        }
+
+        [HttpGet("deleteasync/{id}")]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            var response =  await base.Mediator.Send(new DeleteById<#= entity["Name"].ToString() #>Command { Id = id });
+            return Json(SUCCESS_MESSAGE);
+        }
+
+        [HttpGet("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var response =  await base.Mediator.Send(new DeleteById<#= entity["Name"].ToString() #>Command { Id = id });
+            return Redirect(Request.Headers["Referer"].ToString()).Success(SUCCESS_MESSAGE);
+        }
+    }
+}
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}Controller.cs",this.GenerationEnvironment);
+}
+#>

@@ -1,0 +1,87 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ output extension=".cshtml" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Views";
+#>
+<#
+foreach (var entity in datasource["Entities"])
+{
+#>
+<!--
+   <#= FileSettings.AUTO_GENERATED_MESSAGE #> 
+-->
+@using <#= datasource["SolutionName"].ToString() #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.Update;
+@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
+@{
+    ViewData["Title"] = "<#= entity["Name"].ToString() #> Güncelle";
+}
+@model Create<#= entity["Name"].ToString() #>Command
+
+
+
+<div class="card">
+    <!--begin:Card Header-->
+    <div class="card-header">
+        <!--begin:Card Title-->
+        <div class="card-title">
+            
+        </div>
+        <!--end:Card Title-->
+        <!--begin::Toolbar container-->
+        <div class="card-toolbar">
+            <div class="card-toolbar">
+                <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index","<#= entity["Name"].ToString() #>")" class="btn btn-sm fw-bold btn-secondary"><#= entity["Name"].ToString() #> Listesi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--end::Toolbar container-->
+
+    </div>
+    <!--end:Card Header-->
+    <!--begin::Card Body container-->
+    <div class="card-body">
+        <div class="d-flex flex-column flex-column-fluid">
+            <div id="kt_app_content" class="app-content flex-column-fluid">
+                <form asp-controller="<#= entity["Name"].ToString() #>" asp-action="Update" method="post">
+                    <div class=" pt-5 text-end">
+                        <button class=" btn btn-primary" type="submit">
+                            Güncelle
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--end::Card Body container-->
+    
+</div>
+
+
+<#    
+DirectoryHelper.CreateDirectoryIfNotExists($"{filePath}/{entity["Name"].ToString()}");
+FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}/Update.cshtml",this.GenerationEnvironment);
+}
+#>

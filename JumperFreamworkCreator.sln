@@ -23,6 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jumper.Application", "CQRS\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Todo", "_Todo", "{2C3751B5-A9D5-4D28-B022-EC7AA7DA7A3E}"
 	ProjectSection(SolutionItems) = preProject
+		Sql_init.txt = Sql_init.txt
 		TodoList.txt = TodoList.txt
 	EndProjectSection
 EndProject
