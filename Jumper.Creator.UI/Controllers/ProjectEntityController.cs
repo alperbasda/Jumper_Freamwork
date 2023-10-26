@@ -5,7 +5,6 @@ using Jumper.Application.Features.ProjectEntities.Commands.Delete;
 using Jumper.Application.Features.ProjectEntities.Commands.Update;
 using Jumper.Application.Features.ProjectEntities.Queries.GetListByName;
 using Jumper.Application.Features.ProjectEntities.Queries.GetListByProjectId;
-using Jumper.Application.Services.Repositories;
 using Jumper.Creator.UI.ActionFilters;
 using Jumper.Creator.UI.Controllers.Base;
 using Jumper.Creator.UI.Models;
@@ -20,13 +19,6 @@ namespace Jumper.Creator.UI.Controllers;
 [AuthorizeHandler]
 public class ProjectEntityController : MediatrController
 {
-    IProjectEntityDal _projectEntityDal;
-
-    public ProjectEntityController(IProjectEntityDal projectEntityDal)
-    {
-        _projectEntityDal = projectEntityDal;
-    }
-
     public async Task<IActionResult> Index(Guid projectId)
     {
         ViewData["projectId"] = projectId;
@@ -84,12 +76,4 @@ public class ProjectEntityController : MediatrController
     {
         return Json((await base.Mediator.Send(new GetListByNameProjectEntityQuery { SearchTerm = searchTerm })).Select(w => new { id = w.Id, text = w.Name }));
     }
-
-    [HttpPost("getnames")]
-    public async Task<IActionResult> GetNames(List<Guid> ids)
-    {
-        var datas = await _projectEntityDal.GetListAsync(w => ids.Contains(w.Id));
-        return Json(datas.Items.Select(w => new { id = w.Id, text = w.Name }));
-    }
-
 }

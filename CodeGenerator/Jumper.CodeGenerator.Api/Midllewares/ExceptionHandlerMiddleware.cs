@@ -1,6 +1,5 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Persistence.Models.Responses;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Jumper.CodeGenerator.Api.Midllewares;
 

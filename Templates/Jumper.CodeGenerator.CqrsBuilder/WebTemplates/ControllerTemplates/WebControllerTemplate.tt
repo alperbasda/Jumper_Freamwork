@@ -131,6 +131,31 @@ namespace <#= datasource["SolutionName"] #>.UI.Web.Controllers
         <#
         }
         #>
+        <#
+        var relationalPropertyName = entity["Properties"].First(w=>w["IsShowOnRelation"].Value<bool>() == true)["Name"].ToString();
+        WriteLine("");
+        #>
+        
+        [HttpPost("getnames")]
+        public async Task<IActionResult> GetNames(List<Guid> ids)
+        {
+            var dynamicQuery = new DynamicQuery()
+            {
+                Filter = Filter.Create("Id", FilterOperator.Equals, ids.First().ToString()),
+            };
+            if (ids.Count > 1)
+            {
+                var filterWay = IQueryableDynamicFilterExtensions.GetNewWay(dynamicQuery.Filter, Logic.Or);
+                for (int i = 1; i < ids.Count; i++)
+                {
+                    filterWay.Filters!.Add(new Filter { Field = "Id", Logic = Logic.Or, Operator = FilterOperator.Equals, Value = ids[i].ToString() });
+                }
+            }
+            var query = new ListDynamic<#= entity["Name"] #>Query { DynamicQuery = dynamicQuery };
+            var datas = await base.Mediator.Send(query);
+            return Json(datas.Items.Select(w => new { id = w.Id, text = w.<#= relationalPropertyName #> }));
+        }
+
     }
 }
 

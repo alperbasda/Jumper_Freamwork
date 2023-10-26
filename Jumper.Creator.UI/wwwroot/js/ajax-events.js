@@ -38,11 +38,9 @@ function post(route, params, callback) {
                 callback(data);
         },
         fail: function (ex) {
-            debugger;
             notificationEvents.showError("İşlem Sırasında Hata Oluştu");
         },
         error: function (ex) {
-            debugger;
             notificationEvents.showError("İşlem Sırasında Hata Oluştu");
         },
         complete: function () {

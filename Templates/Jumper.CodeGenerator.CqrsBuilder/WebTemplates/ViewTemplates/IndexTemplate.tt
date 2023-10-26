@@ -96,6 +96,12 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                 {
                                 continue;
                                 }
+                                if(prop["Name"].ToString().EndsWith("Id"))
+                                {
+                                WriteLine("");
+                                WriteLine($"\t\t\t\t\t\t\t\t<th><b>{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)} &nbsp;</b></th>");
+                                continue;
+                                }
                                 #>
                                 <th>
                                     <b>

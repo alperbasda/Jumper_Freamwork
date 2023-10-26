@@ -2,11 +2,9 @@
 using Jumper.Application.Features.ProjectEntityProperties.Commands.Create;
 using Jumper.Application.Features.ProjectEntityProperties.Commands.Delete;
 using Jumper.Application.Features.ProjectEntityProperties.Queries.GetListByProjectEntityId;
-using Jumper.Application.Services.Repositories;
 using Jumper.Creator.UI.ActionFilters;
 using Jumper.Creator.UI.Controllers.Base;
 using Jumper.Domain.Entities;
-using Jumper.Persistance.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Specialized;
 using System.Web;
@@ -17,13 +15,6 @@ namespace Jumper.Creator.UI.Controllers;
 [AuthorizeHandler]
 public class ProjectEntityPropertyController : MediatrController
 {
-    IProjectEntityPropertyDal _projectEntityPropertyDal;
-
-    public ProjectEntityPropertyController(IProjectEntityPropertyDal projectEntityPropertyDal)
-    {
-        _projectEntityPropertyDal = projectEntityPropertyDal;
-    }
-
     [HttpGet("index")]
     public async Task<IActionResult> Index(GetListByProjectEntityIdProjectEntityPropertyQuery command,Guid projectId)
     {
@@ -55,13 +46,6 @@ public class ProjectEntityPropertyController : MediatrController
     {
         _ = await base.Mediator.Send(command);
         return Json("Nesne Silindi.");
-    }
-
-    [HttpPost("getnames")]
-    public async Task<IActionResult> GetNames(List<Guid> ids)
-    {
-        var datas = await _projectEntityPropertyDal.GetListAsync(w => ids.Contains(w.Id));
-        return Json(datas.Items.Select(w => new { id = w.Id, text = w.Name }));
     }
 
 }

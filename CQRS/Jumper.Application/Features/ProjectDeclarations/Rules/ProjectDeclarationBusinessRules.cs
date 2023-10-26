@@ -75,7 +75,6 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
     {
         foreach (var item in data.Entities)
         {
-
             if (item.Actions == null)
             {
                 item.Actions = new List<ProjectDeclarationEntityActionAggregation>();
@@ -88,6 +87,7 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
                         ProjectEntityPropertyId = p.Id,
                         PropertyName = p.Name,
                         PropertyTypeCode = p.PropertyTypeCode,
+                        PropertyInputTypeCode = p.PropertyInputTypeCode
                     },
                     new ProjectDeclarationEntityActionPropertyAggregation
                     {
@@ -95,6 +95,7 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
                         ProjectEntityPropertyId = p.Id,
                         PropertyName = p.Name,
                         PropertyTypeCode = p.PropertyTypeCode,
+                        PropertyInputTypeCode = p.PropertyInputTypeCode
                     }
                 }).ToList();
 
@@ -168,6 +169,14 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
                 Name = "GetById",
                 Properties = allActionProperties.Where(w => w.ActionPropertyType == ActionPropertyType.Response || w.PropertyName == "Id").ToList(),
             });
+
+            var showProperty = item.Properties.FirstOrDefault(w => w.IsShowOnRelation);
+
+            if (showProperty == null)
+            {
+                showProperty = item.Properties.FirstOrDefault(w => w.Name == "Id");
+                showProperty!.IsShowOnRelation = true;
+            }
         }
     }
 

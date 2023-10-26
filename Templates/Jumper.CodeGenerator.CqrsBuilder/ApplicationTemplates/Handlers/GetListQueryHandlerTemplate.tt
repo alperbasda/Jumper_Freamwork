@@ -16,6 +16,8 @@
     
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
+    List<string> propExpression = new List<string>();
+    string exp = "";
 #>
 
 <#
@@ -60,7 +62,17 @@ public class <#= action["Name"] #><#= entity["Name"] #>QueryHandler : IRequestHa
 
     public async Task<ListModel<<#= action["Name"] #><#= entity["Name"] #>Response>> Handle(<#= action["Name"] #><#= entity["Name"] #>Query request, CancellationToken cancellationToken)
     {
-        var datas = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetListByDynamicAsync(request.DynamicQuery, size: request.PageRequest.PageSize, index: request.PageRequest.PageIndex, cancellationToken : cancellationToken);
+        <#
+        propExpression.Clear();
+        foreach(var prop in action["Properties"].Where(q => q["ActionPropertyType"].ToString() == "0"))
+        {
+            propExpression.Add($"w.{prop["PropertyName"]} == request.{prop["PropertyName"]}");
+        }
+        exp = string.Join(" && ", propExpression);
+        WriteLine("");
+        
+        #>
+        var datas = await _<#= entity["Name"].ToString().ToCamelCase() #>Dal.GetListByDynamicAsync(request.DynamicQuery<#= string.IsNullOrEmpty(exp) ? "" : $", w => {exp}" #>, size: request.PageRequest.PageSize, index: request.PageRequest.PageIndex, cancellationToken : cancellationToken);
 
         //İş Kurallarınızı Burada Çağırabilirsiniz.
 

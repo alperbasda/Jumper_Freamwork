@@ -332,9 +332,51 @@ WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
             
             #line default
             #line hidden
-            this.Write("    }\r\n}\r\n\r\n\r\n");
+            this.Write("        ");
             
-            #line 138 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+            #line 134 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+
+        var relationalPropertyName = entity["Properties"].First(w=>w["IsShowOnRelation"].Value<bool>() == true)["Name"].ToString();
+        WriteLine("");
+        
+            
+            #line default
+            #line hidden
+            this.Write(@"        
+        [HttpPost(""getnames"")]
+        public async Task<IActionResult> GetNames(List<Guid> ids)
+        {
+            var dynamicQuery = new DynamicQuery()
+            {
+                Filter = Filter.Create(""Id"", FilterOperator.Equals, ids.First().ToString()),
+            };
+            if (ids.Count > 1)
+            {
+                var filterWay = IQueryableDynamicFilterExtensions.GetNewWay(dynamicQuery.Filter, Logic.Or);
+                for (int i = 1; i < ids.Count; i++)
+                {
+                    filterWay.Filters!.Add(new Filter { Field = ""Id"", Logic = Logic.Or, Operator = FilterOperator.Equals, Value = ids[i].ToString() });
+                }
+            }
+            var query = new ListDynamic");
+            
+            #line 154 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
+            
+            #line default
+            #line hidden
+            this.Write("Query { DynamicQuery = dynamicQuery };\r\n            var datas = await base.Mediat" +
+                    "or.Send(query);\r\n            return Json(datas.Items.Select(w => new { id = w.Id" +
+                    ", text = w.");
+            
+            #line 156 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(relationalPropertyName));
+            
+            #line default
+            #line hidden
+            this.Write(" }));\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n");
+            
+            #line 163 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}Controller.cs",this.GenerationEnvironment);
 }
