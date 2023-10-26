@@ -5,18 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Jumper Freamwork Code Creator</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
 
 
 
-    <link rel="shortcut icon" href="~/assets/media/logos/logo.svg" />
+    <link rel="shortcut icon" href="~/images/ic.png" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/css/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <script src="~/js/jquery.min.js"></script>
     <!--end::Global Stylesheets Bundle-->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
@@ -37,7 +37,7 @@
     {
         <input type="text" id="success" hidden="hidden" value="@TempData["Success"]" />
     }
-   
+
 
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
         <!--begin::Page-->
@@ -59,7 +59,7 @@
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
                         <a href="@Url.Action("Index","Home")" class="d-lg-none">
-                            <img alt="Logo" src="~/assets/media/logos/logo.png" class="h-30px" />
+                            <img alt="Logo" src="~/images/logo.png" class="h-30px" />
                         </a>
                     </div>
                     <!--end::Mobile logo-->
@@ -89,7 +89,12 @@
                             <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
                                 <!--begin::Menu wrapper-->
                                 <div class="cursor-pointer symbol symbol-35px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                                    <img src="~/assets/media/avatars/300-3.jpg" class="rounded-3" alt="user" />
+                                    <div class="symbol">
+                                        <span class="symbol-label bg-light-success">
+
+                                            @User.Identity!.Name!.ToUpper().First()
+                                        </span>
+                                    </div>
                                 </div>
                                 <!--begin::User account menu-->
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -233,24 +238,23 @@
     <!--end::App-->
     <!--begin::Javascript-->
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="~/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="~/assets/js/scripts.bundle.js"></script>
+    <script src="~/js/plugins.bundle.js"></script>
+    <script src="~/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
-    
-    <script src="~/assets/js/global/toastr.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global/message-events.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global/ajax-events.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global/grid-events.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global/global-events.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global/sweet-alert.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global/form-events.js" asp-append-version="true"></script>
+
+    <script src="~/js/toastr.js" asp-append-version="true"></script>
+    <script src="~/js/message-events.js" asp-append-version="true"></script>
+    <script src="~/js/ajax-events.js" asp-append-version="true"></script>
+    <script src="~/js/grid-events.js" asp-append-version="true"></script>
+    <script src="~/js/global-events.js" asp-append-version="true"></script>
+    <script src="~/js/sweet-alert.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/select2/select2.js" ></script>
+    <script src="~/js/select2.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 

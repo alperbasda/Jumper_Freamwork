@@ -1,6 +1,5 @@
 ﻿
 $(function () {
-
     notificationEvents.backNotification();
     gridEvents.init();
     pageEvents.loadPartials();

@@ -5,6 +5,7 @@ using StackExchange.Redis;
 using Core.Application.Pipelines.Caching;
 using Jumper.Domain.Configurations;
 using Jumper.Application.Features.Auth.HttpClients;
+using Jumper.Creator.UI.Helpers;
 
 namespace Jumper.Creator.UI;
 
@@ -65,7 +66,7 @@ public static class Bootstrapper
         services.AddScoped<AuthHelper>();
         services.AddScoped<TokenParameters>();
 
-
+        ScopeSafeServiceProvider.Create(services);
         return services;
     }
 

@@ -1,7 +1,5 @@
 ﻿using Jumper.Application.Features.Auth.Commands.Login;
 using Jumper.Application.Features.Auth.Commands.RefreshToken;
-using Jumper.Common.Constants;
-using Newtonsoft.Json;
 
 namespace Jumper.Creator.UI.AuthHelpers;
 

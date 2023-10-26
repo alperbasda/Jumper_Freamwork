@@ -12,16 +12,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giriş  - Jumper Freamwork Low Code Generator</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
 
-    <link rel="shortcut icon" href="~/assets/media/logos/ic.png" />
+    <link rel="shortcut icon" href="~/images/ic.png" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/css/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <script src="~/js/jquery.min.js"></script>
     <!--end::Global Stylesheets Bundle-->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
@@ -129,16 +129,16 @@
             </div>
             <!--end::Body-->
             <!--begin::Aside-->
-            <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2" style="background-image: url(../../assets/media/misc/auth-bg.png)">
+            <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2" style="background-image: url(../../images/auth-bg.png)">
                 <!--begin::Content-->
                 <div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100">
                     <!--begin::Logo-->
                     <a target="_blank" href="#/" class="mb-0 mb-lg-12">
-                        <img alt="Logo" src="~/assets/media/logos/logo.png" />
+                        <img alt="Logo" src="~/images/logo.png" />
                     </a>
                     <!--end::Logo-->
                     <!--begin::Image-->
-                    <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="../../assets/media/misc/auth-screens.png" alt="" />
+                    <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="../../images/auth-screens.png" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">Jumper Freamwork Low Code Generator</h1>
@@ -157,10 +157,14 @@
     </div>
     <!--end::Root-->
 
-    <script type="text/javascript" src="~/assets/js/global/toastr.js"></script>
-    <script type="text/javascript" src="~/assets/js/global/message-events.js"></script>
-    <script src="~/assets/js/global/grid-events.js"></script>
-    <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/toastr.js"></script>
+    <script type="text/javascript" src="~/js/message-events.js"></script>
+    <script src="~/js/grid-events.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            notificationEvents.backNotification();
+        })
+    </script>
 
 
 </body>
