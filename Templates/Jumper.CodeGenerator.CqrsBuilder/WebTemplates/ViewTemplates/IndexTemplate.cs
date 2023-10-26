@@ -231,6 +231,12 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                 {
                                 continue;
                                 }
+                                if(prop["Name"].ToString().EndsWith("Id"))
+                                {
+                                WriteLine("");
+                                WriteLine($"\t\t\t\t\t\t\t\t<th><select class=\"form-control form-control-sm search_box\" data-dynamic-for=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}/Dropdown\" placeholder=\"@filters.FirstOrDefault(w=>w.Field == nameof({entity["Name"].ToString()}.{prop["Name"].ToString()}))?.Value\" name=\"{prop["Name"].ToString()}\"></select></th>");
+                                continue;
+                                }
                                 
             
             #line default
@@ -238,7 +244,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
             this.Write("                                <th>\r\n                                    <input " +
                     "type=\"text\" class=\"form-control form-control-sm\" name=\"");
             
-            #line 125 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 131 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"].ToString()));
             
             #line default
@@ -246,14 +252,14 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
             this.Write("\" placeholder=\"Aranacak kelime yazın\" value=\"@filters.FirstOrDefault(w=>w.Field =" +
                     "= nameof(");
             
-            #line 125 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 131 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 125 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 131 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"].ToString()));
             
             #line default
@@ -261,7 +267,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
             this.Write("))?.Value\" />\r\n                                </th>\r\n                           " +
                     "     ");
             
-            #line 127 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 133 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
 
                                 }
                                 
@@ -277,12 +283,18 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                     <tr>
                                          ");
             
-            #line 137 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 143 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
 
                                          foreach(var prop in entity["Properties"].Where(w=> datasource["PropertyTypeNames"].Select(w=>w.ToString()).Contains(w["PropertyTypeCode"].ToString())))
                                          {
                                          if(prop["Name"].ToString() == "Id")
                                          {
+                                         continue;
+                                         }
+                                         if(prop["Name"].ToString().EndsWith("Id"))
+                                         {
+                                         WriteLine("");
+                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}Controller\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
                                          continue;
                                          }
                                          
@@ -291,14 +303,14 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
             #line hidden
             this.Write("                                         <td>@item.");
             
-            #line 145 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 157 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("</td>\r\n                                         ");
             
-            #line 146 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 158 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
 
                                          }
                                          
@@ -309,7 +321,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                     "           <div class=\"d-flex justify-content-around\">\r\n                        " +
                     "                        <a href=\"@Url.Action(\"Update\",\"");
             
-            #line 152 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 164 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
@@ -319,7 +331,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                                 </a>
                                                 <a class=""delete-link"" href=""@Url.Action(""DeleteAsync"",""");
             
-            #line 155 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 167 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
@@ -359,7 +371,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                     "steme Kayıtlı @Model.Items.Count servis bulunmaktadır.\r\n        </p>\r\n    </div>" +
                     "\r\n</div>\r\n\r\n\r\n");
             
-            #line 239 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 251 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
     
 DirectoryHelper.CreateDirectoryIfNotExists($"{filePath}/{entity["Name"].ToString()}");
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}/Index.cshtml",this.GenerationEnvironment);

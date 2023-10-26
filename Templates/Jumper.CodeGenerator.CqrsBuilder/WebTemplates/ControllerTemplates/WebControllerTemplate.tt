@@ -42,6 +42,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Core.WebHelper.NameValueCollectionHelpers;
 using Core.WebHelper.ControllerExtensions;
+using Core.Persistence.Dynamic;
 <# 
 if(ProjectSettings.NoSqlDatabaseTypes.Contains(entity["DatabaseType"].ToString()))
 {
@@ -110,7 +111,26 @@ namespace <#= datasource["SolutionName"] #>.UI.Web.Controllers
         {
             var response =  await base.Mediator.Send(new DeleteById<#= entity["Name"].ToString() #>Command { Id = id });
             return Redirect(Request.Headers["Referer"].ToString()).Success(SUCCESS_MESSAGE);
+    }
+
+        <#
+        var relatedData = entity["Properties"].FirstOrDefault(w=>w["IsShowOnRelation"].Value<bool>() == true);
+
+        if(relatedData != null)
+        {
+        
+        #>
+
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> Dropdown(string searchTerm)
+        {
+            var query = new ListDynamic<#= entity["Name"].ToString() #>Query { DynamicQuery = new DynamicQuery { Filter = Filter.Create("<#= relatedData["Name"] #>", FilterOperator.ContainsIgnoreCase, searchTerm) } };
+            return Json((await base.Mediator.Send(query)).Items.Select(w => new { id = w.Id, text = w.<#= relatedData["Name"] #> }));
         }
+
+        <#
+        }
+        #>
     }
 }
 

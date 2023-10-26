@@ -75,6 +75,7 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
     {
         foreach (var item in data.Entities)
         {
+
             if (item.Actions == null)
             {
                 item.Actions = new List<ProjectDeclarationEntityActionAggregation>();
@@ -167,14 +168,7 @@ public class ProjectDeclarationBusinessRules : BaseBusinessRules
                 Name = "GetById",
                 Properties = allActionProperties.Where(w => w.ActionPropertyType == ActionPropertyType.Response || w.PropertyName == "Id").ToList(),
             });
-
-
         }
     }
 
-
-    public Expression<Func<Domain.MongoEntities.ProjectDeclaration, bool>>? GetUserIdExpressionIfUserNotSuperUser()
-    {
-        return TokenParameters.IsSuperUser ? null : w => w.UserId == TokenParameters.UserId;
-    }
 }

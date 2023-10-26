@@ -2,11 +2,9 @@
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Jumper.Application.Base;
 using Jumper.Application.Features.ProjectEntityActions.Commands.Create;
-using Jumper.Application.Features.ProjectEntityActions.Queries.GetListByProjectEntityId;
 using Jumper.Application.Services.Repositories;
 using Jumper.Domain.Entities;
 using Jumper.Domain.Enums;
-using MassTransit.Internals.GraphValidation;
 
 namespace Jumper.Application.Features.ProjectEntityActions.Rules;
 
@@ -55,7 +53,10 @@ public class ProjectEntityActionBusinessRules : BaseBusinessRules
                         ActionPropertyType = ActionPropertyType.Response,
                         CreatedTime = DateTime.Now,
                         ProjectEntityActionId = projectEntityAction.Id,
-                        ProjectEntityPropertyId = item
+                        ProjectEntityPropertyId = item,
+                        DeletedTime = null,
+                        IsConstant = false,
+                        
                     }
                     );
             }
@@ -72,7 +73,9 @@ public class ProjectEntityActionBusinessRules : BaseBusinessRules
                         ActionPropertyType = ActionPropertyType.Request,
                         CreatedTime = DateTime.Now,
                         ProjectEntityActionId = projectEntityAction.Id,
-                        ProjectEntityPropertyId = item
+                        ProjectEntityPropertyId = item,
+                        DeletedTime = null,
+                        IsConstant = false,
                     }
                 );
             }

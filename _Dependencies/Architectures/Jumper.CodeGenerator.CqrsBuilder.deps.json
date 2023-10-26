@@ -91,24 +91,24 @@
           }
         }
       },
-      "CQRS.ApiHelpers/1.0.3.1": {
+      "Core.ApiHelpers/2.0.0": {
         "dependencies": {
-          "CQRS.Persistence": "1.0.3.1",
+          "Core.Persistence": "2.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.10",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.AspNetCore.Mvc.Formatters.Json": "2.2.0"
         },
         "runtime": {
           "lib/net7.0/Core.ApiHelpers.dll": {
-            "assemblyVersion": "1.0.3.1",
-            "fileVersion": "1.0.3.1"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
-      "CQRS.Application/1.0.3.1": {
+      "Core.Application/2.0.0": {
         "dependencies": {
-          "CQRS.CrossCuttingConcerns": "1.0.3.2",
-          "CQRS.Persistence": "1.0.3.1",
+          "Core.CrossCuttingConcerns": "2.0.0",
+          "Core.Persistence": "2.0.0",
           "FluentValidation": "11.7.1",
           "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -117,12 +117,12 @@
         },
         "runtime": {
           "lib/net7.0/Core.Application.dll": {
-            "assemblyVersion": "1.0.3.1",
-            "fileVersion": "1.0.3.1"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
-      "CQRS.CrossCuttingConcerns/1.0.3.2": {
+      "Core.CrossCuttingConcerns/2.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
@@ -135,14 +135,14 @@
         },
         "runtime": {
           "lib/net7.0/Core.CrossCuttingConcerns.dll": {
-            "assemblyVersion": "1.0.3.2",
-            "fileVersion": "1.0.3.2"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
-      "CQRS.Persistence/1.0.3.1": {
+      "Core.Persistence/2.0.0": {
         "dependencies": {
-          "CQRS.CrossCuttingConcerns": "1.0.3.2",
+          "Core.CrossCuttingConcerns": "2.0.0",
           "EntityFrameworkCore.Query": "1.3.1.2",
           "Microsoft.EntityFrameworkCore": "7.0.10",
           "MongoDB.Bson": "2.21.0",
@@ -151,19 +151,19 @@
         },
         "runtime": {
           "lib/net7.0/Core.Persistence.dll": {
-            "assemblyVersion": "1.0.3.1",
-            "fileVersion": "1.0.3.1"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
-      "CQRS.Security/1.0.3.1": {
+      "Core.Security/2.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "runtime": {
           "lib/net7.0/Core.Security.dll": {
-            "assemblyVersion": "1.0.3.1",
-            "fileVersion": "1.0.3.1"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
@@ -1916,9 +1916,9 @@
       "Jumper.Application/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "CQRS.ApiHelpers": "1.0.3.1",
-          "CQRS.Application": "1.0.3.1",
-          "CQRS.Security": "1.0.3.1",
+          "Core.ApiHelpers": "2.0.0",
+          "Core.Application": "2.0.0",
+          "Core.Security": "2.0.0",
           "FluentValidation.DependencyInjectionExtensions": "11.7.1",
           "Jumper.Domain": "1.0.0",
           "MassTransit.AspNetCore": "7.3.1",
@@ -1947,8 +1947,8 @@
       },
       "Jumper.Domain/1.0.0": {
         "dependencies": {
-          "CQRS.CrossCuttingConcerns": "1.0.3.2",
-          "CQRS.Persistence": "1.0.3.1",
+          "Core.CrossCuttingConcerns": "2.0.0",
+          "Core.Persistence": "2.0.0",
           "Jumper.Common": "1.0.0",
           "Newtonsoft.Json": "13.0.3"
         },
@@ -2014,40 +2014,40 @@
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
     },
-    "CQRS.ApiHelpers/1.0.3.1": {
+    "Core.ApiHelpers/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Gfqem8pSM/OrGxg8CCEQNoZAX9KRmOd0Hx6twzCVkD1kDnfJt64u7IKlLfSR9evyq0GV2JzcFVwac0gFId9Xdw==",
-      "path": "cqrs.apihelpers/1.0.3.1",
-      "hashPath": "cqrs.apihelpers.1.0.3.1.nupkg.sha512"
+      "sha512": "sha512-AqofjCVR88/bvHf+72mLp9kPvw68urzOJbMqFedEbYlVv/G3yd9W1qxlGlLUGbgZzgvsG4UzGvel1rhoagGVgw==",
+      "path": "core.apihelpers/2.0.0",
+      "hashPath": "core.apihelpers.2.0.0.nupkg.sha512"
     },
-    "CQRS.Application/1.0.3.1": {
+    "Core.Application/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rYMA9d7ZaL99COG1JT+vFXGBZy+tLmv4imQ0ajYaTCYWLPdX9htNYwrEyU5obJmnrTAIHQPyOHPHCvRVCuZ18w==",
-      "path": "cqrs.application/1.0.3.1",
-      "hashPath": "cqrs.application.1.0.3.1.nupkg.sha512"
+      "sha512": "sha512-nQS6m4WJcqqEJSLAG4NUoFrhLFqPeu4TLhwnuv/gETKLYndN4/5aiaYC5xFbPhDBE/3sJeQaNjgo58y0VdgFFw==",
+      "path": "core.application/2.0.0",
+      "hashPath": "core.application.2.0.0.nupkg.sha512"
     },
-    "CQRS.CrossCuttingConcerns/1.0.3.2": {
+    "Core.CrossCuttingConcerns/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2qoL46kPS8XPxl+NPK1imyAmaq1ARoW1OdhEOCFHRZceRMMYkohLTWqenV79Sv6dR3KxZbB73VH5U9/r46gxew==",
-      "path": "cqrs.crosscuttingconcerns/1.0.3.2",
-      "hashPath": "cqrs.crosscuttingconcerns.1.0.3.2.nupkg.sha512"
+      "sha512": "sha512-xfa8RKLYyA6s82P/83wDtVvEDAK/2I5UfB/hibVGyKwndkRKB91Ocn+B6yDR30yL5433vDBfQxyajXtkg13AYw==",
+      "path": "core.crosscuttingconcerns/2.0.0",
+      "hashPath": "core.crosscuttingconcerns.2.0.0.nupkg.sha512"
     },
-    "CQRS.Persistence/1.0.3.1": {
+    "Core.Persistence/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uf2v01kT1tO1/x7VUMTN2yBCmwYKIMK+FMsssgVSxCPUAfXB8ZqxmGVl9cPqG/tKV1z1SWEpIo6cBWmaAB4CRQ==",
-      "path": "cqrs.persistence/1.0.3.1",
-      "hashPath": "cqrs.persistence.1.0.3.1.nupkg.sha512"
+      "sha512": "sha512-VsYTg8ERajLz6zTt0Yn3PYsvBnioCEuMY5PRY0adVaw7Pf8MExukoDIPehLxjzIdGl0FMMGXRh7PL2/58muKgg==",
+      "path": "core.persistence/2.0.0",
+      "hashPath": "core.persistence.2.0.0.nupkg.sha512"
     },
-    "CQRS.Security/1.0.3.1": {
+    "Core.Security/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Yoqx6bwrb9dahO3r/jZZt01m8sGJ8Fe/uoM8X99G6iwmqeyXmL9tk5405FgXX3qGdum/9lU7tVVBUTcs7D0euQ==",
-      "path": "cqrs.security/1.0.3.1",
-      "hashPath": "cqrs.security.1.0.3.1.nupkg.sha512"
+      "sha512": "sha512-lr0DASp6jYQMg6Z79iifsXM16Q02jXzb3mjrnp/NGu7GJpTT4As2cGQhlotZJHJxzNn0Os9kVCe/dBx5NvirvQ==",
+      "path": "core.security/2.0.0",
+      "hashPath": "core.security.2.0.0.nupkg.sha512"
     },
     "DnsClient/1.6.1": {
       "type": "package",

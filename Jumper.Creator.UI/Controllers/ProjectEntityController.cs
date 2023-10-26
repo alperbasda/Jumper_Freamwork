@@ -5,6 +5,7 @@ using Jumper.Application.Features.ProjectEntities.Commands.Delete;
 using Jumper.Application.Features.ProjectEntities.Commands.Update;
 using Jumper.Application.Features.ProjectEntities.Queries.GetListByName;
 using Jumper.Application.Features.ProjectEntities.Queries.GetListByProjectId;
+using Jumper.Application.Services.Repositories;
 using Jumper.Creator.UI.ActionFilters;
 using Jumper.Creator.UI.Controllers.Base;
 using Jumper.Creator.UI.Models;
@@ -19,6 +20,13 @@ namespace Jumper.Creator.UI.Controllers;
 [AuthorizeHandler]
 public class ProjectEntityController : MediatrController
 {
+    IProjectEntityDal _projectEntityDal;
+
+    public ProjectEntityController(IProjectEntityDal projectEntityDal)
+    {
+        _projectEntityDal = projectEntityDal;
+    }
+
     public async Task<IActionResult> Index(Guid projectId)
     {
         ViewData["projectId"] = projectId;
@@ -65,16 +73,23 @@ public class ProjectEntityController : MediatrController
     public async Task<IActionResult> Dropdown(SelectBoxModel model, Guid projectId)
     {
         ViewData["SelectBoxModel"] = model;
-        var request =  new GetListByProjectIdProjectEntityQuery { ProjectDeclarationId = projectId };
+        var request = new GetListByProjectIdProjectEntityQuery { ProjectDeclarationId = projectId };
         request.PageRequest = new Core.Persistence.Requests.PageRequest { PageIndex = 0, PageSize = int.MaxValue };
         var dropdownItems = await base.Mediator.Send(request);
         return PartialView("Partials/_Dropdown", dropdownItems.Items);
     }
 
     [HttpGet("pooldropdowndata")]
-    public async Task<IActionResult> PoolDropdownData(string search)
+    public async Task<IActionResult> PoolDropdownData(string searchTerm)
     {
-        return Json(await base.Mediator.Send(new GetListByNameProjectEntityQuery { SearchTerm = search }));
+        return Json((await base.Mediator.Send(new GetListByNameProjectEntityQuery { SearchTerm = searchTerm })).Select(w => new { id = w.Id, text = w.Name }));
+    }
+
+    [HttpPost("getnames")]
+    public async Task<IActionResult> GetNames(List<Guid> ids)
+    {
+        var datas = await _projectEntityDal.GetListAsync(w => ids.Contains(w.Id));
+        return Json(datas.Items.Select(w => new { id = w.Id, text = w.Name }));
     }
 
 }

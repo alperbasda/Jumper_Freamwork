@@ -63,6 +63,12 @@
                 </div>
                 <div class="col-auto pb-5">
                     <div class="form-floating">
+                        <div data-partial="@Url.Action("Dropdown","PropertyInputTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyInputTypeCode))">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto pb-5">
+                    <div class="form-floating">
                         <select class="form-control form-control-sm" name="HasIndex">
                             <option value="@false">Index Atılmasın</option>
                             <option value="@true">Index Atılsın</option>
@@ -85,19 +91,13 @@
                 <div class="col-auto pb-5">
                     <div class="form-floating">
                         <select class="form-control form-control-sm" name="IsShowOnRelation">
-                            <option value="@false">Göster</option>
-                            <option value="@true">Gösterme</option>
+                            <option value="@false">Gösterme</option>
+                            <option value="@true">Göster</option>
                         </select>
 
                         <label class="form-label mr-4" for="IsShowOnRelation"> İlişkide Göster <i class="fa fa-question"></i> </label>
                     </div>
                     <small> İlişkisel verilerde kullanılır. (Örn:Dropdown text,liste gösterimi) </small>
-                </div>
-                <div class="col-auto pb-5">
-                    <div class="form-floating">
-                        <div data-partial="@Url.Action("Dropdown","PropertyInputTypeDeclaration")?Name=@(nameof(ProjectEntityProperty.PropertyInputTypeCode))">
-                        </div>
-                    </div>
                 </div>
                 <div class="col-auto pb-5">
                     <div class="form-floating">

@@ -52,8 +52,9 @@
     </div>
     <!--end::Header-->
     <!--begin::Body-->
+
     <div class="card-body pt-5">
-        @foreach (var item in Model.Items.OrderByDescending(w=>w.UpdatedTime))
+        @foreach (var item in Model.Items.OrderByDescending(w => w.UpdatedTime))
         {
             var selectedColor = colors[rnd.Next(5)];
             <!--begin::Item-->
@@ -71,9 +72,9 @@
                 <div class="d-flex justify-content-between w-100">
                     <div class="d-flex flex-column">
                         <a href="@Url.Action("UpdateInfo","Project",new{id=item.Id})" data-project-filter="@item.Name.ToLower()" class="text-dark text-hover-primary fs-6 fw-bold">@item.Name <span class="badge badge-light-@item.ProjectStatus.GetMetronicColor() fs-8 fw-bold my-2">@item.ProjectStatus.GetDescription()</span></a>
-                        <span class="text-muted fw-bold">@item.Description</span> 
+                        <span class="text-muted fw-bold">@item.Description</span>
                     </div>
-                    
+
 
                     <div>
                         @if (item.ProjectStatus == ProjectStatus.Downloadable)
@@ -171,7 +172,7 @@
                 </div>
 
                 <div class="mb-7 row">
-                    
+
                     <div class="col-6">
                         <label class="form-label" for="UseRabbitMq">RabbitMq Var Mı ?</label>
                         <select name="UseRabbitMq" id="UseRabbitMq" class="form-control">
@@ -182,7 +183,7 @@
 
                 </div>
 
-                
+
 
 
 
@@ -203,7 +204,6 @@
 </div>
 
 <!--End Create Drawer-->
-
 @section Scripts{
     <script src="~/js/pages/home-events.js"></script>
 }

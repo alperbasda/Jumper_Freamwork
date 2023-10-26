@@ -7,6 +7,7 @@ namespace Jumper.Creator.UI.Controllers;
 
 public class PropertyInputTypeDeclarationController : MediatrController
 {
+    [HttpGet("dropdown")]
     public async Task<IActionResult> Dropdown(SelectBoxModel model)
     {
         ViewData["SelectBoxModel"] = model;

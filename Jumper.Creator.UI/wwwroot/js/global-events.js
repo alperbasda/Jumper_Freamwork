@@ -15,7 +15,7 @@
         }
     },
     loadPartials: function (callback) {
-        
+
         var partialLength = $('[data-partial]').length;
         $('[data-partial]').each(function (index, item) {
             var url = $(item).data('partial');
@@ -25,9 +25,9 @@
                 if (qsParam == undefined) {
                     qsParam = "";
                 }
-                
+
                 pageEvents.setPartialQueryString(url, qsParam.split(','), function (urlWithQs) {
-                    
+
                     get(urlWithQs,
                         null,
                         function (response) {
@@ -46,7 +46,7 @@
     setDynamicDropdowns: function () {
 
         $('[data-dynamic-for]').each(function (index, item) {
-            
+
             var url = $(item).attr('data-dynamic-for');
             if (url && url.length > 0) {
 
@@ -64,22 +64,21 @@
                             url: urlWithQs,
                             dataType: 'json',
                             data: function (params) {
-                                debugger;
                                 var query = {
-                                    search: params.term,
+                                    searchterm: params.term,
                                 }
-                                // Query parameters will be ?search=[term]
+                                // Query parameters will be ?searchterm=[term]
                                 return query;
                             },
                             // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                             processResults: function (data) {
                                 // Transforms the top-level key of the response object from 'items' to 'results'
                                 return {
-                                    
+
                                     results: data.map(function (value, label) {
                                         return {
                                             "id": value.id,
-                                            "text": value.name
+                                            "text": value.text
                                         };
                                     })
                                 };
@@ -95,18 +94,37 @@
                 });
 
 
-                
 
-                
+
+
 
 
             }
         });
 
     },
+    setDynamicReferences: function () {
+        var grouped = groupBy($('[data-fill-controller]').toArray(), w => $(w).attr('data-fill-controller'));
+
+        grouped.forEach((item,key) => {
+            ;
+            post("/" + key + "/getnames",
+                { ids: item.map(q => $(q).attr('data-fill-ref')) },
+                function (response) {
+                    for (index in response) {
+                        $('[data-fill-ref="' + response[index].id.toUpperCase()+'"]').html(response[index].text);
+                    }
+                    
+                    
+                });
+
+        });
+
+
+    },
     setPartialQueryString: function (url, qsParams, callback) {
         var newQs = qsParams.map(w => w + "=" + gridEvents.qsGetParams(w));
-        
+
         var data = newQs.filter(function (element) {
             return element !== undefined && element !== '=null';
         });

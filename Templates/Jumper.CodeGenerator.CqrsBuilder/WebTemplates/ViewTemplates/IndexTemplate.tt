@@ -120,6 +120,12 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                 {
                                 continue;
                                 }
+                                if(prop["Name"].ToString().EndsWith("Id"))
+                                {
+                                WriteLine("");
+                                WriteLine($"\t\t\t\t\t\t\t\t<th><select class=\"form-control form-control-sm search_box\" data-dynamic-for=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}/Dropdown\" placeholder=\"@filters.FirstOrDefault(w=>w.Field == nameof({entity["Name"].ToString()}.{prop["Name"].ToString()}))?.Value\" name=\"{prop["Name"].ToString()}\"></select></th>");
+                                continue;
+                                }
                                 #>
                                 <th>
                                     <input type="text" class="form-control form-control-sm" name="<#= prop["Name"].ToString() #>" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(<#= entity["Name"].ToString() #>.<#= prop["Name"].ToString() #>))?.Value" />
@@ -139,6 +145,12 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                          {
                                          if(prop["Name"].ToString() == "Id")
                                          {
+                                         continue;
+                                         }
+                                         if(prop["Name"].ToString().EndsWith("Id"))
+                                         {
+                                         WriteLine("");
+                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}Controller\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
                                          continue;
                                          }
                                          #>

@@ -4,6 +4,7 @@ $(function () {
     gridEvents.init();
     pageEvents.loadPartials(function () {
         pageEvents.setDynamicDropdowns();
+        pageEvents.setDynamicReferences();
     });
     
 });

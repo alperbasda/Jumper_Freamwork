@@ -38,9 +38,11 @@ function post(route, params, callback) {
                 callback(data);
         },
         fail: function (ex) {
+            debugger;
             notificationEvents.showError("İşlem Sırasında Hata Oluştu");
         },
         error: function (ex) {
+            debugger;
             notificationEvents.showError("İşlem Sırasında Hata Oluştu");
         },
         complete: function () {
@@ -56,4 +58,19 @@ function getBaseUrl() {
 
 function getUrlWithoutQs() {
     return window.location.href.split('?')[0];
+}
+
+function groupBy(list, keyGetter) {
+    
+    const map = new Map();
+    list.forEach((item) => {
+        const key = keyGetter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
 }

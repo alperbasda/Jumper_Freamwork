@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.ApiHelpers.JwtHelper.Models;
 using Core.Persistence.Models.Responses;
 using Jumper.Application.Features.ProjectDeclaration.Rules;
 using Jumper.Application.Features.ProjectDeclarations.Queries.GetByLoggedUserId;
@@ -11,18 +12,20 @@ public class GetByLoggedUserIdProjectDeclarationQueryHandler : IRequestHandler<G
 {
     IProjectDeclarationDal _projectDeclarationDal;
     ProjectDeclarationBusinessRules _projectDeclarationBusinessRules;
+    TokenParameters _tokenParameters;
     IMapper _mapper;
 
-    public GetByLoggedUserIdProjectDeclarationQueryHandler(IMapper mapper, ProjectDeclarationBusinessRules projectDeclarationBusinessRules, IProjectDeclarationDal projectDeclarationDal)
+    public GetByLoggedUserIdProjectDeclarationQueryHandler(IMapper mapper, ProjectDeclarationBusinessRules projectDeclarationBusinessRules, IProjectDeclarationDal projectDeclarationDal, TokenParameters tokenParameters)
     {
         _mapper = mapper;
         _projectDeclarationBusinessRules = projectDeclarationBusinessRules;
         _projectDeclarationDal = projectDeclarationDal;
+        _tokenParameters = tokenParameters;
     }
 
     public async Task<ListModel<GetByLoggedUserIdProjectDeclarationResponse>> Handle(GetByLoggedUserIdProjectDeclarationQuery request, CancellationToken cancellationToken)
     {
-        var data = await _projectDeclarationDal.GetListAsync(_projectDeclarationBusinessRules.GetUserIdExpressionIfUserNotSuperUser(), size: int.MaxValue);
+        var data = await _projectDeclarationDal.GetListAsync(w => _tokenParameters.IsSuperUser || w.UserId == _tokenParameters.UserId, size: int.MaxValue);
 
         await _projectDeclarationBusinessRules.ThrowExceptionIfDataNull(data);
 
