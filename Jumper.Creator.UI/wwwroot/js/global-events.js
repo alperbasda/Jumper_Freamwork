@@ -15,6 +15,7 @@
         }
     },
     loadPartials: function (callback) {
+        
         var partialLength = $('[data-partial]').length;
         $('[data-partial]').each(function (index, item) {
             var url = $(item).data('partial');
@@ -45,43 +46,58 @@
     setDynamicDropdowns: function () {
 
         $('[data-dynamic-for]').each(function (index, item) {
-            var url = $(item).data('data-dynamic-for');
+            
+            var url = $(item).attr('data-dynamic-for');
             if (url && url.length > 0) {
 
+                var qsParam = $(item).attr('data-qs-param');
+                if (qsParam == undefined) {
+                    qsParam = "";
+                }
 
-                $(item).select2({
-                    placeholder: "Veri Seçin",
-                    //if item has parent
-                    //dropdownParent: $('#entity_pool_modal .modal-body'),
-                    ajax: {
-                        url: url,
-                        dataType: 'json',
-                        data: function (params) {
-                            var query = {
-                                search: params.term,
-                            }
-                            // Query parameters will be ?search=[term]
-                            return query;
+                pageEvents.setPartialQueryString(url, qsParam.split(','), function (urlWithQs) {
+                    $(item).select2({
+                        placeholder: "Veri Seçin",
+                        //if item has parent
+                        dropdownParent: $(item).attr('data-parent'),
+                        ajax: {
+                            url: urlWithQs,
+                            dataType: 'json',
+                            data: function (params) {
+                                debugger;
+                                var query = {
+                                    search: params.term,
+                                }
+                                // Query parameters will be ?search=[term]
+                                return query;
+                            },
+                            // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+                            processResults: function (data) {
+                                // Transforms the top-level key of the response object from 'items' to 'results'
+                                return {
+                                    
+                                    results: data.map(function (value, label) {
+                                        return {
+                                            "id": value.id,
+                                            "text": value.name
+                                        };
+                                    })
+                                };
+                            },
                         },
-                        // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-                        processResults: function (data) {
-                            // Transforms the top-level key of the response object from 'items' to 'results'
-                            return {
-                                results: data.map(function (value, label) {
-                                    return {
-                                        "id": value.id,
-                                        "text": value.text
-                                    };
-                                })
-                            };
-                        },
-                    },
-                    delay: 250,
-                    minimumInputLength: 2,
-                    selectOnClose: true
+                        delay: 250,
+                        minimumInputLength: 2,
+                        selectOnClose: true
+                    });
+                    $(item).removeAttr('data-dynamic-for');
+                    $(item).removeAttr('data-qs-param');
+                    $(item).removeAttr('data-parent');
                 });
 
 
+                
+
+                
 
 
             }

@@ -2,7 +2,10 @@
 $(function () {
     notificationEvents.backNotification();
     gridEvents.init();
-    pageEvents.loadPartials();
+    pageEvents.loadPartials(function () {
+        pageEvents.setDynamicDropdowns();
+    });
+    
 });
 
 $(document).on('click', '.delete-link',function (e) {
