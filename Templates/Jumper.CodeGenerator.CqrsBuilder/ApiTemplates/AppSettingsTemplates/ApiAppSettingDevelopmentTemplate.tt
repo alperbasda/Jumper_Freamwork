@@ -1,0 +1,107 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ output extension=".json" #>
+
+<#
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Api";
+#>
+<#= FileSettings.AUTO_GENERATED_MESSAGE #>
+
+{
+  <#
+  if(datasource["UseCache"].Value<bool>() == true){
+  #>
+  "CacheSettings": {
+    "Host": "localhost",
+    "Port": "6379",
+    "SlidingExpiration": 2,
+    "Password": "changeme"
+  },
+  <#
+  }
+  #>
+
+  <#
+  if(datasource["UseRabbitMq"].Value<bool>() == true){
+  #>
+  "RabbitMq": {
+    "UserName": "guest",
+    "Password": "guest",
+    "Port": 5672,
+    "Host": "localhost"
+  },
+  <#
+  }
+  #>
+  
+  <#
+  if(datasource["UseSerilog"].Value<bool>() == true){
+  #>
+  "SeriLogConfigurations": {
+    "ElasticConfiguration": {
+      "Uri": "http://localhost:9200",
+      "UserName": "elastic",
+      "Password": "changeme",
+      "AppName": "<#= datasource["SolutionName"].ToString() #>"
+    }
+  },
+  <#
+  }
+  #>
+
+
+  "DatabaseOptions": {
+  <#
+  if(datasource["RelationalDatabaseConfiguration"] != null){
+  WriteLine($"\"EfConnectionString\": \"{datasource["RelationalDatabaseConfiguration"]["ConnectionString"]}\",");}
+  if(datasource["NoSqlDatabaseConfiguration"] != null){
+  WriteLine($"\"MongoConnectionString\": \"{datasource["NoSqlDatabaseConfiguration"]["ConnectionString"]}\",");
+  WriteLine($"\"DatabaseName\": \"{datasource["NoSqlDatabaseConfiguration"]["DatabaseName"]}\"");}
+  #>
+  },
+
+  
+  
+
+
+  //IdentityServer Configurations 
+  //Note : BaseAddress alanını değiştirin.
+  "IdentityApiConfiguration": {
+      "BaseAddress": "https://localhost:7160/",
+      "GetTokenAddress": "api/Auth",
+      "RefreshTokenAddress": "api/Auth/refreshtoken",
+      "RevokeTokenAddress": "api/Auth/revoke"
+  },
+  //Değerleri Identity Serverdaki TokenOptions düğümü ile eşleştirin.
+  "JwtTokenOptions": {
+    "Audience": "http://localhost:7160",
+    "Issuer": "www.authserver.com",
+    "AccessTokenExpiration": 600,
+    "RefreshTokenExpiration": 600,
+    "SecurityKey": "2$>f'%a$u$VYLw[sYKG_wHaw*]?Aiu"
+  }
+}
+
+
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/appsettings.Development.json",this.GenerationEnvironment);
+
+#>

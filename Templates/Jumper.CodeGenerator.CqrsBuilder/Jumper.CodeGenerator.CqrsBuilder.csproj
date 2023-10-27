@@ -18,10 +18,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ApiControllerTemplate.tt</DependentUpon>
     </None>
+    <None Include="ApiTemplates\ApiProgramTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiProgramTemplate.tt</DependentUpon>
+    </None>
     <None Include="ApiTemplates\ApiRegistrationServiceTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ApiRegistrationServiceTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApiTemplates\AppSettingsTemplates\ApiAppSettingDevelopmentTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiAppSettingDevelopmentTemplate.tt</DependentUpon>
+    </None>
+    <None Include="ApiTemplates\AppSettingsTemplates\ApiAppSettingsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiAppSettingsTemplate.tt</DependentUpon>
     </None>
     <None Include="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -173,10 +188,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
     </None>
+    <None Include="WebTemplates\AppSettingsTemplates\AppSettingsDevelopmentTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettingsDevelopmentTemplate.tt</DependentUpon>
+    </None>
+    <None Include="WebTemplates\AppSettingsTemplates\AppSettingsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettingsTemplate.tt</DependentUpon>
+    </None>
     <None Include="WebTemplates\ControllerTemplates\WebControllerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>WebControllerTemplate.tt</DependentUpon>
+    </None>
+    <None Include="WebTemplates\ProgramTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgramTemplate.tt</DependentUpon>
     </None>
     <None Include="WebTemplates\ViewTemplates\CreateTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -188,10 +218,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IndexTemplate.tt</DependentUpon>
     </None>
+    <None Include="WebTemplates\ViewTemplates\LayoutTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutTemplate.tt</DependentUpon>
+    </None>
     <None Include="WebTemplates\ViewTemplates\UpdateTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UpdateTemplate.tt</DependentUpon>
+    </None>
+    <None Include="WebTemplates\WebRegistrationService.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WebRegistrationService.tt</DependentUpon>
     </None>
   </ItemGroup>
 
@@ -215,10 +255,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ApiControllerTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="ApiTemplates\ApiProgramTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiProgramTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="ApiTemplates\ApiRegistrationServiceTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ApiRegistrationServiceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApiTemplates\AppSettingsTemplates\ApiAppSettingDevelopmentTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiAppSettingDevelopmentTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApiTemplates\AppSettingsTemplates\ApiAppSettingsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiAppSettingsTemplate.tt</DependentUpon>
     </Compile>
     <Compile Update="ApplicationTemplates\ApplicationServiceRegistirationTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -375,10 +430,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PersistenceRegistrationServiceTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="WebTemplates\AppSettingsTemplates\AppSettingsDevelopmentTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettingsDevelopmentTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="WebTemplates\AppSettingsTemplates\AppSettingsTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettingsTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="WebTemplates\ControllerTemplates\WebControllerTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>WebControllerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="WebTemplates\ProgramTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgramTemplate.tt</DependentUpon>
     </Compile>
     <Compile Update="WebTemplates\ViewTemplates\CreateTemplate.cs">
       <DesignTime>True</DesignTime>
@@ -390,10 +460,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IndexTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Update="WebTemplates\ViewTemplates\LayoutTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="WebTemplates\ViewTemplates\UpdateTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UpdateTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="WebTemplates\WebRegistrationService.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WebRegistrationService.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -402,9 +482,21 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ApiControllerTemplate.cs</LastGenOutput>
     </None>
+    <None Update="ApiTemplates\ApiProgramTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApiProgramTemplate.cs</LastGenOutput>
+    </None>
     <None Update="ApiTemplates\ApiRegistrationServiceTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ApiRegistrationServiceTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApiTemplates\AppSettingsTemplates\ApiAppSettingDevelopmentTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApiAppSettingDevelopmentTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="ApiTemplates\AppSettingsTemplates\ApiAppSettingsTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ApiAppSettingsTemplate.cs</LastGenOutput>
     </None>
     <None Update="ApplicationTemplates\ApplicationServiceRegistirationTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -526,9 +618,21 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>PersistenceRegistrationServiceTemplate.cs</LastGenOutput>
     </None>
+    <None Update="WebTemplates\AppSettingsTemplates\AppSettingsDevelopmentTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppSettingsDevelopmentTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\AppSettingsTemplates\AppSettingsTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppSettingsTemplate.cs</LastGenOutput>
+    </None>
     <None Update="WebTemplates\ControllerTemplates\WebControllerTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebControllerTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\ProgramTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProgramTemplate.cs</LastGenOutput>
     </None>
     <None Update="WebTemplates\ViewTemplates\CreateTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -538,9 +642,17 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>IndexTemplate.cs</LastGenOutput>
     </None>
+    <None Update="WebTemplates\ViewTemplates\LayoutTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LayoutTemplate.cs</LastGenOutput>
+    </None>
     <None Update="WebTemplates\ViewTemplates\UpdateTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>UpdateTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="WebTemplates\WebRegistrationService.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebRegistrationService.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

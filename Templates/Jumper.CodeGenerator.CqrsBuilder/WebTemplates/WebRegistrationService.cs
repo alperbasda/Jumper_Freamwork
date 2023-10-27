@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
+namespace Jumper.CodeGenerator.CqrsBuilder.WebTemplates
 {
     using System;
     using System.Linq;
@@ -26,9 +26,9 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+    #line 1 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class ApiRegistrationServiceTemplate : ApiRegistrationServiceTemplateBase
+    public partial class WebRegistrationService : WebRegistrationServiceBase
     {
 #line hidden
         /// <summary>
@@ -38,18 +38,18 @@ namespace Jumper.CodeGenerator.CqrsBuilder.ApiTemplates
         {
             this.Write("\r\n");
             
-            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 20 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
 
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Api/Middlewares";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Middlewares";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 
             
             #line default
             #line hidden
             
-            #line 26 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 26 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FileSettings.AUTO_GENERATED_MESSAGE));
             
             #line default
@@ -62,39 +62,42 @@ using StackExchange.Redis;
 using MassTransit;
 using Core.ApiHelpers.JwtHelper.Models;
 using Core.Persistence.Models;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc;
 using ");
             
-            #line 34 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 37 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(".UI.Api.Helpers;\r\nusing ");
+            this.Write(".UI.Web.Helpers;\r\nusing Microsoft.AspNetCore.Authentication.Cookies;\r\nusing ");
             
-            #line 35 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Application.Features.Auth.HttpClients;\r\nusing ");
             
-            #line 36 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
             this.Write(".Common.IdentityConfigurations;\r\n\r\nnamespace ");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 42 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
             
             #line default
             #line hidden
-            this.Write(@".UI.Api.Middlewares;
+            this.Write(@".UI.Web.Middlewares;
 
-public static class AddApiRegistrationService
+public static class AddWebRegistrationService
 {
-    public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
     {
         _ = services.AddSettingsSingleton<DatabaseOptions>(configuration);
         _ = services.AddSettingsSingleton<IdentityApiConfiguration>(configuration);
@@ -107,7 +110,7 @@ public static class AddApiRegistrationService
         });
         ");
             
-            #line 53 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
 
         WriteLine("");
         if(datasource["UseCache"].Value<bool>() == true)
@@ -122,7 +125,7 @@ public static class AddApiRegistrationService
             #line hidden
             this.Write("        ");
             
-            #line 62 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 66 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
 
         WriteLine("");
         if(datasource["UseRabbitMq"].Value<bool>() == true)
@@ -134,9 +137,9 @@ public static class AddApiRegistrationService
             #line default
             #line hidden
             this.Write("        services.AddHttpClient();\r\n        services.AddHttpContextAccessor();\r\n  " +
-                    "      \r\n        services.AddScoped<TokenParameters>();\r\n        ");
+                    "      services.AddWebMessageServices();\r\n        services.AddAuth();\r\n        ");
             
-            #line 73 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 77 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
 
         WriteLine("");
         if(datasource["SeriLogConfigurations"]["ElasticLogConfiguration"] != null && !string.IsNullOrEmpty(datasource["SeriLogConfigurations"]["ElasticLogConfiguration"]["Uri"].Value<string?>()))
@@ -155,42 +158,66 @@ public static class AddApiRegistrationService
             
             #line default
             #line hidden
-            this.Write("        \r\n        \r\n        ScopeSafeServiceProvider.Create(services);\r\n        r" +
-                    "eturn services;\r\n    }\r\n\r\n \r\n    //Redis cache i aktif etmek için çağırabilirsin" +
-                    "iz. \r\n    public static void AddRedis(this IServiceCollection services, CacheSet" +
-                    "tings cacheSettings)\r\n    {\r\n        services.AddStackExchangeRedisCache(opt =>\r" +
-                    "\n        {\r\n\r\n            opt.ConfigurationOptions = new ConfigurationOptions\r\n " +
-                    "           {\r\n                Password = cacheSettings.Password,\r\n              " +
-                    "  EndPoints =\r\n                    {\r\n                        { cacheSettings.Ho" +
-                    "st, int.Parse(cacheSettings.Port) }\r\n                    },\r\n            };\r\n   " +
-                    "     });\r\n    }\r\n\r\n    public static T AddSettingsSingleton<T>(this IServiceColl" +
-                    "ection services, IConfiguration configuration)\r\n        where T : class, new()\r\n" +
-                    "    {\r\n        T settings = new T();\r\n        configuration.GetSection(settings." +
-                    "GetType().Name).Bind(settings);\r\n\r\n        services.Configure<T>(options =>\r\n   " +
-                    "     {\r\n            options = settings;\r\n        });\r\n        services.AddSingle" +
-                    "ton<T>(sp =>\r\n        {\r\n            return settings;\r\n        });\r\n\r\n        re" +
-                    "turn settings;\r\n    }\r\n\r\n\r\n    //Masstransit rabbitMq ayarlarını aktif etmek içi" +
-                    "n çağırabilirsiniz. \r\n    public static void AddAmqpServices(this IServiceCollec" +
-                    "tion services, IConfiguration configuration)\r\n    {\r\n        //consumerName alan" +
-                    "larına kuyruk isimleri girerek çoklayabilirsiniz.\r\n        //services.AddScoped<" +
-                    "consumerName>();\r\n        services.AddMassTransit(x =>\r\n        {\r\n          // " +
-                    " x.AddConsumer<consumerName>();\r\n            x.UsingRabbitMq((ctx, cfg) =>\r\n    " +
-                    "        {\r\n                cfg.Host(configuration[\"RabbitMq:Host\"], ushort.Parse" +
-                    "(configuration[\"RabbitMq:Port\"]), \"/\", host =>\r\n                {\r\n             " +
-                    "       host.Username(configuration[\"RabbitMq:UserName\"]);\r\n                    h" +
-                    "ost.Password(configuration[\"RabbitMq:Password\"]);\r\n                });\r\n\r\n      " +
-                    "          //kuyruk isimlerini Common altında QueueNames enum u ile tutmanız öner" +
-                    "ilir.\r\n                //cfg.ReceiveEndpoint(queueName.GetDescription(), e =>\r\n " +
-                    "               //{\r\n                //    e.PrefetchCount = 100;\r\n              " +
-                    "  //    e.ConfigureConsumer(ctx, typeof(consumerName));\r\n\r\n                //});" +
-                    "\r\n\r\n            });\r\n        });\r\n\r\n        services.Configure<MassTransitHostOp" +
-                    "tions>(options =>\r\n        {\r\n            options.WaitUntilStarted = false;\r\n   " +
-                    "         options.StartTimeout = TimeSpan.FromSeconds(5);\r\n            options.St" +
-                    "opTimeout = TimeSpan.FromMinutes(1);\r\n        });\r\n\r\n    }\r\n\r\n}\r\n\r\n");
+            this.Write(@"        
+        
+        ScopeSafeServiceProvider.Create(services);
+        return services;
+    }
+
+    public static void AddWebMessageServices(this IServiceCollection collection)
+    {
+        collection.AddSingleton<IDataProtectionProvider>(s => DataProtectionProvider.Create(""");
             
-            #line 169 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiRegistrationServiceTemplate.tt"
+            #line 100 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(datasource["SolutionName"]));
+            
+            #line default
+            #line hidden
+            this.Write("\"));\r\n\r\n        collection.Configure<CookieTempDataProviderOptions>(options =>\r\n " +
+                    "       {\r\n\r\n        });\r\n        collection.AddSingleton<ITempDataProvider, Cook" +
+                    "ieTempDataProvider>();\r\n    }\r\n\r\n    public static IServiceCollection AddAuth(th" +
+                    "is IServiceCollection services)\r\n    {\r\n        services.AddAuthentication(Cooki" +
+                    "eAuthenticationDefaults.AuthenticationScheme)\r\n                .AddCookie(option" +
+                    "s =>\r\n                {\r\n\r\n                    options.ExpireTimeSpan = TimeSpan" +
+                    ".FromMinutes(20);\r\n                    options.SlidingExpiration = true;\r\n      " +
+                    "              options.AccessDeniedPath = \"/auth/login/\";\r\n                });\r\n\r" +
+                    "\n        services.AddScoped<AuthHelper>();\r\n        services.AddScoped<TokenPara" +
+                    "meters>();\r\n\r\n        return services;\r\n    }\r\n\r\n    //Redis cache i aktif etmek" +
+                    " için çağırabilirsiniz. \r\n    public static void AddRedis(this IServiceCollectio" +
+                    "n services, CacheSettings cacheSettings)\r\n    {\r\n        services.AddStackExchan" +
+                    "geRedisCache(opt =>\r\n        {\r\n\r\n            opt.ConfigurationOptions = new Con" +
+                    "figurationOptions\r\n            {\r\n                Password = cacheSettings.Passw" +
+                    "ord,\r\n                EndPoints =\r\n                    {\r\n                      " +
+                    "  { cacheSettings.Host, int.Parse(cacheSettings.Port) }\r\n                    },\r" +
+                    "\n            };\r\n        });\r\n    }\r\n\r\n    public static T AddSettingsSingleton<" +
+                    "T>(this IServiceCollection services, IConfiguration configuration)\r\n        wher" +
+                    "e T : class, new()\r\n    {\r\n        T settings = new T();\r\n        configuration." +
+                    "GetSection(settings.GetType().Name).Bind(settings);\r\n\r\n        services.Configur" +
+                    "e<T>(options =>\r\n        {\r\n            options = settings;\r\n        });\r\n      " +
+                    "  services.AddSingleton<T>(sp =>\r\n        {\r\n            return settings;\r\n     " +
+                    "   });\r\n\r\n        return settings;\r\n    }\r\n\r\n\r\n    //Masstransit rabbitMq ayarla" +
+                    "rını aktif etmek için çağırabilirsiniz. \r\n    public static void AddAmqpServices" +
+                    "(this IServiceCollection services, IConfiguration configuration)\r\n    {\r\n       " +
+                    " //consumerName alanlarına kuyruk isimleri girerek çoklayabilirsiniz.\r\n        /" +
+                    "/services.AddScoped<consumerName>();\r\n        services.AddMassTransit(x =>\r\n    " +
+                    "    {\r\n          //  x.AddConsumer<consumerName>();\r\n            x.UsingRabbitMq" +
+                    "((ctx, cfg) =>\r\n            {\r\n                cfg.Host(configuration[\"RabbitMq:" +
+                    "Host\"], ushort.Parse(configuration[\"RabbitMq:Port\"]), \"/\", host =>\r\n            " +
+                    "    {\r\n                    host.Username(configuration[\"RabbitMq:UserName\"]);\r\n " +
+                    "                   host.Password(configuration[\"RabbitMq:Password\"]);\r\n         " +
+                    "       });\r\n\r\n                //kuyruk isimlerini Common altında QueueNames enum" +
+                    " u ile tutmanız önerilir.\r\n                //cfg.ReceiveEndpoint(queueName.GetDe" +
+                    "scription(), e =>\r\n                //{\r\n                //    e.PrefetchCount = " +
+                    "100;\r\n                //    e.ConfigureConsumer(ctx, typeof(consumerName));\r\n\r\n " +
+                    "               //});\r\n\r\n            });\r\n        });\r\n\r\n        services.Configu" +
+                    "re<MassTransitHostOptions>(options =>\r\n        {\r\n            options.WaitUntilS" +
+                    "tarted = false;\r\n            options.StartTimeout = TimeSpan.FromSeconds(5);\r\n  " +
+                    "          options.StopTimeout = TimeSpan.FromMinutes(1);\r\n        });\r\n\r\n    }\r\n" +
+                    "\r\n}\r\n\r\n");
+            
+            #line 200 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\WebRegistrationService.tt"
     
-FileHelper.CreateAndClearBuilder($"{filePath}/ApiRegistrationService.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/WebRegistrationService.cs",this.GenerationEnvironment);
 
 
             
@@ -207,7 +234,7 @@ FileHelper.CreateAndClearBuilder($"{filePath}/ApiRegistrationService.cs",this.Ge
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class ApiRegistrationServiceTemplateBase
+    public class WebRegistrationServiceBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

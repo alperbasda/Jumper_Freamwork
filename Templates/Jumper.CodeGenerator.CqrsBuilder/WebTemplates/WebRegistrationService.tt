@@ -20,7 +20,7 @@
 <#
     string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
     var datasource = JObject.Parse(settingsJson);
-    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Api/Middlewares";
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Middlewares";
     DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
@@ -31,15 +31,19 @@ using StackExchange.Redis;
 using MassTransit;
 using Core.ApiHelpers.JwtHelper.Models;
 using Core.Persistence.Models;
-using <#= datasource["SolutionName"] #>.UI.Api.Helpers;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc;
+using <#= datasource["SolutionName"] #>.UI.Web.Helpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using <#= datasource["SolutionName"] #>.Application.Features.Auth.HttpClients;
 using <#= datasource["SolutionName"] #>.Common.IdentityConfigurations;
 
-namespace <#= datasource["SolutionName"] #>.UI.Api.Middlewares;
+namespace <#= datasource["SolutionName"] #>.UI.Web.Middlewares;
 
-public static class AddApiRegistrationService
+public static class AddWebRegistrationService
 {
-    public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
     {
         _ = services.AddSettingsSingleton<DatabaseOptions>(configuration);
         _ = services.AddSettingsSingleton<IdentityApiConfiguration>(configuration);
@@ -68,8 +72,8 @@ public static class AddApiRegistrationService
         #>
         services.AddHttpClient();
         services.AddHttpContextAccessor();
-        
-        services.AddScoped<TokenParameters>();
+        services.AddWebMessageServices();
+        services.AddAuth();
         <#
         WriteLine("");
         if(datasource["SeriLogConfigurations"]["ElasticLogConfiguration"] != null && !string.IsNullOrEmpty(datasource["SeriLogConfigurations"]["ElasticLogConfiguration"]["Uri"].Value<string?>()))
@@ -91,7 +95,34 @@ public static class AddApiRegistrationService
         return services;
     }
 
- 
+    public static void AddWebMessageServices(this IServiceCollection collection)
+    {
+        collection.AddSingleton<IDataProtectionProvider>(s => DataProtectionProvider.Create("<#= datasource["SolutionName"] #>"));
+
+        collection.Configure<CookieTempDataProviderOptions>(options =>
+        {
+
+        });
+        collection.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+    }
+
+    public static IServiceCollection AddAuth(this IServiceCollection services)
+    {
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                    options.SlidingExpiration = true;
+                    options.AccessDeniedPath = "/auth/login/";
+                });
+
+        services.AddScoped<AuthHelper>();
+        services.AddScoped<TokenParameters>();
+
+        return services;
+    }
+
     //Redis cache i aktif etmek için çağırabilirsiniz. 
     public static void AddRedis(this IServiceCollection services, CacheSettings cacheSettings)
     {
@@ -167,6 +198,6 @@ public static class AddApiRegistrationService
 }
 
 <#    
-FileHelper.CreateAndClearBuilder($"{filePath}/ApiRegistrationService.cs",this.GenerationEnvironment);
+FileHelper.CreateAndClearBuilder($"{filePath}/WebRegistrationService.cs",this.GenerationEnvironment);
 
 #>

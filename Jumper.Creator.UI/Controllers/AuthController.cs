@@ -24,7 +24,6 @@ namespace Jumper.Creator.UI.Controllers
         public async Task<IActionResult> Login()
         {
             return View();
-
         }
 
         [HttpPost]

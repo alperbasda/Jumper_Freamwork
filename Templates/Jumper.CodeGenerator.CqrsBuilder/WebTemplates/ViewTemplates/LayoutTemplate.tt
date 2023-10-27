@@ -1,10 +1,39 @@
-﻿@using Jumper.Common.Constants;
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ assembly name="Newtonsoft.Json" #>
+<#@ assembly name="System.Runtime" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ assembly name="_Dependencies\Jumper.Common.dll" #>
+<#@ import namespace="Jumper.Common.Constants" #>
+<#@ import namespace="Jumper.Common.DirectoryHelpers" #>
+<#@ import namespace="Jumper.Common.StringHelpers" #>
+<#@ import namespace="Jumper.Common.FileHelpers" #>
+<#@ output extension=".cshtml" #>
+
+<#
+    
+    string settingsJson = File.ReadAllText(FileSettings.ReadProjectPath);
+    var datasource = JObject.Parse(settingsJson);
+    var filePath = $"{FileSettings.ProjectCreateDirectory}{datasource["SolutionName"]}/Presentation/{datasource["SolutionName"]}.UI.Web/Views/Shared";
+    DirectoryHelper.CreateDirectoryIfNotExists(filePath);
+#>
+
+<!--
+   <#= FileSettings.AUTO_GENERATED_MESSAGE #> 
+-->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Jumper Freamwork Code Creator</title>
+    <title>@ViewData["Title"] - <#= datasource["SolutionName"].ToString() #></title>
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
 
 
@@ -73,7 +102,7 @@
                                         <span class="menu-link">
 
                                             <span class="menu-title">
-                                                Jumper Freamwork Low Code Generator
+                                                <#= datasource["SolutionName"].ToString() #>
                                             </span>
 
                                         </span>
@@ -91,7 +120,7 @@
                                 <div class="cursor-pointer symbol symbol-35px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                                     <div class="symbol">
                                         <span class="symbol-label bg-light-success">
-                                            @User.Identity!.Name!.ToUpper().First()
+                                            @(User.Identity != null ? User.Identity.Name!.ToUpper().First() : "A")
                                         </span>
                                     </div>
                                 </div>
@@ -127,9 +156,7 @@
 
 
                     </div>
-                    <!--end::
-
-                        wrapper-->
+                    <!--end::wrapper-->
 
 
                 </div>
@@ -145,7 +172,7 @@
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
                         <a href="~/home/">
-                            <h2 style="color:white; letter-spacing:3px" class="mr-2">JUMPER</h2>
+                            <h2><#= datasource["SolutionName"].ToString() #></h2>
                             @* <img alt="Logo" style="background-color:white" src="~/assets/media/logos/logo.png" class="h-25px app-sidebar-logo-default" />
                             <img alt="Logo" style="background-color:white" src="~/assets/media/logos/logo.png" class="h-20px app-sidebar-logo-minimize" /> *@
                         </a>
@@ -176,21 +203,25 @@
 
                             <div class="menu-item">
                                 <div class="menu-content">
-                                    <span class="menu-heading fw-bold text-uppercase fs-7">Projelerim</span>
+                                    <span class="menu-heading fw-bold text-uppercase fs-7">Menu</span>
                                 </div>
                             </div>
-                            <div data-partial="@Url.Action("Menu","Project")"></div>
+
+                            <#
+                            foreach (var entity in datasource["Entities"])
+                            {
+                            #>
 
                             <div class="menu-item">
-                                <div class="menu-content">
-                                    <span class="menu-heading fw-bold text-uppercase fs-7">Json Örnekleri</span>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <a href="@Url.Action("JsonExamples","Home")" class="menu-link border-3 border-start border-transparent">
-                                    <span class="menu-title">Json Kullanım Kılavusu</span>
+                                <a href="@Url.Action("Index","<#= entity["Name"].ToString() #>")" class="menu-link border-3 border-start border-transparent">
+                                    <span class="menu-title"><#= entity["Name"].ToString() #> Listesi</span>
                                 </a>
                             </div>
+
+                            <#
+                            }
+                            #>
+
                         </div>
                         <!--end::Menu-->
 
@@ -218,7 +249,7 @@
                     <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-semibold me-1">2023&copy;</span>
+                            <span class="text-muted fw-semibold me-1">@DateTime.Now.Year &copy;</span>
                         </div>
                         <!--end::Copyright-->
                     </div>
@@ -266,3 +297,8 @@
 
 
 </html>
+
+<#    
+FileHelper.CreateAndClearBuilder($"{filePath}/_Layout.cshtml",this.GenerationEnvironment);
+
+#>
