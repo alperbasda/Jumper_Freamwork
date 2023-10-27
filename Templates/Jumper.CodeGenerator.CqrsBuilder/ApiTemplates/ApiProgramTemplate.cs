@@ -92,6 +92,13 @@ builder.Services.AddApiServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 //Global exception handler
 //exception logger için metoda gidip yorum satırına alınan alanları açabilirsiniz.
 app.UseExceptionHandlerMiddleware();
@@ -107,7 +114,7 @@ app.Run();
 
 ");
             
-            #line 59 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiProgramTemplate.tt"
+            #line 66 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\ApiTemplates\ApiProgramTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/Program.cs",this.GenerationEnvironment);
 

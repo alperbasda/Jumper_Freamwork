@@ -6,24 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>4a5a8ed9-be79-4c02-b05d-8d08f448b12a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..</DockerfileContext>
-    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove=".template.config\**" />
-    <Compile Remove="Controllers\**" />
-    <Content Remove=".template.config\**" />
-    <Content Remove="Controllers\**" />
-    <EmbeddedResource Remove=".template.config\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <None Remove=".template.config\**" />
-    <None Remove="Controllers\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
-    <PackageReference Include="CQRS.WebHelper" Version="1.0.3.1" />
+    <PackageReference Include="Core.WebHelper" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

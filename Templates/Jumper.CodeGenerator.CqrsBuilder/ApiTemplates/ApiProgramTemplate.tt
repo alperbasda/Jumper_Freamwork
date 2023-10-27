@@ -43,6 +43,13 @@ builder.Services.AddApiServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 //Global exception handler
 //exception logger için metoda gidip yorum satırına alınan alanları açabilirsiniz.
 app.UseExceptionHandlerMiddleware();
