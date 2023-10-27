@@ -28,6 +28,8 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
 using MediatR;
+using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
 
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.<#= action["Name"] #>;
 

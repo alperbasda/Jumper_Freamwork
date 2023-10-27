@@ -27,6 +27,8 @@ DirectoryHelper.CreateDirectoryIfNotExists(filePath);
 #>
 <#= FileSettings.AUTO_GENERATED_MESSAGE #>
 using MediatR;
+using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
 using <#= datasource["SolutionName"] #>.Application.Base;
 using Core.Persistence.Models.Responses;
 namespace <#= datasource["SolutionName"] #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.<#= action["Name"] #>;
