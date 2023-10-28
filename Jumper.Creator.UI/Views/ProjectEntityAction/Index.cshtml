@@ -213,7 +213,7 @@
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    <input type="text" class="form-control form-control-sm" name="Name" placeholder="Aranacak kelime yazın" />
+                                                    <input type="text" class="form-control form-control-sm" name="Name" placeholder="Aranacak kelime yazın" value=" @filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntity.Name))?.Value" />
                                                 </th>
                                                 <th>
                                                     @{
@@ -289,10 +289,10 @@
                                                     </select>
                                                 </th>
                                                 <th>
-                                                    <input type="datetime" class="form-control form-control-sm" name="CreatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntity.CreatedTime))?.Value" />
+                                                    <input type="datetime" class="form-control form-control-sm" name="CreatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityAction.CreatedTime))?.Value" />
                                                 </th>
                                                 <th>
-                                                    <input type="datetime" class="form-control form-control-sm" name="UpdatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntity.UpdatedTime))?.Value" />
+                                                    <input type="datetime" class="form-control form-control-sm" name="UpdatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityAction.UpdatedTime))?.Value" />
                                                 </th>
                                                 <th class="text-center">
                                                     <input type="submit" class="btn btn-primary btn-sm" value="Filtrele" />

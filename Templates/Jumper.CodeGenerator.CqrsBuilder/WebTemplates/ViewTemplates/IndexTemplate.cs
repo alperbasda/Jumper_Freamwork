@@ -300,7 +300,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                          if(prop["Name"].ToString().EndsWith("Id"))
                                          {
                                          WriteLine("");
-                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}Controller\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
+                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
                                          continue;
                                          }
                                          
@@ -373,11 +373,11 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                     "    \r\n        @if (Model.Count == 0)\r\n        {\r\n            <div class=\"text-ce" +
                     "nter\">\r\n                <h5>\r\n                    Kriterlere uygun veri bulunama" +
                     "dı.\r\n                </h5>\r\n\r\n            </div>\r\n        }\r\n    \r\n    </div>\r\n " +
-                    "   \r\n    \r\n    </div>\r\n    \r\n    <div class=\"pt-2\">\r\n        <p>\r\n            Si" +
-                    "steme Kayıtlı @Model.Items.Count servis bulunmaktadır.\r\n        </p>\r\n    </div>" +
-                    "\r\n</div>\r\n\r\n\r\n");
+                    "   \r\n    \r\n</div>\r\n    \r\n    <div class=\"pt-2\">\r\n        <p>\r\n            Sistem" +
+                    "e Kayıtlı @Model.Items.Count servis bulunmaktadır.\r\n        </p>\r\n    </div>\r\n\r\n" +
+                    "\r\n");
             
-            #line 257 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
+            #line 256 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
     
 DirectoryHelper.CreateDirectoryIfNotExists($"{filePath}/{entity["Name"].ToString()}");
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}/Index.cshtml",this.GenerationEnvironment);

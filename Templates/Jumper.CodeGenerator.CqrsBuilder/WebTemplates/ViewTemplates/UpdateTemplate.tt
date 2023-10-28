@@ -32,12 +32,13 @@ foreach (var entity in datasource["Entities"])
 <!--
    <#= FileSettings.AUTO_GENERATED_MESSAGE #> 
 -->
-@using <#= datasource["SolutionName"].ToString() #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Commands.Update;
+@using <#= datasource["SolutionName"].ToString() #>.Application.Features.<#= entity["Name"].ToString().ToPlural() #>.Queries.GetById;
+
 @using Core.CrossCuttingConcerns.Helpers.EnumHelpers;
 @{
     ViewData["Title"] = "<#= entity["Name"].ToString() #> Güncelle";
 }
-@model Update<#= entity["Name"].ToString() #>Command
+@model GetById<#= entity["Name"].ToString() #>Response
 
 
 

@@ -80,22 +80,22 @@ foreach (var entity in datasource["Entities"])
             
             #line default
             #line hidden
-            this.Write(".Commands.Update;\r\n@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;\r\n@{\r\n   " +
-                    " ViewData[\"Title\"] = \"");
+            this.Write(".Queries.GetById;\r\n\r\n@using Core.CrossCuttingConcerns.Helpers.EnumHelpers;\r\n@{\r\n " +
+                    "   ViewData[\"Title\"] = \"");
             
-            #line 38 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 39 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write(" Güncelle\";\r\n}\r\n@model Update");
+            this.Write(" Güncelle\";\r\n}\r\n@model GetById");
             
-            #line 40 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 41 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
-            this.Write(@"Command
+            this.Write(@"Response
 
 
 
@@ -114,14 +114,14 @@ foreach (var entity in datasource["Entities"])
                     <li class=""nav-item"">
                         <a href=""@Url.Action(""Index"",""");
             
-            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 58 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("\")\" class=\"btn btn-sm fw-bold btn-secondary\">");
             
-            #line 57 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 58 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
@@ -141,14 +141,14 @@ foreach (var entity in datasource["Entities"])
             <div id=""kt_app_content"" class=""app-content flex-column-fluid"">
                 <form asp-controller=""");
             
-            #line 70 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 71 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"].ToString()));
             
             #line default
             #line hidden
             this.Write("\" asp-action=\"Update\" method=\"post\">\r\n\r\n                    ");
             
-            #line 72 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 73 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
 
                     var action =  entity["Actions"].First(w=>w["Name"].ToString() == "Update");
                     foreach(var prop in action["Properties"].Where(w => w["ActionPropertyType"].ToString() == "0"))
@@ -163,21 +163,21 @@ foreach (var entity in datasource["Entities"])
             this.Write("                    <div class=\"col-auto pb-5\">\r\n                        <div cla" +
                     "ss=\"form-floating\">\r\n                            ");
             
-            #line 82 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 83 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(str));
             
             #line default
             #line hidden
             this.Write("\r\n                            <label class=\"form-label mr-4\" for=\"");
             
-            #line 83 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 84 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["PropertyName"].ToString()));
             
             #line default
             #line hidden
             this.Write("\"> ");
             
-            #line 83 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 84 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["PropertyName"].ToString()));
             
             #line default
@@ -185,7 +185,7 @@ foreach (var entity in datasource["Entities"])
             this.Write(" </label>\r\n                        </div>\r\n                    </div>\r\n          " +
                     "          ");
             
-            #line 86 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 87 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
 
                     }
                     }
@@ -209,7 +209,7 @@ foreach (var entity in datasource["Entities"])
 
 ");
             
-            #line 104 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
+            #line 105 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\UpdateTemplate.tt"
     
 DirectoryHelper.CreateDirectoryIfNotExists($"{filePath}/{entity["Name"].ToString()}");
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}/Update.cshtml",this.GenerationEnvironment);

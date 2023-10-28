@@ -54,14 +54,14 @@ public class <#= item["Name"] #>Configuration : IEntityTypeConfiguration<<#= ite
     {
     continue;
     }
-    if(prop["PropertyTypeCode"].ToString().Contains("?"))
+    if(prop["PropertyTypeCode"].ToString().EndsWith("?"))
     {
-    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\");");
+    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\").IsRequired(false);");
     
     }
     else
     {
-    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\").IsRequired();");
+    WriteLine($"\t\tbuilder.Property(w => w.{prop["Name"]}).HasColumnName(\"{prop["Name"]}\").IsRequired(true);");
     
     }
     if(prop["HasIndex"].ToString() == "true")

@@ -153,6 +153,10 @@ foreach (var entity in datasource["Entities"])
                     var action =  entity["Actions"].First(w=>w["Name"].ToString() == "Create");
                     foreach(var prop in action["Properties"].Where(w => w["ActionPropertyType"].ToString() == "0"))
                     {
+                    if(prop["PropertyName"].ToString() == "Id")
+                    {
+                        continue;
+                    }
                     var str = PropertyCreatorHelper.ToHtmlTag(prop,prop["PropertyName"].ToString().Substring(0, prop["PropertyName"].ToString().Length - 2));
                     if(!string.IsNullOrEmpty(str))
                     {
@@ -163,21 +167,21 @@ foreach (var entity in datasource["Entities"])
             this.Write("                    <div class=\"col-auto pb-5\">\r\n                        <div cla" +
                     "ss=\"form-floating\">\r\n                            ");
             
-            #line 82 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
+            #line 86 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(str));
             
             #line default
             #line hidden
             this.Write("\r\n                            <label class=\"form-label mr-4\" for=\"");
             
-            #line 83 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
+            #line 87 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["PropertyName"].ToString()));
             
             #line default
             #line hidden
             this.Write("\"> ");
             
-            #line 83 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
+            #line 87 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop["PropertyName"].ToString()));
             
             #line default
@@ -185,7 +189,7 @@ foreach (var entity in datasource["Entities"])
             this.Write(" </label>\r\n                        </div>\r\n                    </div>\r\n          " +
                     "          ");
             
-            #line 86 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
+            #line 90 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
 
                     }
                     }
@@ -210,7 +214,7 @@ foreach (var entity in datasource["Entities"])
 
 ");
             
-            #line 105 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
+            #line 109 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\CreateTemplate.tt"
     
 DirectoryHelper.CreateDirectoryIfNotExists($"{filePath}/{entity["Name"].ToString()}");
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}/Create.cshtml",this.GenerationEnvironment);

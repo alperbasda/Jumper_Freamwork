@@ -30,6 +30,12 @@ namespace Jumper.Persistance.Contexts
 
         public virtual DbSet<PropertyInputTypeDeclaration> PropertyInputTypeDeclarations { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.LogTo(Console.Write);
+        }
+
         //IEntityTypeConfiguration dan kalıtılan tüm konfigurasyonları işler.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

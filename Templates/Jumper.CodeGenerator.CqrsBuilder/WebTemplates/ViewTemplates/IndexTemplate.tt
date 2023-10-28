@@ -156,7 +156,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                          if(prop["Name"].ToString().EndsWith("Id"))
                                          {
                                          WriteLine("");
-                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}Controller\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
+                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
                                          continue;
                                          }
                                          #>
@@ -244,14 +244,13 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
     </div>
     
     
-    </div>
+</div>
     
     <div class="pt-2">
         <p>
             Sisteme Kayıtlı @Model.Items.Count servis bulunmaktadır.
         </p>
     </div>
-</div>
 
 
 <#    

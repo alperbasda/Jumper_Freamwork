@@ -73,6 +73,10 @@ foreach (var entity in datasource["Entities"])
                     var action =  entity["Actions"].First(w=>w["Name"].ToString() == "Create");
                     foreach(var prop in action["Properties"].Where(w => w["ActionPropertyType"].ToString() == "0"))
                     {
+                    if(prop["PropertyName"].ToString() == "Id")
+                    {
+                        continue;
+                    }
                     var str = PropertyCreatorHelper.ToHtmlTag(prop,prop["PropertyName"].ToString().Substring(0, prop["PropertyName"].ToString().Length - 2));
                     if(!string.IsNullOrEmpty(str))
                     {
