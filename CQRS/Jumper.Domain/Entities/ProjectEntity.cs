@@ -23,4 +23,6 @@ public class ProjectEntity : Entity<Guid>, IUserOwnedEntity, IConstantEntity
     public virtual ICollection<ProjectEntityProperty> Properties { get; set; }
 
     public virtual ICollection<ProjectEntityAction> ProjectEntityActions { get; set; }
+
+    public virtual ICollection<EntityFeatureDefinitionProjectEntityRelation> EntityFeatureDefinitionProjectEntityRelations { get; set; }
 }

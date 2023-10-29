@@ -4,6 +4,7 @@ using Jumper.Application.Services.Repositories;
 using Jumper.Domain.Entities;
 using Jumper.Persistance.Contexts;
 using Jumper.Persistance.Repositories;
+using Jumper.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +49,10 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IProjectEntityDependencyDal, ProjectEntityDependencyDal>();
         services.AddScoped<IProjectEntityPropertyDal, ProjectEntityPropertyDal>();
         services.AddScoped<IArchitectureDefinitionDal, ArchitectureDefinitionDal>();
+        services.AddScoped<IEntityFeatureDefinitionProjectEntityRelationDal, EntityFeatureDefinitionProjectEntityRelationDal>();
+        services.AddScoped<IEntityFeatureDefinitionDal, EntityFeatureDefinitionDal>();
+        services.AddScoped<IEntityPropertyFeatureDefinitionDal, EntityPropertyFeatureDefinitionDal>();
+        services.AddScoped<IEntityPropertyFeatureDefinitionProjectEntityPropertyRelationDal, EntityPropertyFeatureDefinitionProjectEntityPropertyRelationDal>();
 
         return services;
     }

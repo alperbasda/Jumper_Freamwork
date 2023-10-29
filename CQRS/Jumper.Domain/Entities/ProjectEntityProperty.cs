@@ -37,4 +37,6 @@ public class ProjectEntityProperty : Entity<Guid>, IConstantEntity
     [InverseProperty("ProjectEntityProperty")]
     public virtual ICollection<ProjectEntityActionProperty> Metods { get; set; }
 
+    public virtual ICollection<EntityPropertyFeatureDefinitionProjectEntityPropertyRelation> EntityPropertyFeatureDefinitionProjectEntityPropertyRelations { get; set; }
+
 }

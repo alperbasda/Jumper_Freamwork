@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jumper.Persistance.Migrations
 {
     [DbContext(typeof(JumperDbContext))]
-    [Migration("20231025135415_fds")]
-    partial class fds
+    [Migration("20231029093216_featuresadded")]
+    partial class featuresadded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,174 @@ namespace Jumper.Persistance.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityFeatureDefinition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedTime");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedTime");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("Namespace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Namespace");
+
+                    b.Property<string>("Template")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Template");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("Type");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedTime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntityFeatureDefinitions", (string)null);
+                });
+
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityFeatureDefinitionProjectEntityRelation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedTime");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedTime");
+
+                    b.Property<Guid>("EntityFeatureDefinitionId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("EntityFeatureDefinitionId");
+
+                    b.Property<Guid>("ProjectEntityId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("ProjectEntityId");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityFeatureDefinitionId");
+
+                    b.HasIndex("ProjectEntityId");
+
+                    b.ToTable("EntityFeatureDefinitionProjectEntityRelations", (string)null);
+                });
+
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityPropertyFeatureDefinition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedTime");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedTime");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("Namespace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Namespace");
+
+                    b.Property<string>("Template")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Template");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("Type");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedTime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntityPropertyFeatureDefinitions", (string)null);
+                });
+
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityPropertyFeatureDefinitionProjectEntityPropertyRelation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedTime");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedTime");
+
+                    b.Property<Guid>("EntityPropertyFeatureDefinitionId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("EntityPropertyFeatureDefinitionId");
+
+                    b.Property<Guid>("ProjectEntityPropertyId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("ProjectEntityPropertyId");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityPropertyFeatureDefinitionId");
+
+                    b.HasIndex("ProjectEntityPropertyId");
+
+                    b.ToTable("EntityPropertyFeatureDefinitionProjectEntityPropertyRelations", (string)null);
+                });
 
             modelBuilder.Entity("Jumper.Domain.Entities.ProjectEntity", b =>
                 {
@@ -375,6 +543,44 @@ namespace Jumper.Persistance.Migrations
                     b.ToTable("PropertyTypeDeclarations", (string)null);
                 });
 
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityFeatureDefinitionProjectEntityRelation", b =>
+                {
+                    b.HasOne("Jumper.Domain.Entities.EntityFeatureDefinition", "EntityFeatureDefinition")
+                        .WithMany("EntityFeatureDefinitionProjectEntityRelations")
+                        .HasForeignKey("EntityFeatureDefinitionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Jumper.Domain.Entities.ProjectEntity", "ProjectEntity")
+                        .WithMany("EntityFeatureDefinitionProjectEntityRelations")
+                        .HasForeignKey("ProjectEntityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("EntityFeatureDefinition");
+
+                    b.Navigation("ProjectEntity");
+                });
+
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityPropertyFeatureDefinitionProjectEntityPropertyRelation", b =>
+                {
+                    b.HasOne("Jumper.Domain.Entities.EntityPropertyFeatureDefinition", "EntityPropertyFeatureDefinition")
+                        .WithMany("EntityPropertyFeatureDefinitionProjectEntityPropertyRelations")
+                        .HasForeignKey("EntityPropertyFeatureDefinitionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Jumper.Domain.Entities.ProjectEntityProperty", "ProjectEntityProperty")
+                        .WithMany("EntityPropertyFeatureDefinitionProjectEntityPropertyRelations")
+                        .HasForeignKey("ProjectEntityPropertyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("EntityPropertyFeatureDefinition");
+
+                    b.Navigation("ProjectEntityProperty");
+                });
+
             modelBuilder.Entity("Jumper.Domain.Entities.ProjectEntityAction", b =>
                 {
                     b.HasOne("Jumper.Domain.Entities.ProjectEntity", "ProjectEntity")
@@ -431,11 +637,23 @@ namespace Jumper.Persistance.Migrations
                     b.Navigation("ProjectEntity");
                 });
 
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityFeatureDefinition", b =>
+                {
+                    b.Navigation("EntityFeatureDefinitionProjectEntityRelations");
+                });
+
+            modelBuilder.Entity("Jumper.Domain.Entities.EntityPropertyFeatureDefinition", b =>
+                {
+                    b.Navigation("EntityPropertyFeatureDefinitionProjectEntityPropertyRelations");
+                });
+
             modelBuilder.Entity("Jumper.Domain.Entities.ProjectEntity", b =>
                 {
                     b.Navigation("Depended");
 
                     b.Navigation("DependsOn");
+
+                    b.Navigation("EntityFeatureDefinitionProjectEntityRelations");
 
                     b.Navigation("ProjectEntityActions");
 
@@ -449,6 +667,8 @@ namespace Jumper.Persistance.Migrations
 
             modelBuilder.Entity("Jumper.Domain.Entities.ProjectEntityProperty", b =>
                 {
+                    b.Navigation("EntityPropertyFeatureDefinitionProjectEntityPropertyRelations");
+
                     b.Navigation("Metods");
                 });
 #pragma warning restore 612, 618
