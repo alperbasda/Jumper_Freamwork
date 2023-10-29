@@ -160,26 +160,7 @@
                                                         </a>
                                                     </b>
                                                 </th>
-                                                <th>
-                                                    <b>
-                                                        <a data-sort="@nameof(ProjectEntityProperty.IsShowOnRelation)" href="#/">
-                                                            İlişkide Göster &nbsp;
-                                                        </a>
-                                                    </b>
-                                                </th>
-
-                                                <th>
-                                                    <b>
-                                                        Index Var Mı ? &nbsp;
-                                                    </b>
-                                                </th>
-                                                <th>
-                                                    <b>
-                                                        Unique Mi ? &nbsp;
-                                                    </b>
-                                                </th>
-
-
+                                        
                                                 <th></th>
                                             </tr>
                                             <tr>
@@ -195,81 +176,7 @@
                                                 <th>
                                                     <input type="number" class="form-control form-control-sm" name="Order" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityProperty.Order))?.Value" />
                                                 </th>
-                                                <th>
-                                                    <select name="IsShowOnRelation" class="form-control form-control-sm">
-                                                        @{
-                                                            var filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.IsShowOnRelation))?.Value;
-                                                            if (filter == null)
-                                                            {
-                                                                <option selected value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else if (filter != null && Convert.ToBoolean(filter))
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option selected value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false" selected> Hayır </option>
-                                                            }
-                                                        }
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select name="HasIndex" class="form-control form-control-sm">
-                                                        @{
-                                                            filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.HasIndex))?.Value;
-                                                            if (filter == null)
-                                                            {
-                                                                <option selected value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else if (filter != null && Convert.ToBoolean(filter))
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option selected value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false" selected> Hayır </option>
-                                                            }
-                                                        }
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select name="IsUnique" class="form-control form-control-sm">
-                                                        @{
-                                                            filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityProperty.IsUnique))?.Value;
-                                                            if (filter == null)
-                                                            {
-                                                                <option selected value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else if (filter != null && Convert.ToBoolean(filter))
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option selected value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false" selected> Hayır </option>
-                                                            }
-                                                        }
-                                                    </select>
-                                                </th>
+                                                
                                                 <th class="text-center">
                                                     <input type="submit" class="btn btn-primary btn-sm" value="Filtrele" />
                                                 </th>

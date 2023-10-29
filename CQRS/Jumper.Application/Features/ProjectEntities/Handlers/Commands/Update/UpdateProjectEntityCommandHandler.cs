@@ -26,7 +26,6 @@ public class UpdateProjectEntityCommandHandler : IRequestHandler<UpdateProjectEn
         await _projectEntityBusinessRules.ThrowExceptionIfDataNull(data);
         _projectEntityBusinessRules.ThrowExceptionIfDataOwnerNotLoggedUser(data!);
         await _projectEntityBusinessRules.ThrowExceptionIfSamaNameProjectEntityExistsForUpdate(data!.ProjectDeclarationId,request.Name,request.Id);
-        _projectEntityBusinessRules.ThrowExceptionEntityIsConstant(data!);
 
         _mapper.Map(request, data);
 

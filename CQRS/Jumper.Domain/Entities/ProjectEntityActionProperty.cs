@@ -1,10 +1,9 @@
 ﻿using Core.Persistence.Models;
-using Jumper.Domain.Base;
 using Jumper.Domain.Enums;
 
 namespace Jumper.Domain.Entities;
 
-public class ProjectEntityActionProperty : Entity<Guid>, IConstantEntity
+public class ProjectEntityActionProperty : Entity<Guid>
 {
     public Guid ProjectEntityActionId { get; set; }
 
@@ -15,6 +14,4 @@ public class ProjectEntityActionProperty : Entity<Guid>, IConstantEntity
     public virtual ProjectEntityProperty? ProjectEntityProperty { get; set; }
 
     public ActionPropertyType ActionPropertyType { get; set; }
-
-    public bool IsConstant { get; set; }
 }

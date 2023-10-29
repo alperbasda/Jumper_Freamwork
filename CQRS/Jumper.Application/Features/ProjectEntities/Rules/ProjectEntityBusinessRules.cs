@@ -57,7 +57,6 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
             DeletedTime = null,
             ProjectDeclarationId = data!.ProjectDeclarationId,
             DatabaseType = data.DatabaseType,
-            IsConstant = false,
             Name = data.Name,
             Properties = new List<ProjectEntityProperty>()
         };
@@ -74,14 +73,9 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
                 Id = Guid.NewGuid(),
                 CreatedTime = DateTime.Now,
                 ProjectEntityId = item.ProjectEntityId,
-                IsUnique = item.IsUnique,
                 PropertyTypeCode = item.PropertyTypeCode,
                 PropertyInputTypeCode = item.PropertyInputTypeCode,
                 Name = item.Name,
-                Prefix = item.Prefix,
-                HasIndex = item.HasIndex,
-                IsConstant = item.IsConstant,
-                IsShowOnRelation = item.IsShowOnRelation,
                 Order = item.Order,
                 UpdatedTime = null,
                 DeletedTime = null
@@ -98,13 +92,13 @@ public class ProjectEntityBusinessRules : BaseBusinessRules
             projectEntity.Properties = new List<ProjectEntityProperty>();
 
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "Id", PropertyTypeCode = "Guid", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 0, PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE, Prefix = "" });
+        projectEntity.Properties.Add(new ProjectEntityProperty {Id = Guid.NewGuid(), Name = "Id", PropertyTypeCode = "Guid", Order = 0, PropertyInputTypeCode = PropertyCreatorHelper.HIDDEN_INPUT_TYPE});
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "CreatedTime", PropertyTypeCode = "DateTime", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10001, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE, Prefix = "" });
+        projectEntity.Properties.Add(new ProjectEntityProperty {Id = Guid.NewGuid(), Name = "CreatedTime", PropertyTypeCode = "DateTime", Order = 10001, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "UpdatedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = false, IsConstant = true, IsShowOnRelation = false, Order = 10002, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE, Prefix = "" });
+        projectEntity.Properties.Add(new ProjectEntityProperty {Id = Guid.NewGuid(), Name = "UpdatedTime", PropertyTypeCode = "DateTime?", Order = 10002, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE });
 
-        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "DeletedTime", PropertyTypeCode = "DateTime?", IsUnique = false, HasIndex = true, IsConstant = true, IsShowOnRelation = false, Order = 10003, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE, Prefix = "" });
+        projectEntity.Properties.Add(new ProjectEntityProperty { Id = Guid.NewGuid(), Name = "DeletedTime", PropertyTypeCode = "DateTime?",Order = 10003, PropertyInputTypeCode = PropertyCreatorHelper.DONT_USE_INPUT_TYPE });
     }
 
 

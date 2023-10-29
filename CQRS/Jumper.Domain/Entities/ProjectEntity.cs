@@ -4,7 +4,7 @@ using Jumper.Domain.Enums;
 
 namespace Jumper.Domain.Entities;
 
-public class ProjectEntity : Entity<Guid>, IUserOwnedEntity, IConstantEntity
+public class ProjectEntity : Entity<Guid>, IUserOwnedEntity
 {
     public Guid UserId { get; set; }
     
@@ -13,8 +13,6 @@ public class ProjectEntity : Entity<Guid>, IUserOwnedEntity, IConstantEntity
     public string Name { get; set; }
 
     public DatabaseType DatabaseType { get; set; }
-
-    public bool IsConstant { get; set; }
 
     public virtual ICollection<ProjectEntityDependency> Depended { get; set; }
 

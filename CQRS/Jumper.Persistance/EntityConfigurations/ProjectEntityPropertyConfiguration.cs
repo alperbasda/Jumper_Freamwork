@@ -15,7 +15,6 @@ public class ProjectEntityPropertyConfiguration : IEntityTypeConfiguration<Proje
         builder.Property(w => w.CreatedTime).HasColumnName("CreatedTime").IsRequired();
         builder.Property(w => w.UpdatedTime).HasColumnName("UpdatedTime");
         builder.Property(w => w.DeletedTime).HasColumnName("DeletedTime");
-        builder.Property(w => w.IsConstant).HasColumnName("IsConstant");
         builder.HasQueryFilter(w => !w.DeletedTime.HasValue);
 
 
@@ -23,9 +22,6 @@ public class ProjectEntityPropertyConfiguration : IEntityTypeConfiguration<Proje
         builder.Property(w => w.PropertyTypeCode).HasColumnName("PropertyTypeCode").IsRequired();
         builder.Property(w => w.PropertyInputTypeCode).HasColumnName("PropertyInputTypeCode").IsRequired();
         builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
-        builder.Property(w => w.HasIndex).HasColumnName("HasIndex").IsRequired();
-        builder.Property(w => w.IsUnique).HasColumnName("IsUnique").IsRequired();
-        builder.Property(w => w.IsShowOnRelation).HasColumnName("IsShowOnRelation").IsRequired();
         builder.Property(w => w.Order).HasColumnName("Order").IsRequired();
 
 

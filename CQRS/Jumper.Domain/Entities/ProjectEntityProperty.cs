@@ -1,10 +1,9 @@
 ﻿using Core.Persistence.Models;
-using Jumper.Domain.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Jumper.Domain.Entities;
 
-public class ProjectEntityProperty : Entity<Guid>, IConstantEntity
+public class ProjectEntityProperty : Entity<Guid>
 {
     public Guid ProjectEntityId { get; set; }
 
@@ -15,22 +14,6 @@ public class ProjectEntityProperty : Entity<Guid>, IConstantEntity
     public string PropertyInputTypeCode { get; set; }
 
     public string Name { get; set; }
-
-    public bool HasIndex { get; set; }
-
-    public bool IsUnique { get; set; }
-
-    public bool IsConstant { get; set; }
-
-    /// <summary>
-    /// Virtual abstract vb.
-    /// </summary>
-    public string Prefix { get; set; }
-
-    /// <summary>
-    /// İlişkili bir tablo için gösterilecek değerin bu kolon oldugunu belirtir.
-    /// </summary>
-    public bool IsShowOnRelation { get; set; }
 
     public int Order { get; set; }
 

@@ -25,7 +25,6 @@ public class DeleteProjectEntityActionCommandHandler : IRequestHandler<DeletePro
         
         await _projectEntityActionBusinessRules.ThrowExceptionIfDataNull(data);
         await _projectEntityActionBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(data!.ProjectEntityId);
-        _projectEntityActionBusinessRules.ThrowExceptionEntityIsConstant(data!);
 
         await _projectEntityActionDal.DeleteAsync(data);
 

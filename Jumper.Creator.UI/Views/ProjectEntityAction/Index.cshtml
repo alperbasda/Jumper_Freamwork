@@ -166,13 +166,6 @@
                                                 </th>
                                                 <th>
                                                     <b>
-                                                        <a data-sort="@nameof(ProjectEntityAction.EntityAction)" href="#/">
-                                                            Tip &nbsp;
-                                                        </a>
-                                                    </b>
-                                                </th>
-                                                <th>
-                                                    <b>
                                                         İstek Öz. &nbsp;
                                                     </b>
                                                 </th>
@@ -181,20 +174,7 @@
                                                         Yanıt Öz. &nbsp;
                                                     </b>
                                                 </th>
-                                                <th>
-                                                    <b>
-                                                        <a data-sort="@nameof(ProjectEntityAction.LogEnabled)" href="#/">
-                                                            İşlem Loglansın &nbsp; <i class="fa fa-circle-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Metot tetiklendiğinde belirtilen log ayarlarına göre loglama yapılır."></i>
-                                                        </a>
-                                                    </b>
-                                                </th>
-                                                <th>
-                                                    <b>
-                                                        <a data-sort="@nameof(ProjectEntityAction.CacheEnabled)" href="#/">
-                                                            İşlem Cachelensin &nbsp; <i class="fa fa-circle-info" data-bs-toggle="tooltip" data-bs-placement="top" title="İlgili tabloya veri eklendiğinde ilgili cache temizlenir. Okuma yapıldığında cache tekrar yazılır."></i>
-                                                        </a>
-                                                    </b>
-                                                </th>
+                                                
                                                 <th>
                                                     <b>
                                                         <a data-sort="@nameof(ProjectEntity.CreatedTime)" href="#/">
@@ -216,77 +196,10 @@
                                                     <input type="text" class="form-control form-control-sm" name="Name" placeholder="Aranacak kelime yazın" value=" @filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntity.Name))?.Value" />
                                                 </th>
                                                 <th>
-                                                    @{
-                                                        var selectedActionFilter = Convert.ToInt32(filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityAction.EntityAction))?.Value ?? "-1");
-                                                    }
-                                                    <select name="@nameof(ProjectEntityAction.EntityAction)" class="form-control form-control-sm">
-                                                        <option value="@null"></option>
-                                                        @foreach (EntityAction type in (EntityAction[])Enum.GetValues(typeof(EntityAction)))
-                                                        {
-                                                            if (selectedActionFilter == (int)type)
-                                                            {
-                                                                <option value="@((int)type)" selected="selected">@type.GetDescription()</option>
-                                                                continue;
-                                                            }
-                                                            <option value="@((int)type)">@type.GetDescription()</option>
-                                                        }
-                                                    </select>
-                                                </th>
-                                                <th>
                                                     <input type="text" disabled class="disabled form-control form-control-sm" placeholder="-" />
                                                 </th>
                                                 <th>
                                                     <input type="text" disabled class="disabled form-control form-control-sm" placeholder="-" />
-                                                </th>
-                                                <th>
-                                                    <select name="LogEnabled" class="form-control form-control-sm">
-                                                        @{
-                                                            var filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityAction.LogEnabled))?.Value;
-                                                            if (filter == null)
-                                                            {
-                                                                <option selected value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else if (filter != null && Convert.ToBoolean(filter))
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option selected value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false" selected> Hayır </option>
-                                                            }
-                                                        }
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select name="CacheEnabled" class="form-control form-control-sm">
-                                                        @{
-                                                            filter = filters.FirstOrDefault(w => w.Field == nameof(ProjectEntityAction.CacheEnabled))?.Value;
-                                                            if (filter == null)
-                                                            {
-                                                                <option selected value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else if (filter != null && Convert.ToBoolean(filter))
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option selected value="true"> Evet </option>
-                                                                <option value="false"> Hayır </option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value=""> Tümü </option>
-                                                                <option value="true"> Evet </option>
-                                                                <option value="false" selected> Hayır </option>
-                                                            }
-                                                        }
-                                                    </select>
                                                 </th>
                                                 <th>
                                                     <input type="datetime" class="form-control form-control-sm" name="CreatedTime" placeholder="Aranacak kelime yazın" value="@filters.FirstOrDefault(w=>w.Field == nameof(ProjectEntityAction.CreatedTime))?.Value" />
@@ -302,25 +215,10 @@
                                             {
                                                 <tr class="item_wrapper">
                                                     <td>@item.Name</td>
-                                                    <td>@item.EntityAction.GetDescription()</td>
                                                     <td>@Html.Raw(item.RequestProperties)</td>
                                                     <td>@Html.Raw(item.ResponseProperties)</td>
-                                                    <td>@(item.CacheEnabled ? "Evet" : "Hayır")</td>
-                                                    <td>@(item.LogEnabled ? "Evet" : "Hayır")</td>
                                                     <td>@item.CreatedTime</td>
                                                     <td>@item.UpdatedTime</td>
-                                                    <td>
-                                                        @if (!item.IsConstant)
-                                                        {
-                                                            <div class="d-flex justify-content-around">
-                                                                <div></div>
-                                                                <a class="delete-link" href="@Url.Action("Delete","ProjectEntityAction")?Id=@item.Id">
-                                                                    <i class="fa fa-trash"></i>
-                                                                </a>
-                                                                <div></div>
-                                                            </div>
-                                                        }
-                                                    </td>
                                                 </tr>
                                             }
 

@@ -19,7 +19,6 @@ public class ProjectEntityConfiguration : IEntityTypeConfiguration<ProjectEntity
         builder.Property(w => w.CreatedTime).HasColumnName("CreatedTime").IsRequired();
         builder.Property(w => w.UpdatedTime).HasColumnName("UpdatedTime");
         builder.Property(w => w.DeletedTime).HasColumnName("DeletedTime");
-        builder.Property(w => w.IsConstant).HasColumnName("IsConstant");
         builder.HasQueryFilter(w => !w.DeletedTime.HasValue);
 
         builder.Property(w => w.ProjectDeclarationId).HasColumnName("ProjectDeclarationId").IsRequired();

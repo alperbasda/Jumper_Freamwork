@@ -54,9 +54,7 @@ public class ProjectEntityActionBusinessRules : BaseBusinessRules
                         CreatedTime = DateTime.Now,
                         ProjectEntityActionId = projectEntityAction.Id,
                         ProjectEntityPropertyId = item,
-                        DeletedTime = null,
-                        IsConstant = false,
-                        
+                        DeletedTime = null
                     }
                     );
             }
@@ -74,8 +72,7 @@ public class ProjectEntityActionBusinessRules : BaseBusinessRules
                         CreatedTime = DateTime.Now,
                         ProjectEntityActionId = projectEntityAction.Id,
                         ProjectEntityPropertyId = item,
-                        DeletedTime = null,
-                        IsConstant = false,
+                        DeletedTime = null
                     }
                 );
             }

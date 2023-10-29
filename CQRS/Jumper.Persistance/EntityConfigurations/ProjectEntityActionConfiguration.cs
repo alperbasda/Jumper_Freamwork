@@ -17,14 +17,10 @@ public class ProjectEntityActionConfiguration : IEntityTypeConfiguration<Project
         builder.Property(w => w.CreatedTime).HasColumnName("CreatedTime").IsRequired();
         builder.Property(w => w.UpdatedTime).HasColumnName("UpdatedTime");
         builder.Property(w => w.DeletedTime).HasColumnName("DeletedTime");
-        builder.Property(w => w.IsConstant).HasColumnName("IsConstant");
         builder.HasQueryFilter(w => !w.DeletedTime.HasValue);
 
 
         builder.Property(w => w.Name).HasColumnName("Name").IsRequired();
-        builder.Property(w => w.CacheEnabled).HasColumnName("CacheEnabled").IsRequired();
-        builder.Property(w => w.LogEnabled).HasColumnName("LogEnabled").IsRequired();
-        builder.Property(w => w.EntityAction).HasColumnName("EntityAction").IsRequired();
         builder.Property(w => w.ProjectEntityId).HasColumnName("ProjectEntityId").IsRequired();
 
         builder.HasOne(w => w.ProjectEntity);

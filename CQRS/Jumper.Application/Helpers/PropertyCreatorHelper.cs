@@ -56,14 +56,9 @@ public static class PropertyCreatorHelper
                 CreatedTime = DateTime.Now,
                 UpdatedTime = null,
                 DeletedTime = null,
-                IsUnique = false,
-                IsConstant = true,
                 PropertyTypeCode = "Guid",
                 Name = $"{entity.Name}Id",
-                Prefix = "",
-                HasIndex = false,
                 PropertyInputTypeCode = RELATIONAL_INPUT_TYPE,
-                IsShowOnRelation = false,
                 Order = 1001,
             });
             returnList.Add(new ProjectEntityProperty
@@ -73,14 +68,9 @@ public static class PropertyCreatorHelper
                 CreatedTime = DateTime.Now,
                 UpdatedTime = null,
                 DeletedTime = null,
-                IsUnique = false,
-                IsConstant = true,
                 PropertyTypeCode = entity.Name,
                 Name = entity.Name,
-                Prefix = "virtual",
-                HasIndex = false,
                 PropertyInputTypeCode = RELATIONAL_INPUT_TYPE,
-                IsShowOnRelation = false,
                 Order = 10001,
             });
         }
@@ -93,14 +83,9 @@ public static class PropertyCreatorHelper
                 CreatedTime = DateTime.Now,
                 UpdatedTime = null,
                 DeletedTime = null,
-                IsUnique = false,
-                IsConstant = true,
                 PropertyTypeCode = $"ICollection<{entity.Name}>",
                 Name = entity.Name.ToPlural(),
-                Prefix = "virtual",
-                HasIndex = false,
                 PropertyInputTypeCode = DONT_USE_INPUT_TYPE,
-                IsShowOnRelation = false,
                 Order = 10001,
             });
         }
@@ -120,14 +105,9 @@ public static class PropertyCreatorHelper
             CreatedTime = DateTime.Now,
             UpdatedTime = null,
             DeletedTime = null,
-            IsUnique = false,
-            IsConstant = true,
             PropertyTypeCode = $"List<{entity.Name}>",
             Name = entity.Name,
-            Prefix = string.Empty,
-            HasIndex = false,
             PropertyInputTypeCode = DONT_USE_INPUT_TYPE,
-            IsShowOnRelation = false,
             Order = 10001,
         });
 

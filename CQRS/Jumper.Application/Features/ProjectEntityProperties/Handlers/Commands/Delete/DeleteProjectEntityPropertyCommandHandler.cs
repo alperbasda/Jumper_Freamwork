@@ -24,7 +24,6 @@ public class DeleteProjectEntityPropertyCommandHandler : IRequestHandler<DeleteP
         
         await _projectEntityPropertyBusinessRules.ThrowExceptionIfDataNull(data);
         await _projectEntityPropertyBusinessRules.ThrowExceptionIfProjectEntityUserNotLoggedUser(data!.ProjectEntityId);
-        _projectEntityPropertyBusinessRules.ThrowExceptionEntityIsConstant(data!);
 
         await _projectEntityPropertyDal.DeleteAsync(data);
         return _mapper.Map<DeleteProjectEntityPropertyResponse>(data);
