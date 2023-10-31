@@ -3,13 +3,7 @@ using MediatR;
 
 namespace Jumper.Application.Features.PropertyTypeDeclarations.Queries.GetAllFromCache;
 
-public class GetAllFromCachePropertyTypeDeclarationQuery : IRequest<List<GetAllFromCachePropertyTypeDeclarationResponse>>, ICachableRequest
+public class GetAllFromCachePropertyTypeDeclarationQuery : IRequest<List<GetAllFromCachePropertyTypeDeclarationResponse>>
 {
-    public string CacheKey => "PropertyTypeDeclarations";
 
-    public bool BypassCache => false;
-
-    public string? CacheGroupKey => "PropertyTypeDeclarations";
-
-    public TimeSpan? SlidingExpiration => TimeSpan.FromMinutes(5);
 }
