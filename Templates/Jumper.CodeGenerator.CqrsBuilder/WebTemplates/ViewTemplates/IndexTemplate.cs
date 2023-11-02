@@ -286,7 +286,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
 
                                 @foreach (var item in Model.Items)
                                 {
-                                    <tr>
+                                    <tr class=""item_wrapper"">
                                          ");
             
             #line 149 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ViewTemplates\IndexTemplate.tt"
@@ -300,7 +300,7 @@ WriteLine($"@using {datasource["SolutionName"]}.Domain.Entities;");
                                          if(prop["Name"].ToString().EndsWith("Id"))
                                          {
                                          WriteLine("");
-                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}\" data-fill-ref=\"{prop["Id"].ToString()}\"></td>");
+                                         WriteLine($"\t\t\t\t\t\t\t\t\t\t<td data-fill-controller=\"{prop["Name"].ToString().Substring(0, prop["Name"].ToString().Length - 2)}\" data-fill-ref=\"item.{prop["Name"].ToString()}.ToString().ToUpper()\"></td>");
                                          continue;
                                          }
                                          

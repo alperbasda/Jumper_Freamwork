@@ -352,15 +352,16 @@ WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
             };
             if (ids.Count > 1)
             {
-                var filterWay = IQueryableDynamicFilterExtensions.GetNewWay(dynamicQuery.Filter, Logic.Or);
+                dynamicQuery.Filter.Filters = new List<Filter>();
+                dynamicQuery.Filter.Logic = Logic.Or;
                 for (int i = 1; i < ids.Count; i++)
                 {
-                    filterWay.Filters!.Add(new Filter { Field = ""Id"", Logic = Logic.Or, Operator = FilterOperator.Equals, Value = ids[i].ToString() });
+                    dynamicQuery.Filter.Filters.Add(new Filter { Field = ""Id"", Logic = Logic.Or, Operator = FilterOperator.Equals, Value = ids[i].ToString() });
                 }
             }
             var query = new ListDynamic");
             
-            #line 154 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+            #line 155 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity["Name"]));
             
             #line default
@@ -369,14 +370,14 @@ WriteLine($"using {datasource["SolutionName"]}.Domain.Entities;");
                     "or.Send(query);\r\n            return Json(datas.Items.Select(w => new { id = w.Id" +
                     ", text = w.");
             
-            #line 156 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+            #line 157 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(relationalPropertyName));
             
             #line default
             #line hidden
             this.Write(" }));\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n");
             
-            #line 163 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
+            #line 164 "C:\Users\Admin\source\repos\Jumper_Freamwork\Templates\Jumper.CodeGenerator.CqrsBuilder\WebTemplates\ControllerTemplates\WebControllerTemplate.tt"
     
 FileHelper.CreateAndClearBuilder($"{filePath}/{entity["Name"].ToString()}Controller.cs",this.GenerationEnvironment);
 }

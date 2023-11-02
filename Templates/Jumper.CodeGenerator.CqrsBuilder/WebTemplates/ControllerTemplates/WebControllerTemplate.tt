@@ -145,10 +145,11 @@ namespace <#= datasource["SolutionName"] #>.UI.Web.Controllers
             };
             if (ids.Count > 1)
             {
-                var filterWay = IQueryableDynamicFilterExtensions.GetNewWay(dynamicQuery.Filter, Logic.Or);
+                dynamicQuery.Filter.Filters = new List<Filter>();
+                dynamicQuery.Filter.Logic = Logic.Or;
                 for (int i = 1; i < ids.Count; i++)
                 {
-                    filterWay.Filters!.Add(new Filter { Field = "Id", Logic = Logic.Or, Operator = FilterOperator.Equals, Value = ids[i].ToString() });
+                    dynamicQuery.Filter.Filters.Add(new Filter { Field = "Id", Logic = Logic.Or, Operator = FilterOperator.Equals, Value = ids[i].ToString() });
                 }
             }
             var query = new ListDynamic<#= entity["Name"] #>Query { DynamicQuery = dynamicQuery };
