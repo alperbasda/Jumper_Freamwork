@@ -2,9 +2,9 @@
 
 <b> Jumper_Freamwork Nedir ? </b>
 <br/>
-Jumper_Freamwork bir low code architecture projesidir. Son kullanıcıya sunulan arayüz aracılığı ile Cqrs ve NLayer mimarilere uygun code base oluşturmak için kullanılır.
+Jumper_Freamwork bir soure code generator projesidir. Son kullanıcıya sunulan arayüz aracılığı ile Cqrs mimarilere uygun code base oluşturmak için kullanılır.
 <br/>
-Son kullanıcı isteklerine göre yeni mimariler eklenebilmesi için çok esnek bir yapıya sahiptir.
+Son kullanıcı isteklerine göre yeni mimariler eklenebilmesi için esnek bir yapıya sahiptir.
 
 <b> Jumper_Freamwork Nasıl Çalıştırılır ? </b>
 
