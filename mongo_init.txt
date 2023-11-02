@@ -1,0 +1,64 @@
+{
+    "_id" : CSUUID("2DB2A671-25DC-447D-9EF3-A2E617A7745E"),
+    "CreatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+    "UpdatedTime" : ISODate("2023-10-16T13:16:46.029+0000"),
+    "DeletedTime" : null,
+    "Name" : "Cqrs",
+    "DllName" : "Jumper.CodeGenerator.CqrsBuilder.dll",
+    "Projects" : [
+        {
+            "_id" : CSUUID("084ECC6F-2B4C-41B4-8FB5-7C91DF212E2C"),
+            "CreatedTime" : ISODate("2023-10-16T13:16:46.029+0000"),
+            "UpdatedTime" : ISODate("2023-10-16T13:16:46.029+0000"),
+            "DeletedTime" : null,
+            "Name" : "Common",
+            "DotnetType" : "jumpercommon",
+            "Folder" : "Common"
+        },
+        {
+            "_id" : CSUUID("A0232B89-555F-457F-8170-8ADEFA1BC87D"),
+            "CreatedTime" : ISODate("2023-10-16T13:16:46.029+0000"),
+            "UpdatedTime" : ISODate("2023-10-16T13:16:46.029+0000"),
+            "DeletedTime" : null,
+            "Name" : "Domain",
+            "DotnetType" : "jumperdomain",
+            "Folder" : "CQRS"
+        },
+        {
+            "_id" : CSUUID("01AC264A-B4A1-4DA8-91CA-B0F87F8D2177"),
+            "CreatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "UpdatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "DeletedTime" : null,
+            "Name" : "Persistence",
+            "DotnetType" : "jumperpersistence",
+            "Folder" : "CQRS"
+        },
+        {
+            "_id" : CSUUID("0D79DB3C-362E-490C-A2EC-FFE74CC4B541"),
+            "CreatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "UpdatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "DeletedTime" : null,
+            "Name" : "Application",
+            "DotnetType" : "jumperapplication",
+            "Folder" : "CQRS"
+        },
+        {
+            "_id" : CSUUID("6F58BCA1-6E2F-4971-90C0-79C13A2ECBAA"),
+            "CreatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "UpdatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "DeletedTime" : null,
+            "Name" : "UI.Web",
+            "DotnetType" : "jumperwebui",
+            "Folder" : "Presentation"
+        },
+        {
+            "_id" : CSUUID("407F03CC-476F-4107-83CC-4A26C41EDD37"),
+            "CreatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "UpdatedTime" : ISODate("2023-10-16T13:16:46.030+0000"),
+            "DeletedTime" : null,
+            "Name" : "UI.Api",
+            "DotnetType" : "jumperapi",
+            "Folder" : "Presentation"
+        }
+    ]
+}
